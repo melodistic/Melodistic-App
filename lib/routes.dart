@@ -93,3 +93,12 @@ final newPasswordRoutes = <String, WidgetBuilder>{
   RoutesName.forgetPassword: (context) => ForgetPasswordScreen(),
   RoutesName.newPassword: (context) => NewPasswordScreen()
 };
+
+final routes = <String, WidgetBuilder>{
+  ...onboardingRoutes,
+  ...homeRoutes,
+  ...customizeTrackRoutes,
+  ...userRoutes,
+  ...settingRoutes,
+  ...newPasswordRoutes
+};
