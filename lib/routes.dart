@@ -5,6 +5,8 @@ import 'package:melodistic/screens/customize-track/customize.screen.dart';
 import 'package:melodistic/screens/customize-track/section/break.screen.dart';
 import 'package:melodistic/screens/customize-track/section/exercise.screen.dart';
 import 'package:melodistic/screens/customize-track/section/section.screen.dart';
+import 'package:melodistic/screens/forget-password/forget-password.screen.dart';
+import 'package:melodistic/screens/forget-password/new-password.screen.dart';
 import 'package:melodistic/screens/home/home.screen.dart';
 import 'package:melodistic/screens/home/track.screen.dart';
 import 'package:melodistic/screens/onboarding/login.screen.dart';
@@ -85,4 +87,9 @@ final settingRoutes = <String, WidgetBuilder>{
   RoutesName.settingProfile: (context) => SettingProfileScreen(),
   RoutesName.settingHelp: (context) => SettingHelpScreen(),
   RoutesName.settingPreference: (context) => SettingPreferenceScreen()
+};
+
+final newPasswordRoutes = <String, WidgetBuilder>{
+  RoutesName.forgetPassword: (context) => ForgetPasswordScreen(),
+  RoutesName.newPassword: (context) => NewPasswordScreen()
 };
