@@ -12,6 +12,9 @@ import 'package:melodistic/screens/onboarding/onboard.screen.dart';
 import 'package:melodistic/screens/onboarding/register/profile.screen.dart';
 import 'package:melodistic/screens/onboarding/register/register.screen.dart';
 import 'package:melodistic/screens/onboarding/register/time.screen.dart';
+import 'package:melodistic/screens/user/favorite.screen.dart';
+import 'package:melodistic/screens/user/library.screen.dart';
+import 'package:melodistic/screens/user/upload.screen.dart';
 
 class RoutesName {
   // Onboarding
@@ -65,4 +68,10 @@ final customizeTrackRoutes = <String, WidgetBuilder>{
   RoutesName.customizeSection: (context) => CustomizeSectionScreen(),
   RoutesName.customizeExerciseSection: (context) => CustomizeExerciseScreen(),
   RoutesName.customizeBreakSection: (context) => CustomizeBreakScreen()
+};
+
+final userRoutes = <String, WidgetBuilder>{
+  RoutesName.upload: (context) => UploadScreen(),
+  RoutesName.library: (context) => LibraryScreen(),
+  RoutesName.favorite: (context) => FavoriteScreen()
 };
