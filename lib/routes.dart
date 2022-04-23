@@ -1,4 +1,13 @@
-class RoutesName{
+import 'dart:js';
+
+import 'package:flutter/material.dart';
+import 'package:melodistic/screens/onboarding/login.screen.dart';
+import 'package:melodistic/screens/onboarding/onboard.screen.dart';
+import 'package:melodistic/screens/onboarding/register/profile.screen.dart';
+import 'package:melodistic/screens/onboarding/register/register.screen.dart';
+import 'package:melodistic/screens/onboarding/register/time.screen.dart';
+
+class RoutesName {
   // Onboarding
   static const onboard = '/onboard';
   static const login = '/onboard/login';
@@ -31,3 +40,11 @@ class RoutesName{
   static const forgetPassword = '/forget-password';
   static const newPassword = '/forget-password/new-password';
 }
+
+final onboardingRoutes = <String, WidgetBuilder>{
+  RoutesName.onboard: (context) => OnboardingScreen(),
+  RoutesName.login: (context) => LoginScreen(),
+  RoutesName.register: (context) => RegisterScreen(),
+  RoutesName.registerProfile: (context) => RegisterProfileScreen(),
+  RoutesName.registerTime: (context) => RegisterTimeScreen()
+};
