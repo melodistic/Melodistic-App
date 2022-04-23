@@ -12,6 +12,10 @@ import 'package:melodistic/screens/onboarding/onboard.screen.dart';
 import 'package:melodistic/screens/onboarding/register/profile.screen.dart';
 import 'package:melodistic/screens/onboarding/register/register.screen.dart';
 import 'package:melodistic/screens/onboarding/register/time.screen.dart';
+import 'package:melodistic/screens/setting/help.screen.dart';
+import 'package:melodistic/screens/setting/preference.screen.dart';
+import 'package:melodistic/screens/setting/profile.screen.dart';
+import 'package:melodistic/screens/setting/setting.screen.dart';
 import 'package:melodistic/screens/user/favorite.screen.dart';
 import 'package:melodistic/screens/user/library.screen.dart';
 import 'package:melodistic/screens/user/upload.screen.dart';
@@ -74,4 +78,11 @@ final userRoutes = <String, WidgetBuilder>{
   RoutesName.upload: (context) => UploadScreen(),
   RoutesName.library: (context) => LibraryScreen(),
   RoutesName.favorite: (context) => FavoriteScreen()
+};
+
+final settingRoutes = <String, WidgetBuilder>{
+  RoutesName.setting: (context) => SettingScreen(),
+  RoutesName.settingProfile: (context) => SettingProfileScreen(),
+  RoutesName.settingHelp: (context) => SettingHelpScreen(),
+  RoutesName.settingPreference: (context) => SettingPreferenceScreen()
 };
