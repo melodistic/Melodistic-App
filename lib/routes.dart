@@ -1,6 +1,10 @@
 import 'dart:js';
 
 import 'package:flutter/material.dart';
+import 'package:melodistic/screens/customize-track/customize.screen.dart';
+import 'package:melodistic/screens/customize-track/section/break.screen.dart';
+import 'package:melodistic/screens/customize-track/section/exercise.screen.dart';
+import 'package:melodistic/screens/customize-track/section/section.screen.dart';
 import 'package:melodistic/screens/home/home.screen.dart';
 import 'package:melodistic/screens/home/track.screen.dart';
 import 'package:melodistic/screens/onboarding/login.screen.dart';
@@ -54,4 +58,11 @@ final onboardingRoutes = <String, WidgetBuilder>{
 final homeRoutes = <String, WidgetBuilder>{
   RoutesName.home: (context) => HomeScreen(),
   RoutesName.track: (context) => TrackScreen()
+};
+
+final customizeTrackRoutes = <String, WidgetBuilder>{
+  RoutesName.customize: (context) => CustomizeScreen(),
+  RoutesName.customizeSection: (context) => CustomizeSectionScreen(),
+  RoutesName.customizeExerciseSection: (context) => CustomizeExerciseScreen(),
+  RoutesName.customizeBreakSection: (context) => CustomizeBreakScreen()
 };
