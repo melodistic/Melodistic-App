@@ -1,6 +1,8 @@
 import 'dart:js';
 
 import 'package:flutter/material.dart';
+import 'package:melodistic/screens/home/home.screen.dart';
+import 'package:melodistic/screens/home/track.screen.dart';
 import 'package:melodistic/screens/onboarding/login.screen.dart';
 import 'package:melodistic/screens/onboarding/onboard.screen.dart';
 import 'package:melodistic/screens/onboarding/register/profile.screen.dart';
@@ -47,4 +49,9 @@ final onboardingRoutes = <String, WidgetBuilder>{
   RoutesName.register: (context) => RegisterScreen(),
   RoutesName.registerProfile: (context) => RegisterProfileScreen(),
   RoutesName.registerTime: (context) => RegisterTimeScreen()
+};
+
+final homeRoutes = <String, WidgetBuilder>{
+  RoutesName.home: (context) => HomeScreen(),
+  RoutesName.track: (context) => TrackScreen()
 };
