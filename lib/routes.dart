@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:melodistic/screens/customize-track/customize.screen.dart';
 import 'package:melodistic/screens/customize-track/section/break.screen.dart';

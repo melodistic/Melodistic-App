@@ -4,4 +4,3 @@ import 'package:melodistic/app.dart';
 void main() {
   runApp(MelodisticApp());
 }
-
