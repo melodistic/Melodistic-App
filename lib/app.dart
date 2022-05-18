@@ -13,7 +13,7 @@ class _MelodisticAppState extends State<MelodisticApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Melodistic App',
-      initialRoute: RoutesName.onboard,
+      initialRoute: RoutesName.home,
       routes: routes,
     );
   }
