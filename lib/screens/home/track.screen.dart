@@ -45,20 +45,29 @@ class _MusicPlayerState extends State<MusicPlayer> {
     super.dispose();
   }
 
+  var play = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      IconButton(
-          icon: Icon(Icons.play_arrow),
-          onPressed: () {
-            widget.player.play();
-          }),
-      IconButton(
-          icon: Icon(Icons.pause),
-          onPressed: () {
-            widget.player.pause();
-          }),
+      play
+          ? (IconButton(
+              icon: Icon(Icons.pause),
+              onPressed: () {
+                widget.player.pause();
+                setState(() {
+                  play = false;
+                });
+              }))
+          : (IconButton(
+              icon: Icon(Icons.play_arrow),
+              onPressed: () {
+                widget.player.play();
+                setState(() {
+                  play = true;
+                });
+              }))
     ]));
   }
 }
