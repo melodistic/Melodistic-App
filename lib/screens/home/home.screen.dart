@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/screens/home/widgets/trackbox.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:dio/dio.dart';
 
@@ -17,6 +19,7 @@ class HomeScreen extends StatelessWidget {
     return ScreenWrapper(
         isHome: true,
         child: Container(
+          padding: EdgeInsets.symmetric(horizontal: kSizeS, vertical: 10),
           child: FutureBuilder(
             future: getPlaylist(),
             builder: (context, snapshot) {
@@ -25,13 +28,7 @@ class HomeScreen extends StatelessWidget {
                 return ListView.builder(
                   itemCount: data.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(data[index]),
-                      onTap: () {
-                        Navigator.of(context).pushNamed(RoutesName.track,
-                            arguments: {'filename': data[index]});
-                      },
-                    );
+                    return TrackBox(track: data[index]);
                   },
                 );
               } else {
