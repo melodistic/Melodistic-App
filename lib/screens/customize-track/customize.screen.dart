@@ -14,48 +14,52 @@ class CustomizeScreen extends StatelessWidget {
     return ScreenWrapper(
         child: Container(
       padding: EdgeInsets.symmetric(horizontal: 16),
-      child: Column(children: [
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
           "Customize",
-          style: TextStyle(fontSize: kFontSizeXXL, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: kFontSizeXL, fontWeight: FontWeight.bold),
         ),
         TextField(
           controller: programController,
           maxLines: 20,
         ),
-        TextButton(
-            onPressed: () async {
-              showDialog(
-                  context: context,
-                  builder: (ctx) => AlertDialog(
-                      title: Text(
-                        "Loading",
-                        textAlign: TextAlign.center,
-                      ),
-                      content: Container(
-                        height: 100,
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              child: CircularProgressIndicator(),
-                              width: 60,
-                              height: 60,
-                            )
-                          ],
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          TextButton(
+              onPressed: () async {
+                showDialog(
+                    context: context,
+                    builder: (ctx) => AlertDialog(
+                        title: Text(
+                          "Loading",
+                          textAlign: TextAlign.center,
                         ),
-                      )));
-              try {
-                final Response resp = await Dio().post(
-                    "http://20.24.147.227:5500/api/generate",
-                    data: json.decode(programController.text));
-                String filename = resp.data["filename"];
-                Navigator.of(context).pushReplacementNamed(RoutesName.track,
-                    arguments: {"filename": filename});
-              } on DioError catch (err) {
-                print(err);
-              }
-            },
-            child: Text("Generate"))
+                        content: Container(
+                          height: 100,
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                child: CircularProgressIndicator(),
+                                width: 60,
+                                height: 60,
+                              )
+                            ],
+                          ),
+                        )));
+                try {
+                  final Response resp = await Dio().post(
+                      "http://20.24.147.227:5500/api/generate",
+                      data: json.decode(programController.text));
+                  Map track = resp.data["track"];
+
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      RoutesName.track, ModalRoute.withName(RoutesName.home),
+                      arguments: {"track": track});
+                } on DioError catch (err) {
+                  print(err);
+                }
+              },
+              child: Text("Generate"))
+        ])
       ]),
     ));
   }
