@@ -49,7 +49,7 @@ class CustomizeScreen extends StatelessWidget {
                     "http://20.24.147.227:5500/api/generate",
                     data: json.decode(programController.text));
                 String filename = resp.data["filename"];
-                Navigator.of(context).pushNamed(RoutesName.track,
+                Navigator.of(context).pushReplacementNamed(RoutesName.track,
                     arguments: {"filename": filename});
               } on DioError catch (err) {
                 print(err);
