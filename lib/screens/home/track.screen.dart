@@ -37,7 +37,7 @@ class TrackScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      arguments["track"]["filename"],
+                      arguments["track"]["program_name"],
                       style: TextStyle(
                           fontWeight: kFontWeightBold, fontSize: kFontSizeS),
                     ),
