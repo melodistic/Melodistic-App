@@ -45,7 +45,7 @@ class TrackScreen extends StatelessWidget {
                     Text(
                       arguments["track"]["description"],
                       style: TextStyle(
-                          fontWeight: kFontWeightLight,
+                          fontWeight: kFontWeightRegular,
                           color: Color(0xFF94A2AB),
                           fontSize: kFontSizeXS),
                     ),
