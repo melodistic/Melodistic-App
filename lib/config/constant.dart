@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-const kFontSizeXXL = 36.0;
 const kFontSizeXL = 28.0;
-const kFontSizeL = 20.0;
-const kFontSizeM = 18.0;
-const kFontSizeS = 16.0;
-const kFontSizeXS = 13.0;
+const kFontSizeL = 16.0;
+const kFontSizeM = 14.0;
+const kFontSizeS = 12.0;
+const kFontSizeXS = 8.0;
 
 const kLineHeightL = 40.0;
 const kLineHeightM = 35.0;
@@ -15,7 +14,6 @@ const kFontWeightBold = FontWeight.bold;
 const kFontWeightSemiBold = FontWeight.w600;
 const kFontWeightMedium = FontWeight.w500;
 const kFontWeightRegular = FontWeight.normal;
-const kFontWeightLight = FontWeight.w300;
 
 const kSizeXXXS = 2.0;
 const kSizeXXS = 4.0;
