@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.melodistic">
+    package="com.melodistic.melodistic">
    <application
         android:label="melodistic"
         android:icon="@mipmap/ic_launcher">

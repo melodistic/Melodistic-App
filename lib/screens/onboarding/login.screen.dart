@@ -1,12 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({ Key? key }) : super(key: key);
+  LoginScreen({Key? key}) : super(key: key);
+
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ["email"]);
+  Future<void> _handleSignIn() async {
+    try {
+      GoogleSignInAccount? account = await _googleSignIn.signIn();
+      if (account != null) {
+        account.authentication.then((value) => {print(value.accessToken)});
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Login Screen'),
-    );
+    return ScreenWrapper(
+        isHome: true,
+        child: Column(
+          children: [
+            Text("Login Screen"),
+            TextButton(
+                onPressed: _handleSignIn, child: Text("Sign in with Google"))
+          ],
+        ));
   }
 }
