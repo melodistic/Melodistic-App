@@ -1,6 +1,3 @@
-Pull requet title: [JIRA-ID] Task name
-Example: [MEL-1] App Configuration
-
 Jira Link: [JIRA-ID](https://melodistic.atlassian.net/browse/<JIRA-ID>)
 
 ### Description 
