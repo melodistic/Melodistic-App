@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:melodistic/config/api.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:just_audio/just_audio.dart';
@@ -94,7 +95,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
     try {
       widget.player
           .setAudioSource(AudioSource.uri(Uri.parse(
-              "https://melodistic-aks.ggolfz.me/api/stream/" + widget.trackId)))
+              "$apiBaseURL/api/stream/" + widget.trackId)))
           .then((value) {
         setState(() {
           _duration = value!;
