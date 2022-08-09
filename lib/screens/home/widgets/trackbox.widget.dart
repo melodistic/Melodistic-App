@@ -22,7 +22,7 @@ class TrackBox extends StatelessWidget {
                     height: 180,
                     width: double.infinity,
                     child: Image.network(
-                      track["program_image_url"],
+                      track["track_image_url"],
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -50,7 +50,7 @@ class TrackBox extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        track["program_name"],
+                        track["track_name"],
                         style: TextStyle(
                             fontWeight: kFontWeightBold, fontSize: kFontSizeS),
                       ),

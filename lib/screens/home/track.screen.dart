@@ -28,7 +28,7 @@ class TrackScreen extends StatelessWidget {
             SizedBox(
                 height: 450,
                 width: double.infinity,
-                child: Image.network(arguments["track"]["program_image_url"],
+                child: Image.network(arguments["track"]["track_image_url"],
                     fit: BoxFit.cover)),
             kSizedBoxVerticalM,
             Padding(
@@ -37,7 +37,7 @@ class TrackScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      arguments["track"]["program_name"],
+                      arguments["track"]["track_name"],
                       style: TextStyle(
                           fontWeight: kFontWeightBold, fontSize: kFontSizeS),
                     ),
@@ -52,7 +52,7 @@ class TrackScreen extends StatelessWidget {
                     kSizedBoxVerticalM,
                     MusicPlayer(
                         player: player,
-                        filename: arguments["track"]["filename"])
+                        trackId: arguments["track"]["track_id"])
                   ]),
             )
           ],
@@ -78,10 +78,10 @@ class CustomTrackShape extends RoundedRectSliderTrackShape {
 }
 
 class MusicPlayer extends StatefulWidget {
-  const MusicPlayer({Key? key, required this.player, required this.filename})
+  const MusicPlayer({Key? key, required this.player, required this.trackId})
       : super(key: key);
   final AudioPlayer player;
-  final String filename;
+  final String trackId;
   @override
   State<MusicPlayer> createState() => _MusicPlayerState();
 }
@@ -94,7 +94,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
     try {
       widget.player
           .setAudioSource(AudioSource.uri(Uri.parse(
-              "http://20.24.147.227:5050/api/play/" + widget.filename)))
+              "https://melodistic-aks.ggolfz.me/api/stream/" + widget.trackId)))
           .then((value) {
         setState(() {
           _duration = value!;

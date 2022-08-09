@@ -18,8 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<List> getPlaylist() async {
     final Response response =
-        await Dio().get("http://20.24.147.227:5050/api/playlist");
-    final List data = response.data["files"];
+        await Dio().get("https://melodistic-aks.ggolfz.me/api/track");
+    final List data = response.data;
     return data;
   }
 
