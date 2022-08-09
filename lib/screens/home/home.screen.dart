@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:melodistic/config/api.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/screens/home/widgets/trackbox.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
@@ -18,8 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<List> getPlaylist() async {
     final Response response =
-        await Dio().get("http://20.24.147.227:5050/api/playlist");
-    final List data = response.data["files"];
+        await Dio().get("$apiBaseURL/api/track");
+    final List data = response.data;
     return data;
   }
 
