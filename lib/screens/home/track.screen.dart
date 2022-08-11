@@ -9,9 +9,10 @@ class TrackScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final arguments = (ModalRoute.of(context)?.settings.arguments ??
-        <String, dynamic>{}) as Map<String, Map<String, String>>;
-    final player = AudioPlayer();
+    final Map<String, Map<String, String>> arguments =
+        (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{})
+            as Map<String, Map<String, String>>;
+    final AudioPlayer player = AudioPlayer();
     final Map<String, String> track = arguments['track']!;
     return ScreenWrapper(
         customAppbar: AppBar(
@@ -26,7 +27,7 @@ class TrackScreen extends StatelessWidget {
         extendBodyBehindAppBar: true,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: <Widget>[
             SizedBox(
                 height: 450,
                 width: double.infinity,
@@ -37,7 +38,7 @@ class TrackScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: kSizeS * 1.5),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     Text(
                       track['track_name']!,
                       style: const TextStyle(
@@ -61,6 +62,7 @@ class TrackScreen extends StatelessWidget {
 }
 
 class CustomTrackShape extends RoundedRectSliderTrackShape {
+  @override
   Rect getPreferredRect({
     required RenderBox parentBox,
     Offset offset = Offset.zero,
@@ -95,18 +97,18 @@ class _MusicPlayerState extends State<MusicPlayer> {
       widget.player
           .setAudioSource(AudioSource.uri(
               Uri.parse('$apiBaseURL/api/stream/' + widget.trackId)))
-          .then((value) {
+          .then((Duration? value) {
         setState(() {
           _duration = value!;
         });
       });
-      widget.player.createPositionStream().listen((position) {
+      widget.player.createPositionStream().listen((Duration position) {
         setState(() {
           _position = position;
         });
       });
     } catch (err) {
-      print(err);
+      return;
     }
     super.initState();
   }
@@ -148,12 +150,11 @@ class _MusicPlayerState extends State<MusicPlayer> {
     });
   }
 
-  var play = false;
+  bool play = false;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Column(children: [
+    return Column(children: <Widget>[
       SliderTheme(
           data: SliderThemeData(
               thumbColor: Colors.black,
@@ -166,7 +167,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
               thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6)),
           child: Slider(
               value: convertDurationToDoubleValue(_position),
-              onChanged: (value) {
+              onChanged: (double value) {
                 widget.player
                     .seek(Duration(milliseconds: value.toInt() * 1000));
                 playMusic();
@@ -176,13 +177,13 @@ class _MusicPlayerState extends State<MusicPlayer> {
       kSizedBoxVerticalXS,
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
+        children: <Text>[
           Text(durationString(_position)),
           Text(durationString(_duration))
         ],
       ),
       kSizedBoxVerticalM,
-      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
         GestureDetector(
           child: SizedBox(
             child: Image.asset(
@@ -231,6 +232,6 @@ class _MusicPlayerState extends State<MusicPlayer> {
           },
         ),
       ])
-    ]));
+    ]);
   }
 }

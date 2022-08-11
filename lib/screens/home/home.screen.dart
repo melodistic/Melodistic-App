@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -9,7 +7,7 @@ import 'package:melodistic/routes.dart';
 import 'package:melodistic/screens/home/widgets/trackbox.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:dio/dio.dart';
-import 'package:melodistic/widgets/common/type/screen-type.dart';
+import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -47,29 +45,29 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     return ScreenWrapper(
         floatingActionButton: FloatingActionButton(
-          child: Icon(
-            Icons.add
-          ),
+          child: const Icon(Icons.add),
           backgroundColor: Colors.black,
           onPressed: () {
             Navigator.of(context).pushNamed(RoutesName.customize);
           },
         ),
-        screen: ScreenType.WithTitle,
+        screen: ScreenType.withTitle,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: kSizeS, vertical: 10),
           child: FutureBuilder<List<Map<dynamic, dynamic>>>(
             future: _getPlayList,
-            builder: (context, snapshot) {
+            builder: (BuildContext context,
+                AsyncSnapshot<List<Map<dynamic, dynamic>>> snapshot) {
               if (snapshot.hasData) {
-                final data = snapshot.data as List<Map<String, String>>;
+                final List<Map<String, String>> data =
+                    snapshot.data as List<Map<String, String>>;
                 return ListView.separated(
-                  itemCount: data.length,
-                  itemBuilder: (context, index) {
-                    return TrackBox(track: data[index]);
-                  },
-                  separatorBuilder: ((context, index) => kSizedBoxVerticalS)
-                );
+                    itemCount: data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return TrackBox(track: data[index]);
+                    },
+                    separatorBuilder: ((BuildContext context, int index) =>
+                        kSizedBoxVerticalS));
               } else {
                 return const Center(child: CircularProgressIndicator());
               }

@@ -5,8 +5,6 @@ class CustomizeSectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Customize Section Screen'),
-    );
+    return const Text('Customize Section Screen');
   }
 }

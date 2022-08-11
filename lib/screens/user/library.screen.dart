@@ -5,8 +5,6 @@ class LibraryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Library Screen'),
-    );
+    return const Text('Library Screen');
   }
 }
