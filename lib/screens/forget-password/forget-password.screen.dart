@@ -5,8 +5,6 @@ class ForgetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Forget Password Screen'),
-    );
+    return const Text('Forget Password Screen');
   }
 }

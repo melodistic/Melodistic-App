@@ -5,8 +5,6 @@ class RegisterTimeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Register Time Screen'),
-    );
+    return const Text('Register Time Screen');
   }
 }

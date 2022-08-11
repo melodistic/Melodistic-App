@@ -5,8 +5,6 @@ class CustomizeBreakScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Customize Break Screen'),
-    );
+    return const Text('Customize Break Screen');
   }
 }

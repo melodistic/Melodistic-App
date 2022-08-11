@@ -14,10 +14,10 @@ class TrackBox extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(4))),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: <Widget>[
               Stack(
                 alignment: Alignment.bottomRight,
-                children: [
+                children: <Widget>[
                   SizedBox(
                     height: 180,
                     width: double.infinity,
@@ -30,7 +30,7 @@ class TrackBox extends StatelessWidget {
                     padding: const EdgeInsets.all(4),
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: const [
+                        children: const <Widget>[
                           Text(
                             'Play',
                             style: TextStyle(color: Colors.white),
@@ -48,7 +48,7 @@ class TrackBox extends StatelessWidget {
                 padding: const EdgeInsets.all(12),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: <Widget>[
                       Text(
                         track['track_name']!,
                         style: const TextStyle(
@@ -61,8 +61,8 @@ class TrackBox extends StatelessWidget {
             ],
           )),
       onTap: () {
-        Navigator.of(context)
-            .pushNamed(RoutesName.track, arguments: {'track': track});
+        Navigator.of(context).pushNamed(RoutesName.track,
+            arguments: <String, Map<String, String>>{'track': track});
       },
     );
   }
