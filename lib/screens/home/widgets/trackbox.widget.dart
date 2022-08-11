@@ -4,14 +4,14 @@ import 'package:melodistic/routes.dart';
 
 class TrackBox extends StatelessWidget {
   const TrackBox({Key? key, required this.track}) : super(key: key);
-  final Map track;
+  final Map<String, String> track;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
           decoration: BoxDecoration(
-              border: Border.all(width: 1, color: Color(0xFFDFE6EC)),
-              borderRadius: BorderRadius.all(Radius.circular(4))),
+              border: Border.all(width: 1, color: const Color(0xFFDFE6EC)),
+              borderRadius: const BorderRadius.all(Radius.circular(4))),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -22,17 +22,17 @@ class TrackBox extends StatelessWidget {
                     height: 180,
                     width: double.infinity,
                     child: Image.network(
-                      track["track_image_url"],
+                      track['track_image_url']!,
                       fit: BoxFit.cover,
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(4),
+                    padding: const EdgeInsets.all(4),
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
+                        children: const [
                           Text(
-                            "Play",
+                            'Play',
                             style: TextStyle(color: Colors.white),
                           ),
                           kSizedBoxHorizontalXXS,
@@ -45,17 +45,17 @@ class TrackBox extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        track["track_name"],
-                        style: TextStyle(
+                        track['track_name']!,
+                        style: const TextStyle(
                             fontWeight: kFontWeightBold, fontSize: kFontSizeS),
                       ),
                       kSizedBoxVerticalXS,
-                      Text(track["description"])
+                      Text(track['description']!)
                     ]),
               )
             ],

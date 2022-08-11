@@ -1,1 +1,1 @@
-const apiBaseURL = "https://melodistic-aks.ggolfz.me";
+const apiBaseURL = 'https://melodistic-aks.ggolfz.me';
