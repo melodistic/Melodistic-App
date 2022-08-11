@@ -1,26 +1,27 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/widgets/common/type/screen-type.dart';
 
 class ScreenWrapper extends StatelessWidget {
   const ScreenWrapper(
       {Key? key,
       required this.child,
-      this.isHome = false,
-      this.isOnbording = false,
+      this.screen = ScreenType.NoTitle,
       this.customAppbar,
       this.extendBodyBehindAppBar = false})
       : super(key: key);
   final Widget child;
-  final bool isHome;
-  final bool isOnbording;
+  final ScreenType screen;
   final PreferredSizeWidget? customAppbar;
   final bool extendBodyBehindAppBar;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppbar ??
-          (isHome
+          (screen == ScreenType.WithTitle
               ? AppBar(
                   title: Text(
                     "Melodistic",
@@ -32,7 +33,7 @@ class ScreenWrapper extends StatelessWidget {
               : AppBar(
                   leading: Padding(
                       padding: EdgeInsets.symmetric(horizontal: kSizeS),
-                      child: isOnbording ? null :
+                      child: screen == ScreenType.NoTitle ? null :
                       Row(children: [
                         BackButton(
                           color: Colors.black,
@@ -50,7 +51,7 @@ class ScreenWrapper extends StatelessWidget {
       backgroundColor: Colors.white,
       extendBodyBehindAppBar: extendBodyBehindAppBar,
       body: extendBodyBehindAppBar ? child : SafeArea(child: child),
-      floatingActionButton: isHome
+      floatingActionButton: screen == ScreenType.WithTitle
           ? FloatingActionButton(
               child: Icon(
                 Icons.add,

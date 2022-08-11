@@ -5,6 +5,7 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/screens/home/widgets/trackbox.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:dio/dio.dart';
+import 'package:melodistic/widgets/common/type/screen-type.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -41,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
       loadData();
     });
     return ScreenWrapper(
-        isHome: true,
+        screen: ScreenType.WithTitle,
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: kSizeS, vertical: 10),
           child: FutureBuilder(

@@ -3,8 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
+import 'package:melodistic/config/style.dart';
 import 'package:melodistic/screens/onboarding/login.screen.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
+import 'package:melodistic/widgets/common/type/screen-type.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({ Key? key }) : super(key: key);
@@ -12,7 +14,7 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-      isOnbording: true,
+      screen: ScreenType.NoTitle,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: kSizeM, vertical: 10),
         child:
@@ -20,17 +22,14 @@ class OnboardingScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("Enjoy Exercise",
-                style: TextStyle(
-                fontWeight: kFontWeightBold, fontSize: kFontSizeXL),),
+                style: kHeading1 ),
               kSizedBoxHorizontalXXL,
               Row(
                 children: [
                   Text("With",
-                    style: TextStyle(
-                    fontWeight: kFontWeightBold, fontSize: kFontSizeXL),),
+                    style: kHeading1 ,),
                   Text(" Melodistic",
-                    style: TextStyle(
-                    fontWeight: kFontWeightBold, fontSize: kFontSizeXL, color: kSecondaryColor),),
+                    style: kHeading1.copyWith(color: kSecondaryColor)),
                 ],
               ),
               kSizedBoxHorizontalXXL,
@@ -39,9 +38,8 @@ class OnboardingScreen extends StatelessWidget {
                 child: Image.asset('assets/images/onbording.png')
               ),
               Text("This application will match your mood and favorite music for a exercise music track.",
-                style: TextStyle(
-                fontWeight: kFontWeightRegular, fontSize: kFontSizeM, color: kGrayScaleColor500 ),
-                textAlign: TextAlign.center,),
+                textAlign: TextAlign.center,
+                style: kBody2.copyWith(color: kGrayScaleColor500)),
               Container(
                 padding: EdgeInsets.symmetric(vertical: kSizeM),
                 child: SizedBox(
