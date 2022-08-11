@@ -1,3 +1,1 @@
-enum ScreenType {
-    WithTitle, NoTitle, WithBack
-}
+enum ScreenType { WithTitle, NoTitle, WithBack }

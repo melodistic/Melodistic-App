@@ -47,9 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     return ScreenWrapper(
         floatingActionButton: FloatingActionButton(
-          child: Icon(
-            Icons.add
-          ),
+          child: Icon(Icons.add),
           backgroundColor: Colors.black,
           onPressed: () {
             Navigator.of(context).pushNamed(RoutesName.customize);
@@ -64,12 +62,11 @@ class _HomeScreenState extends State<HomeScreen> {
               if (snapshot.hasData) {
                 final data = snapshot.data as List<Map<String, String>>;
                 return ListView.separated(
-                  itemCount: data.length,
-                  itemBuilder: (context, index) {
-                    return TrackBox(track: data[index]);
-                  },
-                  separatorBuilder: ((context, index) => kSizedBoxVerticalS)
-                );
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      return TrackBox(track: data[index]);
+                    },
+                    separatorBuilder: ((context, index) => kSizedBoxVerticalS));
               } else {
                 return const Center(child: CircularProgressIndicator());
               }

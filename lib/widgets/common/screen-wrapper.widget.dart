@@ -22,38 +22,36 @@ class ScreenWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppbar ??
-          (screen == ScreenType.WithTitle
-              ? AppBar(
-                  title: Text(
-                    "Melodistic",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  elevation: 0,
-                  backgroundColor: Colors.white
-                )
-              : AppBar(
-                  leading: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: kSizeS),
-                      child: screen == ScreenType.NoTitle ? null :
-                      Row(children: [
-                        BackButton(
-                          color: Colors.black
-                        ),
-                        Text(
-                          "Back",
-                          style: TextStyle(
-                              color: Colors.black, fontSize: kFontSizeS),
-                        )
-                      ])),
-                  leadingWidth: double.infinity,
-                  elevation: 0,
-                  backgroundColor: Colors.white,
-                )),
-      backgroundColor: Colors.white,
-      extendBodyBehindAppBar: extendBodyBehindAppBar,
-      body: extendBodyBehindAppBar ? child : SafeArea(child: child),
-      floatingActionButton: floatingActionButton
-    );
+        appBar: customAppbar ??
+            (screen == ScreenType.WithTitle
+                ? AppBar(
+                    title: Text(
+                      "Melodistic",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    elevation: 0,
+                    backgroundColor: Colors.white)
+                : AppBar(
+                    leading: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: kSizeS),
+                        child: screen == ScreenType.NoTitle
+                            ? null
+                            : Row(children: [
+                                BackButton(color: Colors.black),
+                                Text(
+                                  "Back",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: kFontSizeS),
+                                )
+                              ])),
+                    leadingWidth: double.infinity,
+                    elevation: 0,
+                    backgroundColor: Colors.white,
+                  )),
+        backgroundColor: Colors.white,
+        extendBodyBehindAppBar: extendBodyBehindAppBar,
+        body: extendBodyBehindAppBar ? child : SafeArea(child: child),
+        floatingActionButton: floatingActionButton);
   }
 }

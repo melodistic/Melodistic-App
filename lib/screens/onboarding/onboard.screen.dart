@@ -14,56 +14,44 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-      screen: ScreenType.NoTitle,
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: kSizeM, vertical: 10),
-        child:
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Enjoy Exercise",
-                style: kHeading1 ),
-              kSizedBoxHorizontalXXL,
-              Row(
-                children: [
-                  Text("With",
-                    style: kHeading1 ),
-                  Text(" Melodistic",
-                    style: kHeading1.copyWith(color: kSecondaryColor))
-                ],
-              ),
-              kSizedBoxHorizontalXXL,
-              Container (
-                padding: EdgeInsets.symmetric(vertical: kSizeS),
-                child: Image.asset('assets/images/onbording.png')
-              ),
-              Text("This application will match your mood and favorite music for a exercise music track.",
-                textAlign: TextAlign.center,
-                style: kBody2.copyWith(color: kGrayScaleColor500)),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: kSizeM),
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: kPrimaryColor,
-                      primary: kGrayScaleColor50
-                    ),
-                    onPressed: () { 
-                     Navigator.of(context).pushNamed(RoutesName.login);
-                    },
-                    child: Text('Try now')
-                  )
+        screen: ScreenType.NoTitle,
+        child: Container(
+            padding: EdgeInsets.symmetric(horizontal: kSizeM, vertical: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Enjoy Exercise", style: kHeading1),
+                kSizedBoxHorizontalXXL,
+                Row(
+                  children: [
+                    Text("With", style: kHeading1),
+                    Text(" Melodistic",
+                        style: kHeading1.copyWith(color: kSecondaryColor))
+                  ],
                 ),
-              )
-              
-              
-            ],
-          )
-          
-          
-      )
-    );
+                kSizedBoxHorizontalXXL,
+                Container(
+                    padding: EdgeInsets.symmetric(vertical: kSizeS),
+                    child: Image.asset('assets/images/onbording.png')),
+                Text(
+                    "This application will match your mood and favorite music for a exercise music track.",
+                    textAlign: TextAlign.center,
+                    style: kBody2.copyWith(color: kGrayScaleColor500)),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: kSizeM),
+                  child: SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: TextButton(
+                          style: TextButton.styleFrom(
+                              backgroundColor: kPrimaryColor,
+                              primary: kGrayScaleColor50),
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(RoutesName.login);
+                          },
+                          child: Text('Try now'))),
+                )
+              ],
+            )));
   }
 }
