@@ -9,42 +9,45 @@ class CustomizeScreen extends StatelessWidget {
     TextEditingController programController = TextEditingController();
     return ScreenWrapper(
         child: Container(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Text(
-          'Customize',
-          style: TextStyle(fontSize: kFontSizeXL, fontWeight: FontWeight.bold),
-        ),
-        TextField(
-          controller: programController,
-          maxLines: 20,
-        ),
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          TextButton(
-              onPressed: () async {
-                showDialog<AlertDialog>(
-                    context: context,
-                    builder: (ctx) => AlertDialog(
-                        title: const Text(
-                          'Loading',
-                          textAlign: TextAlign.center,
-                        ),
-                        content: Container(
-                          height: 100,
-                          child: Column(
-                            children: const [
-                              SizedBox(
-                                child: CircularProgressIndicator(),
-                                width: 60,
-                                height: 60,
-                              )
-                            ],
-                          ),
-                        )));
-              },
-              child: const Text('Generate'))
-        ])
-      ]),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const Text(
+              'Customize',
+              style:
+                  TextStyle(fontSize: kFontSizeXL, fontWeight: FontWeight.bold),
+            ),
+            TextField(
+              controller: programController,
+              maxLines: 20,
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              TextButton(
+                  onPressed: () async {
+                    showDialog<AlertDialog>(
+                        context: context,
+                        builder: (BuildContext ctx) => AlertDialog(
+                            title: const Text(
+                              'Loading',
+                              textAlign: TextAlign.center,
+                            ),
+                            content: SizedBox(
+                              height: 100,
+                              child: Column(
+                                children: const <Widget>[
+                                  SizedBox(
+                                    child: CircularProgressIndicator(),
+                                    width: 60,
+                                    height: 60,
+                                  )
+                                ],
+                              ),
+                            )));
+                  },
+                  child: const Text('Generate'))
+            ])
+          ]),
     ));
   }
 }

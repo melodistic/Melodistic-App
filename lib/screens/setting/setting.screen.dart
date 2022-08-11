@@ -5,8 +5,6 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Setting Screen'),
-    );
+    return const Text('Setting Screen');
   }
 }

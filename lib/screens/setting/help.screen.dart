@@ -5,8 +5,6 @@ class SettingHelpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Setting Help Screen'),
-    );
+    return const Text('Setting Help Screen');
   }
 }

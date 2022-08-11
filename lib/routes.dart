@@ -22,77 +22,84 @@ import 'package:melodistic/screens/user/upload.screen.dart';
 
 class RoutesName {
   // Onboarding
-  static const onboard = '/onboard';
-  static const login = '/onboard/login';
-  static const register = '/onboard/register';
-  static const registerProfile = '/onboard/register/profile';
-  static const registerTime = '/onboard/register/time';
+  static const String onboard = '/onboard';
+  static const String login = '/onboard/login';
+  static const String register = '/onboard/register';
+  static const String registerProfile = '/onboard/register/profile';
+  static const String registerTime = '/onboard/register/time';
 
   // Home
-  static const home = '/home';
-  static const track = '/track';
+  static const String home = '/home';
+  static const String track = '/track';
 
   // Customize track
-  static const customize = '/customize';
-  static const customizeSection = '/customize/section';
-  static const customizeExerciseSection = '/customize/section/exercise';
-  static const customizeBreakSection = '/customize/section/break';
+  static const String customize = '/customize';
+  static const String customizeSection = '/customize/section';
+  static const String customizeExerciseSection = '/customize/section/exercise';
+  static const String customizeBreakSection = '/customize/section/break';
 
   // User
-  static const upload = '/upload';
-  static const library = '/library';
-  static const favorite = '/favorite';
+  static const String upload = '/upload';
+  static const String library = '/library';
+  static const String favorite = '/favorite';
 
   // Setting
-  static const setting = '/setting';
-  static const settingProfile = '/setting/profile';
-  static const settingHelp = '/setting/help';
-  static const settingPreference = '/setting/preference';
+  static const String setting = '/setting';
+  static const String settingProfile = '/setting/profile';
+  static const String settingHelp = '/setting/help';
+  static const String settingPreference = '/setting/preference';
 
   // Forget Password
-  static const forgetPassword = '/forget-password';
-  static const newPassword = '/forget-password/new-password';
+  static const String forgetPassword = '/forget-password';
+  static const String newPassword = '/forget-password/new-password';
 }
 
-final onboardingRoutes = <String, WidgetBuilder>{
-  RoutesName.onboard: (context) => OnboardingScreen(),
-  RoutesName.login: (context) => LoginScreen(),
-  RoutesName.register: (context) => RegisterScreen(),
-  RoutesName.registerProfile: (context) => RegisterProfileScreen(),
-  RoutesName.registerTime: (context) => RegisterTimeScreen()
+final Map<String, WidgetBuilder> onboardingRoutes = <String, WidgetBuilder>{
+  RoutesName.onboard: (BuildContext context) => const OnboardingScreen(),
+  RoutesName.login: (BuildContext context) => LoginScreen(),
+  RoutesName.register: (BuildContext context) => const RegisterScreen(),
+  RoutesName.registerProfile: (BuildContext context) =>
+      const RegisterProfileScreen(),
+  RoutesName.registerTime: (BuildContext context) => const RegisterTimeScreen()
 };
 
-final homeRoutes = <String, WidgetBuilder>{
-  RoutesName.home: (context) => HomeScreen(),
-  RoutesName.track: (context) => TrackScreen()
+final Map<String, WidgetBuilder> homeRoutes = <String, WidgetBuilder>{
+  RoutesName.home: (BuildContext context) => const HomeScreen(),
+  RoutesName.track: (BuildContext context) => const TrackScreen()
 };
 
-final customizeTrackRoutes = <String, WidgetBuilder>{
-  RoutesName.customize: (context) => CustomizeScreen(),
-  RoutesName.customizeSection: (context) => CustomizeSectionScreen(),
-  RoutesName.customizeExerciseSection: (context) => CustomizeExerciseScreen(),
-  RoutesName.customizeBreakSection: (context) => CustomizeBreakScreen()
+final Map<String, WidgetBuilder> customizeTrackRoutes = <String, WidgetBuilder>{
+  RoutesName.customize: (BuildContext context) => const CustomizeScreen(),
+  RoutesName.customizeSection: (BuildContext context) =>
+      const CustomizeSectionScreen(),
+  RoutesName.customizeExerciseSection: (BuildContext context) =>
+      const CustomizeExerciseScreen(),
+  RoutesName.customizeBreakSection: (BuildContext context) =>
+      const CustomizeBreakScreen()
 };
 
-final userRoutes = <String, WidgetBuilder>{
-  RoutesName.upload: (context) => UploadScreen(),
-  RoutesName.library: (context) => LibraryScreen(),
-  RoutesName.favorite: (context) => FavoriteScreen()
+final Map<String, WidgetBuilder> userRoutes = <String, WidgetBuilder>{
+  RoutesName.upload: (BuildContext context) => const UploadScreen(),
+  RoutesName.library: (BuildContext context) => const LibraryScreen(),
+  RoutesName.favorite: (BuildContext context) => const FavoriteScreen()
 };
 
-final settingRoutes = <String, WidgetBuilder>{
-  RoutesName.setting: (context) => SettingScreen(),
-  RoutesName.settingProfile: (context) => SettingProfileScreen(),
-  RoutesName.settingHelp: (context) => SettingHelpScreen(),
-  RoutesName.settingPreference: (context) => SettingPreferenceScreen()
+final Map<String, WidgetBuilder> settingRoutes = <String, WidgetBuilder>{
+  RoutesName.setting: (BuildContext context) => const SettingScreen(),
+  RoutesName.settingProfile: (BuildContext context) =>
+      const SettingProfileScreen(),
+  RoutesName.settingHelp: (BuildContext context) => const SettingHelpScreen(),
+  RoutesName.settingPreference: (BuildContext context) =>
+      const SettingPreferenceScreen()
 };
 
-final newPasswordRoutes = <String, WidgetBuilder>{
-  RoutesName.forgetPassword: (context) => ForgetPasswordScreen(),
-  RoutesName.newPassword: (context) => NewPasswordScreen()
+final Map<String, WidgetBuilder> newPasswordRoutes = <String, WidgetBuilder>{
+  RoutesName.forgetPassword: (BuildContext context) =>
+      const ForgetPasswordScreen(),
+  RoutesName.newPassword: (BuildContext context) => const NewPasswordScreen()
 };
 
-final routes = <String, WidgetBuilder>{
+final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   ...onboardingRoutes,
   ...homeRoutes,
   ...customizeTrackRoutes,

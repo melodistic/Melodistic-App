@@ -5,8 +5,6 @@ class RegisterProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Register Profile Screen'),
-    );
+    return const Text('Register Profile Screen');
   }
 }
