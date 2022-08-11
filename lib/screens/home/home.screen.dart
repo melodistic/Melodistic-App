@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -45,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return ScreenWrapper(
         floatingActionButton: FloatingActionButton(
           child: Icon(
-            Icons.add,
+            Icons.add
           ),
           backgroundColor: Colors.black,
           onPressed: () {
@@ -65,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) {
                     return TrackBox(track: data[index]);
                   },
-                  separatorBuilder: ((context, index) => kSizedBoxVerticalS),
+                  separatorBuilder: ((context, index) => kSizedBoxVerticalS)
                 );
               } else {
                 return Center(child: CircularProgressIndicator());

@@ -30,7 +30,7 @@ class ScreenWrapper extends StatelessWidget {
                     style: TextStyle(color: Colors.black),
                   ),
                   elevation: 0,
-                  backgroundColor: Colors.white,
+                  backgroundColor: Colors.white
                 )
               : AppBar(
                   leading: Padding(
@@ -38,7 +38,7 @@ class ScreenWrapper extends StatelessWidget {
                       child: screen == ScreenType.NoTitle ? null :
                       Row(children: [
                         BackButton(
-                          color: Colors.black,
+                          color: Colors.black
                         ),
                         Text(
                           "Back",

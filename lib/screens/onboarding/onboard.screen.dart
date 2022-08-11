@@ -27,9 +27,9 @@ class OnboardingScreen extends StatelessWidget {
               Row(
                 children: [
                   Text("With",
-                    style: kHeading1 ,),
+                    style: kHeading1 ),
                   Text(" Melodistic",
-                    style: kHeading1.copyWith(color: kSecondaryColor)),
+                    style: kHeading1.copyWith(color: kSecondaryColor))
                 ],
               ),
               kSizedBoxHorizontalXXL,
@@ -48,13 +48,13 @@ class OnboardingScreen extends StatelessWidget {
                   child: TextButton(
                     style: TextButton.styleFrom(
                       backgroundColor: kPrimaryColor,
-                      primary: kGrayScaleColor50,
+                      primary: kGrayScaleColor50
                     ),
                     onPressed: () { 
                      Navigator.of(context).pushNamed(RoutesName.login);
-                     },
-                    child: Text('Try now'),
-                  ),
+                    },
+                    child: Text('Try now')
+                  )
                 ),
               )
               
