@@ -9,7 +9,7 @@ import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/type/screen-type.dart';
 
 class OnboardingScreen extends StatelessWidget {
-  const OnboardingScreen({ Key? key }) : super(key: key);
+  const OnboardingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

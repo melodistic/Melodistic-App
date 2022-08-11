@@ -6,9 +6,9 @@ const kFontSizeM = 14.0;
 const kFontSizeS = 12.0;
 const kFontSizeXS = 8.0;
 
-const kLineHeightL = 40.0;
-const kLineHeightM = 35.0;
-const kLineHeightS = 20.0;
+const kLineHeightL = 42.0;
+const kLineHeightM = 21.0;
+const kLineHeightS = 18.0;
 
 const kFontWeightBold = FontWeight.bold;
 const kFontWeightSemiBold = FontWeight.w600;

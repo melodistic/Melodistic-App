@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:melodistic/config/api.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:just_audio/just_audio.dart';
@@ -9,13 +10,14 @@ class TrackScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
-        <String, dynamic>{}) as Map;
+        <String, dynamic>{}) as Map<String, Map<String, String>>;
     final player = AudioPlayer();
+    final Map<String, String> track = arguments['track']!;
     return ScreenWrapper(
         customAppbar: AppBar(
-          title: Text("Song"),
+          title: const Text('Song'),
           elevation: 0,
-          leading: Padding(
+          leading: const Padding(
             child: BackButton(),
             padding: EdgeInsets.only(left: kSizeS),
           ),
@@ -28,31 +30,29 @@ class TrackScreen extends StatelessWidget {
             SizedBox(
                 height: 450,
                 width: double.infinity,
-                child: Image.network(arguments["track"]["program_image_url"],
+                child: Image.network(track['track_image_url']!,
                     fit: BoxFit.cover)),
             kSizedBoxVerticalM,
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: kSizeS * 1.5),
+              padding: const EdgeInsets.symmetric(horizontal: kSizeS * 1.5),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      arguments["track"]["program_name"],
-                      style: TextStyle(
+                      track['track_name']!,
+                      style: const TextStyle(
                           fontWeight: kFontWeightBold, fontSize: kFontSizeS),
                     ),
                     kSizedBoxVerticalXS,
                     Text(
-                      arguments["track"]["description"],
-                      style: TextStyle(
+                      track['description']!,
+                      style: const TextStyle(
                           fontWeight: kFontWeightRegular,
                           color: Color(0xFF94A2AB),
                           fontSize: kFontSizeXS),
                     ),
                     kSizedBoxVerticalM,
-                    MusicPlayer(
-                        player: player,
-                        filename: arguments["track"]["filename"])
+                    MusicPlayer(player: player, trackId: track['track_id']!)
                   ]),
             )
           ],
@@ -78,10 +78,10 @@ class CustomTrackShape extends RoundedRectSliderTrackShape {
 }
 
 class MusicPlayer extends StatefulWidget {
-  const MusicPlayer({Key? key, required this.player, required this.filename})
+  const MusicPlayer({Key? key, required this.player, required this.trackId})
       : super(key: key);
   final AudioPlayer player;
-  final String filename;
+  final String trackId;
   @override
   State<MusicPlayer> createState() => _MusicPlayerState();
 }
@@ -93,8 +93,8 @@ class _MusicPlayerState extends State<MusicPlayer> {
   void initState() {
     try {
       widget.player
-          .setAudioSource(AudioSource.uri(Uri.parse(
-              "http://20.24.147.227:5050/api/play/" + widget.filename)))
+          .setAudioSource(AudioSource.uri(
+              Uri.parse('$apiBaseURL/api/stream/' + widget.trackId)))
           .then((value) {
         setState(() {
           _duration = value!;
@@ -125,13 +125,13 @@ class _MusicPlayerState extends State<MusicPlayer> {
 
   String durationString(Duration duration) {
     String twoDigits(int n) {
-      if (n >= 10) return "$n";
-      return "0$n";
+      if (n >= 10) return '$n';
+      return '0$n';
     }
 
     String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
     String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
-    return "$twoDigitMinutes:$twoDigitSeconds";
+    return '$twoDigitMinutes:$twoDigitSeconds';
   }
 
   void playMusic() {
@@ -158,12 +158,12 @@ class _MusicPlayerState extends State<MusicPlayer> {
           data: SliderThemeData(
               thumbColor: Colors.black,
               activeTrackColor: Colors.black,
-              inactiveTrackColor: Color(0xFFEDF2F6),
+              inactiveTrackColor: const Color(0xFFEDF2F6),
               trackHeight: 6,
               overlayColor: Colors.black,
               overlayShape: SliderComponentShape.noOverlay,
               trackShape: CustomTrackShape(),
-              thumbShape: RoundSliderThumbShape(enabledThumbRadius: 6)),
+              thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6)),
           child: Slider(
               value: convertDurationToDoubleValue(_position),
               onChanged: (value) {
@@ -186,7 +186,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
         GestureDetector(
           child: SizedBox(
             child: Image.asset(
-              "assets/iconoir_backward-15-seconds.png",
+              'assets/iconoir_backward-15-seconds.png',
               fit: BoxFit.contain,
             ),
             width: 20,
@@ -201,14 +201,14 @@ class _MusicPlayerState extends State<MusicPlayer> {
         kSizedBoxHorizontalS,
         play
             ? (IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.pause,
                 ),
                 splashRadius: kSizeM + kSizeXS,
                 iconSize: kSizeL,
                 onPressed: stopMusic))
             : (IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.play_circle,
                 ),
                 splashRadius: kSizeM + kSizeXS,
@@ -218,7 +218,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
         GestureDetector(
           child: SizedBox(
             child: Image.asset(
-              "assets/iconoir_forward-15-seconds.png",
+              'assets/iconoir_forward-15-seconds.png',
               fit: BoxFit.contain,
             ),
             width: 20,

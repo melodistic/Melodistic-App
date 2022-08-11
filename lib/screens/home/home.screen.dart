@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:melodistic/config/api.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/screens/home/widgets/trackbox.widget.dart';
@@ -18,12 +19,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var _getPlayList;
+  late Future<List<Map<String, String>>> _getPlayList;
 
-  Future<List> getPlaylist() async {
-    final Response response =
-        await Dio().get("http://20.24.147.227:5050/api/playlist");
-    final List data = response.data["files"];
+  Future<List<Map<String, String>>> getPlaylist() async {
+    final Response<List<Map<String, String>>> response =
+        await Dio().get('$apiBaseURL/api/track');
+    final List<Map<String, String>> data = response.data!;
     return data;
   }
 
@@ -41,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       loadData();
     });
     return ScreenWrapper(
@@ -56,12 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         screen: ScreenType.WithTitle,
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: kSizeS, vertical: 10),
-          child: FutureBuilder(
+          padding: const EdgeInsets.symmetric(horizontal: kSizeS, vertical: 10),
+          child: FutureBuilder<List<Map<dynamic, dynamic>>>(
             future: _getPlayList,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                final data = snapshot.data as List;
+                final data = snapshot.data as List<Map<String, String>>;
                 return ListView.separated(
                   itemCount: data.length,
                   itemBuilder: (context, index) {
@@ -70,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   separatorBuilder: ((context, index) => kSizedBoxVerticalS)
                 );
               } else {
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               }
             },
           ),
