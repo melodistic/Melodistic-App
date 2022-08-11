@@ -7,11 +7,13 @@ class ScreenWrapper extends StatelessWidget {
       {Key? key,
       required this.child,
       this.isHome = false,
+      this.isOnbording = false,
       this.customAppbar,
       this.extendBodyBehindAppBar = false})
       : super(key: key);
   final Widget child;
   final bool isHome;
+  final bool isOnbording;
   final PreferredSizeWidget? customAppbar;
   final bool extendBodyBehindAppBar;
   @override
@@ -30,7 +32,8 @@ class ScreenWrapper extends StatelessWidget {
               : AppBar(
                   leading: Padding(
                       padding: EdgeInsets.symmetric(horizontal: kSizeS),
-                      child: Row(children: [
+                      child: isOnbording ? null :
+                      Row(children: [
                         BackButton(
                           color: Colors.black,
                         ),
