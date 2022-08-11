@@ -11,10 +11,12 @@ class ScreenWrapper extends StatelessWidget {
       required this.child,
       this.screen = ScreenType.NoTitle,
       this.customAppbar,
+      this.floatingActionButton,
       this.extendBodyBehindAppBar = false})
       : super(key: key);
   final Widget child;
   final ScreenType screen;
+  final FloatingActionButton? floatingActionButton;
   final PreferredSizeWidget? customAppbar;
   final bool extendBodyBehindAppBar;
   @override
@@ -51,17 +53,7 @@ class ScreenWrapper extends StatelessWidget {
       backgroundColor: Colors.white,
       extendBodyBehindAppBar: extendBodyBehindAppBar,
       body: extendBodyBehindAppBar ? child : SafeArea(child: child),
-      floatingActionButton: screen == ScreenType.WithTitle
-          ? FloatingActionButton(
-              child: Icon(
-                Icons.add,
-              ),
-              backgroundColor: Colors.black,
-              onPressed: () {
-                Navigator.of(context).pushNamed(RoutesName.customize);
-              },
-            )
-          : null,
+      floatingActionButton: floatingActionButton
     );
   }
 }

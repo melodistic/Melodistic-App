@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:melodistic/config/constant.dart';
+import 'package:melodistic/routes.dart';
 import 'package:melodistic/screens/home/widgets/trackbox.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:dio/dio.dart';
@@ -42,6 +43,15 @@ class _HomeScreenState extends State<HomeScreen> {
       loadData();
     });
     return ScreenWrapper(
+        floatingActionButton: FloatingActionButton(
+          child: Icon(
+            Icons.add,
+          ),
+          backgroundColor: Colors.black,
+          onPressed: () {
+            Navigator.of(context).pushNamed(RoutesName.customize);
+          },
+        ),
         screen: ScreenType.WithTitle,
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: kSizeS, vertical: 10),

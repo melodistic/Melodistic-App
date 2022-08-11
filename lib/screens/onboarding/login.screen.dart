@@ -21,7 +21,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-        screen: ScreenType.WithTitle,
+        screen: ScreenType.NoTitle,
         child: Column(
           children: [
             Text("Login Screen"),

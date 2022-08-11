@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
-import 'package:melodistic/screens/onboarding/login.screen.dart';
+import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/type/screen-type.dart';
 
@@ -51,10 +51,7 @@ class OnboardingScreen extends StatelessWidget {
                       primary: kGrayScaleColor50,
                     ),
                     onPressed: () { 
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
-                      );
+                     Navigator.of(context).pushNamed(RoutesName.login);
                      },
                     child: Text('Try now'),
                   ),
