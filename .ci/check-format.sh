@@ -1,6 +1,6 @@
 echo "-> Running 'flutter format' to check project dart style 🥹"
 
-RESULT=$(flutter format -n lib/)
+RESULT=$(flutter format -n lib/ test/)
 LINE_COUNT=$(echo "$RESULT" | wc -l)
 
 if [ $LINE_COUNT -gt 1 ]; then
