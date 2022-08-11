@@ -22,6 +22,7 @@ class ScreenWrapper extends StatelessWidget {
         appBar: customAppbar ??
             (screen == ScreenType.withTitle
                 ? AppBar(
+                    key: const Key('melodistic-appbar'),
                     title: const Text(
                       'Melodistic',
                       style: TextStyle(color: Colors.black),
@@ -29,6 +30,7 @@ class ScreenWrapper extends StatelessWidget {
                     elevation: 0,
                     backgroundColor: Colors.white)
                 : AppBar(
+                    key: const Key('melodistic-appbar'),
                     leading: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: kSizeS),
                         child: screen == ScreenType.noTitle
