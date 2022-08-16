@@ -20,34 +20,37 @@ class ScreenWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: customAppbar ??
-            (screen == ScreenType.withTitle
-                ? AppBar(
-                    key: const Key('melodistic-appbar'),
-                    title: const Text(
-                      'Melodistic',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    elevation: 0,
-                    backgroundColor: Colors.white)
-                : AppBar(
-                    key: const Key('melodistic-appbar'),
-                    leading: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: kSizeS),
-                        child: screen == ScreenType.noTitle
-                            ? null
-                            : Row(children: const <Widget>[
-                                BackButton(color: Colors.black),
-                                Text(
-                                  'Back',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: kFontSizeS),
-                                )
-                              ])),
-                    leadingWidth: double.infinity,
-                    elevation: 0,
-                    backgroundColor: Colors.white,
-                  )),
+            (screen == ScreenType.noAppbar
+                ? null
+                : (screen == ScreenType.withTitle
+                    ? AppBar(
+                        key: const Key('melodistic-appbar'),
+                        title: const Text(
+                          'Melodistic',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        elevation: 0,
+                        backgroundColor: Colors.white)
+                    : AppBar(
+                        key: const Key('melodistic-appbar'),
+                        leading: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: kSizeS),
+                            child: screen == ScreenType.noTitle
+                                ? null
+                                : Row(children: const <Widget>[
+                                    BackButton(color: Colors.black),
+                                    Text(
+                                      'Back',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: kFontSizeS),
+                                    )
+                                  ])),
+                        leadingWidth: double.infinity,
+                        elevation: 0,
+                        backgroundColor: Colors.white,
+                      ))),
         backgroundColor: Colors.white,
         extendBodyBehindAppBar: extendBodyBehindAppBar,
         body: extendBodyBehindAppBar ? child : SafeArea(child: child),
