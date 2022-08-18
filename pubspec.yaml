@@ -83,6 +83,15 @@ flutter:
           weight: 600
         - asset: assets/fonts/Poppins-Bold.ttf
           weight: 700
+    - family: Iconoir
+      fonts:
+        - asset: assets/icons/iconoir.ttf
+    - family: Octicon
+      fonts:
+        - asset: assets/icons/octicon.ttf
+    - family: System-uicons
+      fonts:
+        - asset: assets/icons/system-uicons.ttf
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a

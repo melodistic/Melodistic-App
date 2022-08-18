@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
+import 'package:melodistic/widgets/common/textfield.widget.dart';
+import 'package:melodistic/widgets/common/type/field.type.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -26,6 +28,16 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           children: <Widget>[
             const Text('Login Screen'),
+            TextFieldWidget(
+              controller: TextEditingController(),
+              hintTitle: 'username',
+              fieldType: FieldType.text,
+            ),
+            TextFieldWidget(
+              controller: TextEditingController(),
+              hintTitle: 'password',
+              fieldType: FieldType.password,
+            ),
             TextButton(
                 onPressed: _handleSignIn,
                 child: const Text('Sign in with Google'))
