@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Iconoir {
   Iconoir._();
 
-  static const _kFontFam = 'Iconoir';
+  static const String _kFontFam = 'Iconoir';
   static const String? _kFontPkg = null;
 
   static const IconData backward_15_seconds =
