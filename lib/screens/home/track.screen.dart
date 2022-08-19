@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:melodistic/config/api.dart';
 import 'package:melodistic/config/constant.dart';
+import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -185,11 +186,8 @@ class _MusicPlayerState extends State<MusicPlayer> {
       kSizedBoxVerticalM,
       Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
         GestureDetector(
-          child: SizedBox(
-            child: Image.asset(
-              'assets/iconoir_backward-15-seconds.png',
-              fit: BoxFit.contain,
-            ),
+          child: const SizedBox(
+            child: Icon(MelodisticIcon.backward_15_seconds),
             width: 20,
             height: 20,
           ),
@@ -217,11 +215,8 @@ class _MusicPlayerState extends State<MusicPlayer> {
                 onPressed: playMusic)),
         kSizedBoxHorizontalS,
         GestureDetector(
-          child: SizedBox(
-            child: Image.asset(
-              'assets/iconoir_forward-15-seconds.png',
-              fit: BoxFit.contain,
-            ),
+          child: const SizedBox(
+            child: Icon(MelodisticIcon.forward_15_seconds),
             width: 20,
             height: 20,
           ),

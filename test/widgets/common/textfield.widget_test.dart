@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:melodistic/config/iconoir.dart';
+import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
 
@@ -35,7 +35,7 @@ void main() {
     )));
     final Icon widget = getWidgetByType(tester, Icon) as Icon;
     expect(find.byType(Icon), findsOneWidget);
-    expect(widget.icon, Iconoir.eye_off);
+    expect(widget.icon, MelodisticIcon.eye_off);
   });
 
   testWidgets(
@@ -59,6 +59,6 @@ void main() {
 
     final Icon widget = getWidgetByType(tester, Icon) as Icon;
     expect(find.byType(Icon), findsOneWidget);
-    expect(widget.icon, Iconoir.eye_empty);
+    expect(widget.icon, MelodisticIcon.eye_empty);
   });
 }
