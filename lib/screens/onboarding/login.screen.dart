@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:melodistic/widgets/common/loading.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
@@ -21,15 +22,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenWrapper(
-        screen: ScreenType.noTitle,
-        child: Column(
-          children: <Widget>[
-            const Text('Login Screen'),
-            TextButton(
-                onPressed: _handleSignIn,
-                child: const Text('Sign in with Google'))
-          ],
-        ));
+    return LoadingWidget();
   }
 }
