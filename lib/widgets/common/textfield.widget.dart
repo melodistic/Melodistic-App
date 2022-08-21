@@ -5,13 +5,13 @@ import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
 
 class TextFieldWidget extends StatefulWidget {
-  const TextFieldWidget({
-    Key? key,
-    this.controller,
-    this.hintTitle,
-    this.fieldType = FieldType.text,
-    this.validate
-  }) : super(key: key);
+  const TextFieldWidget(
+      {Key? key,
+      this.controller,
+      this.hintTitle,
+      this.fieldType = FieldType.text,
+      this.validate})
+      : super(key: key);
   final TextEditingController? controller;
   final String? hintTitle;
   final FieldType fieldType;
@@ -64,11 +64,11 @@ class TextFieldWidgetState extends State<TextFieldWidget> {
           decoration: InputDecoration(
               focusedBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(color: kSecondaryColor)),
-              errorText:  _errorText,
+              errorText: _errorText,
               hintText: widget.hintTitle,
               labelText: widget.hintTitle,
-              labelStyle:
-                  TextStyle(color: _errorText != null ? kErrorColor : kGrayScaleColor500),
+              labelStyle: TextStyle(
+                  color: _errorText != null ? kErrorColor : kGrayScaleColor500),
               fillColor: kSecondaryColor900,
               suffixIcon: IconButton(
                   onPressed: showPassword,
@@ -78,7 +78,7 @@ class TextFieldWidgetState extends State<TextFieldWidget> {
                             ? MelodisticIcon.eye_off
                             : MelodisticIcon.eye_empty)
                         : null,
-                        color: kGrayScaleColor900,
+                    color: kGrayScaleColor900,
                   ))),
         ));
   }
