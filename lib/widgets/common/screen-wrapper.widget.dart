@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
+import 'package:melodistic/config/system-uicons.dart';
+import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class ScreenWrapper extends StatelessWidget {
@@ -36,17 +39,23 @@ class ScreenWrapper extends StatelessWidget {
                         leading: Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: kSizeS),
-                            child: screen == ScreenType.noTitle
+                            child: SizedBox(
+                              child: screen == ScreenType.noTitle
                                 ? null
-                                : Row(children: const <Widget>[
-                                    BackButton(color: Colors.black),
-                                    Text(
-                                      'Back',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: kFontSizeS),
-                                    )
-                                  ])),
+                                : TextButton(
+                                  onPressed: () {
+                                            Navigator.of(context)
+                                                .pushNamed(RoutesName.login);
+                                          },
+                                    child: Row(children: const <Widget>[
+                                      Icon(SystemUicons.chevron_left, color: kPrimaryColor,),
+                                      Text(
+                                        'Back',
+                                        style: TextStyle(
+                                            color: kPrimaryColor,
+                                            fontSize: kFontSizeM),
+                                      )
+                                    ])))),
                         leadingWidth: double.infinity,
                         elevation: 0,
                         backgroundColor: Colors.white,

@@ -4,6 +4,8 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/widgets/common/textfield.widget.dart';
+import 'package:melodistic/widgets/common/type/field.type.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -48,32 +50,30 @@ class LoginScreen extends StatelessWidget {
                           topRight: Radius.circular(kSizeS)),
                     ),
                     child: Padding(
-                        padding: const EdgeInsets.all(kSizeM),
+                        padding: const EdgeInsets.fromLTRB(kSizeM, kSizeXS, kSizeM, kSizeS),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
-                            loginInput(
-                                userController, 'username', false, TextInputType.text),
-                            loginInput(passwordController, 'password', true,
-                                TextInputType.visiblePassword),
+                            TextFieldWidget(controller: userController, hintTitle: 'Username', fieldType: FieldType.text, ),
+                            TextFieldWidget(controller: passwordController, hintTitle: 'Password', fieldType: FieldType.password, ),
                             Padding(
                                 padding: const EdgeInsets.only(
-                                    top: kSizeS, bottom: kSizeM),
+                                    top: kSizeS, bottom: kSizeS),
                                 child: Text('Forget the Password?',
                                     style: kBody3.copyWith(
                                         color: kGrayScaleColor500),
                                     textAlign: TextAlign.end)),
                             Padding(
-                                padding: const EdgeInsets.only(bottom: kSizeS),
-                                child: SizedBox(
-                                    width: double.infinity,
-                                    height: 48,
-                                    child: TextButton(
-                                        style: TextButton.styleFrom(
-                                            backgroundColor: kPrimaryColor,
-                                            primary: kGrayScaleColor50),
-                                        onPressed: () {},
-                                        child: const Text('Log in')))),
+                              padding: const EdgeInsets.only(bottom: kSizeS),
+                              child: SizedBox(
+                                  width: double.infinity,
+                                  height: 48,
+                                  child: TextButton(
+                                      style: TextButton.styleFrom(
+                                          backgroundColor: kPrimaryColor,
+                                          primary: kGrayScaleColor50),
+                                      onPressed: () {},
+                                      child: const Text('Log in')))),
                             SizedBox(
                                 width: double.infinity,
                                 height: 48,
