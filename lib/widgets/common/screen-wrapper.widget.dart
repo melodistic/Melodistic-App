@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
-import 'package:melodistic/config/system-uicons.dart';
+import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
@@ -44,11 +44,10 @@ class ScreenWrapper extends StatelessWidget {
                                 ? null
                                 : TextButton(
                                   onPressed: () {
-                                            Navigator.of(context)
-                                                .pushNamed(RoutesName.login);
+                                            Navigator.pop(context);
                                           },
                                     child: Row(children: const <Widget>[
-                                      Icon(SystemUicons.chevron_left, color: kPrimaryColor,),
+                                      Icon(MelodisticIcon.chevron_left, color: kPrimaryColor,),
                                       Text(
                                         'Back',
                                         style: TextStyle(

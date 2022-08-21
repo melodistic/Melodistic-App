@@ -6,12 +6,10 @@ import 'package:melodistic/config/style.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
-import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
-import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
-  final TextEditingController userController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
   Future<void> _handleSignIn() async {
@@ -43,7 +41,7 @@ class LoginScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Container(
-                    height: 430,
+                    height: 400,
                     width: double.infinity,
                     decoration: const BoxDecoration(
                       color: kGrayScaleColor50,
@@ -52,30 +50,58 @@ class LoginScreen extends StatelessWidget {
                           topRight: Radius.circular(kSizeS)),
                     ),
                     child: Padding(
-                        padding: const EdgeInsets.fromLTRB(kSizeM, kSizeXS, kSizeM, kSizeS),
+                        padding: const EdgeInsets.fromLTRB(
+                            kSizeM, kSizeXS, kSizeM, kSizeS),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
-                            TextFieldWidget(controller: userController, hintTitle: 'Username', fieldType: FieldType.text, ),
-                            TextFieldWidget(controller: passwordController, hintTitle: 'Password', fieldType: FieldType.password, ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  TextFieldWidget(
+                                    controller: emailController,
+                                    hintTitle: 'Email',
+                                    fieldType: FieldType.text,
+                                    validate: (String value) {
+                                      if (value.isEmpty) {
+                                        return 'Email is required';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  TextFieldWidget(
+                                    controller: passwordController,
+                                    hintTitle: 'Password',
+                                    fieldType: FieldType.password,
+                                    validate: (String value) {
+                                      if (value.isEmpty) {
+                                        return 'Password is required';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  Padding(
+                                      padding:
+                                          const EdgeInsets.only(top: kSizeXS),
+                                      child: Text('Forget the Password?',
+                                          style: kBody3.copyWith(
+                                              color: kGrayScaleColor500),
+                                          textAlign: TextAlign.end)),
+                                ],
+                              ),
+                            ),
                             Padding(
-                                padding: const EdgeInsets.only(
-                                    top: kSizeS, bottom: kSizeS),
-                                child: Text('Forget the Password?',
-                                    style: kBody3.copyWith(
-                                        color: kGrayScaleColor500),
-                                    textAlign: TextAlign.end)),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: kSizeS),
-                              child: SizedBox(
-                                  width: double.infinity,
-                                  height: 48,
-                                  child: TextButton(
-                                      style: TextButton.styleFrom(
-                                          backgroundColor: kPrimaryColor,
-                                          primary: kGrayScaleColor50),
-                                      onPressed: () {},
-                                      child: const Text('Log in')))),
+                                padding: const EdgeInsets.only(bottom: kSizeS),
+                                child: SizedBox(
+                                    width: double.infinity,
+                                    height: 48,
+                                    child: TextButton(
+                                        style: TextButton.styleFrom(
+                                            backgroundColor: kPrimaryColor,
+                                            primary: kGrayScaleColor50),
+                                        onPressed: () {},
+                                        child: const Text('Log in')))),
                             SizedBox(
                                 width: double.infinity,
                                 height: 48,
@@ -114,18 +140,6 @@ class LoginScreen extends StatelessWidget {
                                               style: kBody3SemiBold.copyWith(
                                                   color: kSecondaryColor)))
                                     ])),
-                            // Container(
-                            //   decoration: BoxDecoration(
-                            //     color: kGrayScaleColor50,
-                            //     borderRadius: BorderRadius.only(
-                            //       topLeft: const Radius.circular(kSizeS),
-                            //       topRight: const Radius.circular(kSizeS)
-                            //     )
-                            //   ),
-                            //   child: TextButton(
-                            //     onPressed: _handleSignIn,
-                            //     child: const Text('Sign in with Google')),
-                            // ),
                           ],
                         ))),
               ],
