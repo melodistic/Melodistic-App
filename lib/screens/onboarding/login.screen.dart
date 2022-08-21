@@ -58,7 +58,7 @@ class LoginScreen extends StatelessWidget {
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
+                                children: <Widget>[
                                   TextFieldWidget(
                                     controller: emailController,
                                     hintTitle: 'Email',

@@ -39,7 +39,7 @@ class RegisterScreen extends StatelessWidget {
                   const Text('Account', style: kHeading1),
                   Expanded(
                     child: Column(
-                      children: [
+                      children: <Widget>[
                         TextFieldWidget(
                           controller: emailController,
                           hintTitle: 'Email',
