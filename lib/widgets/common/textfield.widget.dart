@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
-import 'package:melodistic/config/iconoir.dart';
+import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
 
 class TextFieldWidget extends StatefulWidget {
@@ -77,7 +77,7 @@ class TextFieldWidgetState extends State<TextFieldWidget> {
                     onPressed: showPassword,
                     icon: Icon(
                       widget.fieldType == FieldType.password
-                          ? (obsecureText ? Iconoir.eye_off : Iconoir.eye_empty)
+                          ? (obsecureText ? MelodisticIcon.eye_off : MelodisticIcon.eye_empty)
                           : null,
                     ))),
             onSaved: (String? value) {
