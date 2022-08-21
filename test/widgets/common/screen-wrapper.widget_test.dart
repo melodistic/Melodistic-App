@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
@@ -40,8 +41,8 @@ void main() {
       child: SizedBox(),
       screen: ScreenType.withBack,
     )));
+    final Icon widget = getWidgetByType(tester, Icon) as Icon;
     expect(find.byType(AppBar), findsOneWidget);
-    expect(getTypeDescentantByKey(const Key('melodistic-appbar'), BackButton),
-        findsOneWidget);
+    expect(widget.icon, MelodisticIcon.chevron_left);
   });
 }

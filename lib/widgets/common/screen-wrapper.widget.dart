@@ -38,10 +38,10 @@ class ScreenWrapper extends StatelessWidget {
                         leading: Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: kSizeS),
-                            child: SizedBox(
-                                child: screen == ScreenType.noTitle
-                                    ? null
-                                    : TextButton(
+                            child: screen == ScreenType.noTitle
+                                ? null
+                                : SizedBox(
+                                    child: TextButton(
                                         onPressed: () {
                                           Navigator.pop(context);
                                         },
