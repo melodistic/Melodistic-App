@@ -284,8 +284,6 @@ void main() {
       heigh: 48,
       width: double.infinity,
     )));
-    final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
-    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
         getWidgetByKey(tester, const Key('prefix-icon-4')) as Icon;
     final Icon suffixIcon =
@@ -310,8 +308,6 @@ void main() {
       heigh: 48,
       width: double.infinity,
     )));
-    final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
-    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
         getWidgetByKey(tester, const Key('prefix-icon-4')) as Icon;
     final Icon suffixIcon =
@@ -337,8 +333,6 @@ void main() {
       heigh: 48,
       width: double.infinity,
     )));
-    final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
-    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
         getWidgetByKey(tester, const Key('prefix-icon-4')) as Icon;
     final Icon suffixIcon =
@@ -362,7 +356,6 @@ void main() {
     )));
     final FloatingActionButton widget =
         getWidgetByType(tester, FloatingActionButton) as FloatingActionButton;
-    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon = getWidgetByType(tester, Icon) as Icon;
 
     expect(find.byType(FloatingActionButton), findsOneWidget);
@@ -381,7 +374,6 @@ void main() {
     )));
     final FloatingActionButton widget =
         getWidgetByType(tester, FloatingActionButton) as FloatingActionButton;
-    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon = getWidgetByType(tester, Icon) as Icon;
 
     expect(find.byType(FloatingActionButton), findsOneWidget);
@@ -400,7 +392,6 @@ void main() {
     )));
     final FloatingActionButton widget =
         getWidgetByType(tester, FloatingActionButton) as FloatingActionButton;
-    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon = getWidgetByType(tester, Icon) as Icon;
 
     expect(find.byType(FloatingActionButton), findsOneWidget);
