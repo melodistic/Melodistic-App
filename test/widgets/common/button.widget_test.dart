@@ -202,9 +202,10 @@ void main() {
     final Icon suffixIcon =
         getWidgetByKey(tester, const Key('suffix-icon-3')) as Icon;
     final Text text = getWidgetByType(tester, Text) as Text;
-    
+
     expect(find.byType(OutlinedButton), findsOneWidget);
-    expect((widget.style?.side?.resolve(states) as BorderSide).color, const Color(0xFF000000));
+    expect((widget.style?.side?.resolve(states) as BorderSide).color,
+        const Color(0xFF000000));
     expect(prefixIcon.color, const Color(0xFF000000));
     expect(suffixIcon.color, const Color(0xFF000000));
     expect(text.style?.color, const Color(0xFF000000));
@@ -233,7 +234,8 @@ void main() {
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(OutlinedButton), findsOneWidget);
-    expect((widget.style?.side?.resolve(states) as BorderSide).color, const Color(0xFFFA8B44));
+    expect((widget.style?.side?.resolve(states) as BorderSide).color,
+        const Color(0xFFFA8B44));
     expect(prefixIcon.color, const Color(0xFFFA8B44));
     expect(suffixIcon.color, const Color(0xFFFA8B44));
     expect(text.style?.color, const Color(0xFFFA8B44));
@@ -262,7 +264,8 @@ void main() {
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(OutlinedButton), findsOneWidget);
-    expect((widget.style?.side?.resolve(states) as BorderSide).color, const Color(0xffeeeeee));
+    expect((widget.style?.side?.resolve(states) as BorderSide).color,
+        const Color(0xffeeeeee));
     expect(prefixIcon.color, const Color(0xFFA4A4A4));
     expect(suffixIcon.color, const Color(0xFFA4A4A4));
     expect(text.style?.color, const Color(0xFFA4A4A4));
