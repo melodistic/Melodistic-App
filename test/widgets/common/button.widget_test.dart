@@ -21,7 +21,7 @@ void main() {
       width: double.infinity,
     )));
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
-    final states = <MaterialState>{};
+    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
         getWidgetByKey(tester, const Key('prefix-icon')) as Icon;
     final Icon suffixIcon =
@@ -50,7 +50,7 @@ void main() {
       width: double.infinity,
     )));
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
-    final states = <MaterialState>{};
+    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
         getWidgetByKey(tester, const Key('prefix-icon')) as Icon;
     final Icon suffixIcon =
@@ -79,7 +79,7 @@ void main() {
       width: double.infinity,
     )));
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
-    final states = <MaterialState>{};
+    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
         getWidgetByKey(tester, const Key('prefix-icon')) as Icon;
     final Icon suffixIcon =
@@ -108,7 +108,7 @@ void main() {
       width: double.infinity,
     )));
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
-    final states = <MaterialState>{};
+    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
         getWidgetByKey(tester, const Key('prefix-icon-2')) as Icon;
     final Icon suffixIcon =
@@ -137,7 +137,7 @@ void main() {
       width: double.infinity,
     )));
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
-    final states = <MaterialState>{};
+    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
         getWidgetByKey(tester, const Key('prefix-icon-2')) as Icon;
     final Icon suffixIcon =
@@ -166,7 +166,7 @@ void main() {
       width: double.infinity,
     )));
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
-    final states = <MaterialState>{};
+    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
         getWidgetByKey(tester, const Key('prefix-icon-2')) as Icon;
     final Icon suffixIcon =
@@ -196,7 +196,7 @@ void main() {
     )));
     final OutlinedButton widget =
         getWidgetByType(tester, OutlinedButton) as OutlinedButton;
-    final states = <MaterialState>{};
+    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
         getWidgetByKey(tester, const Key('prefix-icon-3')) as Icon;
     final Icon suffixIcon =
@@ -226,7 +226,7 @@ void main() {
     )));
     final OutlinedButton widget =
         getWidgetByType(tester, OutlinedButton) as OutlinedButton;
-    final states = <MaterialState>{};
+    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
         getWidgetByKey(tester, const Key('prefix-icon-3')) as Icon;
     final Icon suffixIcon =
@@ -256,7 +256,7 @@ void main() {
     )));
     final OutlinedButton widget =
         getWidgetByType(tester, OutlinedButton) as OutlinedButton;
-    final states = <MaterialState>{};
+    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
         getWidgetByKey(tester, const Key('prefix-icon-3')) as Icon;
     final Icon suffixIcon =
@@ -285,7 +285,7 @@ void main() {
       width: double.infinity,
     )));
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
-    final states = <MaterialState>{};
+    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
         getWidgetByKey(tester, const Key('prefix-icon-4')) as Icon;
     final Icon suffixIcon =
@@ -311,7 +311,7 @@ void main() {
       width: double.infinity,
     )));
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
-    final states = <MaterialState>{};
+    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
         getWidgetByKey(tester, const Key('prefix-icon-4')) as Icon;
     final Icon suffixIcon =
@@ -338,7 +338,7 @@ void main() {
       width: double.infinity,
     )));
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
-    final states = <MaterialState>{};
+    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
         getWidgetByKey(tester, const Key('prefix-icon-4')) as Icon;
     final Icon suffixIcon =
@@ -362,7 +362,7 @@ void main() {
     )));
     final FloatingActionButton widget =
         getWidgetByType(tester, FloatingActionButton) as FloatingActionButton;
-    final states = <MaterialState>{};
+    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon = getWidgetByType(tester, Icon) as Icon;
 
     expect(find.byType(FloatingActionButton), findsOneWidget);
@@ -381,7 +381,7 @@ void main() {
     )));
     final FloatingActionButton widget =
         getWidgetByType(tester, FloatingActionButton) as FloatingActionButton;
-    final states = <MaterialState>{};
+    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon = getWidgetByType(tester, Icon) as Icon;
 
     expect(find.byType(FloatingActionButton), findsOneWidget);
@@ -400,7 +400,7 @@ void main() {
     )));
     final FloatingActionButton widget =
         getWidgetByType(tester, FloatingActionButton) as FloatingActionButton;
-    final states = <MaterialState>{};
+    final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon = getWidgetByType(tester, Icon) as Icon;
 
     expect(find.byType(FloatingActionButton), findsOneWidget);
