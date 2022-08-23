@@ -65,7 +65,7 @@ class ButtonWidget extends StatelessWidget {
               : kGrayScaleColor500;
     }
     if (button == ButtonType.textButton) {
-      return state == ButtonState.disable ? kGrayScaleColor500 : kPrimaryColor;
+      return state == ButtonState.disable ? kGrayScaleColor50 : kPrimaryColor;
     }
     return const Color(0xFFFFFFFF);
   }

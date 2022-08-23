@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/floating-button.widget.dart';
@@ -30,11 +31,10 @@ void main() {
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(TextButton), findsOneWidget);
-    expect(widget.style?.backgroundColor?.resolve(states),
-        const Color(0xFF101010));
-    expect(prefixIcon.color, const Color(0xFFFFFFFF));
-    expect(suffixIcon.color, const Color(0xFFFFFFFF));
-    expect(text.style?.color, const Color(0xFFFFFFFF));
+    expect(widget.style?.backgroundColor?.resolve(states), kPrimaryColor);
+    expect(prefixIcon.color, kGrayScaleColor50);
+    expect(suffixIcon.color, kGrayScaleColor50);
+    expect(text.style?.color, kGrayScaleColor50);
   });
 
   testWidgets('Button render correctly when use active main button',
@@ -59,11 +59,10 @@ void main() {
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(TextButton), findsOneWidget);
-    expect(widget.style?.backgroundColor?.resolve(states),
-        const Color(0xFF101010));
-    expect(prefixIcon.color, const Color(0xFFFFFFFF));
-    expect(suffixIcon.color, const Color(0xFFFFFFFF));
-    expect(text.style?.color, const Color(0xFFFFFFFF));
+    expect(widget.style?.backgroundColor?.resolve(states), kPrimaryColor);
+    expect(prefixIcon.color, kGrayScaleColor50);
+    expect(suffixIcon.color, kGrayScaleColor50);
+    expect(text.style?.color, kGrayScaleColor50);
   });
 
   testWidgets('Button render correctly when use disable main button',
@@ -88,11 +87,10 @@ void main() {
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(TextButton), findsOneWidget);
-    expect(widget.style?.backgroundColor?.resolve(states),
-        const Color(0xFFEEEEEE));
-    expect(prefixIcon.color, const Color(0xFFA4A4A4));
-    expect(suffixIcon.color, const Color(0xFFA4A4A4));
-    expect(text.style?.color, const Color(0xFFA4A4A4));
+    expect(widget.style?.backgroundColor?.resolve(states), kGrayScaleColor200);
+    expect(prefixIcon.color, kGrayScaleColor500);
+    expect(suffixIcon.color, kGrayScaleColor500);
+    expect(text.style?.color, kGrayScaleColor500);
   });
 
   testWidgets('Button render correctly when use normal soft button',
@@ -117,11 +115,10 @@ void main() {
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(TextButton), findsOneWidget);
-    expect(widget.style?.backgroundColor?.resolve(states),
-        const Color(0xFFF5F5F5));
-    expect(prefixIcon.color, const Color(0xFF101010));
-    expect(suffixIcon.color, const Color(0xFF101010));
-    expect(text.style?.color, const Color(0xFF101010));
+    expect(widget.style?.backgroundColor?.resolve(states), kGrayScaleColor100);
+    expect(prefixIcon.color, kPrimaryColor);
+    expect(suffixIcon.color, kPrimaryColor);
+    expect(text.style?.color, kPrimaryColor);
   });
 
   testWidgets('Button render correctly when use active soft button',
@@ -146,11 +143,10 @@ void main() {
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(TextButton), findsOneWidget);
-    expect(widget.style?.backgroundColor?.resolve(states),
-        const Color(0xFFEEEEEE));
-    expect(prefixIcon.color, const Color(0xFF101010));
-    expect(suffixIcon.color, const Color(0xFF101010));
-    expect(text.style?.color, const Color(0xFF101010));
+    expect(widget.style?.backgroundColor?.resolve(states), kGrayScaleColor200);
+    expect(prefixIcon.color, kPrimaryColor);
+    expect(suffixIcon.color, kPrimaryColor);
+    expect(text.style?.color, kPrimaryColor);
   });
 
   testWidgets('Button render correctly when use disable soft button',
@@ -175,11 +171,10 @@ void main() {
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(TextButton), findsOneWidget);
-    expect(widget.style?.backgroundColor?.resolve(states),
-        const Color(0xFFEEEEEE));
-    expect(prefixIcon.color, const Color(0xFFA4A4A4));
-    expect(suffixIcon.color, const Color(0xFFA4A4A4));
-    expect(text.style?.color, const Color(0xFFA4A4A4));
+    expect(widget.style?.backgroundColor?.resolve(states), kGrayScaleColor200);
+    expect(prefixIcon.color, kGrayScaleColor500);
+    expect(suffixIcon.color, kGrayScaleColor500);
+    expect(text.style?.color, kGrayScaleColor500);
   });
 
   testWidgets('Button render correctly when use normal outline button',
@@ -206,10 +201,10 @@ void main() {
 
     expect(find.byType(OutlinedButton), findsOneWidget);
     expect((widget.style?.side?.resolve(states) as BorderSide).color,
-        const Color(0xFF000000));
-    expect(prefixIcon.color, const Color(0xFF000000));
-    expect(suffixIcon.color, const Color(0xFF000000));
-    expect(text.style?.color, const Color(0xFF000000));
+        kGrayScaleColor900);
+    expect(prefixIcon.color, kGrayScaleColor900);
+    expect(suffixIcon.color, kGrayScaleColor900);
+    expect(text.style?.color, kGrayScaleColor900);
   });
 
   testWidgets('Button render correctly when use active outline button',
@@ -236,10 +231,10 @@ void main() {
 
     expect(find.byType(OutlinedButton), findsOneWidget);
     expect((widget.style?.side?.resolve(states) as BorderSide).color,
-        const Color(0xFFFA8B44));
-    expect(prefixIcon.color, const Color(0xFFFA8B44));
-    expect(suffixIcon.color, const Color(0xFFFA8B44));
-    expect(text.style?.color, const Color(0xFFFA8B44));
+        kSecondaryColor);
+    expect(prefixIcon.color, kSecondaryColor);
+    expect(suffixIcon.color, kSecondaryColor);
+    expect(text.style?.color, kSecondaryColor);
   });
 
   testWidgets('Button render correctly when use disable outline button',
@@ -266,10 +261,10 @@ void main() {
 
     expect(find.byType(OutlinedButton), findsOneWidget);
     expect((widget.style?.side?.resolve(states) as BorderSide).color,
-        const Color(0xffeeeeee));
-    expect(prefixIcon.color, const Color(0xFFA4A4A4));
-    expect(suffixIcon.color, const Color(0xFFA4A4A4));
-    expect(text.style?.color, const Color(0xFFA4A4A4));
+        kGrayScaleColor200);
+    expect(prefixIcon.color, kGrayScaleColor500);
+    expect(suffixIcon.color, kGrayScaleColor500);
+    expect(text.style?.color, kGrayScaleColor500);
   });
 
   testWidgets('Button render correctly when use normal text button',
@@ -292,9 +287,9 @@ void main() {
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(TextButton), findsOneWidget);
-    expect(prefixIcon.color, const Color(0xFF101010));
-    expect(suffixIcon.color, const Color(0xFF101010));
-    expect(text.style?.color, const Color(0xFF101010));
+    expect(prefixIcon.color, kPrimaryColor);
+    expect(suffixIcon.color, kPrimaryColor);
+    expect(text.style?.color, kPrimaryColor);
   });
   testWidgets('Button render correctly when use active text button',
       (WidgetTester tester) async {
@@ -316,9 +311,9 @@ void main() {
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(TextButton), findsOneWidget);
-    expect(prefixIcon.color, const Color(0xFF101010));
-    expect(suffixIcon.color, const Color(0xFF101010));
-    expect(text.style?.color, const Color(0xFF101010));
+    expect(prefixIcon.color, kPrimaryColor);
+    expect(suffixIcon.color, kPrimaryColor);
+    expect(text.style?.color, kPrimaryColor);
   });
 
   testWidgets('Button render correctly when use disable text button',
@@ -341,9 +336,9 @@ void main() {
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(TextButton), findsOneWidget);
-    expect(prefixIcon.color, const Color(0xFFA4A4A4));
-    expect(suffixIcon.color, const Color(0xFFA4A4A4));
-    expect(text.style?.color, const Color(0xFFA4A4A4));
+    expect(prefixIcon.color, kGrayScaleColor50);
+    expect(suffixIcon.color, kGrayScaleColor50);
+    expect(text.style?.color, kGrayScaleColor50);
   });
 
   testWidgets('Button render correctly when use normal floating button',
@@ -359,8 +354,8 @@ void main() {
     final Icon prefixIcon = getWidgetByType(tester, Icon) as Icon;
 
     expect(find.byType(FloatingActionButton), findsOneWidget);
-    expect(widget.backgroundColor, const Color(0xFF000000));
-    expect(prefixIcon.color, const Color(0xFFFFFFFF));
+    expect(widget.backgroundColor, kGrayScaleColor900);
+    expect(prefixIcon.color, kGrayScaleColor50);
   });
 
   testWidgets('Button render correctly when use active floating button',
@@ -376,8 +371,8 @@ void main() {
     final Icon prefixIcon = getWidgetByType(tester, Icon) as Icon;
 
     expect(find.byType(FloatingActionButton), findsOneWidget);
-    expect(widget.backgroundColor, const Color(0xFFFA8B44));
-    expect(prefixIcon.color, const Color(0xFFFFFFFF));
+    expect(widget.backgroundColor, kSecondaryColor);
+    expect(prefixIcon.color, kGrayScaleColor50);
   });
 
   testWidgets('Button render correctly when use disable floating button',
@@ -393,7 +388,7 @@ void main() {
     final Icon prefixIcon = getWidgetByType(tester, Icon) as Icon;
 
     expect(find.byType(FloatingActionButton), findsOneWidget);
-    expect(widget.backgroundColor, const Color(0xFFF5F5F5));
-    expect(prefixIcon.color, const Color(0xFFA4A4A4));
+    expect(widget.backgroundColor, kGrayScaleColor100);
+    expect(prefixIcon.color, kGrayScaleColor500);
   });
 }
