@@ -111,9 +111,9 @@ void main() {
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
     final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
-        getWidgetByKey(tester, const Key('prefix-icon-2')) as Icon;
+        getWidgetByKey(tester, const Key('prefix-icon')) as Icon;
     final Icon suffixIcon =
-        getWidgetByKey(tester, const Key('suffix-icon-2')) as Icon;
+        getWidgetByKey(tester, const Key('suffix-icon')) as Icon;
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(TextButton), findsOneWidget);
@@ -140,9 +140,9 @@ void main() {
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
     final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
-        getWidgetByKey(tester, const Key('prefix-icon-2')) as Icon;
+        getWidgetByKey(tester, const Key('prefix-icon')) as Icon;
     final Icon suffixIcon =
-        getWidgetByKey(tester, const Key('suffix-icon-2')) as Icon;
+        getWidgetByKey(tester, const Key('suffix-icon')) as Icon;
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(TextButton), findsOneWidget);
@@ -169,9 +169,9 @@ void main() {
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
     final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
-        getWidgetByKey(tester, const Key('prefix-icon-2')) as Icon;
+        getWidgetByKey(tester, const Key('prefix-icon')) as Icon;
     final Icon suffixIcon =
-        getWidgetByKey(tester, const Key('suffix-icon-2')) as Icon;
+        getWidgetByKey(tester, const Key('suffix-icon')) as Icon;
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(TextButton), findsOneWidget);
@@ -199,9 +199,9 @@ void main() {
         getWidgetByType(tester, OutlinedButton) as OutlinedButton;
     final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
-        getWidgetByKey(tester, const Key('prefix-icon-3')) as Icon;
+        getWidgetByKey(tester, const Key('prefix-icon')) as Icon;
     final Icon suffixIcon =
-        getWidgetByKey(tester, const Key('suffix-icon-3')) as Icon;
+        getWidgetByKey(tester, const Key('suffix-icon')) as Icon;
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(OutlinedButton), findsOneWidget);
@@ -229,9 +229,9 @@ void main() {
         getWidgetByType(tester, OutlinedButton) as OutlinedButton;
     final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
-        getWidgetByKey(tester, const Key('prefix-icon-3')) as Icon;
+        getWidgetByKey(tester, const Key('prefix-icon')) as Icon;
     final Icon suffixIcon =
-        getWidgetByKey(tester, const Key('suffix-icon-3')) as Icon;
+        getWidgetByKey(tester, const Key('suffix-icon')) as Icon;
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(OutlinedButton), findsOneWidget);
@@ -259,9 +259,9 @@ void main() {
         getWidgetByType(tester, OutlinedButton) as OutlinedButton;
     final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
-        getWidgetByKey(tester, const Key('prefix-icon-3')) as Icon;
+        getWidgetByKey(tester, const Key('prefix-icon')) as Icon;
     final Icon suffixIcon =
-        getWidgetByKey(tester, const Key('suffix-icon-3')) as Icon;
+        getWidgetByKey(tester, const Key('suffix-icon')) as Icon;
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(OutlinedButton), findsOneWidget);
@@ -286,9 +286,9 @@ void main() {
       width: double.infinity,
     )));
     final Icon prefixIcon =
-        getWidgetByKey(tester, const Key('prefix-icon-4')) as Icon;
+        getWidgetByKey(tester, const Key('prefix-icon')) as Icon;
     final Icon suffixIcon =
-        getWidgetByKey(tester, const Key('suffix-icon-4')) as Icon;
+        getWidgetByKey(tester, const Key('suffix-icon')) as Icon;
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(TextButton), findsOneWidget);
@@ -310,9 +310,9 @@ void main() {
       width: double.infinity,
     )));
     final Icon prefixIcon =
-        getWidgetByKey(tester, const Key('prefix-icon-4')) as Icon;
+        getWidgetByKey(tester, const Key('prefix-icon')) as Icon;
     final Icon suffixIcon =
-        getWidgetByKey(tester, const Key('suffix-icon-4')) as Icon;
+        getWidgetByKey(tester, const Key('suffix-icon')) as Icon;
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(TextButton), findsOneWidget);
@@ -335,9 +335,9 @@ void main() {
       width: double.infinity,
     )));
     final Icon prefixIcon =
-        getWidgetByKey(tester, const Key('prefix-icon-4')) as Icon;
+        getWidgetByKey(tester, const Key('prefix-icon')) as Icon;
     final Icon suffixIcon =
-        getWidgetByKey(tester, const Key('suffix-icon-4')) as Icon;
+        getWidgetByKey(tester, const Key('suffix-icon')) as Icon;
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(TextButton), findsOneWidget);
