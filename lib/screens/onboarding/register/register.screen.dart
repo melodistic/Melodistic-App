@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:melodistic/config/custom_icon.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
+import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
@@ -94,7 +94,7 @@ class RegisterScreen extends StatelessWidget {
                       width: double.infinity,
                       handleClick: _handleSignIn,
                       text: ' Register with Google',
-                      prefixIcon: CustomIcon.google_svgrepo_com),
+                      prefixIcon: MelodisticIcon.google),
                   SizedBox(
                       width: double.infinity,
                       child: Row(

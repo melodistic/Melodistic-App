@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:melodistic/config/custom_icon.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
+import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
@@ -109,7 +109,7 @@ class LoginScreen extends StatelessWidget {
                                 height: 48,
                                 width: double.infinity,
                                 handleClick: _handleSignIn,
-                                prefixIcon: CustomIcon.google_svgrepo_com,
+                                prefixIcon: MelodisticIcon.google,
                                 text: ' Log in with Google'),
                             SizedBox(
                                 width: double.infinity,
