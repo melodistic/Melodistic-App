@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
+import 'package:melodistic/widgets/common/floating-button.widget.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 import '../../utils.dart';
@@ -17,7 +18,7 @@ void main() {
       prefixIcon: MelodisticIcon.plus,
       suffixIcon: MelodisticIcon.plus,
       handleClick: () {},
-      heigh: 48,
+      height: 48,
       width: double.infinity,
     )));
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
@@ -46,7 +47,7 @@ void main() {
       prefixIcon: MelodisticIcon.plus,
       suffixIcon: MelodisticIcon.plus,
       handleClick: () {},
-      heigh: 48,
+      height: 48,
       width: double.infinity,
     )));
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
@@ -75,7 +76,7 @@ void main() {
       prefixIcon: MelodisticIcon.plus,
       suffixIcon: MelodisticIcon.plus,
       handleClick: () {},
-      heigh: 48,
+      height: 48,
       width: double.infinity,
     )));
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
@@ -104,7 +105,7 @@ void main() {
       prefixIcon: MelodisticIcon.plus,
       suffixIcon: MelodisticIcon.plus,
       handleClick: () {},
-      heigh: 48,
+      height: 48,
       width: double.infinity,
     )));
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
@@ -133,7 +134,7 @@ void main() {
       prefixIcon: MelodisticIcon.plus,
       suffixIcon: MelodisticIcon.plus,
       handleClick: () {},
-      heigh: 48,
+      height: 48,
       width: double.infinity,
     )));
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
@@ -162,7 +163,7 @@ void main() {
       prefixIcon: MelodisticIcon.plus,
       suffixIcon: MelodisticIcon.plus,
       handleClick: () {},
-      heigh: 48,
+      height: 48,
       width: double.infinity,
     )));
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
@@ -191,7 +192,7 @@ void main() {
       prefixIcon: MelodisticIcon.plus,
       suffixIcon: MelodisticIcon.plus,
       handleClick: () {},
-      heigh: 48,
+      height: 48,
       width: double.infinity,
     )));
     final OutlinedButton widget =
@@ -221,7 +222,7 @@ void main() {
       prefixIcon: MelodisticIcon.plus,
       suffixIcon: MelodisticIcon.plus,
       handleClick: () {},
-      heigh: 48,
+      height: 48,
       width: double.infinity,
     )));
     final OutlinedButton widget =
@@ -251,7 +252,7 @@ void main() {
       prefixIcon: MelodisticIcon.plus,
       suffixIcon: MelodisticIcon.plus,
       handleClick: () {},
-      heigh: 48,
+      height: 48,
       width: double.infinity,
     )));
     final OutlinedButton widget =
@@ -281,7 +282,7 @@ void main() {
       prefixIcon: MelodisticIcon.plus,
       suffixIcon: MelodisticIcon.plus,
       handleClick: () {},
-      heigh: 48,
+      height: 48,
       width: double.infinity,
     )));
     final Icon prefixIcon =
@@ -305,7 +306,7 @@ void main() {
       prefixIcon: MelodisticIcon.plus,
       suffixIcon: MelodisticIcon.plus,
       handleClick: () {},
-      heigh: 48,
+      height: 48,
       width: double.infinity,
     )));
     final Icon prefixIcon =
@@ -330,7 +331,7 @@ void main() {
       prefixIcon: MelodisticIcon.plus,
       suffixIcon: MelodisticIcon.plus,
       handleClick: () {},
-      heigh: 48,
+      height: 48,
       width: double.infinity,
     )));
     final Icon prefixIcon =
@@ -348,10 +349,9 @@ void main() {
   testWidgets('Button render correctly when use normal floating button',
       (WidgetTester tester) async {
     await tester.pumpWidget(createScaffoldForTesting(
-        child: ButtonWidget(
-      button: ButtonType.floatingButton,
+        child: FloatingButtonWidget(
       state: ButtonState.normal,
-      prefixIcon: MelodisticIcon.plus,
+      icon: MelodisticIcon.plus,
       handleClick: () {},
     )));
     final FloatingActionButton widget =
@@ -366,10 +366,9 @@ void main() {
   testWidgets('Button render correctly when use active floating button',
       (WidgetTester tester) async {
     await tester.pumpWidget(createScaffoldForTesting(
-        child: ButtonWidget(
-      button: ButtonType.floatingButton,
+        child: FloatingButtonWidget(
       state: ButtonState.active,
-      prefixIcon: MelodisticIcon.plus,
+      icon: MelodisticIcon.plus,
       handleClick: () {},
     )));
     final FloatingActionButton widget =
@@ -384,10 +383,9 @@ void main() {
   testWidgets('Button render correctly when use disable floating button',
       (WidgetTester tester) async {
     await tester.pumpWidget(createScaffoldForTesting(
-        child: ButtonWidget(
-      button: ButtonType.floatingButton,
+        child: FloatingButtonWidget(
       state: ButtonState.disable,
-      prefixIcon: MelodisticIcon.plus,
+      icon: MelodisticIcon.plus,
       handleClick: () {},
     )));
     final FloatingActionButton widget =

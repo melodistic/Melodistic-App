@@ -1,13 +1,5 @@
 enum ScreenType { withTitle, noTitle, withBack }
 
-enum ButtonType {
-  mainButton,
-  softButton,
-  outlineButton,
-  textButton,
-  floatingButton
-}
-
-enum IconType { prefixIcon, suffixIcon }
+enum ButtonType { mainButton, softButton, outlineButton, textButton }
 
 enum ButtonState { normal, active, disable }
