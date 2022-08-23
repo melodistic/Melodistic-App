@@ -4,6 +4,7 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
@@ -76,33 +77,49 @@ class RegisterScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  // Padding(
+                  //     padding: const EdgeInsets.only(bottom: kSizeXS),
+                  //     child: SizedBox(
+                  //         width: double.infinity,
+                  //         height: 48,
+                  //         child: TextButton(
+                  //             style: TextButton.styleFrom(
+                  //                 backgroundColor: kPrimaryColor,
+                  //                 primary: kGrayScaleColor50),
+                  //             onPressed: () {},
+                  //             child: const Text('Create an account')))),
                   Padding(
                       padding: const EdgeInsets.only(bottom: kSizeXS),
-                      child: SizedBox(
+                      child: ButtonWidget(
                           width: double.infinity,
-                          height: 48,
-                          child: TextButton(
-                              style: TextButton.styleFrom(
-                                  backgroundColor: kPrimaryColor,
-                                  primary: kGrayScaleColor50),
-                              onPressed: () {},
-                              child: const Text('Create an account')))),
-                  SizedBox(
+                          heigh: 48,
+                          button: ButtonType.mainButton,
+                          state: ButtonState.normal,
+                          handleClick: () {},
+                          text: 'Create an account')),
+                  // SizedBox(
+                  //     width: double.infinity,
+                  //     height: 48,
+                  //     child: TextButton(
+                  //         style: TextButton.styleFrom(
+                  //             backgroundColor: kGrayScaleColor100,
+                  //             primary: kPrimaryColor),
+                  //         onPressed: _handleSignIn,
+                  //         child: Row(
+                  //             mainAxisAlignment: MainAxisAlignment.center,
+                  //             children: const <Widget>[
+                  //               Image(
+                  //                   image:
+                  //                       AssetImage('assets/images/google.png')),
+                  //               Text('   Register with Google')
+                  //             ]))),
+                  ButtonWidget(
+                      button: ButtonType.softButton,
+                      state: ButtonState.normal,
+                      heigh: 48,
                       width: double.infinity,
-                      height: 48,
-                      child: TextButton(
-                          style: TextButton.styleFrom(
-                              backgroundColor: kGrayScaleColor100,
-                              primary: kPrimaryColor),
-                          onPressed: _handleSignIn,
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const <Widget>[
-                                Image(
-                                    image:
-                                        AssetImage('assets/images/google.png')),
-                                Text('   Register with Google')
-                              ]))),
+                      handleClick: _handleSignIn,
+                      text: 'Log in with Google'),
                   SizedBox(
                       width: double.infinity,
                       child: Row(
