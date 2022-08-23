@@ -38,3 +38,7 @@ flutter:
     - family: MelodisticIcon
       fonts:
         - asset: assets/icons/Icon.ttf
+    - family: CustomIcon
+      fonts:
+        - asset: assets/icons/CustomIcon.ttf
+        

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:melodistic/config/CustomIcon.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
@@ -102,32 +103,14 @@ class LoginScreen extends StatelessWidget {
                                     height: 48,
                                     width: double.infinity,
                                     text: 'Log in')),
-                            // SizedBox(
-                            //     width: double.infinity,
-                            //     height: 48,
-                            //     child: TextButton(
-                            //         style: TextButton.styleFrom(
-                            //             backgroundColor: kGrayScaleColor100,
-                            //             primary: kPrimaryColor),
-                            //         onPressed: _handleSignIn,
-                            //         child: Row(
-                            //             mainAxisAlignment:
-                            //                 MainAxisAlignment.center,
-                            //             children: const <Widget>[
-                            //               Image(
-                            //                   image: AssetImage(
-                            //                       'assets/images/google.png')),
-                            //               Text('   Log in with Google')
-                            //             ]))),
                             ButtonWidget(
-                              button: ButtonType.softButton,
-                              state: ButtonState.normal,
-                              height: 48,
-                              width: double.infinity,
-                              handleClick: _handleSignIn,
-                              prefixIcon: const ImageIcon(AssetImage('assets/images/google.png')) as IconData,
-                              text: 'Log in with Google'
-                            ),
+                                button: ButtonType.softButton,
+                                state: ButtonState.normal,
+                                height: 48,
+                                width: double.infinity,
+                                handleClick: _handleSignIn,
+                                prefixIcon: CustomIcon.google_svgrepo_com,
+                                text: ' Log in with Google'),
                             SizedBox(
                                 width: double.infinity,
                                 height: 48,

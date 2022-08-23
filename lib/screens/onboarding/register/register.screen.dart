@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:melodistic/config/CustomIcon.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
@@ -77,17 +78,6 @@ class RegisterScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // Padding(
-                  //     padding: const EdgeInsets.only(bottom: kSizeXS),
-                  //     child: SizedBox(
-                  //         width: double.infinity,
-                  //         height: 48,
-                  //         child: TextButton(
-                  //             style: TextButton.styleFrom(
-                  //                 backgroundColor: kPrimaryColor,
-                  //                 primary: kGrayScaleColor50),
-                  //             onPressed: () {},
-                  //             child: const Text('Create an account')))),
                   Padding(
                       padding: const EdgeInsets.only(bottom: kSizeXS),
                       child: ButtonWidget(
@@ -97,29 +87,14 @@ class RegisterScreen extends StatelessWidget {
                           state: ButtonState.normal,
                           handleClick: () {},
                           text: 'Create an account')),
-                  // SizedBox(
-                  //     width: double.infinity,
-                  //     height: 48,
-                  //     child: TextButton(
-                  //         style: TextButton.styleFrom(
-                  //             backgroundColor: kGrayScaleColor100,
-                  //             primary: kPrimaryColor),
-                  //         onPressed: _handleSignIn,
-                  //         child: Row(
-                  //             mainAxisAlignment: MainAxisAlignment.center,
-                  //             children: const <Widget>[
-                  //               Image(
-                  //                   image:
-                  //                       AssetImage('assets/images/google.png')),
-                  //               Text('   Register with Google')
-                  //             ]))),
                   ButtonWidget(
                       button: ButtonType.softButton,
                       state: ButtonState.normal,
                       height: 48,
                       width: double.infinity,
                       handleClick: _handleSignIn,
-                      text: 'Log in with Google'),
+                      text: ' Register with Google',
+                      prefixIcon: CustomIcon.google_svgrepo_com),
                   SizedBox(
                       width: double.infinity,
                       child: Row(
