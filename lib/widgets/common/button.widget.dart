@@ -7,174 +7,114 @@ class ButtonWidget extends StatelessWidget {
     Key? key,
     this.button = ButtonType.mainButton,
     this.text,
-    this.icon = IconType.prefixIcon,
     this.state = ButtonState.normal,
     this.prefixIcon,
     this.suffixIcon,
     this.handleClick,
-    this.heigh,
+    this.height,
     this.width,
   }) : super(key: key);
   final ButtonType button;
   final String? text;
-  final IconType icon;
   final ButtonState state;
-  final double? heigh;
+  final double? height;
   final double? width;
   final VoidCallback? handleClick;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
-  SizedBox? buttonRender() {
+
+  ButtonStyle getButtonStyle() {
     if (button == ButtonType.mainButton) {
-      return SizedBox(
-          width: width,
-          height: heigh,
-          child: TextButton(
-              style: TextButton.styleFrom(
-                  backgroundColor: state == ButtonState.disable
-                      ? kGrayScaleColor200
-                      : kPrimaryColor),
-              onPressed: state == ButtonState.disable ? () {} : handleClick,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Icon(
-                    prefixIcon,
-                    key: const Key('prefix-icon'),
-                    color: state == ButtonState.disable
-                        ? kGrayScaleColor500
-                        : kGrayScaleColor50,
-                  ),
-                  Text(
-                    text.toString(),
-                    style: TextStyle(
-                        color: state == ButtonState.disable
-                            ? kGrayScaleColor500
-                            : kGrayScaleColor50),
-                  ),
-                  Icon(
-                    suffixIcon,
-                    key: const Key('suffix-icon'),
-                    color: state == ButtonState.disable
-                        ? kGrayScaleColor500
-                        : kGrayScaleColor50,
-                  )
-                ],
-              )));
-    } else if (button == ButtonType.softButton) {
-      return SizedBox(
-          width: width,
-          height: heigh,
-          child: TextButton(
-              style: TextButton.styleFrom(
-                  backgroundColor: state == ButtonState.normal
-                      ? kGrayScaleColor100
-                      : kGrayScaleColor200),
-              onPressed: state == ButtonState.disable ? () {} : handleClick,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Icon(prefixIcon,
-                      key: const Key('prefix-icon-2'),
-                      color: state == ButtonState.disable
-                          ? kGrayScaleColor500
-                          : kPrimaryColor),
-                  Text(text.toString(),
-                      style: TextStyle(
-                          color: state == ButtonState.disable
-                              ? kGrayScaleColor500
-                              : kPrimaryColor)),
-                  Icon(suffixIcon,
-                      key: const Key('suffix-icon-2'),
-                      color: state == ButtonState.disable
-                          ? kGrayScaleColor500
-                          : kPrimaryColor)
-                ],
-              )));
-    } else if (button == ButtonType.outlineButton) {
-      return SizedBox(
-          width: width,
-          height: heigh,
-          child: OutlinedButton(
-            key: const Key('border-side'),
-            style: OutlinedButton.styleFrom(
-                side: BorderSide(
-                    color: state == ButtonState.active
-                        ? kSecondaryColor
-                        : state == ButtonState.normal
-                            ? kGrayScaleColor900
-                            : kGrayScaleColor200)),
-            onPressed: state == ButtonState.disable ? () {} : handleClick,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Icon(prefixIcon,
-                    key: const Key('prefix-icon-3'),
-                    color: state == ButtonState.active
-                        ? kSecondaryColor
-                        : state == ButtonState.normal
-                            ? kGrayScaleColor900
-                            : kGrayScaleColor500),
-                Text(
-                  text.toString(),
-                  style: TextStyle(
-                      color: state == ButtonState.active
-                          ? kSecondaryColor
-                          : state == ButtonState.normal
-                              ? kGrayScaleColor900
-                              : kGrayScaleColor500),
-                ),
-                Icon(suffixIcon,
-                    key: const Key('suffix-icon-3'),
-                    color: state == ButtonState.active
-                        ? kSecondaryColor
-                        : state == ButtonState.normal
-                            ? kGrayScaleColor900
-                            : kGrayScaleColor500)
-              ],
-            ),
-          ));
-    } else if (button == ButtonType.textButton) {
-      return SizedBox(
-          width: width,
-          height: heigh,
-          child: TextButton(
-              onPressed: state == ButtonState.disable ? () {} : handleClick,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Icon(prefixIcon,
-                      key: const Key('prefix-icon-4'),
-                      color: state == ButtonState.disable
-                          ? kGrayScaleColor500
-                          : kPrimaryColor),
-                  Text(text.toString(),
-                      style: TextStyle(
-                          color: state == ButtonState.disable
-                              ? kGrayScaleColor500
-                              : kPrimaryColor)),
-                  Icon(suffixIcon,
-                      key: const Key('suffix-icon-4'),
-                      color: state == ButtonState.disable
-                          ? kGrayScaleColor500
-                          : kPrimaryColor)
-                ],
-              )));
-    } else {
-      return SizedBox(
-          child: FloatingActionButton(
-        backgroundColor: state == ButtonState.active
-            ? kSecondaryColor
-            : state == ButtonState.normal
-                ? kGrayScaleColor900
-                : kGrayScaleColor100,
-        onPressed: state == ButtonState.disable ? () {} : handleClick,
-        child: Icon(prefixIcon,
-            color: state == ButtonState.disable
-                ? kGrayScaleColor500
-                : kGrayScaleColor50),
-      ));
+      return TextButton.styleFrom(
+          backgroundColor: state == ButtonState.disable
+              ? kGrayScaleColor200
+              : kPrimaryColor);
     }
+    if (button == ButtonType.softButton) {
+      return TextButton.styleFrom(
+          backgroundColor: state == ButtonState.normal
+              ? kGrayScaleColor100
+              : kGrayScaleColor200);
+    }
+    if (button == ButtonType.outlineButton) {
+      return OutlinedButton.styleFrom(
+          side: BorderSide(
+              color: state == ButtonState.active
+                  ? kSecondaryColor
+                  : state == ButtonState.normal
+                      ? kGrayScaleColor900
+                      : kGrayScaleColor200));
+    }
+    return const ButtonStyle();
+  }
+
+  Color getContentColor() {
+    if (button == ButtonType.mainButton) {
+      return state == ButtonState.disable
+          ? kGrayScaleColor500
+          : kGrayScaleColor50;
+    }
+    if (button == ButtonType.softButton) {
+      return state == ButtonState.disable ? kGrayScaleColor500 : kPrimaryColor;
+    }
+    if (button == ButtonType.outlineButton) {
+      return state == ButtonState.active
+          ? kSecondaryColor
+          : state == ButtonState.normal
+              ? kGrayScaleColor900
+              : kGrayScaleColor500;
+    }
+    if (button == ButtonType.textButton) {
+      return state == ButtonState.disable ? kGrayScaleColor500 : kPrimaryColor;
+    }
+    return kGrayScaleColor50;
+  }
+
+  SizedBox? buttonRender() {
+    return SizedBox(
+        width: width,
+        height: height,
+        child: button == ButtonType.outlineButton
+            ? OutlinedButton(
+                style: getButtonStyle(),
+                onPressed: state == ButtonState.disable ? () {} : handleClick,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Icon(prefixIcon,
+                        key: const Key('prefix-icon'),
+                        color: getContentColor()),
+                    Text(
+                      text.toString(),
+                      style: TextStyle(color: getContentColor()),
+                    ),
+                    Icon(suffixIcon,
+                        key: const Key('suffix-icon'), color: getContentColor())
+                  ],
+                ),
+              )
+            : TextButton(
+                style: getButtonStyle(),
+                onPressed: state == ButtonState.disable ? () {} : handleClick,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Icon(
+                      prefixIcon,
+                      key: const Key('prefix-icon'),
+                      color: getContentColor(),
+                    ),
+                    Text(
+                      text.toString(),
+                      style: TextStyle(color: getContentColor()),
+                    ),
+                    Icon(
+                      suffixIcon,
+                      key: const Key('suffix-icon'),
+                      color: getContentColor(),
+                    )
+                  ],
+                )));
   }
 
   @override

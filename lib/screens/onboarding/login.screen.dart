@@ -99,7 +99,7 @@ class LoginScreen extends StatelessWidget {
                                     button: ButtonType.mainButton,
                                     state: ButtonState.normal,
                                     handleClick: () {},
-                                    heigh: 48,
+                                    height: 48,
                                     width: double.infinity,
                                     text: 'Log in')),
                             // SizedBox(
@@ -122,7 +122,7 @@ class LoginScreen extends StatelessWidget {
                             ButtonWidget(
                               button: ButtonType.softButton,
                               state: ButtonState.normal,
-                              heigh: 48,
+                              height: 48,
                               width: double.infinity,
                               handleClick: _handleSignIn,
                               prefixIcon: const ImageIcon(AssetImage('assets/images/google.png')) as IconData,
