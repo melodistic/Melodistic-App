@@ -7,6 +7,10 @@ Widget createWidgetForTesting({required Widget child}) {
   );
 }
 
+Widget createScaffoldForTesting({required Widget child}) {
+  return createWidgetForTesting(child: Scaffold(body: child));
+}
+
 Widget getWidget(WidgetTester tester, Finder finder) {
   return tester.widget(finder);
 }
