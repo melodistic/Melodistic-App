@@ -336,9 +336,9 @@ void main() {
     final Text text = getWidgetByType(tester, Text) as Text;
 
     expect(find.byType(TextButton), findsOneWidget);
-    expect(prefixIcon.color, kGrayScaleColor50);
-    expect(suffixIcon.color, kGrayScaleColor50);
-    expect(text.style?.color, kGrayScaleColor50);
+    expect(prefixIcon.color, kGrayScaleColor500);
+    expect(suffixIcon.color, kGrayScaleColor500);
+    expect(text.style?.color, kGrayScaleColor500);
   });
 
   testWidgets('Button render correctly when use normal floating button',
