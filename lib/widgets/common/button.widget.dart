@@ -97,7 +97,7 @@ class ButtonWidget extends StatelessWidget {
                 style: getButtonStyle(),
                 onPressed: state == ButtonState.disable ? () {} : handleClick,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Icon(
                       prefixIcon,
