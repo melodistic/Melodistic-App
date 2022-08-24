@@ -75,7 +75,8 @@ class ButtonWidget extends StatelessWidget {
     return kGrayScaleColor50;
   }
 
-  SizedBox? buttonRender() {
+  @override
+  Widget build(BuildContext context) {
     return SizedBox(
         width: size == ButtonSize.large ? double.infinity : null,
         child: button == ButtonType.outlineButton
@@ -119,10 +120,5 @@ class ButtonWidget extends StatelessWidget {
                     )
                   ],
                 )));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(child: buttonRender());
   }
 }
