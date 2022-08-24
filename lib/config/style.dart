@@ -13,6 +13,11 @@ const TextStyle kHeading2 = TextStyle(
     fontSize: kFontSizeM,
     fontWeight: kFontWeightSemiBold);
 
+const TextStyle kHeading2Medium = TextStyle(
+    fontFamily: kPoppinsFont,
+    fontSize: kFontSizeM,
+    fontWeight: kFontWeightMedium);
+
 const TextStyle kHeading3 = TextStyle(
     fontFamily: kPoppinsFont,
     fontSize: kFontSizeS,

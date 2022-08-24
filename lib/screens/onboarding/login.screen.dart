@@ -89,7 +89,7 @@ class LoginScreen extends StatelessWidget {
                                           const EdgeInsets.only(top: kSizeXS),
                                       child: Text('Forget the Password?',
                                           style: kBody3.copyWith(
-                                              color: kGrayScaleColor500),
+                                              color: kGrayScaleColor600),
                                           textAlign: TextAlign.end)),
                                 ],
                               ),
@@ -97,17 +97,15 @@ class LoginScreen extends StatelessWidget {
                             Padding(
                                 padding: const EdgeInsets.only(bottom: kSizeS),
                                 child: ButtonWidget(
+                                    size: ButtonSize.large,
                                     button: ButtonType.mainButton,
                                     state: ButtonState.normal,
                                     handleClick: () {},
-                                    height: 48,
-                                    width: double.infinity,
                                     text: 'Log in')),
                             ButtonWidget(
+                                size: ButtonSize.large,
                                 button: ButtonType.softButton,
                                 state: ButtonState.normal,
-                                height: 48,
-                                width: double.infinity,
                                 handleClick: _handleSignIn,
                                 prefixIcon: MelodisticIcon.google,
                                 text: ' Log in with Google'),

@@ -81,8 +81,7 @@ class RegisterScreen extends StatelessWidget {
                   Padding(
                       padding: const EdgeInsets.only(bottom: kSizeXS),
                       child: ButtonWidget(
-                          width: double.infinity,
-                          height: 48,
+                        size: ButtonSize.large,
                           button: ButtonType.mainButton,
                           state: ButtonState.normal,
                           handleClick: () {},
@@ -90,8 +89,7 @@ class RegisterScreen extends StatelessWidget {
                   ButtonWidget(
                       button: ButtonType.softButton,
                       state: ButtonState.normal,
-                      height: 48,
-                      width: double.infinity,
+                      size: ButtonSize.large,
                       handleClick: _handleSignIn,
                       text: ' Register with Google',
                       prefixIcon: MelodisticIcon.google),

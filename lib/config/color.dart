@@ -16,12 +16,12 @@ const Color kSecondaryColor100 = Color(0x33FA8B44);
 
 const Color kGrayScaleColor900 = Color(0xFF000000);
 const Color kGrayScaleColor800 = Color(0xFF424242);
-const Color kGrayScaleColor700 = Color(0xFF616161);
+const Color kGrayScaleColor700 = Color(0xFF858D93);
 const Color kGrayScaleColor600 = Color(0xFF757575);
-const Color kGrayScaleColor500 = Color(0xFFA4A4A4);
+const Color kGrayScaleColor500 = Color(0xFFA9B5BC);
 const Color kGrayScaleColor400 = Color(0xFFCAD0D4);
 const Color kGrayScaleColor300 = Color(0xFFE0E0E0);
-const Color kGrayScaleColor200 = Color(0xFFEEEEEE);
+const Color kGrayScaleColor200 = Color(0xFFEDF2F6);
 const Color kGrayScaleColor100 = Color(0xFFF5F5F5);
 const Color kGrayScaleColor50 = Color(0xFFFFFFFF);
 
