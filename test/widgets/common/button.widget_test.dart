@@ -39,13 +39,12 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(createScaffoldForTesting(
         child: ButtonWidget(
-      button: ButtonType.mainButton,
-      text: 'Login',
-      state: ButtonState.disable,
-      prefixIcon: MelodisticIcon.plus,
-      suffixIcon: MelodisticIcon.plus,
-      handleClick: () {}
-    )));
+            button: ButtonType.mainButton,
+            text: 'Login',
+            state: ButtonState.disable,
+            prefixIcon: MelodisticIcon.plus,
+            suffixIcon: MelodisticIcon.plus,
+            handleClick: () {})));
     final TextButton widget = getWidgetByType(tester, TextButton) as TextButton;
     final Set<MaterialState> states = <MaterialState>{};
     final Icon prefixIcon =
@@ -117,13 +116,12 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(createScaffoldForTesting(
         child: ButtonWidget(
-      button: ButtonType.outlineButton,
-      text: 'Login',
-      state: ButtonState.normal,
-      prefixIcon: MelodisticIcon.plus,
-      suffixIcon: MelodisticIcon.plus,
-      handleClick: () {}
-    )));
+            button: ButtonType.outlineButton,
+            text: 'Login',
+            state: ButtonState.normal,
+            prefixIcon: MelodisticIcon.plus,
+            suffixIcon: MelodisticIcon.plus,
+            handleClick: () {})));
     final OutlinedButton widget =
         getWidgetByType(tester, OutlinedButton) as OutlinedButton;
     final Set<MaterialState> states = <MaterialState>{};
@@ -145,13 +143,12 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(createScaffoldForTesting(
         child: ButtonWidget(
-      button: ButtonType.outlineButton,
-      text: 'Login',
-      state: ButtonState.disable,
-      prefixIcon: MelodisticIcon.plus,
-      suffixIcon: MelodisticIcon.plus,
-      handleClick: () {}
-    )));
+            button: ButtonType.outlineButton,
+            text: 'Login',
+            state: ButtonState.disable,
+            prefixIcon: MelodisticIcon.plus,
+            suffixIcon: MelodisticIcon.plus,
+            handleClick: () {})));
     final OutlinedButton widget =
         getWidgetByType(tester, OutlinedButton) as OutlinedButton;
     final Set<MaterialState> states = <MaterialState>{};
@@ -173,13 +170,12 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(createScaffoldForTesting(
         child: ButtonWidget(
-      button: ButtonType.textButton,
-      text: 'Login',
-      state: ButtonState.normal,
-      prefixIcon: MelodisticIcon.plus,
-      suffixIcon: MelodisticIcon.plus,
-      handleClick: () {}
-    )));
+            button: ButtonType.textButton,
+            text: 'Login',
+            state: ButtonState.normal,
+            prefixIcon: MelodisticIcon.plus,
+            suffixIcon: MelodisticIcon.plus,
+            handleClick: () {})));
     final Icon prefixIcon =
         getWidgetByKey(tester, const Key('prefix-icon')) as Icon;
     final Icon suffixIcon =
@@ -196,13 +192,12 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(createScaffoldForTesting(
         child: ButtonWidget(
-      button: ButtonType.textButton,
-      text: 'Login',
-      state: ButtonState.disable,
-      prefixIcon: MelodisticIcon.plus,
-      suffixIcon: MelodisticIcon.plus,
-      handleClick: () {}
-    )));
+            button: ButtonType.textButton,
+            text: 'Login',
+            state: ButtonState.disable,
+            prefixIcon: MelodisticIcon.plus,
+            suffixIcon: MelodisticIcon.plus,
+            handleClick: () {})));
     final Icon prefixIcon =
         getWidgetByKey(tester, const Key('prefix-icon')) as Icon;
     final Icon suffixIcon =

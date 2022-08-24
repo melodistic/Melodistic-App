@@ -81,7 +81,7 @@ class RegisterScreen extends StatelessWidget {
                   Padding(
                       padding: const EdgeInsets.only(bottom: kSizeXS),
                       child: ButtonWidget(
-                        size: ButtonSize.large,
+                          size: ButtonSize.large,
                           button: ButtonType.mainButton,
                           state: ButtonState.normal,
                           handleClick: () {},

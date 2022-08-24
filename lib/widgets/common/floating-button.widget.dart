@@ -16,9 +16,8 @@ class FloatingButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      backgroundColor: state == ButtonState.normal
-              ? kGrayScaleColor900
-              : kGrayScaleColor100,
+      backgroundColor:
+          state == ButtonState.normal ? kGrayScaleColor900 : kGrayScaleColor100,
       onPressed: state == ButtonState.disable ? () {} : handleClick,
       child: Icon(icon,
           color: state == ButtonState.disable
