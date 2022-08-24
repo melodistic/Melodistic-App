@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:melodistic/config/color.dart';
+import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 
 class PopupWidget extends StatelessWidget {
@@ -9,8 +11,8 @@ class PopupWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SimpleDialog(
         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(6))),
-        contentPadding: const EdgeInsets.fromLTRB(12, 24, 12, 24),
+            borderRadius: BorderRadius.all(Radius.circular(kSizeXS))),
+        contentPadding: const EdgeInsets.fromLTRB(kSizeS, kSizeM, kSizeS, kSizeM),
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -19,7 +21,7 @@ class PopupWidget extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Icon(MelodisticIcon.cross),
+                child: const Icon(MelodisticIcon.cross, color: kPrimaryColor,),
               ),
             ],
           ),

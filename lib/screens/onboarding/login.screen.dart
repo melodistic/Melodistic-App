@@ -6,6 +6,7 @@ import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
+import 'package:melodistic/widgets/common/popup-dialog.widget.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
@@ -99,7 +100,59 @@ class LoginScreen extends StatelessWidget {
                                 child: ButtonWidget(
                                     button: ButtonType.mainButton,
                                     state: ButtonState.normal,
-                                    handleClick: () {},
+                                    handleClick: () => showDialog<String>(
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            PopupWidget(
+                                                content: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: <Widget>[
+                                                  Image.asset(
+                                                      'assets/images/email.png'),
+                                                  const Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .only(
+                                                                  top: kSizeM),
+                                                      child: Text('Email sent!',
+                                                          style: kHeading2)),
+                                                  const Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              36,
+                                                              kSizeXS,
+                                                              36,
+                                                              kSizeM),
+                                                      child: Text(
+                                                          'You will receive an email with a link to reset your password.',
+                                                          style: kBody2)),
+                                                  Column(
+                                                    children: <Widget>[
+                                                      const ButtonWidget(
+                                                        button: ButtonType
+                                                            .mainButton,
+                                                        state:
+                                                            ButtonState.normal,
+                                                        text: 'Resend',
+                                                        width: 246,
+                                                        height: 48,
+                                                      ),
+                                                      ButtonWidget(
+                                                        button: ButtonType
+                                                            .textButton,
+                                                        state:
+                                                            ButtonState.disable,
+                                                        handleClick:
+                                                            _handleSignIn,
+                                                        text: 'Change email',
+                                                        width: 246,
+                                                        height: 48,
+                                                      )
+                                                    ],
+                                                  )
+                                                ]))),
                                     height: 48,
                                     width: double.infinity,
                                     text: 'Log in')),
