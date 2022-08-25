@@ -12,7 +12,8 @@ class PopupWidget extends StatelessWidget {
     return SimpleDialog(
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(kSizeXS))),
-        contentPadding: const EdgeInsets.fromLTRB(kSizeS, kSizeM, kSizeS, kSizeM),
+        contentPadding:
+            const EdgeInsets.fromLTRB(kSizeS, kSizeM, kSizeS, kSizeM),
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -21,7 +22,10 @@ class PopupWidget extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Icon(MelodisticIcon.cross, color: kPrimaryColor,),
+                child: const Icon(
+                  MelodisticIcon.cross,
+                  color: kPrimaryColor,
+                ),
               ),
             ],
           ),
