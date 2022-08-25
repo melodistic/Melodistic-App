@@ -90,7 +90,7 @@ class LoginScreen extends StatelessWidget {
                                           const EdgeInsets.only(top: kSizeXS),
                                       child: Text('Forget the Password?',
                                           style: kBody3.copyWith(
-                                              color: kGrayScaleColor500),
+                                              color: kGrayScaleColor600),
                                           textAlign: TextAlign.end)),
                                 ],
                               ),
@@ -98,69 +98,15 @@ class LoginScreen extends StatelessWidget {
                             Padding(
                                 padding: const EdgeInsets.only(bottom: kSizeS),
                                 child: ButtonWidget(
+                                    size: ButtonSize.large,
                                     button: ButtonType.mainButton,
                                     state: ButtonState.normal,
-                                    handleClick: () => showDialog<String>(
-                                        context: context,
-                                        builder: (BuildContext context) =>
-                                            PopupWidget(
-                                                content: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: <Widget>[
-                                                  Image.asset(
-                                                      'assets/images/email.png'),
-                                                  const Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .only(
-                                                                  top: kSizeM),
-                                                      child: Text('Email sent!',
-                                                          style: kHeading2)),
-                                                  const Padding(
-                                                      padding:
-                                                          EdgeInsets.fromLTRB(
-                                                              36,
-                                                              kSizeXS,
-                                                              36,
-                                                              kSizeM),
-                                                      child: Text(
-                                                          'You will receive an email with a link to reset your password.',
-                                                          style: kBody2)),
-                                                  Column(
-                                                    children: <Widget>[
-                                                      const ButtonWidget(
-                                                        button: ButtonType
-                                                            .mainButton,
-                                                        state:
-                                                            ButtonState.normal,
-                                                        text: 'Resend',
-                                                        width: 246,
-                                                        height: 48,
-                                                      ),
-                                                      ButtonWidget(
-                                                        button: ButtonType
-                                                            .textButton,
-                                                        state:
-                                                            ButtonState.disable,
-                                                        handleClick:
-                                                            _handleSignIn,
-                                                        text: 'Change email',
-                                                        width: 246,
-                                                        height: 48,
-                                                      )
-                                                    ],
-                                                  )
-                                                ]))),
-                                    height: 48,
-                                    width: double.infinity,
+                                    handleClick: () {},
                                     text: 'Log in')),
                             ButtonWidget(
+                                size: ButtonSize.large,
                                 button: ButtonType.softButton,
                                 state: ButtonState.normal,
-                                height: 48,
-                                width: double.infinity,
                                 handleClick: _handleSignIn,
                                 prefixIcon: MelodisticIcon.google,
                                 text: ' Log in with Google'),
