@@ -6,7 +6,6 @@ import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
-import 'package:melodistic/widgets/common/popup-dialog.widget.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';

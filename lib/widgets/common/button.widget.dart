@@ -82,7 +82,7 @@ class ButtonWidget extends StatelessWidget {
         child: button == ButtonType.outlineButton
             ? OutlinedButton(
                 style: getButtonStyle(),
-                onPressed: state == ButtonState.disable ? (){} : handleClick,
+                onPressed: state == ButtonState.disable ? () {} : handleClick,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -100,7 +100,7 @@ class ButtonWidget extends StatelessWidget {
               )
             : TextButton(
                 style: getButtonStyle(),
-                onPressed: state == ButtonState.disable ? (){} : handleClick,
+                onPressed: state == ButtonState.disable ? () {} : handleClick,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
