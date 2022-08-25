@@ -13,14 +13,14 @@ class PopupWidget extends StatelessWidget {
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(kSizeXS))),
         contentPadding:
-            const EdgeInsets.fromLTRB(kSizeS, kSizeM, kSizeS, kSizeM),
+            const EdgeInsets.symmetric(horizontal: kSizeS, vertical: kSizeM),
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               SimpleDialogOption(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.of(context).pop();
                 },
                 child: const Icon(
                   MelodisticIcon.cross,
