@@ -50,24 +50,30 @@ class MelodisticIcon {
       IconData(0xe813, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData home_door =
       IconData(0xe814, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData list_add =
+  static const IconData iconoir_emoji_sing_right_note =
       IconData(0xe815, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData menu_hamburger =
+  static const IconData list_add =
       IconData(0xe816, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData pen =
+  static const IconData menu_hamburger =
       IconData(0xe817, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData picture =
+  static const IconData pen =
       IconData(0xe818, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData play =
+  static const IconData picture =
       IconData(0xe819, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData plus =
+  static const IconData play =
       IconData(0xe81a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData pull_up =
+  static const IconData plus =
       IconData(0xe81b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData settings =
+  static const IconData pull_up =
       IconData(0xe81c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData warning_circle =
+  static const IconData settings =
       IconData(0xe81d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData write =
+  static const IconData system_uicons_arrow_right =
       IconData(0xe81e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData system_uicons_check =
+      IconData(0xe81f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData warning_circle =
+      IconData(0xe820, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData write =
+      IconData(0xe821, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

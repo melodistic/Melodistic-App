@@ -24,7 +24,10 @@ void main() {
         findsNWidgets(5));
     expect(getTypeDescentantByKey(const Key('onboarding-container'), Container),
         findsNWidgets(2));
-    expect(getTypeDescentantByKey(const Key('onboarding-container'), Row),
+    expect(
+        getTypeDescentantByKey(const Key('onboarding-container'), TextButton),
         findsOneWidget);
+    expect(getTypeDescentantByKey(const Key('onboarding-container'), Row),
+        findsNWidgets(2));
   });
 }

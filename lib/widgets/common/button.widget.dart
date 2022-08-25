@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:melodistic/config/color.dart';
+import 'package:melodistic/config/constant.dart';
+import 'package:melodistic/config/style.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class ButtonWidget extends StatelessWidget {
@@ -7,43 +9,48 @@ class ButtonWidget extends StatelessWidget {
     Key? key,
     this.button = ButtonType.mainButton,
     this.text,
+    this.size = ButtonSize.large,
     this.state = ButtonState.normal,
     this.prefixIcon,
     this.suffixIcon,
     this.handleClick,
-    this.height,
-    this.width,
   }) : super(key: key);
   final ButtonType button;
   final String? text;
   final ButtonState state;
-  final double? height;
-  final double? width;
   final VoidCallback? handleClick;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
+  final ButtonSize? size;
 
   ButtonStyle getButtonStyle() {
     if (button == ButtonType.mainButton) {
       return TextButton.styleFrom(
-          backgroundColor: state == ButtonState.disable
-              ? kGrayScaleColor200
-              : kPrimaryColor);
+          textStyle: const TextStyle(fontSize: kSizeS),
+          backgroundColor:
+              state == ButtonState.disable ? kGrayScaleColor100 : kPrimaryColor,
+          padding: size == ButtonSize.large
+              ? const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeS)
+              : const EdgeInsets.fromLTRB(kSizeS, kSizeXS, kSizeS, kSizeXS));
     }
     if (button == ButtonType.softButton) {
       return TextButton.styleFrom(
-          backgroundColor: state == ButtonState.normal
-              ? kGrayScaleColor100
-              : kGrayScaleColor200);
+          textStyle: const TextStyle(fontSize: kSizeS),
+          backgroundColor: kGrayScaleColor100,
+          padding: size == ButtonSize.large
+              ? const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeS)
+              : const EdgeInsets.fromLTRB(kSizeS, kSizeXS, kSizeS, kSizeXS));
     }
     if (button == ButtonType.outlineButton) {
       return OutlinedButton.styleFrom(
+          textStyle: const TextStyle(fontSize: kSizeS),
           side: BorderSide(
-              color: state == ButtonState.active
-                  ? kSecondaryColor
-                  : state == ButtonState.normal
-                      ? kGrayScaleColor900
-                      : kGrayScaleColor200));
+              color: state == ButtonState.normal
+                  ? kPrimaryColor
+                  : kGrayScaleColor300),
+          padding: size == ButtonSize.large
+              ? const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeS)
+              : const EdgeInsets.fromLTRB(kSizeS, kSizeXS, kSizeS, kSizeXS));
     }
     return const ButtonStyle();
   }
@@ -51,29 +58,27 @@ class ButtonWidget extends StatelessWidget {
   Color getContentColor() {
     if (button == ButtonType.mainButton) {
       return state == ButtonState.disable
-          ? kGrayScaleColor500
+          ? kGrayScaleColor400
           : kGrayScaleColor50;
     }
     if (button == ButtonType.softButton) {
-      return state == ButtonState.disable ? kGrayScaleColor500 : kPrimaryColor;
+      return state == ButtonState.disable ? kGrayScaleColor400 : kPrimaryColor;
     }
     if (button == ButtonType.outlineButton) {
-      return state == ButtonState.active
-          ? kSecondaryColor
-          : state == ButtonState.normal
-              ? kGrayScaleColor900
-              : kGrayScaleColor500;
+      return state == ButtonState.normal ? kPrimaryColor : kGrayScaleColor400;
     }
     if (button == ButtonType.textButton) {
-      return state == ButtonState.disable ? kGrayScaleColor500 : kPrimaryColor;
+      return state == ButtonState.disable
+          ? kGrayScaleColor400
+          : kGrayScaleColor600;
     }
     return kGrayScaleColor50;
   }
 
-  SizedBox? buttonRender() {
+  @override
+  Widget build(BuildContext context) {
     return SizedBox(
-        width: width,
-        height: height,
+        width: size == ButtonSize.large ? double.infinity : null,
         child: button == ButtonType.outlineButton
             ? OutlinedButton(
                 style: getButtonStyle(),
@@ -86,7 +91,7 @@ class ButtonWidget extends StatelessWidget {
                         color: getContentColor()),
                     Text(
                       text.toString(),
-                      style: TextStyle(color: getContentColor()),
+                      style: kHeading2Medium.copyWith(color: getContentColor()),
                     ),
                     Icon(suffixIcon,
                         key: const Key('suffix-icon'), color: getContentColor())
@@ -106,7 +111,7 @@ class ButtonWidget extends StatelessWidget {
                     ),
                     Text(
                       text.toString(),
-                      style: TextStyle(color: getContentColor()),
+                      style: kHeading2Medium.copyWith(color: getContentColor()),
                     ),
                     Icon(
                       suffixIcon,
@@ -115,10 +120,5 @@ class ButtonWidget extends StatelessWidget {
                     )
                   ],
                 )));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(child: buttonRender());
   }
 }
