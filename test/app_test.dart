@@ -6,5 +6,6 @@ void main() {
   testWidgets('Render correctly', (WidgetTester tester) async {
     await tester.pumpWidget(const MelodisticApp());
     expect(find.byType(MaterialApp), findsOneWidget);
+    await tester.pumpAndSettle(const Duration(milliseconds: 3000));
   });
 }
