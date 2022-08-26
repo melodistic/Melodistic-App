@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:melodistic/config/color.dart';
-import 'package:melodistic/widgets/common/type/screen.type.dart';
+import 'package:melodistic/widgets/common/type/button.type.dart';
 
 class FloatingButtonWidget extends StatelessWidget {
   const FloatingButtonWidget({

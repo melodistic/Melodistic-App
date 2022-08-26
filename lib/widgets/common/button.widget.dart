@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
-import 'package:melodistic/widgets/common/type/screen.type.dart';
+import 'package:melodistic/widgets/common/type/button.type.dart';
 
 class ButtonWidget extends StatelessWidget {
   const ButtonWidget({

@@ -4,7 +4,7 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/floating-button.widget.dart';
-import 'package:melodistic/widgets/common/type/screen.type.dart';
+import 'package:melodistic/widgets/common/type/button.type.dart';
 
 import '../../utils.dart';
 
