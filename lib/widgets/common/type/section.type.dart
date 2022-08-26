@@ -1,1 +1,1 @@
-enum SectionType { none, exerciseSection, breakSection }
+enum SectionType { exerciseSection, breakSection }
