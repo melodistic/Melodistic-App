@@ -48,7 +48,7 @@ class OnboardingScreen extends StatelessWidget {
                         Navigator.of(context).pushNamed(RoutesName.login);
                       },
                       text: 'Try now'),
-                )
+                ),
               ],
             )));
   }
