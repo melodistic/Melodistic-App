@@ -62,7 +62,7 @@ class ButtonWidget extends StatelessWidget {
     if (button == ButtonType.mainButton) {
       return state == ButtonState.disable
           ? kGrayScaleColor400
-          : kGrayScaleColor50;
+          : kGrayScaleColorWhite;
     }
     if (button == ButtonType.softButton) {
       return state == ButtonState.disable ? kGrayScaleColor400 : kPrimaryColor;
@@ -75,7 +75,7 @@ class ButtonWidget extends StatelessWidget {
           ? kGrayScaleColor400
           : kGrayScaleColor600;
     }
-    return kGrayScaleColor50;
+    return kGrayScaleColorWhite;
   }
 
   @override

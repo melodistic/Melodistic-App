@@ -18,7 +18,7 @@ class HomeAppbar extends StatelessWidget with PreferredSizeWidget {
           child: GestureDetector(
             child: const Icon(
               MelodisticIcon.menu_hamburger,
-              color: kGrayScaleColor900,
+              color: kGrayScaleColorBlack,
               size: kSizeM,
             ),
             onTap: () {
@@ -28,9 +28,9 @@ class HomeAppbar extends StatelessWidget with PreferredSizeWidget {
         ),
         title: const Text(
           'Melodistic',
-          style: TextStyle(color: kGrayScaleColor900),
+          style: TextStyle(color: kGrayScaleColorBlack),
         ),
         elevation: 0,
-        backgroundColor: kGrayScaleColor50);
+        backgroundColor: kGrayScaleColorWhite);
   }
 }

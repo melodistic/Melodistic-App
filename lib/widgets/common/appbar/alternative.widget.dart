@@ -38,7 +38,7 @@ class AlternativeAppbar extends StatelessWidget with PreferredSizeWidget {
                       ])))),
       leadingWidth: double.infinity,
       elevation: 0,
-      backgroundColor: kGrayScaleColor50,
+      backgroundColor: kGrayScaleColorWhite,
     );
   }
 }

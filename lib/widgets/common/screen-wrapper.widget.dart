@@ -28,7 +28,7 @@ class ScreenWrapper extends StatelessWidget {
               : (screen == ScreenType.withTitle
                   ? const HomeAppbar()
                   : AlternativeAppbar(screen: screen)) as PreferredSizeWidget),
-      backgroundColor: kGrayScaleColor50,
+      backgroundColor: kGrayScaleColorWhite,
       extendBodyBehindAppBar: extendBodyBehindAppBar,
       body: extendBodyBehindAppBar ? child : SafeArea(child: child),
       floatingActionButton: floatingActionButton,

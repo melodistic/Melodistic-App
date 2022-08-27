@@ -47,7 +47,7 @@ class LoginScreen extends StatelessWidget {
                     height: 400,
                     width: double.infinity,
                     decoration: const BoxDecoration(
-                      color: kGrayScaleColor50,
+                      color: kGrayScaleColorWhite,
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(kSizeS),
                           topRight: Radius.circular(kSizeS)),
