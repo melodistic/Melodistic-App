@@ -112,6 +112,7 @@ class LoginScreen extends StatelessWidget {
                                 handleClick: _handleSignIn,
                                 prefixIcon: MelodisticIcon.google,
                                 text: ' Log in with Google'),
+                            kSizedBoxVerticalXS,
                             SizedBox(
                                 width: double.infinity,
                                 height: 48,
@@ -121,15 +122,13 @@ class LoginScreen extends StatelessWidget {
                                       Text('Don\'t have any account?',
                                           style: kBody3.copyWith(
                                               color: kGrayScaleColor500)),
-                                      TextButton(
-                                          onPressed: () {
+                                      kSizedBoxHorizontalXXS,
+                                      GestureDetector(
+                                          onTap: () {
                                             Navigator.of(context)
                                                 .pushNamed(RoutesName.register);
                                           },
-                                          style: TextButton.styleFrom(
-                                              backgroundColor:
-                                                  kGrayScaleColor50),
-                                          child: Text(' Register',
+                                          child: Text('Register',
                                               style: kBody3SemiBold.copyWith(
                                                   color: kSecondaryColor)))
                                     ])),
