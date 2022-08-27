@@ -5,6 +5,7 @@ import 'package:melodistic/config/style.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
+import 'package:melodistic/widgets/common/type/button.type.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class OnboardingScreen extends StatelessWidget {
