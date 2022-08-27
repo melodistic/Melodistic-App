@@ -100,7 +100,10 @@ class LoginScreen extends StatelessWidget {
                                     size: ButtonSize.large,
                                     button: ButtonType.mainButton,
                                     state: ButtonState.normal,
-                                    handleClick: () {},
+                                    handleClick: () {
+                                      Navigator.of(context)
+                                          .pushNamed(RoutesName.home);
+                                    },
                                     text: 'Log in')),
                             ButtonWidget(
                                 size: ButtonSize.large,

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:melodistic/config/color.dart';
-import 'package:melodistic/config/constant.dart';
-import 'package:melodistic/config/icon.dart';
+import 'package:melodistic/widgets/common/appbar/alternative.widget.dart';
+import 'package:melodistic/widgets/common/appbar/home.widget.dart';
+import 'package:melodistic/widgets/common/drawer.widget.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class ScreenWrapper extends StatelessWidget {
@@ -21,49 +22,17 @@ class ScreenWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: customAppbar ??
-            (screen == ScreenType.noAppbar
-                ? null
-                : (screen == ScreenType.withTitle
-                    ? AppBar(
-                        key: const Key('melodistic-appbar'),
-                        title: const Text(
-                          'Melodistic',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        elevation: 0,
-                        backgroundColor: Colors.white)
-                    : AppBar(
-                        key: const Key('melodistic-appbar'),
-                        leading: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: kSizeS),
-                            child: screen == ScreenType.noTitle
-                                ? null
-                                : SizedBox(
-                                    child: TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Row(children: const <Widget>[
-                                          Icon(
-                                            MelodisticIcon.chevron_left,
-                                            color: kPrimaryColor,
-                                          ),
-                                          Text(
-                                            'Back',
-                                            style: TextStyle(
-                                                color: kPrimaryColor,
-                                                fontSize: kFontSizeM),
-                                          )
-                                        ])))),
-                        leadingWidth: double.infinity,
-                        elevation: 0,
-                        backgroundColor: Colors.white,
-                      ))),
-        backgroundColor: Colors.white,
-        extendBodyBehindAppBar: extendBodyBehindAppBar,
-        body: extendBodyBehindAppBar ? child : SafeArea(child: child),
-        floatingActionButton: floatingActionButton);
+      appBar: customAppbar ??
+          (screen == ScreenType.noAppbar
+              ? null
+              : (screen == ScreenType.withTitle
+                  ? const HomeAppbar()
+                  : AlternativeAppbar(screen: screen)) as PreferredSizeWidget),
+      backgroundColor: kGrayScaleColor50,
+      extendBodyBehindAppBar: extendBodyBehindAppBar,
+      body: extendBodyBehindAppBar ? child : SafeArea(child: child),
+      floatingActionButton: floatingActionButton,
+      drawer: MelodisticDrawer(),
+    );
   }
 }
