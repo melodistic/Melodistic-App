@@ -85,7 +85,10 @@ class RegisterScreen extends StatelessWidget {
                           size: ButtonSize.large,
                           button: ButtonType.mainButton,
                           state: ButtonState.normal,
-                          handleClick: () {},
+                          handleClick: () {
+                            Navigator.of(context)
+                                .pushNamed(RoutesName.registerTime);
+                          },
                           text: 'Create an account')),
                   ButtonWidget(
                       button: ButtonType.softButton,
