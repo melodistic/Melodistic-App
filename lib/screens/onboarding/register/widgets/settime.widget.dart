@@ -3,7 +3,7 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 
 class TimerPickerItem extends StatelessWidget {
-  const TimerPickerItem({Key? key, required this.children}): super(key: key);
+  const TimerPickerItem({Key? key, required this.children}) : super(key: key);
 
   final List<Widget> children;
 

@@ -32,7 +32,7 @@ class CustomTimePickerState extends State<CustomTimePicker> {
   @override
   Widget build(BuildContext context) {
     int hour = duration.inHours;
-    int minute = duration.inMinutes%60;
+    int minute = duration.inMinutes % 60;
     return CupertinoPageScaffold(
       backgroundColor: kGrayScaleColor200,
       child: DefaultTextStyle(
