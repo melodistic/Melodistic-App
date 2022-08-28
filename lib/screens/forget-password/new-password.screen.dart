@@ -17,7 +17,6 @@ class NewPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenWrapper(
       screen: ScreenType.withBack,
-      text: 'Back',
       child: Padding(
         padding: const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeXXXS),
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <

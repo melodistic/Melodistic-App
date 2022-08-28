@@ -9,14 +9,12 @@ class ScreenWrapper extends StatelessWidget {
   const ScreenWrapper(
       {Key? key,
       required this.child,
-      this.text,
       this.screen = ScreenType.noTitle,
       this.customAppbar,
       this.floatingActionButton,
       this.extendBodyBehindAppBar = false})
       : super(key: key);
   final Widget child;
-  final String? text;
   final ScreenType screen;
   final FloatingActionButton? floatingActionButton;
   final PreferredSizeWidget? customAppbar;
@@ -29,10 +27,7 @@ class ScreenWrapper extends StatelessWidget {
               ? null
               : (screen == ScreenType.withTitle
                   ? const HomeAppbar()
-                  : AlternativeAppbar(
-                      screen: screen,
-                      text: text,
-                    )) as PreferredSizeWidget),
+                  : AlternativeAppbar(screen: screen)) as PreferredSizeWidget),
       backgroundColor: kGrayScaleColorWhite,
       extendBodyBehindAppBar: extendBodyBehindAppBar,
       body: extendBodyBehindAppBar ? child : SafeArea(child: child),

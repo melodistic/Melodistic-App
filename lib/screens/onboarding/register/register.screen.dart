@@ -33,7 +33,6 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenWrapper(
         screen: ScreenType.withBack,
-        text: 'Back',
         child: Padding(
             padding: const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeM),
             child: Column(

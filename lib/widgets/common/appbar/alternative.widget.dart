@@ -5,11 +5,9 @@ import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class AlternativeAppbar extends StatelessWidget with PreferredSizeWidget {
-  AlternativeAppbar({Key? key, required this.screen, this.text})
-      : super(key: key);
+  const AlternativeAppbar({Key? key, required this.screen}) : super(key: key);
 
   final ScreenType screen;
-  final String? text;
 
   @override
   Size get preferredSize => const Size.fromHeight(kSizeL);
@@ -27,14 +25,14 @@ class AlternativeAppbar extends StatelessWidget with PreferredSizeWidget {
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: Row(children: <Widget>[
-                        const Icon(
+                      child: Row(children: const <Widget>[
+                        Icon(
                           MelodisticIcon.chevron_left,
                           color: kPrimaryColor,
                         ),
                         Text(
-                          '$text',
-                          style: const TextStyle(
+                          'Back',
+                          style: TextStyle(
                               color: kPrimaryColor, fontSize: kFontSizeM),
                         )
                       ])))),
