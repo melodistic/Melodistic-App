@@ -26,14 +26,13 @@ class RegisterTimeScreen extends StatelessWidget {
           ),
           kSizedBoxM,
           Container(
+            padding: const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeM),
               color: kGrayScaleColor200,
-              height: 160,
-              width: 327,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Padding(
-                      padding: const EdgeInsets.only(top: kSizeXS),
+                      padding: const EdgeInsets.only(bottom: kSizeS, top: kSizeS),
                       child: Text(
                         'Exercise Duration',
                         style: kHeading2.copyWith(color: kPrimaryColor),
