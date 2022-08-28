@@ -20,7 +20,7 @@ class MelodisticCheckBox<T> extends StatelessWidget {
             disabledColor: kGrayScaleColor400),
         child: Checkbox(
             activeColor: kSecondaryColor,
-            checkColor: kGrayScaleColor50,
+            checkColor: kGrayScaleColorWhite,
             value: groupValue.contains(value),
             onChanged: onChanged));
   }
