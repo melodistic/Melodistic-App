@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
@@ -95,7 +96,7 @@ class LoginScreen extends StatelessWidget {
                                           style: kBody3.copyWith(
                                               color: kGrayScaleColor600)),
                                       handleClick: () {
-                                        Navigator.of(context).pushNamed(
+                                        Get.toNamed<String>(
                                             RoutesName.forgetPassword);
                                       },
                                     ),
@@ -110,8 +111,7 @@ class LoginScreen extends StatelessWidget {
                                     button: ButtonType.mainButton,
                                     state: ButtonState.normal,
                                     handleClick: () {
-                                      Navigator.of(context)
-                                          .pushNamed(RoutesName.home);
+                                      Get.toNamed<String>(RoutesName.home);
                                     },
                                     text: 'Log in')),
                             ButtonWidget(
@@ -134,8 +134,8 @@ class LoginScreen extends StatelessWidget {
                                       kSizedBoxHorizontalXXS,
                                       GestureDetector(
                                           onTap: () {
-                                            Navigator.of(context)
-                                                .pushNamed(RoutesName.register);
+                                            Get.toNamed<String>(
+                                                RoutesName.register);
                                           },
                                           child: Text('Register',
                                               style: kBody3SemiBold.copyWith(

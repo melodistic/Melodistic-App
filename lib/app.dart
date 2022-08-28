@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:melodistic/routes.dart';
 
 class MelodisticApp extends StatefulWidget {
@@ -11,7 +12,7 @@ class MelodisticApp extends StatefulWidget {
 class _MelodisticAppState extends State<MelodisticApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Melodistic App',
       initialRoute: RoutesName.onboard,
       routes: routes,

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 // import 'package:melodistic/config/api.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/routes.dart';
@@ -74,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: const Icon(Icons.add),
           backgroundColor: Colors.black,
           onPressed: () {
-            Navigator.of(context).pushNamed(RoutesName.customize);
+            Get.toNamed<String>(RoutesName.customize);
           },
         ),
         screen: ScreenType.withTitle,

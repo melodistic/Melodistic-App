@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
@@ -46,7 +47,7 @@ class OnboardingScreen extends StatelessWidget {
                       size: ButtonSize.large,
                       button: ButtonType.mainButton,
                       handleClick: () {
-                        Navigator.of(context).pushNamed(RoutesName.login);
+                        Get.toNamed<String>(RoutesName.login);
                       },
                       text: 'Try now'),
                 ),

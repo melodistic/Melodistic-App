@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/routes.dart';
@@ -79,8 +80,7 @@ class NewPasswordScreen extends StatelessWidget {
                                 button: ButtonType.mainButton,
                                 text: 'Go to homepage',
                                 handleClick: () {
-                                  Navigator.of(context)
-                                      .pushNamed(RoutesName.home);
+                                  Get.toNamed<String>(RoutesName.home);
                                 },
                               )
                             ],
