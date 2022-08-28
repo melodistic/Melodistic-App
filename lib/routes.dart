@@ -57,7 +57,7 @@ class RoutesName {
 final Map<String, WidgetBuilder> onboardingRoutes = <String, WidgetBuilder>{
   RoutesName.onboard: (BuildContext context) => const OnboardingScreen(),
   RoutesName.login: (BuildContext context) => LoginScreen(),
-  RoutesName.register: (BuildContext context) => const RegisterScreen(),
+  RoutesName.register: (BuildContext context) => RegisterScreen(),
   RoutesName.registerProfile: (BuildContext context) =>
       const RegisterProfileScreen(),
   RoutesName.registerTime: (BuildContext context) => const RegisterTimeScreen()

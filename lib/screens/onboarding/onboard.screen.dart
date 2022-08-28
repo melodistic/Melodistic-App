@@ -3,7 +3,9 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
+import 'package:melodistic/widgets/common/type/button.type.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -37,21 +39,17 @@ class OnboardingScreen extends StatelessWidget {
                 Text(
                     'This application will match your mood and favorite music for a exercise music track.',
                     textAlign: TextAlign.center,
-                    style: kBody2.copyWith(color: kGrayScaleColor500)),
+                    style: kBody2.copyWith(color: kGrayScaleColor600)),
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: kSizeM),
-                  child: SizedBox(
-                      width: double.infinity,
-                      height: 48,
-                      child: TextButton(
-                          style: TextButton.styleFrom(
-                              backgroundColor: kPrimaryColor,
-                              primary: kGrayScaleColor50),
-                          onPressed: () {
-                            Navigator.of(context).pushNamed(RoutesName.login);
-                          },
-                          child: const Text('Try now'))),
-                )
+                  child: ButtonWidget(
+                      size: ButtonSize.large,
+                      button: ButtonType.mainButton,
+                      handleClick: () {
+                        Navigator.of(context).pushNamed(RoutesName.login);
+                      },
+                      text: 'Try now'),
+                ),
               ],
             )));
   }
