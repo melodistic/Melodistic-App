@@ -57,7 +57,7 @@ class MelodisticDrawer extends StatelessWidget {
         if (onTap != null) {
           onTap();
         } else if (routesName != null) {
-          Get.toNamed<String>(routesName);
+          Get.toNamed<dynamic>(routesName);
         }
       },
     );

@@ -3,7 +3,7 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
-import 'package:melodistic/screens/home/track_mock_data.dart';
+import 'package:melodistic/models/track.model.dart';
 
 class TrackBox extends StatelessWidget {
   const TrackBox({Key? key, required this.track}) : super(key: key);

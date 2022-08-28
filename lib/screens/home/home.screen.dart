@@ -1,14 +1,12 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
-// import 'package:melodistic/config/api.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
+import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
+import 'package:melodistic/controller/track.controller.dart';
 import 'package:melodistic/routes.dart';
-import 'package:melodistic/screens/home/track_mock_data.dart';
 import 'package:melodistic/screens/home/widgets/trackbox.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
-// import 'package:dio/dio.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,86 +17,39 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late Future<List<Track>> _getPlayList;
-
-  Future<List<Track>> getPlaylist() async {
-    // final Response<List<Map<String, String>>> response =
-    //     await Dio().get('$apiBaseURL/api/track');
-    final List<Track> data = <Track>[
-      Track(
-          trackId: '1',
-          trackName: "It's long time ago",
-          trackImageUrl: 'https://img.cscms.me/6b4X3LyVJOYaLd9UXVOq.png',
-          muscleGroup: 'ABS',
-          description: '12 minutes of abs workout',
-          duration: 720,
-          isPublic: true),
-      Track(
-          trackId: '2',
-          trackName: 'In the loving time',
-          trackImageUrl: 'https://img.cscms.me/jd5r4pR0fJOfcmpuiG1o.png',
-          muscleGroup: 'ARM',
-          description: '10 minutes of arm workout',
-          duration: 600,
-          isPublic: true),
-      Track(
-          trackId: '3',
-          trackName: "Let's have a party",
-          trackImageUrl: 'https://img.cscms.me/cwiYBrsYDr3kHufJYn7T.png',
-          muscleGroup: 'CORE',
-          description: '8 minutes of core workout',
-          duration: 8,
-          isPublic: true),
-    ];
-    return data;
-  }
-
-  void loadData() {
-    setState(() {
-      _getPlayList = getPlaylist();
-    });
-  }
+  final TrackController trackController = Get.put(TrackController());
 
   @override
   void initState() {
-    loadData();
+    trackController.fetchPublicTracks();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Timer(const Duration(seconds: 3), () {
-      // loadData();
-    });
     return ScreenWrapper(
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           backgroundColor: Colors.black,
           onPressed: () {
-            Get.toNamed<String>(RoutesName.customize);
+            Get.toNamed<dynamic>(RoutesName.customize);
           },
         ),
-        screen: ScreenType.withTitle,
+        screen: MelodisticScreenType.withTitle,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: kSizeS, vertical: 10),
-          child: FutureBuilder<List<Track>>(
-            future: _getPlayList,
-            builder:
-                (BuildContext context, AsyncSnapshot<List<Track>> snapshot) {
-              if (snapshot.hasData) {
-                final List<Track> data = snapshot.data as List<Track>;
-                return ListView.separated(
-                    itemCount: data.length,
+            padding:
+                const EdgeInsets.symmetric(horizontal: kSizeS, vertical: 10),
+            child: Obx(() => trackController.isFetching.isTrue
+                ? const SpinKitFadingCircle(
+                    color: kGrayScaleColor300,
+                  )
+                : ListView.separated(
+                    itemCount: trackController.publicTracks.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return TrackBox(track: data[index]);
+                      return TrackBox(
+                          track: trackController.publicTracks[index]);
                     },
                     separatorBuilder: ((BuildContext context, int index) =>
-                        kSizedBoxVerticalS));
-              } else {
-                return const Center(child: CircularProgressIndicator());
-              }
-            },
-          ),
-        ));
+                        kSizedBoxVerticalS)))));
   }
 }

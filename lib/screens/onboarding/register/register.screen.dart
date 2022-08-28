@@ -33,7 +33,7 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-        screen: ScreenType.withBack,
+        screen: MelodisticScreenType.withBack,
         child: Padding(
             padding: const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeM),
             child: Column(
@@ -87,7 +87,7 @@ class RegisterScreen extends StatelessWidget {
                           button: ButtonType.mainButton,
                           state: ButtonState.normal,
                           handleClick: () {
-                            Get.toNamed<String>(RoutesName.registerTime);
+                            Get.toNamed<dynamic>(RoutesName.registerTime);
                           },
                           text: 'Create an account')),
                   ButtonWidget(
@@ -109,7 +109,7 @@ class RegisterScreen extends StatelessWidget {
                             kSizedBoxHorizontalXXS,
                             GestureDetector(
                                 onTap: () {
-                                  Get.toNamed<String>(RoutesName.login);
+                                  Get.toNamed<dynamic>(RoutesName.login);
                                 },
                                 child: Text('Login',
                                     style: kBody3SemiBold.copyWith(

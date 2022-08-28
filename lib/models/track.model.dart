@@ -25,4 +25,15 @@ class Track {
         duration: 0,
         isPublic: true);
   }
+
+  static Track fromJson(Map<String, dynamic> rawData) {
+    return Track(
+        trackId: rawData['track_id'].toString(),
+        trackName: (rawData['track_name'] ?? '').toString(),
+        trackImageUrl: (rawData['track_image_url'] ?? '').toString(),
+        muscleGroup: (rawData['muscle_group'] ?? '').toString(),
+        description: (rawData['description'] ?? '').toString(),
+        duration: int.parse((rawData['duration'] ?? '0').toString()),
+        isPublic: rawData['is_public'] as bool);
+  }
 }

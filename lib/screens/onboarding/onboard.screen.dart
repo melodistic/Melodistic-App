@@ -15,7 +15,7 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-        screen: ScreenType.noTitle,
+        screen: MelodisticScreenType.noTitle,
         child: Container(
             key: const Key('onboarding-container'),
             padding:
@@ -47,7 +47,7 @@ class OnboardingScreen extends StatelessWidget {
                       size: ButtonSize.large,
                       button: ButtonType.mainButton,
                       handleClick: () {
-                        Get.toNamed<String>(RoutesName.login);
+                        Get.toNamed<dynamic>(RoutesName.login);
                       },
                       text: 'Try now'),
                 ),

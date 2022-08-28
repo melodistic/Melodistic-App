@@ -15,7 +15,7 @@ void main() {
     expect(
         getWidgetByType(tester, ScreenWrapper),
         isA<ScreenWrapper>().having((ScreenWrapper wrapper) => wrapper.screen,
-            'Screen Type', ScreenType.noTitle));
+            'Screen Type', MelodisticScreenType.noTitle));
     expect(getWidgetByKey(tester, const Key('onboarding-container')),
         isA<Container>());
     expect(

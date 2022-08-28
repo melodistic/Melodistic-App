@@ -96,7 +96,7 @@ class LoginScreen extends StatelessWidget {
                                           style: kBody3.copyWith(
                                               color: kGrayScaleColor600)),
                                       handleClick: () {
-                                        Get.toNamed<String>(
+                                        Get.toNamed<dynamic>(
                                             RoutesName.forgetPassword);
                                       },
                                     ),
@@ -111,7 +111,7 @@ class LoginScreen extends StatelessWidget {
                                     button: ButtonType.mainButton,
                                     state: ButtonState.normal,
                                     handleClick: () {
-                                      Get.toNamed<String>(RoutesName.home);
+                                      Get.toNamed<dynamic>(RoutesName.home);
                                     },
                                     text: 'Log in')),
                             ButtonWidget(
@@ -134,7 +134,7 @@ class LoginScreen extends StatelessWidget {
                                       kSizedBoxHorizontalXXS,
                                       GestureDetector(
                                           onTap: () {
-                                            Get.toNamed<String>(
+                                            Get.toNamed<dynamic>(
                                                 RoutesName.register);
                                           },
                                           child: Text('Register',
