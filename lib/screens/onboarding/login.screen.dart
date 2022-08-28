@@ -56,7 +56,7 @@ class LoginScreen extends StatelessWidget {
                         padding: const EdgeInsets.fromLTRB(
                             kSizeM, kSizeXS, kSizeM, kSizeS),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Expanded(
                               child: Column(
@@ -85,12 +85,21 @@ class LoginScreen extends StatelessWidget {
                                     },
                                   ),
                                   Padding(
-                                      padding:
-                                          const EdgeInsets.only(top: kSizeXS),
-                                      child: Text('Forget the Password?',
+                                    padding:
+                                        const EdgeInsets.only(top: kSizeXS),
+                                    child: ButtonWidget(
+                                      size: ButtonSize.small,
+                                      button: ButtonType.textButton,
+                                      customContent: Text(
+                                          'Forget the Password?',
                                           style: kBody3.copyWith(
-                                              color: kGrayScaleColor600),
-                                          textAlign: TextAlign.end)),
+                                              color: kGrayScaleColor600)),
+                                      handleClick: () {
+                                        Navigator.of(context).pushNamed(
+                                            RoutesName.forgetPassword);
+                                      },
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

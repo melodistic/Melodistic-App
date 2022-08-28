@@ -14,6 +14,7 @@ class ButtonWidget extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.handleClick,
+    this.customContent,
   }) : super(key: key);
   final ButtonType button;
   final String? text;
@@ -22,6 +23,7 @@ class ButtonWidget extends StatelessWidget {
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   final ButtonSize? size;
+  final Widget? customContent;
 
   ButtonStyle getButtonStyle() {
     if (button == ButtonType.mainButton) {
@@ -86,42 +88,47 @@ class ButtonWidget extends StatelessWidget {
             ? OutlinedButton(
                 style: getButtonStyle(),
                 onPressed: state == ButtonState.disable ? () {} : handleClick,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Icon(prefixIcon,
-                        key: const Key('prefix-icon'),
-                        color: getContentColor()),
-                    Text(
-                      text.toString(),
-                      style: kHeading2Medium.copyWith(color: getContentColor()),
+                child: customContent ??
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Icon(prefixIcon,
+                            key: const Key('prefix-icon'),
+                            color: getContentColor()),
+                        Text(
+                          text.toString(),
+                          style: kHeading2Medium.copyWith(
+                              color: getContentColor()),
+                        ),
+                        Icon(suffixIcon,
+                            key: const Key('suffix-icon'),
+                            color: getContentColor())
+                      ],
                     ),
-                    Icon(suffixIcon,
-                        key: const Key('suffix-icon'), color: getContentColor())
-                  ],
-                ),
               )
             : TextButton(
                 style: getButtonStyle(),
                 onPressed: state == ButtonState.disable ? () {} : handleClick,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(
-                      prefixIcon,
-                      key: const Key('prefix-icon'),
-                      color: getContentColor(),
-                    ),
-                    Text(
-                      text.toString(),
-                      style: kHeading2Medium.copyWith(color: getContentColor()),
-                    ),
-                    Icon(
-                      suffixIcon,
-                      key: const Key('suffix-icon'),
-                      color: getContentColor(),
-                    )
-                  ],
-                )));
+                child: customContent ??
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          prefixIcon,
+                          key: const Key('prefix-icon'),
+                          color: getContentColor(),
+                        ),
+                        Text(
+                          text.toString(),
+                          style: kHeading2Medium.copyWith(
+                              color: getContentColor()),
+                        ),
+                        Icon(
+                          suffixIcon,
+                          key: const Key('suffix-icon'),
+                          color: getContentColor(),
+                        )
+                      ],
+                    )));
   }
 }

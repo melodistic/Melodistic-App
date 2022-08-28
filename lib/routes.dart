@@ -94,9 +94,8 @@ final Map<String, WidgetBuilder> settingRoutes = <String, WidgetBuilder>{
 };
 
 final Map<String, WidgetBuilder> newPasswordRoutes = <String, WidgetBuilder>{
-  RoutesName.forgetPassword: (BuildContext context) =>
-      const ForgetPasswordScreen(),
-  RoutesName.newPassword: (BuildContext context) => const NewPasswordScreen()
+  RoutesName.forgetPassword: (BuildContext context) => ForgetPasswordScreen(),
+  RoutesName.newPassword: (BuildContext context) => NewPasswordScreen()
 };
 
 final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
