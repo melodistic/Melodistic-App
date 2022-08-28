@@ -21,7 +21,7 @@ class CustomTimePickerState extends State<CustomTimePicker> {
               margin: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
-              color: kGrayScaleColor50,
+              color: kGrayScaleColorWhite,
               child: SafeArea(
                 top: false,
                 child: child,
