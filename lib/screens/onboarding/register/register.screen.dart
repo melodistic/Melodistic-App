@@ -97,6 +97,7 @@ class RegisterScreen extends StatelessWidget {
                       handleClick: _handleSignIn,
                       text: ' Register with Google',
                       prefixIcon: MelodisticIcon.google),
+                  kSizedBoxVerticalXS,
                   SizedBox(
                       width: double.infinity,
                       child: Row(
@@ -105,13 +106,12 @@ class RegisterScreen extends StatelessWidget {
                             Text('Already have an account?',
                                 style:
                                     kBody3.copyWith(color: kGrayScaleColor500)),
-                            TextButton(
-                                onPressed: () {
+                            kSizedBoxHorizontalXXS,
+                            GestureDetector(
+                                onTap: () {
                                   Navigator.of(context)
                                       .pushNamed(RoutesName.login);
                                 },
-                                style: TextButton.styleFrom(
-                                    backgroundColor: kGrayScaleColor50),
                                 child: Text('Login',
                                     style: kBody3SemiBold.copyWith(
                                         color: kSecondaryColor)))

@@ -30,9 +30,9 @@ void main() {
 
     expect(find.byType(TextButton), findsOneWidget);
     expect(widget.style?.backgroundColor?.resolve(states), kPrimaryColor);
-    expect(prefixIcon.color, kGrayScaleColor50);
-    expect(suffixIcon.color, kGrayScaleColor50);
-    expect(text.style?.color, kGrayScaleColor50);
+    expect(prefixIcon.color, kGrayScaleColorWhite);
+    expect(suffixIcon.color, kGrayScaleColorWhite);
+    expect(text.style?.color, kGrayScaleColorWhite);
   });
 
   testWidgets('Button render correctly when use disable main button',
@@ -223,8 +223,8 @@ void main() {
     final Icon prefixIcon = getWidgetByType(tester, Icon) as Icon;
 
     expect(find.byType(FloatingActionButton), findsOneWidget);
-    expect(widget.backgroundColor, kGrayScaleColor900);
-    expect(prefixIcon.color, kGrayScaleColor50);
+    expect(widget.backgroundColor, kGrayScaleColorBlack);
+    expect(prefixIcon.color, kGrayScaleColorWhite);
   });
 
   testWidgets('Button render correctly when use disable floating button',

@@ -78,7 +78,7 @@ class TextFieldWidgetState extends State<TextFieldWidget> {
                             ? MelodisticIcon.eye_off
                             : MelodisticIcon.eye_empty)
                         : null,
-                    color: kGrayScaleColor900,
+                    color: kGrayScaleColorBlack,
                   ))),
         ));
   }

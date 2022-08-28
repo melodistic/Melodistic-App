@@ -15,7 +15,7 @@ class TimerPickerItem extends StatelessWidget {
       width: 287,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(4)),
-        color: kGrayScaleColor50,
+        color: kGrayScaleColorWhite,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

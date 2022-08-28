@@ -36,7 +36,8 @@ class TrackBox extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             'Play',
-                            style: kHeading2.copyWith(color: kGrayScaleColor50),
+                            style:
+                                kHeading2.copyWith(color: kGrayScaleColorWhite),
                           ),
                           kSizedBoxHorizontalXXS,
                           const Icon(
