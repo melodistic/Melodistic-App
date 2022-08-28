@@ -85,12 +85,21 @@ class LoginScreen extends StatelessWidget {
                                     },
                                   ),
                                   Padding(
-                                      padding:
-                                          const EdgeInsets.only(top: kSizeXS),
-                                      child: Text('Forget the Password?',
-                                          style: kBody3.copyWith(
-                                              color: kGrayScaleColor600),
-                                          textAlign: TextAlign.end)),
+                                    padding: const EdgeInsets.only(
+                                        top: kSizeXS, left: kSizeL),
+                                    child: ButtonWidget(
+                                      button: ButtonType.textButton,
+                                      text: 'Forget the Password?',
+                                      handleClick: () {
+                                        Navigator.of(context).pushNamed(
+                                            RoutesName.forgetPassword);
+                                      },
+                                    ),
+                                  ),
+                                  // child: Text('Forget the Password?',
+                                  //     style: kBody3.copyWith(
+                                  //         color: kGrayScaleColor600),
+                                  //     textAlign: TextAlign.end)),
                                 ],
                               ),
                             ),
