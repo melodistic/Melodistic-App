@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:melodistic/config/message.dart';
 import 'package:melodistic/routes.dart';
 
 class MelodisticApp extends StatefulWidget {
@@ -16,6 +17,8 @@ class _MelodisticAppState extends State<MelodisticApp> {
       title: 'Melodistic App',
       initialRoute: RoutesName.onboard,
       routes: routes,
+      translations: MelodisticMessages(),
+      locale: const Locale('en', 'US'),
     );
   }
 }
