@@ -9,13 +9,13 @@ class ScreenWrapper extends StatelessWidget {
   const ScreenWrapper(
       {Key? key,
       required this.child,
-      this.screen = ScreenType.noTitle,
+      this.screen = MelodisticScreenType.noTitle,
       this.customAppbar,
       this.floatingActionButton,
       this.extendBodyBehindAppBar = false})
       : super(key: key);
   final Widget child;
-  final ScreenType screen;
+  final MelodisticScreenType screen;
   final FloatingActionButton? floatingActionButton;
   final PreferredSizeWidget? customAppbar;
   final bool extendBodyBehindAppBar;
@@ -23,9 +23,9 @@ class ScreenWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppbar ??
-          (screen == ScreenType.noAppbar
+          (screen == MelodisticScreenType.noAppbar
               ? null
-              : (screen == ScreenType.withTitle
+              : (screen == MelodisticScreenType.withTitle
                   ? const HomeAppbar()
                   : AlternativeAppbar(screen: screen)) as PreferredSizeWidget),
       backgroundColor: kGrayScaleColorWhite,

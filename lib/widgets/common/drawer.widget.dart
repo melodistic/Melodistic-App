@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
@@ -56,7 +57,7 @@ class MelodisticDrawer extends StatelessWidget {
         if (onTap != null) {
           onTap();
         } else if (routesName != null) {
-          Navigator.of(context).pushNamed(routesName);
+          Get.toNamed<dynamic>(routesName);
         }
       },
     );
@@ -84,8 +85,7 @@ class MelodisticDrawer extends StatelessWidget {
           ),
           renderDrawerItem(context,
               title: 'Log out', icon: MelodisticIcon.exit_left, onTap: () {
-            Navigator.of(context).pop();
-            Navigator.of(context).pushReplacementNamed(RoutesName.onboard);
+            Get.offAllNamed<String>(RoutesName.onboard);
           }),
           kSizedBoxVerticalM
         ],

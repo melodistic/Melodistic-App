@@ -14,7 +14,7 @@ class RegisterTimeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-      screen: ScreenType.noTitle,
+      screen: MelodisticScreenType.noTitle,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(kSizeM, kSizeXL, kSizeM, kSizeXS),
         child: Column(children: <Widget>[

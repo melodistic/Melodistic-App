@@ -7,7 +7,7 @@ import 'package:melodistic/widgets/common/type/screen.type.dart';
 class AlternativeAppbar extends StatelessWidget with PreferredSizeWidget {
   const AlternativeAppbar({Key? key, required this.screen}) : super(key: key);
 
-  final ScreenType screen;
+  final MelodisticScreenType screen;
 
   @override
   Size get preferredSize => const Size.fromHeight(kSizeL);
@@ -18,7 +18,7 @@ class AlternativeAppbar extends StatelessWidget with PreferredSizeWidget {
       key: const Key('melodistic-appbar'),
       leading: Padding(
           padding: const EdgeInsets.symmetric(horizontal: kSizeS),
-          child: screen == ScreenType.noTitle
+          child: screen == MelodisticScreenType.noTitle
               ? null
               : SizedBox(
                   child: GestureDetector(

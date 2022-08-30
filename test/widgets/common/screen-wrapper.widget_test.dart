@@ -25,7 +25,7 @@ void main() {
     await tester.pumpWidget(createWidgetForTesting(
         child: const ScreenWrapper(
       child: SizedBox(),
-      screen: ScreenType.withTitle,
+      screen: MelodisticScreenType.withTitle,
     )));
     expect(find.byType(AppBar), findsOneWidget);
     expect(
@@ -39,7 +39,7 @@ void main() {
     await tester.pumpWidget(createWidgetForTesting(
         child: const ScreenWrapper(
       child: SizedBox(),
-      screen: ScreenType.withBack,
+      screen: MelodisticScreenType.withBack,
     )));
     final Icon widget = getWidgetByType(tester, Icon) as Icon;
     expect(find.byType(AppBar), findsOneWidget);

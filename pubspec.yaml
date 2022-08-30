@@ -16,6 +16,7 @@ dependencies:
   just_audio: ^0.9.25
   google_sign_in: ^5.3.3
   flutter_spinkit: ^5.1.0
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:

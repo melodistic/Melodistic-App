@@ -1,1 +1,1 @@
-enum ScreenType { withTitle, noTitle, withBack, noAppbar }
+enum MelodisticScreenType { withTitle, noTitle, withBack, noAppbar }
