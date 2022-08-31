@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:melodistic/config/api.dart';
+import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
+import 'package:melodistic/config/style.dart';
+import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:just_audio/just_audio.dart';
 
 class TrackScreen extends StatelessWidget {
-  const TrackScreen({Key? key}) : super(key: key);
-
+  const TrackScreen({Key? key, this.track}) : super(key: key);
+  final Track? track;
   @override
   Widget build(BuildContext context) {
-    final Map<String, Map<String, String>> arguments =
-        (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{})
-            as Map<String, Map<String, String>>;
+    final Track track = ((ModalRoute.of(context)!.settings.arguments
+        as Map<String, Track>)['track']) as Track;
     final AudioPlayer player = AudioPlayer();
-    final Map<String, String> track = arguments['track']!;
     return ScreenWrapper(
         customAppbar: AppBar(
           title: const Text('Song'),
@@ -32,8 +33,7 @@ class TrackScreen extends StatelessWidget {
             SizedBox(
                 height: 450,
                 width: double.infinity,
-                child: Image.network(track['track_image_url']!,
-                    fit: BoxFit.cover)),
+                child: Image.network(track.trackImageUrl, fit: BoxFit.cover)),
             kSizedBoxVerticalM,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: kSizeS * 1.5),
@@ -41,20 +41,16 @@ class TrackScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      track['track_name']!,
-                      style: const TextStyle(
-                          fontWeight: kFontWeightBold, fontSize: kFontSizeS),
+                      track.trackName,
+                      style: kHeading2,
                     ),
                     kSizedBoxVerticalXS,
                     Text(
-                      track['description']!,
-                      style: const TextStyle(
-                          fontWeight: kFontWeightRegular,
-                          color: Color(0xFF94A2AB),
-                          fontSize: kFontSizeXS),
+                      track.description,
+                      style: kBody2.copyWith(color: kGrayScaleColor600),
                     ),
                     kSizedBoxVerticalM,
-                    MusicPlayer(player: player, trackId: track['track_id']!)
+                    MusicPlayer(player: player, trackId: track.trackId)
                   ]),
             )
           ],
@@ -158,14 +154,15 @@ class _MusicPlayerState extends State<MusicPlayer> {
     return Column(children: <Widget>[
       SliderTheme(
           data: SliderThemeData(
-              thumbColor: Colors.black,
-              activeTrackColor: Colors.black,
-              inactiveTrackColor: const Color(0xFFEDF2F6),
-              trackHeight: 6,
-              overlayColor: Colors.black,
+              thumbColor: kPrimaryColor,
+              activeTrackColor: kPrimaryColor,
+              inactiveTrackColor: kGrayScaleColor200,
+              trackHeight: kSizeXXS * 1.5,
+              overlayColor: kPrimaryColor,
               overlayShape: SliderComponentShape.noOverlay,
               trackShape: CustomTrackShape(),
-              thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6)),
+              thumbShape: const RoundSliderThumbShape(
+                  enabledThumbRadius: kSizeXXS * 1.5)),
           child: Slider(
               value: convertDurationToDoubleValue(_position),
               onChanged: (double value) {
@@ -187,9 +184,10 @@ class _MusicPlayerState extends State<MusicPlayer> {
       Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
         GestureDetector(
           child: const SizedBox(
-            child: Icon(MelodisticIcon.backward_15_seconds),
-            width: 20,
-            height: 20,
+            child: Icon(MelodisticIcon.backward_15_seconds,
+                color: kGrayScaleColor600),
+            width: kSizeS * 1.5,
+            height: kSizeS * 1.5,
           ),
           onTap: () {
             widget.player
@@ -199,26 +197,36 @@ class _MusicPlayerState extends State<MusicPlayer> {
         ),
         kSizedBoxHorizontalS,
         play
-            ? (IconButton(
-                icon: const Icon(
-                  Icons.pause,
-                ),
-                splashRadius: kSizeM + kSizeXS,
-                iconSize: kSizeL,
-                onPressed: stopMusic))
-            : (IconButton(
-                icon: const Icon(
-                  Icons.play_circle,
-                ),
-                splashRadius: kSizeM + kSizeXS,
-                iconSize: kSizeL,
-                onPressed: playMusic)),
+            ? (Container(
+                width: kSizeL,
+                height: kSizeL,
+                decoration: const BoxDecoration(
+                    borderRadius: kBorderRadiusM, color: kGrayScaleColorWhite),
+                child: IconButton(
+                    icon: const Icon(
+                      Icons.pause,
+                    ),
+                    iconSize: kSizeM,
+                    onPressed: stopMusic)))
+            : (Container(
+                width: kSizeL,
+                height: kSizeL,
+                decoration: const BoxDecoration(
+                    borderRadius: kBorderRadiusM, color: kPrimaryColor),
+                child: IconButton(
+                    icon: const Icon(
+                      Icons.play_arrow_outlined,
+                      color: kGrayScaleColorWhite,
+                    ),
+                    iconSize: kSizeM,
+                    onPressed: playMusic))),
         kSizedBoxHorizontalS,
         GestureDetector(
           child: const SizedBox(
-            child: Icon(MelodisticIcon.forward_15_seconds),
-            width: 20,
-            height: 20,
+            child: Icon(MelodisticIcon.forward_15_seconds,
+                color: kGrayScaleColor600),
+            width: kSizeS * 1.5,
+            height: kSizeS * 1.5,
           ),
           onTap: () {
             widget.player
