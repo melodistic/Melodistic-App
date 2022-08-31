@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
+import 'package:melodistic/widgets/common/type/button.type.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -13,7 +15,7 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-        screen: ScreenType.noTitle,
+        screen: MelodisticScreenType.noTitle,
         child: Container(
             key: const Key('onboarding-container'),
             padding:
@@ -45,10 +47,10 @@ class OnboardingScreen extends StatelessWidget {
                       size: ButtonSize.large,
                       button: ButtonType.mainButton,
                       handleClick: () {
-                        Navigator.of(context).pushNamed(RoutesName.login);
+                        Get.toNamed<dynamic>(RoutesName.login);
                       },
                       text: 'Try now'),
-                )
+                ),
               ],
             )));
   }

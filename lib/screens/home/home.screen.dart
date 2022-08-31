@@ -1,12 +1,15 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:melodistic/config/api.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
+import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
+import 'package:melodistic/config/style.dart';
+import 'package:melodistic/controller/hometab.controller.dart';
+import 'package:melodistic/controller/track.controller.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/screens/home/widgets/tablist.widget.dart';
 import 'package:melodistic/screens/home/widgets/trackbox.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
-import 'package:dio/dio.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,62 +20,54 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late Future<List<Map<String, String>>> _getPlayList;
-
-  Future<List<Map<String, String>>> getPlaylist() async {
-    final Response<List<Map<String, String>>> response =
-        await Dio().get('$apiBaseURL/api/track');
-    final List<Map<String, String>> data = response.data!;
-    return data;
-  }
-
-  void loadData() {
-    setState(() {
-      _getPlayList = getPlaylist();
-    });
-  }
-
+  final TrackController trackController = Get.put(TrackController());
+  final HomeTabController homeTabController = Get.put(HomeTabController());
   @override
   void initState() {
-    loadData();
+    trackController.fetchPublicTracks();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Timer(const Duration(seconds: 3), () {
-      loadData();
-    });
     return ScreenWrapper(
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           backgroundColor: Colors.black,
           onPressed: () {
-            Navigator.of(context).pushNamed(RoutesName.customize);
+            Get.toNamed<dynamic>(RoutesName.customize);
           },
         ),
-        screen: ScreenType.withTitle,
+        screen: MelodisticScreenType.withTitle,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: kSizeS, vertical: 10),
-          child: FutureBuilder<List<Map<dynamic, dynamic>>>(
-            future: _getPlayList,
-            builder: (BuildContext context,
-                AsyncSnapshot<List<Map<dynamic, dynamic>>> snapshot) {
-              if (snapshot.hasData) {
-                final List<Map<String, String>> data =
-                    snapshot.data as List<Map<String, String>>;
-                return ListView.separated(
-                    itemCount: data.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return TrackBox(track: data[index]);
-                    },
-                    separatorBuilder: ((BuildContext context, int index) =>
-                        kSizedBoxVerticalS));
-              } else {
-                return const Center(child: CircularProgressIndicator());
-              }
-            },
-          ),
-        ));
+            padding:
+                const EdgeInsets.symmetric(horizontal: kSizeS, vertical: 10),
+            child: Obx(() => trackController.isFetching.isTrue
+                ? const SpinKitFadingCircle(
+                    color: kGrayScaleColor300,
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                        TablistWidget(),
+                        Obx(() => Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: kSizeS, horizontal: kSizeXXS),
+                            child: Text(
+                              '${homeTabController.selectedTab?.value.label} Track',
+                              style: kHeading2.copyWith(color: kPrimaryColor),
+                            ))),
+                        Expanded(
+                            child: ListView.separated(
+                                itemCount: trackController.publicTracks.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return TrackBox(
+                                      track:
+                                          trackController.publicTracks[index]);
+                                },
+                                separatorBuilder:
+                                    ((BuildContext context, int index) =>
+                                        kSizedBoxVerticalS)))
+                      ]))));
   }
 }

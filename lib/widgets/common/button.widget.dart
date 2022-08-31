@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
-import 'package:melodistic/widgets/common/type/screen.type.dart';
+import 'package:melodistic/widgets/common/type/button.type.dart';
 
 class ButtonWidget extends StatelessWidget {
   const ButtonWidget({
@@ -14,6 +14,7 @@ class ButtonWidget extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.handleClick,
+    this.customContent,
   }) : super(key: key);
   final ButtonType button;
   final String? text;
@@ -22,11 +23,13 @@ class ButtonWidget extends StatelessWidget {
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   final ButtonSize? size;
+  final Widget? customContent;
 
   ButtonStyle getButtonStyle() {
     if (button == ButtonType.mainButton) {
       return TextButton.styleFrom(
           textStyle: const TextStyle(fontSize: kSizeS),
+          primary: kGrayScaleColor700,
           backgroundColor:
               state == ButtonState.disable ? kGrayScaleColor100 : kPrimaryColor,
           padding: size == ButtonSize.large
@@ -36,6 +39,7 @@ class ButtonWidget extends StatelessWidget {
     if (button == ButtonType.softButton) {
       return TextButton.styleFrom(
           textStyle: const TextStyle(fontSize: kSizeS),
+          primary: kGrayScaleColor700,
           backgroundColor: kGrayScaleColor100,
           padding: size == ButtonSize.large
               ? const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeS)
@@ -44,6 +48,7 @@ class ButtonWidget extends StatelessWidget {
     if (button == ButtonType.outlineButton) {
       return OutlinedButton.styleFrom(
           textStyle: const TextStyle(fontSize: kSizeS),
+          primary: kGrayScaleColor700,
           side: BorderSide(
               color: state == ButtonState.normal
                   ? kPrimaryColor
@@ -59,7 +64,7 @@ class ButtonWidget extends StatelessWidget {
     if (button == ButtonType.mainButton) {
       return state == ButtonState.disable
           ? kGrayScaleColor400
-          : kGrayScaleColor50;
+          : kGrayScaleColorWhite;
     }
     if (button == ButtonType.softButton) {
       return state == ButtonState.disable ? kGrayScaleColor400 : kPrimaryColor;
@@ -72,7 +77,7 @@ class ButtonWidget extends StatelessWidget {
           ? kGrayScaleColor400
           : kGrayScaleColor600;
     }
-    return kGrayScaleColor50;
+    return kGrayScaleColorWhite;
   }
 
   @override
@@ -83,42 +88,47 @@ class ButtonWidget extends StatelessWidget {
             ? OutlinedButton(
                 style: getButtonStyle(),
                 onPressed: state == ButtonState.disable ? () {} : handleClick,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Icon(prefixIcon,
-                        key: const Key('prefix-icon'),
-                        color: getContentColor()),
-                    Text(
-                      text.toString(),
-                      style: kHeading2Medium.copyWith(color: getContentColor()),
+                child: customContent ??
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Icon(prefixIcon,
+                            key: const Key('prefix-icon'),
+                            color: getContentColor()),
+                        Text(
+                          text.toString(),
+                          style: kHeading2Medium.copyWith(
+                              color: getContentColor()),
+                        ),
+                        Icon(suffixIcon,
+                            key: const Key('suffix-icon'),
+                            color: getContentColor())
+                      ],
                     ),
-                    Icon(suffixIcon,
-                        key: const Key('suffix-icon'), color: getContentColor())
-                  ],
-                ),
               )
             : TextButton(
                 style: getButtonStyle(),
                 onPressed: state == ButtonState.disable ? () {} : handleClick,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(
-                      prefixIcon,
-                      key: const Key('prefix-icon'),
-                      color: getContentColor(),
-                    ),
-                    Text(
-                      text.toString(),
-                      style: kHeading2Medium.copyWith(color: getContentColor()),
-                    ),
-                    Icon(
-                      suffixIcon,
-                      key: const Key('suffix-icon'),
-                      color: getContentColor(),
-                    )
-                  ],
-                )));
+                child: customContent ??
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          prefixIcon,
+                          key: const Key('prefix-icon'),
+                          color: getContentColor(),
+                        ),
+                        Text(
+                          text.toString(),
+                          style: kHeading2Medium.copyWith(
+                              color: getContentColor()),
+                        ),
+                        Icon(
+                          suffixIcon,
+                          key: const Key('suffix-icon'),
+                          color: getContentColor(),
+                        )
+                      ],
+                    )));
   }
 }

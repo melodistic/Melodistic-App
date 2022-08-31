@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
@@ -7,8 +8,8 @@ import 'package:melodistic/config/style.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
+import 'package:melodistic/widgets/common/type/button.type.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
-import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -47,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                     height: 400,
                     width: double.infinity,
                     decoration: const BoxDecoration(
-                      color: kGrayScaleColor50,
+                      color: kGrayScaleColorWhite,
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(kSizeS),
                           topRight: Radius.circular(kSizeS)),
@@ -56,7 +57,7 @@ class LoginScreen extends StatelessWidget {
                         padding: const EdgeInsets.fromLTRB(
                             kSizeM, kSizeXS, kSizeM, kSizeS),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Expanded(
                               child: Column(
@@ -85,12 +86,21 @@ class LoginScreen extends StatelessWidget {
                                     },
                                   ),
                                   Padding(
-                                      padding:
-                                          const EdgeInsets.only(top: kSizeXS),
-                                      child: Text('Forget the Password?',
+                                    padding:
+                                        const EdgeInsets.only(top: kSizeXS),
+                                    child: ButtonWidget(
+                                      size: ButtonSize.small,
+                                      button: ButtonType.textButton,
+                                      customContent: Text(
+                                          'Forget the Password?',
                                           style: kBody3.copyWith(
-                                              color: kGrayScaleColor600),
-                                          textAlign: TextAlign.end)),
+                                              color: kGrayScaleColor600)),
+                                      handleClick: () {
+                                        Get.toNamed<dynamic>(
+                                            RoutesName.forgetPassword);
+                                      },
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -100,7 +110,9 @@ class LoginScreen extends StatelessWidget {
                                     size: ButtonSize.large,
                                     button: ButtonType.mainButton,
                                     state: ButtonState.normal,
-                                    handleClick: () {},
+                                    handleClick: () {
+                                      Get.toNamed<dynamic>(RoutesName.home);
+                                    },
                                     text: 'Log in')),
                             ButtonWidget(
                                 size: ButtonSize.large,
@@ -109,6 +121,7 @@ class LoginScreen extends StatelessWidget {
                                 handleClick: _handleSignIn,
                                 prefixIcon: MelodisticIcon.google,
                                 text: ' Log in with Google'),
+                            kSizedBoxVerticalXS,
                             SizedBox(
                                 width: double.infinity,
                                 height: 48,
@@ -118,15 +131,13 @@ class LoginScreen extends StatelessWidget {
                                       Text('Don\'t have any account?',
                                           style: kBody3.copyWith(
                                               color: kGrayScaleColor500)),
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.of(context)
-                                                .pushNamed(RoutesName.register);
+                                      kSizedBoxHorizontalXXS,
+                                      GestureDetector(
+                                          onTap: () {
+                                            Get.toNamed<dynamic>(
+                                                RoutesName.register);
                                           },
-                                          style: TextButton.styleFrom(
-                                              backgroundColor:
-                                                  kGrayScaleColor50),
-                                          child: Text(' Register',
+                                          child: Text('Register',
                                               style: kBody3SemiBold.copyWith(
                                                   color: kSecondaryColor)))
                                     ])),

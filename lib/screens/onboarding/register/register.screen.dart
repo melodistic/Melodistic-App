@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
@@ -8,6 +9,7 @@ import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
+import 'package:melodistic/widgets/common/type/button.type.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
@@ -31,7 +33,7 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-        screen: ScreenType.withBack,
+        screen: MelodisticScreenType.withBack,
         child: Padding(
             padding: const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeM),
             child: Column(
@@ -84,7 +86,9 @@ class RegisterScreen extends StatelessWidget {
                           size: ButtonSize.large,
                           button: ButtonType.mainButton,
                           state: ButtonState.normal,
-                          handleClick: () {},
+                          handleClick: () {
+                            Get.toNamed<dynamic>(RoutesName.registerTime);
+                          },
                           text: 'Create an account')),
                   ButtonWidget(
                       button: ButtonType.softButton,
@@ -93,6 +97,7 @@ class RegisterScreen extends StatelessWidget {
                       handleClick: _handleSignIn,
                       text: ' Register with Google',
                       prefixIcon: MelodisticIcon.google),
+                  kSizedBoxVerticalXS,
                   SizedBox(
                       width: double.infinity,
                       child: Row(
@@ -101,13 +106,11 @@ class RegisterScreen extends StatelessWidget {
                             Text('Already have an account?',
                                 style:
                                     kBody3.copyWith(color: kGrayScaleColor500)),
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(context)
-                                      .pushNamed(RoutesName.login);
+                            kSizedBoxHorizontalXXS,
+                            GestureDetector(
+                                onTap: () {
+                                  Get.toNamed<dynamic>(RoutesName.login);
                                 },
-                                style: TextButton.styleFrom(
-                                    backgroundColor: kGrayScaleColor50),
                                 child: Text('Login',
                                     style: kBody3SemiBold.copyWith(
                                         color: kSecondaryColor)))
