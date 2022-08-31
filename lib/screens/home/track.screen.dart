@@ -9,8 +9,8 @@ import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:just_audio/just_audio.dart';
 
 class TrackScreen extends StatelessWidget {
-  const TrackScreen({Key? key, this.track}) : super(key: key);
-  final Track? track;
+  const TrackScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final Track track = ((ModalRoute.of(context)!.settings.arguments
