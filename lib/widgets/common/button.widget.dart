@@ -29,7 +29,7 @@ class ButtonWidget extends StatelessWidget {
     if (button == ButtonType.mainButton) {
       return TextButton.styleFrom(
           textStyle: const TextStyle(fontSize: kSizeS),
-          primary: kGrayScaleColor700,
+          foregroundColor: kGrayScaleColor700,
           backgroundColor:
               state == ButtonState.disable ? kGrayScaleColor100 : kPrimaryColor,
           padding: size == ButtonSize.large
@@ -39,7 +39,7 @@ class ButtonWidget extends StatelessWidget {
     if (button == ButtonType.softButton) {
       return TextButton.styleFrom(
           textStyle: const TextStyle(fontSize: kSizeS),
-          primary: kGrayScaleColor700,
+          foregroundColor: kGrayScaleColor700,
           backgroundColor: kGrayScaleColor100,
           padding: size == ButtonSize.large
               ? const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeS)
@@ -48,7 +48,7 @@ class ButtonWidget extends StatelessWidget {
     if (button == ButtonType.outlineButton) {
       return OutlinedButton.styleFrom(
           textStyle: const TextStyle(fontSize: kSizeS),
-          primary: kGrayScaleColor700,
+          foregroundColor: kGrayScaleColor700,
           side: BorderSide(
               color: state == ButtonState.normal
                   ? kPrimaryColor
