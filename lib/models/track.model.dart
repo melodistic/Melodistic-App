@@ -6,6 +6,7 @@ class Track {
   late String description;
   late int duration;
   late bool isPublic;
+  late bool isFav;
   Track({
     required this.trackId,
     required this.trackName,
@@ -14,6 +15,7 @@ class Track {
     required this.description,
     required this.duration,
     required this.isPublic,
+    required this.isFav,
   });
   static Track get base {
     return Track(
@@ -23,7 +25,8 @@ class Track {
         muscleGroup: '',
         description: '',
         duration: 0,
-        isPublic: true);
+        isPublic: true,
+        isFav: false);
   }
 
   static Track fromJson(Map<String, dynamic> rawData) {
@@ -34,6 +37,7 @@ class Track {
         muscleGroup: (rawData['muscle_group'] ?? '').toString(),
         description: (rawData['description'] ?? '').toString(),
         duration: int.parse((rawData['duration'] ?? '0').toString()),
-        isPublic: rawData['is_public'] as bool);
+        isPublic: rawData['is_public'] as bool,
+        isFav: rawData['is_fav'] as bool);
   }
 }

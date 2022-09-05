@@ -16,7 +16,8 @@ void main() {
         muscleGroup: 'ABS',
         description: '12 minutes of abs workout',
         duration: 720,
-        isPublic: true);
+        isPublic: true,
+        isFav: false);
     await mockNetworkImagesFor(() => tester.pumpWidget(createScaffoldForTesting(
             child: TrackBox(
           track: data,
