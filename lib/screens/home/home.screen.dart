@@ -20,8 +20,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final TrackController trackController = Get.put(TrackController());
-  final HomeTabController homeTabController = Get.put(HomeTabController());
+  final TrackController trackController = Get.find();
+  final HomeTabController homeTabController = Get.find();
   @override
   void initState() {
     trackController.fetchPublicTracks();

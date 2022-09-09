@@ -8,7 +8,7 @@ import 'package:melodistic/screens/home/type/hometab.type.dart';
 
 class TablistWidget extends StatelessWidget {
   TablistWidget({Key? key}) : super(key: key);
-  final HomeTabController homeTabController = Get.put(HomeTabController());
+  final HomeTabController homeTabController = Get.find();
   final ScrollController _controller = ScrollController();
   @override
   Widget build(BuildContext context) {
