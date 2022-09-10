@@ -85,7 +85,8 @@ class MelodisticDrawer extends StatelessWidget {
           ),
           renderDrawerItem(context,
               title: 'Log out', icon: MelodisticIcon.exit_left, onTap: () {
-            Get.offAllNamed<String>(RoutesName.onboard);
+            // TODO: Call AuthController logout before navigate to login screen
+            Get.offAllNamed<void>(RoutesName.login);
           }),
           kSizedBoxVerticalM
         ],

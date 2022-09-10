@@ -4,6 +4,7 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/models/track.model.dart';
+import 'package:melodistic/routes.dart';
 
 class TrackBox extends StatelessWidget {
   const TrackBox({Key? key, required this.track}) : super(key: key);
@@ -60,7 +61,10 @@ class TrackBox extends StatelessWidget {
                               track.trackName,
                               style: kHeading2,
                             ),
-                            const Icon(MelodisticIcon.heart)
+                            track.isFav
+                                ? const Icon(MelodisticIcon.heart,
+                                    color: kSecondaryColor)
+                                : const Icon(MelodisticIcon.heart)
                           ]),
                       kSizedBoxVerticalXXS,
                       Text(track.description, style: kBody2),
@@ -74,8 +78,8 @@ class TrackBox extends StatelessWidget {
             ],
           )),
       onTap: () {
-        // Navigator.of(context).pushNamed(RoutesName.track,
-        //     arguments: <String, Map<String, String>>{'track': track});
+        Navigator.of(context).pushNamed(RoutesName.track,
+            arguments: <String, Track>{'track': track});
       },
     );
   }
