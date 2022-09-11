@@ -18,7 +18,7 @@ class TrackController extends GetxController {
     updateFetching(true);
     try {
       final Response<List<dynamic>> response =
-          await Dio().get('$apiBaseURL/api/track');
+          await Dio().get('$apiBaseURL/track');
       final List<Track> tracks = response.data!
           .map((dynamic data) => Track.fromJson(data as Map<String, dynamic>))
           .toList();
@@ -33,7 +33,7 @@ class TrackController extends GetxController {
     updateFetching(true);
     try {
       // final Response<List<dynamic>> response =
-      //     await Dio().get('$apiBaseURL/api/track');
+      //     await Dio().get('$apiBaseURL/track');
       // final List<Track> tracks = response.data!
       //     .map((dynamic data) => Track.fromJson(data as Map<String, dynamic>))
       //     .toList();

@@ -1,1 +1,1 @@
-const String apiBaseURL = 'https://melodistic.me';
+const String apiBaseURL = 'https://melodistic.me/api';

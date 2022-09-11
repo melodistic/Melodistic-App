@@ -23,7 +23,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
     try {
       widget.player
           .setAudioSource(AudioSource.uri(
-              Uri.parse('$apiBaseURL/api/stream/' + widget.trackId)))
+              Uri.parse('$apiBaseURL/stream/' + widget.trackId)))
           .then((Duration? value) {
         setState(() {
           _duration = value!;
