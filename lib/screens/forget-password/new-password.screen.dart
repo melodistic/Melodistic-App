@@ -36,8 +36,8 @@ class NewPasswordScreen extends StatelessWidget {
                   fieldType: FieldType.password,
                   hintTitle: 'Password',
                   controller: passwordController,
-                  validate: (String value) {
-                    if (value.isEmpty) {
+                  validate: (String? value) {
+                    if (value == null || value.isEmpty) {
                       return 'Password is required';
                     }
                     return null;
@@ -46,8 +46,8 @@ class NewPasswordScreen extends StatelessWidget {
                   fieldType: FieldType.password,
                   hintTitle: 'Comfirm Password',
                   controller: passwordController,
-                  validate: (String value) {
-                    if (value.isEmpty) {
+                  validate: (String? value) {
+                    if (value == null || value.isEmpty) {
                       return 'Confirm password is required';
                     }
                     return null;

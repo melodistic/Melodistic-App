@@ -5,6 +5,7 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/controller/auth.controller.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
@@ -13,9 +14,13 @@ import 'package:melodistic/widgets/common/type/field.type.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
+
+  final AuthController _authController = AuthController();
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   Future<void> _handleSignIn() async {
     try {
       GoogleSignInAccount? account = await _googleSignIn.signIn();
@@ -64,26 +69,16 @@ class LoginScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: <Widget>[
                                   TextFieldWidget(
-                                    controller: emailController,
+                                    controller: _emailController,
                                     hintTitle: 'Email',
                                     fieldType: FieldType.text,
-                                    validate: (String value) {
-                                      if (value.isEmpty) {
-                                        return 'Email is required';
-                                      }
-                                      return null;
-                                    },
+                                    validate: _authController.validateEmail,
                                   ),
                                   TextFieldWidget(
-                                    controller: passwordController,
+                                    controller: _passwordController,
                                     hintTitle: 'Password',
                                     fieldType: FieldType.password,
-                                    validate: (String value) {
-                                      if (value.isEmpty) {
-                                        return 'Password is required';
-                                      }
-                                      return null;
-                                    },
+                                    validate: _authController.validatePassword,
                                   ),
                                   Padding(
                                     padding:
@@ -110,8 +105,15 @@ class LoginScreen extends StatelessWidget {
                                     size: ButtonSize.large,
                                     button: ButtonType.mainButton,
                                     state: ButtonState.normal,
-                                    handleClick: () {
-                                      Get.toNamed<dynamic>(RoutesName.home);
+                                    handleClick: () async {
+                                      String email = _emailController.text;
+                                      String password =
+                                          _passwordController.text;
+                                      bool result = await _authController.login(
+                                          email, password);
+                                      if (result) {
+                                        Get.toNamed<dynamic>(RoutesName.home);
+                                      }
                                     },
                                     text: 'Log in')),
                             ButtonWidget(
