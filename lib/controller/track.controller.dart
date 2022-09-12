@@ -5,6 +5,8 @@ import 'package:melodistic/config/api.dart';
 import 'package:melodistic/models/track.model.dart';
 import 'dart:developer' as developer;
 
+import 'package:melodistic/singleton/api-client.dart';
+
 class TrackController extends GetxController {
   List<Track> publicTracks = List<Track>.empty().obs;
   List<Track> favoriteTracks = List<Track>.empty().obs;
@@ -16,16 +18,16 @@ class TrackController extends GetxController {
 
   Future<void> fetchPublicTracks() async {
     updateFetching(true);
-    try {
-      final Response<List<dynamic>> response =
-          await Dio().get('$apiBaseURL/track');
-      final List<Track> tracks = response.data!
-          .map((dynamic data) => Track.fromJson(data as Map<String, dynamic>))
-          .toList();
-      publicTracks = tracks.obs;
-    } on DioError catch (e) {
-      developer.log(e.toString(), name: 'TrackController');
+    final Response<List<dynamic>>? response =
+        await APIClient().get<List<dynamic>>('/track');
+    if (response == null) {
+      updateFetching(false);
+      return;
     }
+    final List<Track> tracks = response.data!
+        .map((dynamic data) => Track.fromJson(data as Map<String, dynamic>))
+        .toList();
+    publicTracks = tracks.obs;
     updateFetching(false);
   }
 

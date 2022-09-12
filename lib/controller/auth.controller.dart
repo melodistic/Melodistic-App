@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get/state_manager.dart';
 import 'package:get/utils.dart';
-import 'package:melodistic/config/api.dart';
-import 'package:melodistic/controller/alert.controller.dart';
+import 'package:melodistic/singleton/api-client.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
 
 class AuthController extends GetxController {
@@ -30,14 +29,12 @@ class AuthController extends GetxController {
     if (validateEmail(email) != null || validatePassword(password) != null) {
       return false;
     }
-    try {
-      await Dio().post('$apiBaseURL/auth/signin', data: {
-        'email': email,
-        'password': password,
-      });
-    } on DioError catch (error) {
-      AlertController.showAlert(
-          'Fail to sign in', error.response!.statusMessage!);
+    final Response<dynamic>? response =
+        await APIClient().post('/auth/signin', data: <String, String>{
+      'email': email,
+      'password': password,
+    });
+    if (response == null) {
       return false;
     }
     return true;
