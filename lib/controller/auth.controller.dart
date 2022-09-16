@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:get/utils.dart';
-import 'package:melodistic/singleton/api-client.dart';
+import 'package:melodistic/singleton/api_client.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
 
 class AuthController extends GetxController {

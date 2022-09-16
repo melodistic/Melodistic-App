@@ -3,7 +3,7 @@ import 'package:get/state_manager.dart';
 import 'package:melodistic/models/track.model.dart';
 import 'dart:developer' as developer;
 
-import 'package:melodistic/singleton/api-client.dart';
+import 'package:melodistic/singleton/api_client.dart';
 
 class TrackController extends GetxController {
   List<Track> publicTracks = List<Track>.empty().obs;

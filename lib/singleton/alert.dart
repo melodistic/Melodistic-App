@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:melodistic/widgets/common/popup/popup-dialog.widget.dart';
+import 'package:melodistic/widgets/common/popup/popup_dialog.widget.dart';
 
 class Alert {
   static void showAlert(Widget? content) {
