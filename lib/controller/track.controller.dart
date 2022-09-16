@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:get/state_manager.dart';
-import 'package:melodistic/config/api.dart';
-// import 'package:melodistic/config/api.dart';
 import 'package:melodistic/models/track.model.dart';
 import 'dart:developer' as developer;
 
@@ -18,17 +16,20 @@ class TrackController extends GetxController {
 
   Future<void> fetchPublicTracks() async {
     updateFetching(true);
-    final Response<List<dynamic>>? response =
-        await APIClient().get<List<dynamic>>('/track');
-    if (response == null) {
+    try {
+      final Response<List<dynamic>>? response =
+          await APIClient().get<List<dynamic>>('/track');
+      if (response == null) {
+        updateFetching(false);
+        return;
+      }
+      final List<Track> tracks = response.data!
+          .map((dynamic data) => Track.fromJson(data as Map<String, dynamic>))
+          .toList();
+      publicTracks = tracks.obs;
+    } finally {
       updateFetching(false);
-      return;
     }
-    final List<Track> tracks = response.data!
-        .map((dynamic data) => Track.fromJson(data as Map<String, dynamic>))
-        .toList();
-    publicTracks = tracks.obs;
-    updateFetching(false);
   }
 
   Future<void> fetchFavoriteTracks() async {

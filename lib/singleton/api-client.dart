@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:melodistic/config/api.dart';
 import 'package:melodistic/models/exception.model.dart';
 import 'package:melodistic/singleton/alert.dart';
+import 'package:melodistic/widgets/common/popup/error-popup.dart';
 
 class APIClient {
   static final APIClient _instance = APIClient._internal();
@@ -29,14 +30,15 @@ class APIClient {
         throw MelodisticException('No Internet Connection');
       } on DioError catch (e) {
         if (e.response != null) {
-          final String message =
-              e.response?.data['message'].toString() ?? 'Something went wrong';
+          final String message = e.response?.data['message'].toString() ??
+              'Doh!, Something went wrong';
           throw MelodisticException(message);
         }
       }
       return null;
     } on MelodisticException catch (e) {
-      Alert.showAlert(e.title, e.description);
+      Alert.showAlert(ErrorPopup(errorMessage: e.title));
+      rethrow;
     }
   }
 

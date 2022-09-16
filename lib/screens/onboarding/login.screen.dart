@@ -61,90 +61,103 @@ class LoginScreen extends StatelessWidget {
                     child: Padding(
                         padding: const EdgeInsets.fromLTRB(
                             kSizeM, kSizeXS, kSizeM, kSizeS),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: <Widget>[
-                                  TextFieldWidget(
-                                    controller: _emailController,
-                                    hintTitle: 'Email',
-                                    fieldType: FieldType.text,
-                                    validate: _authController.validateEmail,
-                                  ),
-                                  TextFieldWidget(
-                                    controller: _passwordController,
-                                    hintTitle: 'Password',
-                                    fieldType: FieldType.password,
-                                    validate: _authController.validatePassword,
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(top: kSizeXS),
-                                    child: ButtonWidget(
-                                      size: ButtonSize.small,
-                                      button: ButtonType.textButton,
-                                      customContent: Text(
-                                          'Forget the Password?',
-                                          style: kBody3.copyWith(
-                                              color: kGrayScaleColor600)),
-                                      handleClick: () {
-                                        Get.toNamed<dynamic>(
-                                            RoutesName.forgetPassword);
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                                padding: const EdgeInsets.only(bottom: kSizeS),
-                                child: ButtonWidget(
-                                    size: ButtonSize.large,
-                                    button: ButtonType.mainButton,
-                                    state: ButtonState.normal,
-                                    handleClick: () async {
-                                      String email = _emailController.text;
-                                      String password =
-                                          _passwordController.text;
-                                      bool result = await _authController.login(
-                                          email, password);
-                                      if (result) {
-                                        Get.toNamed<dynamic>(RoutesName.home);
-                                      }
-                                    },
-                                    text: 'Log in')),
-                            ButtonWidget(
-                                size: ButtonSize.large,
-                                button: ButtonType.softButton,
-                                state: ButtonState.normal,
-                                handleClick: _handleSignIn,
-                                prefixIcon: MelodisticIcon.google,
-                                text: ' Log in with Google'),
-                            kSizedBoxVerticalXS,
-                            SizedBox(
-                                width: double.infinity,
-                                height: 48,
-                                child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                        child: Form(
+                            key: _authController.loginFormKey,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
                                     children: <Widget>[
-                                      Text('Don\'t have any account?',
-                                          style: kBody3.copyWith(
-                                              color: kGrayScaleColor500)),
-                                      kSizedBoxHorizontalXXS,
-                                      GestureDetector(
-                                          onTap: () {
+                                      TextFieldWidget(
+                                        controller: _emailController,
+                                        hintTitle: 'Email',
+                                        fieldType: FieldType.text,
+                                        validate: _authController.validateEmail,
+                                      ),
+                                      TextFieldWidget(
+                                        controller: _passwordController,
+                                        hintTitle: 'Password',
+                                        fieldType: FieldType.password,
+                                        validate:
+                                            _authController.validatePassword,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: kSizeXS),
+                                        child: ButtonWidget(
+                                          size: ButtonSize.small,
+                                          button: ButtonType.textButton,
+                                          customContent: Text(
+                                              'Forget the Password?',
+                                              style: kBody3.copyWith(
+                                                  color: kGrayScaleColor600)),
+                                          handleClick: () {
                                             Get.toNamed<dynamic>(
-                                                RoutesName.register);
+                                                RoutesName.forgetPassword);
                                           },
-                                          child: Text('Register',
-                                              style: kBody3SemiBold.copyWith(
-                                                  color: kSecondaryColor)))
-                                    ])),
-                          ],
-                        ))),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                    padding:
+                                        const EdgeInsets.only(bottom: kSizeS),
+                                    child: ButtonWidget(
+                                        size: ButtonSize.large,
+                                        button: ButtonType.mainButton,
+                                        state: ButtonState.normal,
+                                        handleClick: () async {
+                                          if (_authController
+                                              .loginFormKey.currentState!
+                                              .validate()) {
+                                            String email =
+                                                _emailController.text;
+                                            String password =
+                                                _passwordController.text;
+                                            bool result = await _authController
+                                                .login(email, password);
+                                            if (result) {
+                                              Get.toNamed<dynamic>(
+                                                  RoutesName.home);
+                                            }
+                                          }
+                                        },
+                                        text: 'Log in')),
+                                ButtonWidget(
+                                    size: ButtonSize.large,
+                                    button: ButtonType.softButton,
+                                    state: ButtonState.normal,
+                                    handleClick: _handleSignIn,
+                                    prefixIcon: MelodisticIcon.google,
+                                    text: ' Log in with Google'),
+                                kSizedBoxVerticalXS,
+                                SizedBox(
+                                    width: double.infinity,
+                                    height: 48,
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Text('Don\'t have any account?',
+                                              style: kBody3.copyWith(
+                                                  color: kGrayScaleColor500)),
+                                          kSizedBoxHorizontalXXS,
+                                          GestureDetector(
+                                              onTap: () {
+                                                Get.toNamed<dynamic>(
+                                                    RoutesName.register);
+                                              },
+                                              child: Text('Register',
+                                                  style:
+                                                      kBody3SemiBold.copyWith(
+                                                          color:
+                                                              kSecondaryColor)))
+                                        ])),
+                              ],
+                            )))),
               ],
             )));
   }

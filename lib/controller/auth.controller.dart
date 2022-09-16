@@ -1,10 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:get/utils.dart';
 import 'package:melodistic/singleton/api-client.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
 
 class AuthController extends GetxController {
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+
   ValidateFunction validateEmail = (String? value) {
     if (value == null || value.isEmpty) {
       return 'Email is required';
@@ -26,9 +29,6 @@ class AuthController extends GetxController {
   };
 
   Future<bool> login(String email, String password) async {
-    if (validateEmail(email) != null || validatePassword(password) != null) {
-      return false;
-    }
     final Response<dynamic>? response =
         await APIClient().post('/auth/signin', data: <String, String>{
       'email': email,
