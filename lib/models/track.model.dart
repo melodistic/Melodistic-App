@@ -38,6 +38,6 @@ class Track {
         description: (rawData['description'] ?? '').toString(),
         duration: int.parse((rawData['duration'] ?? '0').toString()),
         isPublic: rawData['is_public'] as bool,
-        isFav: false);
+        isFav: (rawData['is_favorite'] as bool?) ?? false);
   }
 }
