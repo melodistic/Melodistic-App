@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/screens/forget-password/widgets/forget-popup.widget.dart';
+import 'package:melodistic/singleton/alert.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
-import 'package:melodistic/widgets/common/popup-dialog.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
@@ -32,8 +32,8 @@ class ForgetPasswordScreen extends StatelessWidget {
               TextFieldWidget(
                   hintTitle: 'Email',
                   controller: emailController,
-                  validate: (String value) {
-                    if (value.isEmpty) {
+                  validate: (String? value) {
+                    if (value == null || value.isEmpty) {
                       return 'Email is required';
                     }
                     return null;
@@ -42,11 +42,7 @@ class ForgetPasswordScreen extends StatelessWidget {
               ButtonWidget(
                   button: ButtonType.mainButton,
                   text: 'Send reset password link',
-                  handleClick: () => showDialog<String>(
-                        context: context,
-                        builder: (BuildContext context) =>
-                            const PopupWidget(content: ForgetPopup()),
-                      ))
+                  handleClick: () => Alert.showAlert(const ForgetPopup()))
             ]),
       ),
     );

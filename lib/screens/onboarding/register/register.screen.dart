@@ -48,8 +48,8 @@ class RegisterScreen extends StatelessWidget {
                           controller: emailController,
                           hintTitle: 'Email',
                           fieldType: FieldType.text,
-                          validate: (String value) {
-                            if (value.isEmpty) {
+                          validate: (String? value) {
+                            if (value == null || value.isEmpty) {
                               return 'Email is required';
                             }
                             return null;
@@ -59,8 +59,8 @@ class RegisterScreen extends StatelessWidget {
                           controller: passwordController,
                           hintTitle: 'Password',
                           fieldType: FieldType.password,
-                          validate: (String value) {
-                            if (value.isEmpty) {
+                          validate: (String? value) {
+                            if (value == null || value.isEmpty) {
                               return 'Password is required';
                             }
                             return null;
@@ -70,8 +70,8 @@ class RegisterScreen extends StatelessWidget {
                           controller: passwordController,
                           hintTitle: 'Confirm Password',
                           fieldType: FieldType.password,
-                          validate: (String value) {
-                            if (value.isEmpty) {
+                          validate: (String? value) {
+                            if (value == null || value.isEmpty) {
                               return 'Confirm Password is required';
                             }
                             return null;
