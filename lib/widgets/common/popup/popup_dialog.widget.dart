@@ -13,23 +13,24 @@ class PopupWidget extends StatelessWidget {
     return SimpleDialog(
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(kSizeXS))),
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: kSizeS, vertical: kSizeM),
+        contentPadding: const EdgeInsets.all(kSizeS * 1.5),
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              SimpleDialogOption(
-                onPressed: () {
-                  Get.back<void>();
-                },
-                child: const Icon(
-                  MelodisticIcon.cross,
-                  color: kPrimaryColor,
-                ),
-              ),
-            ],
-          ),
+          SizedBox(
+              width: 250,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      Get.back<void>();
+                    },
+                    child: const Icon(
+                      MelodisticIcon.cross,
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                ],
+              )),
           content!,
         ]);
   }

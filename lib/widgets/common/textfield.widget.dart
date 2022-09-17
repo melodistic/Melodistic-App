@@ -23,29 +23,11 @@ class TextFieldWidget extends StatefulWidget {
 
 class TextFieldWidgetState extends State<TextFieldWidget> {
   bool obsecureText = true;
-  String? _errorText;
-  final TextEditingController _controller = TextEditingController();
-  final FocusNode _focusNode = FocusNode();
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    _focusNode.dispose();
-    super.dispose();
-  }
 
   void showPassword() {
     setState(() {
       obsecureText = !obsecureText;
     });
-  }
-
-  void handleChange(String value) {
-    if (widget.validate != null) {
-      setState(() {
-        _errorText = widget.validate!(_controller.value.text);
-      });
-    }
   }
 
   @override
@@ -58,17 +40,15 @@ class TextFieldWidgetState extends State<TextFieldWidget> {
           obscureText: widget.fieldType == FieldType.password
               ? obsecureText
               : !obsecureText,
-          controller: _controller,
-          onChanged: handleChange,
-          focusNode: _focusNode,
+          controller: widget.controller,
+          validator: widget.validate,
           decoration: InputDecoration(
               focusedBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(color: kSecondaryColor)),
-              errorText: _errorText,
               hintText: widget.hintTitle,
               labelText: widget.hintTitle,
-              labelStyle: TextStyle(
-                  color: _errorText != null ? kErrorColor : kGrayScaleColor500),
+              errorStyle: const TextStyle(color: kErrorColor),
+              labelStyle: const TextStyle(color: kGrayScaleColor500),
               fillColor: kSecondaryColor900,
               suffixIcon: IconButton(
                   onPressed: showPassword,

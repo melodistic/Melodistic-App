@@ -4,7 +4,7 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
-import 'package:melodistic/widgets/common/popup-dialog.widget.dart';
+import 'package:melodistic/widgets/common/popup/popup_dialog.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
@@ -36,8 +36,8 @@ class NewPasswordScreen extends StatelessWidget {
                   fieldType: FieldType.password,
                   hintTitle: 'Password',
                   controller: passwordController,
-                  validate: (String value) {
-                    if (value.isEmpty) {
+                  validate: (String? value) {
+                    if (value == null || value.isEmpty) {
                       return 'Password is required';
                     }
                     return null;
@@ -46,8 +46,8 @@ class NewPasswordScreen extends StatelessWidget {
                   fieldType: FieldType.password,
                   hintTitle: 'Comfirm Password',
                   controller: passwordController,
-                  validate: (String value) {
-                    if (value.isEmpty) {
+                  validate: (String? value) {
+                    if (value == null || value.isEmpty) {
                       return 'Confirm password is required';
                     }
                     return null;
