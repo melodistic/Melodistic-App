@@ -1,53 +1,106 @@
-import 'package:flutter/material.dart';
-import 'package:melodistic/config/constant.dart';
-import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
+import 'dart:io';
 
-class CustomizeScreen extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:dotted_border/dotted_border.dart';
+import 'package:get/instance_manager.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:melodistic/config/color.dart';
+import 'package:melodistic/config/constant.dart';
+import 'package:melodistic/config/style.dart';
+import 'package:melodistic/controller/muscletab.controller.dart';
+import 'package:melodistic/screens/customize-track/widgets/tablist-muscle.widget.dart';
+import 'package:melodistic/widgets/common/button.widget.dart';
+import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
+import 'package:melodistic/widgets/common/textfield.widget.dart';
+import 'package:melodistic/widgets/common/type/button.type.dart';
+import 'package:melodistic/widgets/common/type/field.type.dart';
+import 'package:melodistic/widgets/common/type/screen.type.dart';
+
+class CustomizeScreen extends StatefulWidget {
   const CustomizeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<CustomizeScreen> createState() => _CustomizeScreenState();
+}
+
+class _CustomizeScreenState extends State<CustomizeScreen> {
+  final MuscleTabController muscleTabController = Get.find();
   @override
   Widget build(BuildContext context) {
-    TextEditingController programController = TextEditingController();
+    TextEditingController _programController = TextEditingController();
     return ScreenWrapper(
+        screen: MelodisticScreenType.withBack,
         child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            const Text(
-              'Customize',
-              style:
-                  TextStyle(fontSize: kFontSizeXL, fontWeight: FontWeight.bold),
-            ),
-            TextField(
-              controller: programController,
-              maxLines: 20,
-            ),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-              TextButton(
-                  onPressed: () async {
-                    showDialog<AlertDialog>(
-                        context: context,
-                        builder: (BuildContext ctx) => AlertDialog(
-                            title: const Text(
-                              'Loading',
-                              textAlign: TextAlign.center,
-                            ),
-                            content: SizedBox(
-                              height: 100,
-                              child: Column(
-                                children: const <Widget>[
-                                  SizedBox(
-                                    child: CircularProgressIndicator(),
-                                    width: 60,
-                                    height: 60,
-                                  )
-                                ],
-                              ),
-                            )));
-                  },
-                  child: const Text('Generate'))
-            ])
-          ]),
-    ));
+          padding: const EdgeInsets.symmetric(horizontal: kSizeS * 1.25),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const Text(
+                  'Customize',
+                  style: kHeading1,
+                ),
+                kSizedBoxVerticalS,
+                TextFieldWidget(
+                  controller: _programController,
+                  hintTitle: 'Program Name',
+                  fieldType: FieldType.text,
+                ),
+                kSizedBoxVerticalM,
+                Text('Program Picture',
+                    style: kBody3.copyWith(color: kGrayScaleColor500)),
+                kSizedBoxVerticalS,
+                DottedBorder(
+                  color: kGrayScaleColor500,
+                  strokeWidth: 2,
+                  dashPattern: const <double>[5, 3],
+                  child: Container(
+                      height: kSizeXXL,
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: kSizeL * 1.25),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                const Image(
+                                    image: AssetImage(
+                                        'assets/images/picture.png')),
+                                ButtonWidget(
+                                    button: ButtonType.outlineButton,
+                                    customContent: Text('Browse files',
+                                        style: kBody3Medium.copyWith(
+                                            color: kPrimaryColor)),
+                                    size: ButtonSize.small,
+                                    handleClick: () {
+                                      getPhotoFromGallery();
+                                    }),
+                              ],
+                            )
+                          ])),
+                ),
+                kSizedBoxVerticalM,
+                Text('Muscle group',
+                    style: kBody3.copyWith(color: kGrayScaleColor500)),
+                kSizedBoxVerticalXS,
+                Column(
+                  children: <Widget>[TablistMuscleWidget()],
+                ),
+                kSizedBoxVerticalXL,
+                const ButtonWidget(
+                  text: 'Next',
+                )
+              ]),
+        ));
+  }
+
+  Future<File?> getPhotoFromGallery() async {
+    XFile? pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      File imageFile = File(pickedFile.path);
+      return imageFile;
+    }
+    return null;
   }
 }
