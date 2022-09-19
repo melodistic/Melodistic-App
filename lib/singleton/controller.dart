@@ -7,6 +7,6 @@ class Controller {
   static void setup() {
     Get.lazyPut(() => HomeTabController());
     Get.lazyPut(() => TrackController());
-    Get.lazyPut(() => MuscleTabController());
+    Get.lazyPut(() => TrackCustomizeController());
   }
 }

@@ -6,16 +6,16 @@ import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/muscletab.controller.dart';
 import 'package:melodistic/screens/customize-track/type/muscletab.type.dart';
 
-class TablistMuscleWidget extends StatelessWidget {
-  TablistMuscleWidget({Key? key}) : super(key: key);
-  final MuscleTabController muscleTabController = Get.find();
-  final ScrollController _controller = ScrollController();
+class SelectMuscleGroupWidget extends StatelessWidget {
+  SelectMuscleGroupWidget({Key? key}) : super(key: key);
+  final TrackCustomizeController muscleTabController = Get.find();
+  final ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      controller: _controller,
+      controller: scrollController,
       child: Obx(() => Row(
-            children: muscleTabController.tabs
+            children: muscleTabController.muscleGroupList
                 .map((MuscleTab tab) => GestureDetector(
                       child: Container(
                           margin: const EdgeInsets.only(right: kSizeXS),
@@ -37,7 +37,7 @@ class TablistMuscleWidget extends StatelessWidget {
                                 : kBody3.copyWith(color: kGrayScaleColor600),
                           )),
                       onTap: () {
-                        muscleTabController.selectTab(tab, _controller);
+                        muscleTabController.selectMuscleGroup(tab, scrollController);
                       },
                     ))
                 .toList(),

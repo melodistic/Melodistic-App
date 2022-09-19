@@ -8,7 +8,7 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/muscletab.controller.dart';
-import 'package:melodistic/screens/customize-track/widgets/tablist-muscle.widget.dart';
+import 'package:melodistic/screens/customize-track/widgets/select-musclegroup.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
@@ -24,7 +24,7 @@ class CustomizeScreen extends StatefulWidget {
 }
 
 class _CustomizeScreenState extends State<CustomizeScreen> {
-  final MuscleTabController muscleTabController = Get.find();
+  final TrackCustomizeController muscleTabController = Get.find();
   @override
   Widget build(BuildContext context) {
     TextEditingController _programController = TextEditingController();
@@ -84,7 +84,7 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                     style: kBody3.copyWith(color: kGrayScaleColor500)),
                 kSizedBoxVerticalXS,
                 Column(
-                  children: <Widget>[TablistMuscleWidget()],
+                  children: <Widget>[SelectMuscleGroupWidget()],
                 ),
                 kSizedBoxVerticalXL,
                 const ButtonWidget(
