@@ -37,7 +37,8 @@ class SelectMuscleGroupWidget extends StatelessWidget {
                                 : kBody3.copyWith(color: kGrayScaleColor600),
                           )),
                       onTap: () {
-                        muscleTabController.selectMuscleGroup(tab, scrollController);
+                        muscleTabController.selectMuscleGroup(
+                            tab, scrollController);
                       },
                     ))
                 .toList(),

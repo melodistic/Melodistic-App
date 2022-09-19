@@ -4,8 +4,7 @@ import 'package:melodistic/screens/customize-track/type/muscletab.type.dart';
 
 class TrackCustomizeController extends GetxController {
   final List<MuscleGroup> muscleGroupList = <MuscleGroup>[
-    MuscleGroup(
-        id: 1, label: 'Full body', position: 0),
+    MuscleGroup(id: 1, label: 'Full body', position: 0),
     MuscleGroup(id: 2, label: 'Core', position: 0),
     MuscleGroup(id: 3, label: 'Abs', position: 0),
     MuscleGroup(id: 4, label: 'Arm', position: 50),
