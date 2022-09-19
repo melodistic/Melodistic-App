@@ -15,7 +15,7 @@ class _MelodisticAppState extends State<MelodisticApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Melodistic App',
-      initialRoute: RoutesName.onboard,
+      initialRoute: RoutesName.customize,
       routes: routes,
       translations: MelodisticMessages(),
       locale: const Locale('en', 'US'),

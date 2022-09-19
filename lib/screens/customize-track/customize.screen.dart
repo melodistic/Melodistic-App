@@ -8,6 +8,7 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/muscletab.controller.dart';
+import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/scrollable-select.widget.dart';
@@ -98,8 +99,11 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                   ],
                 ),
                 kSizedBoxVerticalXL,
-                const ButtonWidget(
+                ButtonWidget(
                   text: 'Next',
+                  handleClick: () {
+                    Get.toNamed<dynamic>(RoutesName.customizeSection);
+                  },
                 )
               ]),
         ));
