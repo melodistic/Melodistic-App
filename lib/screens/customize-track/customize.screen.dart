@@ -2,18 +2,20 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/muscletab.controller.dart';
-import 'package:melodistic/screens/customize-track/widgets/select-musclegroup.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
+import 'package:melodistic/widgets/common/scrollable-select.widget.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
+import 'package:melodistic/widgets/common/type/option-item.type.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class CustomizeScreen extends StatefulWidget {
@@ -84,7 +86,17 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                     style: kBody3.copyWith(color: kGrayScaleColor500)),
                 kSizedBoxVerticalXS,
                 Column(
-                  children: <Widget>[SelectMuscleGroupWidget()],
+                  children: <Widget>[
+                    Obx(() => ScrollableSelectWidget(
+                          options: muscleTabController.muscleGroupList,
+                          value: muscleTabController.selectedTab!.value,
+                          onChange:
+                              (OptionItem value, ScrollController controller) {
+                            muscleTabController.selectMuscleGroup(
+                                value, controller);
+                          },
+                        ))
+                  ],
                 ),
                 kSizedBoxVerticalXL,
                 const ButtonWidget(
