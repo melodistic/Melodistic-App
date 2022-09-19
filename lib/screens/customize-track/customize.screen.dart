@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';

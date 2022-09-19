@@ -21,7 +21,7 @@ class ScrollableSelectWidget extends StatelessWidget {
       controller: scrollController,
       child: Row(
         children: options
-            .map((tab) => GestureDetector(
+            .map((OptionItem tab) => GestureDetector(
                   child: Container(
                       margin: const EdgeInsets.only(right: kSizeXS),
                       padding: const EdgeInsets.symmetric(
