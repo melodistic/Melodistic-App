@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
-import 'package:melodistic/controller/muscletab.controller.dart';
+import 'package:melodistic/controller/track-customize.controller.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
@@ -89,7 +89,7 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                   children: <Widget>[
                     Obx(() => ScrollableSelectWidget(
                           options: muscleTabController.muscleGroupList,
-                          value: muscleTabController.selectedTab!.value,
+                          value: muscleTabController.selectedTab.value,
                           onChange:
                               (OptionItem value, ScrollController controller) {
                             muscleTabController.selectMuscleGroup(

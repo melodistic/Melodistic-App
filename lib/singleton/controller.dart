@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:melodistic/controller/hometab.controller.dart';
-import 'package:melodistic/controller/muscletab.controller.dart';
+import 'package:melodistic/controller/track-customize.controller.dart';
 import 'package:melodistic/controller/track.controller.dart';
 
 class Controller {
