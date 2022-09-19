@@ -16,7 +16,7 @@ class SelectMuscleGroupWidget extends StatelessWidget {
       controller: scrollController,
       child: Obx(() => Row(
             children: muscleTabController.muscleGroupList
-                .map((MuscleTab tab) => GestureDetector(
+                .map((MuscleGroup tab) => GestureDetector(
                       child: Container(
                           margin: const EdgeInsets.only(right: kSizeXS),
                           padding: const EdgeInsets.symmetric(
