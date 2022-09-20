@@ -4,19 +4,17 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
-import 'package:melodistic/screens/customize-track/type/Section.type.dart';
-import 'package:melodistic/screens/customize-track/widgets/section-timeline/section-timeline.dart';
+import 'package:melodistic/screens/customize-track/widgets/section-timeline/section-timeline.widget.dart';
 import 'package:melodistic/screens/customize-track/widgets/selection-section-popup.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/popup/popup_dialog.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
-import 'package:melodistic/widgets/common/type/section.type.dart';
 
 class CustomizeSectionScreen extends StatelessWidget {
   CustomizeSectionScreen({Key? key}) : super(key: key);
-  TrackCustomizeController trackCustomizeController = Get.find();
+  final TrackCustomizeController trackCustomizeController = Get.find();
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
@@ -37,7 +35,7 @@ class CustomizeSectionScreen extends StatelessWidget {
                 kSizedBoxVerticalS,
                 Expanded(
                     child: Column(
-                  children: [
+                  children: <Widget>[
                     SectionTimeLine(
                         sectionList: trackCustomizeController.sectionList),
                     kSizedBoxVerticalS,

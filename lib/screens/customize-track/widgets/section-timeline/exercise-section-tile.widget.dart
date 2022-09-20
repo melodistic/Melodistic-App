@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
@@ -16,22 +13,23 @@ class ExerciseSectionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:
-          EdgeInsets.symmetric(vertical: kSizeXS * 1.5, horizontal: kSizeXS),
+      padding: const EdgeInsets.symmetric(
+          vertical: kSizeXS * 1.5, horizontal: kSizeXS),
       decoration: BoxDecoration(
           color: kGrayScaleColorWhite,
           borderRadius: BorderRadius.circular(kSizeXXS),
-          boxShadow: [
+          boxShadow: <BoxShadow>[
             BoxShadow(
-                offset: Offset(0, 2),
+                offset: const Offset(0, 2),
                 blurRadius: 14,
                 color: kGrayScaleColor600.withOpacity(0.12))
           ]),
-      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      child:
+          Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
         Container(
           width: 64,
           height: 56,
-          child: Center(
+          child: const Center(
               child: Icon(
             MelodisticIcon.emoji_look_top,
             color: kGrayScaleColorWhite,
@@ -44,7 +42,7 @@ class ExerciseSectionTile extends StatelessWidget {
         Expanded(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: <Widget>[
             Text(
               section.name,
               style: kHeading3.copyWith(color: kSecondaryColor),
@@ -60,7 +58,7 @@ class ExerciseSectionTile extends StatelessWidget {
         kSizedBoxHorizontalS,
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: <Widget>[
             Text(
               'Edit',
               style: kBody4.copyWith(

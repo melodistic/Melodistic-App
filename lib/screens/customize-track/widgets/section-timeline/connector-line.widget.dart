@@ -8,9 +8,9 @@ class ConnectorLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [
+      children: <Widget>[
         kSizedBoxHorizontalM,
-        Column(children: [
+        Column(children: <Widget>[
           const SizedBox(
             width: kSizeXS * 1.5,
           ),

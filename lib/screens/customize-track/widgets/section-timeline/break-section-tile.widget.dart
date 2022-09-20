@@ -11,7 +11,7 @@ class BreakSectionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [
+      children: <Widget>[
         kSizedBoxHorizontalXXS,
         kSizedBoxHorizontalS,
         const Icon(

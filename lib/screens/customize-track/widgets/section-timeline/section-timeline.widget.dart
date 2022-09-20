@@ -30,7 +30,7 @@ class SectionTimeLine extends StatelessWidget {
             child: Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         const StartIndicator(),
         for (Section section in sectionList) ...<Widget>[
           renderSectionTile(section),

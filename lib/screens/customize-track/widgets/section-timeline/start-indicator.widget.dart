@@ -10,9 +10,9 @@ class StartIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         kSizedBoxHorizontalM,
-        Column(children: [
+        Column(children: <Widget>[
           kSizedBoxVerticalXXS,
           Container(
             width: kSizeXS * 1.5,

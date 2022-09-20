@@ -1,4 +1,3 @@
-import 'package:melodistic/widgets/common/type/option-item.type.dart';
 import 'package:melodistic/widgets/common/type/section.type.dart';
 
 class Section {
