@@ -89,7 +89,7 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                   children: <Widget>[
                     Obx(() => ScrollableSelectWidget(
                           options: muscleTabController.muscleGroupList,
-                          value: muscleTabController.selectedTab.value,
+                          value: muscleTabController.muscleGroup.value,
                           onChange:
                               (OptionItem value, ScrollController controller) {
                             muscleTabController.selectMuscleGroup(

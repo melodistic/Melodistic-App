@@ -16,18 +16,10 @@ import 'package:melodistic/widgets/common/type/option-item.type.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
-class CustomizeExerciseScreen extends StatefulWidget {
-  const CustomizeExerciseScreen({Key? key}) : super(key: key);
+class CustomizeExerciseScreen extends StatelessWidget {
+  CustomizeExerciseScreen({Key? key}) : super(key: key);
 
-  @override
-  State<CustomizeExerciseScreen> createState() =>
-      _CustomizeExerciseScreenState();
-}
-
-class _CustomizeExerciseScreenState extends State<CustomizeExerciseScreen> {
-  final TrackCustomizeController exerciseTypeController = Get.find();
-  final TrackCustomizeController moodController = Get.find();
-  dynamic currentTime = 0;
+  final TrackCustomizeController trackCustomizeController = Get.find();
   @override
   Widget build(BuildContext context) {
     TextEditingController _sectionname = TextEditingController();
@@ -52,11 +44,11 @@ class _CustomizeExerciseScreenState extends State<CustomizeExerciseScreen> {
                 Text('Type', style: kBody3.copyWith(color: kGrayScaleColor500)),
                 kSizedBoxVerticalXXS,
                 Obx(() => ScrollableSelectWidget(
-                      options: exerciseTypeController.exerciseTypeList,
-                      value: exerciseTypeController.selectedExerciseType.value,
+                      options: trackCustomizeController.exerciseTypeList,
+                      value: trackCustomizeController.sectionExerciseType.value,
                       onChange:
                           (OptionItem value, ScrollController controller) {
-                        exerciseTypeController.selectExerciseType(
+                        trackCustomizeController.selectExerciseType(
                             value, controller);
                       },
                     )),
@@ -64,11 +56,11 @@ class _CustomizeExerciseScreenState extends State<CustomizeExerciseScreen> {
                 Text('Mood', style: kBody3.copyWith(color: kGrayScaleColor500)),
                 kSizedBoxVerticalXXS,
                 Obx(() => ScrollableSelectWidget(
-                      options: moodController.moodList,
-                      value: moodController.selectedMood.value,
+                      options: trackCustomizeController.moodList,
+                      value: trackCustomizeController.sectionMood.value,
                       onChange:
                           (OptionItem value, ScrollController controller) {
-                        moodController.selectMood(value, controller);
+                        trackCustomizeController.selectMood(value, controller);
                       },
                     )),
                 kSizedBoxVerticalM,
@@ -86,7 +78,6 @@ class _CustomizeExerciseScreenState extends State<CustomizeExerciseScreen> {
                       button: ButtonType.outlineButton,
                       size: ButtonSize.small,
                       prefixIcon: MelodisticIcon.pull_up,
-                      // text: 'Upload',
                       customContent: Row(children: <Widget>[
                         const Icon(MelodisticIcon.pull_up,
                             color: kPrimaryColor),
@@ -98,31 +89,31 @@ class _CustomizeExerciseScreenState extends State<CustomizeExerciseScreen> {
                   ],
                 ),
                 kSizedBoxVerticalM,
-                Text('Time(min)',
+                Text('Time (min)',
                     style: kBody3Medium.copyWith(color: kGrayScaleColor500)),
                 kSizedBoxVerticalXXS,
-                SfSlider(
-                  thumbIcon: Container(
-                    width: 3,
-                    height: 3,
-                    margin: const EdgeInsets.all(100.0),
-                    decoration: const BoxDecoration(
-                        color: kPrimaryColor, shape: BoxShape.circle),
-                  ),
-                  activeColor: kPrimaryColor,
-                  inactiveColor: kGrayScaleColor200,
-                  min: 0.0,
-                  max: 60.0,
-                  interval: 15,
-                  showTicks: true,
-                  showLabels: true,
-                  value: currentTime,
-                  onChanged: (dynamic newValue) {
-                    setState(() {
-                      currentTime = newValue;
-                    });
-                  },
-                ),
+                Obx(() => SfSlider(
+                      thumbIcon: Container(
+                        width: 3,
+                        height: 3,
+                        margin: const EdgeInsets.all(100.0),
+                        decoration: const BoxDecoration(
+                            color: kPrimaryColor, shape: BoxShape.circle),
+                      ),
+                      activeColor: kPrimaryColor,
+                      inactiveColor: kGrayScaleColor200,
+                      min: 0.0,
+                      max: 60.0,
+                      interval: 15,
+                      showTicks: true,
+                      showLabels: true,
+                      value: trackCustomizeController.sectionDuration.value,
+                      onChanged: (dynamic newValue) {
+                        int duration =
+                            double.parse(newValue.toString()).round();
+                        trackCustomizeController.setSectionDuration(duration);
+                      },
+                    )),
                 kSizedBoxVerticalXL,
                 ButtonWidget(
                   button: ButtonType.mainButton,

@@ -46,7 +46,7 @@ class CustomizeSectionScreen extends StatelessWidget {
                                     style: kBody3.copyWith(
                                         color: kGrayScaleColor500))),
                             Obx(() => SelectSectionType(
-                                value: controller.newSectionType.value,
+                                value: controller.sectionType.value,
                                 onChanged: (SectionType? type) {
                                   if (type != null) {
                                     controller.selectNewSectionType(type);
@@ -59,8 +59,7 @@ class CustomizeSectionScreen extends StatelessWidget {
                                   button: ButtonType.mainButton,
                                   text: 'Add',
                                   handleClick: () {
-                                    Get.toNamed<dynamic>(
-                                        RoutesName.customizeExerciseSection);
+                                    controller.createNewSection();
                                   },
                                 )
                               ],
