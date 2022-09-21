@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
 
-  final AuthController _authController = AuthController();
+  final AuthController _authController = Get.find();
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
