@@ -13,24 +13,31 @@ class SelectSectionType extends StatelessWidget {
   final void Function(SectionType?) onChanged;
 
   Widget renderSelection(String text, SectionType selectionValue) {
-    return Container(
-        decoration: BoxDecoration(
-            border: Border.all(color: kGrayScaleColor300),
-            borderRadius: kBorderRadiusXXS),
-        child: Row(children: <Widget>[
-          RadioButton<SectionType>(
-            groupValue: value,
-            value: selectionValue,
-            onChanged: onChanged,
-          ),
-          Text(
-            text,
-            style: kBody3Medium.copyWith(
-                color: value == selectionValue
-                    ? kSecondaryColor
-                    : kGrayScaleColor500),
-          )
-        ]));
+    return GestureDetector(
+        onTap: () {
+          onChanged(selectionValue);
+        },
+        child: Container(
+            decoration: BoxDecoration(
+                border: Border.all(
+                    color: value == selectionValue
+                        ? kSecondaryColor
+                        : kGrayScaleColor300),
+                borderRadius: kBorderRadiusXXS),
+            child: Row(children: <Widget>[
+              RadioButton<SectionType>(
+                groupValue: value,
+                value: selectionValue,
+                onChanged: onChanged,
+              ),
+              Text(
+                text,
+                style: kBody3Medium.copyWith(
+                    color: value == selectionValue
+                        ? kSecondaryColor
+                        : kGrayScaleColor500),
+              )
+            ])));
   }
 
   @override
