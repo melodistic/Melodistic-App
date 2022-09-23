@@ -17,25 +17,12 @@ import 'package:melodistic/widgets/common/type/screen.type.dart';
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
 
-  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
   final AuthController _authController = Get.find();
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
-
-  Future<void> _handleSignIn() async {
-    try {
-      GoogleSignInAccount? account = await _googleSignIn.signIn();
-      if (account != null) {
-        account.authentication
-            .then((GoogleSignInAuthentication value) => value.accessToken);
-      }
-    } catch (error) {
-      return;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +86,7 @@ class RegisterScreen extends StatelessWidget {
                       button: ButtonType.softButton,
                       state: ButtonState.normal,
                       size: ButtonSize.large,
-                      handleClick: _handleSignIn,
+                      handleClick: _authController.authWithGoogle,
                       text: ' Register with Google',
                       prefixIcon: MelodisticIcon.google),
                   kSizedBoxVerticalXS,

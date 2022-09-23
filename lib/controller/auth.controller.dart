@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:get/utils.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:melodistic/models/exception.model.dart';
 import 'package:melodistic/models/token.model.dart';
 import 'package:melodistic/routes.dart';
@@ -97,5 +98,23 @@ class AuthController extends GetxController {
     await UserSession.clearSession();
     token.value = null;
     Get.offAllNamed<void>(RoutesName.onboard);
+  }
+
+  Future<void> authWithGoogle() async {
+    final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
+    try {
+      GoogleSignInAccount? account = await _googleSignIn.signIn();
+      if (account != null) {
+        GoogleSignInAuthentication result = await account.authentication;
+        if (result.accessToken == null) return;
+        final Response<dynamic>? response = await APIClient().post(
+            '/auth/google',
+            data: <String, String>{'token': result.accessToken!});
+        if (response == null) return;
+        token.value = Token.fromJson(response.data as Map<String, dynamic>);
+        await UserSession.setSession(token.value!.token);
+        Get.toNamed<dynamic>(RoutesName.home);
+      }
+    } catch (_) {}
   }
 }
