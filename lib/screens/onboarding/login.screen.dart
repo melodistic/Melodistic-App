@@ -14,8 +14,8 @@ import 'package:melodistic/widgets/common/type/field.type.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
-  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
 
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
   final AuthController _authController = Get.find();
 
   final TextEditingController _emailController = TextEditingController();

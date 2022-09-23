@@ -9,7 +9,6 @@ import 'package:melodistic/screens/home/home.screen.dart';
 import 'package:melodistic/screens/home/track.screen.dart';
 import 'package:melodistic/screens/onboarding/login.screen.dart';
 import 'package:melodistic/screens/onboarding/onboard.screen.dart';
-import 'package:melodistic/screens/onboarding/register/profile.screen.dart';
 import 'package:melodistic/screens/onboarding/register/register.screen.dart';
 import 'package:melodistic/screens/onboarding/register/time.screen.dart';
 import 'package:melodistic/screens/setting/help.screen.dart';
@@ -25,7 +24,6 @@ class RoutesName {
   static const String onboard = '/onboard';
   static const String login = '/onboard/login';
   static const String register = '/onboard/register';
-  static const String registerProfile = '/onboard/register/profile';
   static const String registerTime = '/onboard/register/time';
 
   // Home
@@ -58,8 +56,6 @@ final Map<String, WidgetBuilder> onboardingRoutes = <String, WidgetBuilder>{
   RoutesName.onboard: (BuildContext context) => const OnboardingScreen(),
   RoutesName.login: (BuildContext context) => LoginScreen(),
   RoutesName.register: (BuildContext context) => RegisterScreen(),
-  RoutesName.registerProfile: (BuildContext context) =>
-      const RegisterProfileScreen(),
   RoutesName.registerTime: (BuildContext context) => const RegisterTimeScreen()
 };
 
