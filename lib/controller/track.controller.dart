@@ -33,7 +33,7 @@ class TrackController extends GetxController {
   }
 
   Future<void> fetchFavoriteTracks() async {
-     updateFetching(true);
+    updateFetching(true);
     try {
       final Response<List<dynamic>>? response =
           await APIClient().get<List<dynamic>>('/track');
