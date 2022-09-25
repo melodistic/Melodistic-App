@@ -33,29 +33,20 @@ class TrackController extends GetxController {
   }
 
   Future<void> fetchFavoriteTracks() async {
-    updateFetching(true);
+     updateFetching(true);
     try {
-      // final Response<List<dynamic>> response =
-      //     await Dio().get('$apiBaseURL/track');
-      // final List<Track> tracks = response.data!
-      //     .map((dynamic data) => Track.fromJson(data as Map<String, dynamic>))
-      //     .toList();
-      // publicTracks = tracks.obs;
-      final List<Track> data = <Track>[
-        Track(
-            trackId: '2',
-            trackName: 'In the loving time',
-            trackImageUrl: 'https://img.cscms.me/jd5r4pR0fJOfcmpuiG1o.png',
-            muscleGroup: 'ARM',
-            description: '10 minutes of arm workout',
-            duration: 600,
-            isPublic: true,
-            isFav: true)
-      ];
-      favoriteTracks = data;
-    } on DioError catch (e) {
-      developer.log(e.toString(), name: 'TrackController');
+      final Response<List<dynamic>>? response =
+          await APIClient().get<List<dynamic>>('/track');
+      if (response == null) {
+        updateFetching(false);
+        return;
+      }
+      final List<Track> tracks = response.data!
+          .map((dynamic data) => Track.fromJson(data as Map<String, dynamic>))
+          .toList();
+      publicTracks = tracks.obs;
+    } finally {
+      updateFetching(false);
     }
-    updateFetching(false);
   }
 }
