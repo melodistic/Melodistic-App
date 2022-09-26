@@ -25,7 +25,7 @@ class ValidateOtpScreen extends StatelessWidget {
               const Padding(
                   padding: EdgeInsets.only(right: kSizeM),
                   child: Text(
-                    'A One Time Passcode has been sent to username@email.com ',
+                    'A One Time Passcode has been sent to username@email.com',
                     style: kBody2,
                   )),
               kSizedBoxVerticalS,
