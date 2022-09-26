@@ -5,6 +5,7 @@ import 'package:melodistic/screens/customize-track/section/exercise.screen.dart'
 import 'package:melodistic/screens/customize-track/section/section.screen.dart';
 import 'package:melodistic/screens/forget-password/forget-password.screen.dart';
 import 'package:melodistic/screens/forget-password/new-password.screen.dart';
+import 'package:melodistic/screens/forget-password/validate-otp.screen.dart';
 import 'package:melodistic/screens/home/home.screen.dart';
 import 'package:melodistic/screens/home/track.screen.dart';
 import 'package:melodistic/screens/onboarding/login.screen.dart';
@@ -49,6 +50,7 @@ class RoutesName {
 
   // Forget Password
   static const String forgetPassword = '/forget-password';
+  static const String validateOtp = '/validate-otp';
   static const String newPassword = '/forget-password/new-password';
 }
 
@@ -91,6 +93,7 @@ final Map<String, WidgetBuilder> settingRoutes = <String, WidgetBuilder>{
 
 final Map<String, WidgetBuilder> newPasswordRoutes = <String, WidgetBuilder>{
   RoutesName.forgetPassword: (BuildContext context) => ForgetPasswordScreen(),
+  RoutesName.validateOtp: (BuildContext context) => ValidateOtpScreen(),
   RoutesName.newPassword: (BuildContext context) => NewPasswordScreen()
 };
 
