@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/controller/auth.controller.dart';
 import 'package:melodistic/controller/hometab.controller.dart';
 import 'package:melodistic/controller/track.controller.dart';
 import 'package:melodistic/routes.dart';
@@ -22,9 +23,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final TrackController trackController = Get.find();
   final HomeTabController homeTabController = Get.find();
+  final AuthController authController = Get.find();
   @override
   void initState() {
     trackController.fetchPublicTracks();
+    authController.tryAutoLogin();
     super.initState();
   }
 
