@@ -52,4 +52,8 @@ class APIClient {
     return createOperation<T>(path,
         method: 'POST', data: data, headers: headers);
   }
+
+  static Map<String, String> getAuthHeaders(String token) {
+    return <String, String>{'Authorization': 'Bearer $token'};
+  }
 }

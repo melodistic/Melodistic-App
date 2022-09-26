@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/controller/auth.controller.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/type/drawer.type.dart';
 
 class MelodisticDrawer extends StatelessWidget {
   MelodisticDrawer({Key? key}) : super(key: key);
 
+  final AuthController authController = Get.find();
   final List<DrawerItem> _drawerItems = <DrawerItem>[
     DrawerItem('Home', MelodisticIcon.home_door, RoutesName.home),
     DrawerItem('Upload', MelodisticIcon.folder_add, RoutesName.upload),
@@ -85,8 +87,7 @@ class MelodisticDrawer extends StatelessWidget {
           ),
           renderDrawerItem(context,
               title: 'Log out', icon: MelodisticIcon.exit_left, onTap: () {
-            // TODO: Call AuthController logout before navigate to login screen
-            Get.offAllNamed<void>(RoutesName.login);
+            authController.logout();
           }),
           kSizedBoxVerticalM
         ],

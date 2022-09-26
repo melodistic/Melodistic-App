@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
@@ -14,24 +13,11 @@ import 'package:melodistic/widgets/common/type/field.type.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
-  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>['email']);
 
-  final AuthController _authController = AuthController();
+  final AuthController _authController = Get.find();
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
-  Future<void> _handleSignIn() async {
-    try {
-      GoogleSignInAccount? account = await _googleSignIn.signIn();
-      if (account != null) {
-        account.authentication
-            .then((GoogleSignInAuthentication value) => value.accessToken);
-      }
-    } catch (error) {
-      return;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +36,7 @@ class LoginScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Container(
-                    height: 400,
+                    height: 450,
                     width: double.infinity,
                     decoration: const BoxDecoration(
                       color: kGrayScaleColorWhite,
@@ -130,7 +116,7 @@ class LoginScreen extends StatelessWidget {
                                     size: ButtonSize.large,
                                     button: ButtonType.softButton,
                                     state: ButtonState.normal,
-                                    handleClick: _handleSignIn,
+                                    handleClick: _authController.authWithGoogle,
                                     prefixIcon: MelodisticIcon.google,
                                     text: ' Log in with Google'),
                                 kSizedBoxVerticalXS,

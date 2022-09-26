@@ -63,5 +63,7 @@
 			</array>
 		</dict>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Upload images for program picture</string>
 </dict>
 </plist>
