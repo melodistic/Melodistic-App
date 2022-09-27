@@ -15,6 +15,7 @@ class AuthController extends GetxController {
   final Rxn<Token> token = Rxn<Token>();
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
+  final Rx<Duration> duration = Duration.zero.obs;
 
   ValidateFunction validateEmail = (String? value) {
     if (value == null || value.isEmpty) {
@@ -116,5 +117,30 @@ class AuthController extends GetxController {
         Get.toNamed<dynamic>(RoutesName.home);
       }
     } catch (_) {}
+  }
+
+  Future<void> setDuration(Duration newDuration) async {
+    duration.value = newDuration;
+  }
+
+  Future<bool> configDuration() async {
+    int hours = duration.value.inHours;
+    int minutes = duration.value.inMinutes % 60;
+    final bool hasSession = await UserSession.hasSession();
+    if (!hasSession) {
+      throw MelodisticException('Unauthorized');
+    }
+    final String? userToken = await UserSession.getSession();
+    token.value = Token(token: userToken!);
+    final Response<dynamic>? response = await APIClient().post('/user/duration',
+        data: <String, int>{
+          'duration_hour': hours,
+          'duration_minute': minutes,
+        },
+        headers: APIClient.getAuthHeaders(token.value!.token));
+    if (response == null) {
+      return false;
+    }
+    return true;
   }
 }
