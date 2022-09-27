@@ -37,7 +37,7 @@ class Track {
         muscleGroup: (rawData['muscle_group'] ?? '').toString(),
         description: (rawData['description'] ?? '').toString(),
         duration: int.parse((rawData['duration'] ?? '0').toString()),
-        isPublic: rawData['is_public'] as bool,
+        isPublic: (rawData['is_public'] as bool?) ?? false,
         isFav: (rawData['is_favorite'] as bool?) ?? false);
   }
 }

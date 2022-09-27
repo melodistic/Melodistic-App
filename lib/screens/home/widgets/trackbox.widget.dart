@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/controller/player.controller.dart';
 import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/routes.dart';
 
 class TrackBox extends StatelessWidget {
-  const TrackBox({Key? key, required this.track}) : super(key: key);
+  TrackBox({Key? key, required this.track}) : super(key: key);
   final Track track;
+  final PlayerController playerController = Get.find();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -77,9 +80,9 @@ class TrackBox extends StatelessWidget {
               )
             ],
           )),
-      onTap: () {
-        Navigator.of(context).pushNamed(RoutesName.track,
-            arguments: <String, Track>{'track': track});
+      onTap: () async {
+        await playerController.setupPlayer(track);
+        Navigator.of(context).pushNamed(RoutesName.track);
       },
     );
   }

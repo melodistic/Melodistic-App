@@ -1,84 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
+import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
-import 'package:melodistic/config/api.dart';
+import 'package:melodistic/controller/player.controller.dart';
 import 'package:melodistic/screens/home/widgets/custom-track-shape.widget.dart';
+import 'package:melodistic/utils/format.dart';
 
-class MusicPlayer extends StatefulWidget {
-  const MusicPlayer({Key? key, required this.player, required this.trackId})
-      : super(key: key);
-  final AudioPlayer player;
-  final String trackId;
-  @override
-  State<MusicPlayer> createState() => _MusicPlayerState();
-}
-
-class _MusicPlayerState extends State<MusicPlayer> {
-  Duration _position = Duration.zero;
-  Duration _duration = Duration.zero;
-  @override
-  void initState() {
-    try {
-      widget.player
-          .setAudioSource(AudioSource.uri(
-              Uri.parse('$apiBaseURL/stream/' + widget.trackId)))
-          .then((Duration? value) {
-        setState(() {
-          _duration = value!;
-        });
-      });
-      widget.player.createPositionStream().listen((Duration position) {
-        setState(() {
-          _position = position;
-        });
-      });
-    } catch (err) {
-      return;
-    }
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    widget.player.stop();
-    widget.player.dispose();
-    super.dispose();
-  }
-
-  double convertDurationToDoubleValue(Duration? duration) {
-    if (duration == null) return 0;
-    return duration.inMilliseconds / 1000;
-  }
-
-  String durationString(Duration duration) {
-    String twoDigits(int n) {
-      if (n >= 10) return '$n';
-      return '0$n';
-    }
-
-    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
-    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
-    return '$twoDigitMinutes:$twoDigitSeconds';
-  }
-
-  void playMusic() {
-    widget.player.play();
-    setState(() {
-      play = true;
-    });
-  }
-
-  void stopMusic() {
-    widget.player.pause();
-    setState(() {
-      play = false;
-    });
-  }
-
-  bool play = false;
-
+class MusicPlayer extends StatelessWidget {
+  MusicPlayer({Key? key}) : super(key: key);
+  final PlayerController playerController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -93,23 +24,24 @@ class _MusicPlayerState extends State<MusicPlayer> {
               trackShape: CustomTrackShape(),
               thumbShape: const RoundSliderThumbShape(
                   enabledThumbRadius: kSizeXXS * 1.5)),
-          child: Slider(
-              value: convertDurationToDoubleValue(_position),
+          child: Obx(() => Slider(
+              value: convertDurationToDoubleValue(
+                  playerController.currentProgress.value),
               onChanged: (double value) {
-                widget.player
+                playerController
                     .seek(Duration(milliseconds: value.toInt() * 1000));
-                playMusic();
               },
               min: 0,
-              max: convertDurationToDoubleValue(widget.player.duration))),
+              max: convertDurationToDoubleValue(
+                  playerController.currentDuration.value)))),
       kSizedBoxVerticalXS,
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Text>[
-          Text(durationString(_position)),
-          Text(durationString(_duration))
-        ],
-      ),
+      Obx(() => Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Text>[
+              Text(durationString(playerController.currentProgress.value)),
+              Text(durationString(playerController.currentDuration.value))
+            ],
+          )),
       kSizedBoxVerticalM,
       Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
         GestureDetector(
@@ -120,13 +52,14 @@ class _MusicPlayerState extends State<MusicPlayer> {
             height: kSizeS * 1.5,
           ),
           onTap: () {
-            widget.player
-                .seek(Duration(milliseconds: _position.inMilliseconds - 15000));
-            playMusic();
+            playerController.seek(Duration(
+                milliseconds:
+                    playerController.currentProgress.value.inMilliseconds -
+                        15000));
           },
         ),
         kSizedBoxHorizontalS,
-        play
+        Obx(() => playerController.isPlaying.value
             ? (Container(
                 width: kSizeL,
                 height: kSizeL,
@@ -137,7 +70,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
                       Icons.pause,
                     ),
                     iconSize: kSizeM,
-                    onPressed: stopMusic)))
+                    onPressed: playerController.stop)))
             : (Container(
                 width: kSizeL,
                 height: kSizeL,
@@ -149,7 +82,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
                       color: kGrayScaleColorWhite,
                     ),
                     iconSize: kSizeM,
-                    onPressed: playMusic))),
+                    onPressed: playerController.play)))),
         kSizedBoxHorizontalS,
         GestureDetector(
           child: const SizedBox(
@@ -159,9 +92,10 @@ class _MusicPlayerState extends State<MusicPlayer> {
             height: kSizeS * 1.5,
           ),
           onTap: () {
-            widget.player
-                .seek(Duration(milliseconds: _position.inMilliseconds + 15000));
-            playMusic();
+            playerController.seek(Duration(
+                milliseconds:
+                    playerController.currentProgress.value.inMilliseconds +
+                        15000));
           },
         ),
       ])
