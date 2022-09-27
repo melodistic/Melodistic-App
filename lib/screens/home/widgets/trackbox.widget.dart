@@ -62,9 +62,9 @@ class TrackBox extends StatelessWidget {
                               style: kHeading2,
                             ),
                             track.isFav
-                                ? const Icon(MelodisticIcon.heart,
+                                ? const Icon(MelodisticIcon.favorite,
                                     color: kSecondaryColor)
-                                : const Icon(MelodisticIcon.heart)
+                                : const Icon(MelodisticIcon.favorite)
                           ]),
                       kSizedBoxVerticalXXS,
                       Text(track.description, style: kBody2),

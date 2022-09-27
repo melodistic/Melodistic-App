@@ -14,7 +14,7 @@ class MelodisticDrawer extends StatelessWidget {
     DrawerItem('Home', MelodisticIcon.home_door, RoutesName.home),
     DrawerItem('Upload', MelodisticIcon.folder_add, RoutesName.upload),
     DrawerItem('My library', MelodisticIcon.list_add, RoutesName.library),
-    DrawerItem('My favorite', MelodisticIcon.heart, RoutesName.favorite),
+    DrawerItem('My favorite', MelodisticIcon.favorite, RoutesName.favorite),
     DrawerItem('Setting', MelodisticIcon.settings, RoutesName.setting)
   ];
 
