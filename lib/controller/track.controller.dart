@@ -18,6 +18,7 @@ class TrackController extends GetxController {
   }
 
   Future<void> fetchPublicTracks() async {
+    await Future<void>.delayed(Duration.zero);
     updateFetching(true);
     try {
       final bool hasSession = await UserSession.hasSession();
@@ -41,6 +42,7 @@ class TrackController extends GetxController {
   }
 
   Future<void> fetchLibraryTrack() async {
+    await Future<void>.delayed(Duration.zero);
     updateFetching(true);
     try {
       final bool hasSession = await UserSession.hasSession();
@@ -64,6 +66,7 @@ class TrackController extends GetxController {
   }
 
   Future<void> fetchFavoriteTracks() async {
+    await Future<void>.delayed(Duration.zero);
     updateFetching(true);
     try {
       // final Response<List<dynamic>> response =

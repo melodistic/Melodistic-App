@@ -62,7 +62,7 @@ final Map<String, WidgetBuilder> onboardingRoutes = <String, WidgetBuilder>{
 };
 
 final Map<String, WidgetBuilder> homeRoutes = <String, WidgetBuilder>{
-  RoutesName.home: (BuildContext context) => const HomeScreen(),
+  RoutesName.home: (BuildContext context) => HomeScreen(),
   RoutesName.track: (BuildContext context) => const TrackScreen()
 };
 
@@ -78,7 +78,7 @@ final Map<String, WidgetBuilder> customizeTrackRoutes = <String, WidgetBuilder>{
 
 final Map<String, WidgetBuilder> userRoutes = <String, WidgetBuilder>{
   RoutesName.upload: (BuildContext context) => const UploadScreen(),
-  RoutesName.library: (BuildContext context) => const LibraryScreen(),
+  RoutesName.library: (BuildContext context) => LibraryScreen(),
   RoutesName.favorite: (BuildContext context) => const FavoriteScreen()
 };
 

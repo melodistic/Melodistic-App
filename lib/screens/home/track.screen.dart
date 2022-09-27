@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
-import 'package:melodistic/models/track.model.dart';
+import 'package:melodistic/controller/player.controller.dart';
 import 'package:melodistic/screens/home/widgets/music-player.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
-import 'package:just_audio/just_audio.dart';
 
 class TrackScreen extends StatelessWidget {
   const TrackScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final Track track = ((ModalRoute.of(context)!.settings.arguments
-        as Map<String, Track>)['track']) as Track;
-    final AudioPlayer player = AudioPlayer();
+    final PlayerController playerController = Get.find();
     return ScreenWrapper(
         customAppbar: AppBar(
           title: const Text('Song'),
@@ -26,33 +24,35 @@ class TrackScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
         ),
         extendBodyBehindAppBar: true,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            SizedBox(
-                height: 450,
-                width: double.infinity,
-                child: Image.network(track.trackImageUrl, fit: BoxFit.cover)),
-            kSizedBoxVerticalM,
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kSizeS * 1.5),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      track.trackName,
-                      style: kHeading2,
-                    ),
-                    kSizedBoxVerticalXS,
-                    Text(
-                      track.description,
-                      style: kBody2.copyWith(color: kGrayScaleColor600),
-                    ),
-                    kSizedBoxVerticalM,
-                    MusicPlayer(player: player, trackId: track.trackId)
-                  ]),
-            )
-          ],
-        ));
+        child: Obx(() => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                    height: 450,
+                    width: double.infinity,
+                    child: Image.network(
+                        playerController.currentTrack.value!.trackImageUrl,
+                        fit: BoxFit.cover)),
+                kSizedBoxVerticalM,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: kSizeS * 1.5),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          playerController.currentTrack.value!.trackName,
+                          style: kHeading2,
+                        ),
+                        kSizedBoxVerticalXS,
+                        Text(
+                          playerController.currentTrack.value!.description,
+                          style: kBody2.copyWith(color: kGrayScaleColor600),
+                        ),
+                        kSizedBoxVerticalM,
+                        MusicPlayer()
+                      ]),
+                )
+              ],
+            )));
   }
 }
