@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
@@ -18,7 +20,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
   final TrackController trackController = TrackController();
   @override
   void initState() {
-    trackController.fetchPublicTracks();
+    trackController.fetchLibraryTrack();
     super.initState();
   }
 
@@ -28,25 +30,31 @@ class _LibraryScreenState extends State<LibraryScreen> {
         screen: MelodisticScreenType.withTitle,
         child: Container(
             padding: const EdgeInsets.symmetric(horizontal: kSizeS),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                      padding: const EdgeInsets.only(bottom: kSizeS),
-                      child: Text(
-                        'Latest Program',
-                        style: kBody3Medium.copyWith(color: kPrimaryColor),
-                      )),
-                  Expanded(
-                      child: ListView.separated(
-                          itemCount: trackController.publicTracks.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return TrackBox(
-                                track: trackController.publicTracks[index]);
-                          },
-                          separatorBuilder:
-                              ((BuildContext context, int index) =>
-                                  kSizedBoxVerticalS)))
-                ])));
+            child: Obx(() => trackController.isFetching.isTrue
+                ? const SpinKitFadingCircle(
+                    color: kGrayScaleColor300,
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                        Padding(
+                            padding: const EdgeInsets.only(bottom: kSizeS),
+                            child: Text(
+                              'Latest Program',
+                              style:
+                                  kBody3Medium.copyWith(color: kPrimaryColor),
+                            )),
+                        Obx(() => Expanded(
+                            child: ListView.separated(
+                                itemCount: trackController.libraryTracks.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return TrackBox(
+                                      track:
+                                          trackController.libraryTracks[index]);
+                                },
+                                separatorBuilder:
+                                    ((BuildContext context, int index) =>
+                                        kSizedBoxVerticalS))))
+                      ]))));
   }
 }
