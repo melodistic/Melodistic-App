@@ -4,15 +4,14 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/screens/onboarding/register/widgets/settime.widget.dart';
 
-class CustomTimePicker extends StatefulWidget {
-  const CustomTimePicker({Key? key}) : super(key: key);
-  @override
-  State<CustomTimePicker> createState() => CustomTimePickerState();
-}
+class CustomTimePicker extends StatelessWidget {
+  const CustomTimePicker(
+      {Key? key, required this.onChanged, required this.duration})
+      : super(key: key);
+  final ValueChanged<Duration> onChanged;
+  final Duration duration;
 
-class CustomTimePickerState extends State<CustomTimePicker> {
-  Duration duration = const Duration(hours: 0, minutes: 0);
-  void _showDialog(Widget child) {
+  void _showDialog(BuildContext context, Widget child) {
     showCupertinoModalPopup<void>(
         context: context,
         builder: (BuildContext context) => Container(
@@ -45,11 +44,12 @@ class CustomTimePickerState extends State<CustomTimePicker> {
                 children: <Widget>[
                   CupertinoButton(
                     onPressed: () => _showDialog(
+                      context,
                       CupertinoTimerPicker(
                         mode: CupertinoTimerPickerMode.hm,
                         initialTimerDuration: duration,
                         onTimerDurationChanged: (Duration newDuration) {
-                          setState(() => duration = newDuration);
+                          onChanged(newDuration);
                         },
                       ),
                     ),

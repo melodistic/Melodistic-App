@@ -58,7 +58,7 @@ final Map<String, WidgetBuilder> onboardingRoutes = <String, WidgetBuilder>{
   RoutesName.onboard: (BuildContext context) => const OnboardingScreen(),
   RoutesName.login: (BuildContext context) => LoginScreen(),
   RoutesName.register: (BuildContext context) => RegisterScreen(),
-  RoutesName.registerTime: (BuildContext context) => const RegisterTimeScreen()
+  RoutesName.registerTime: (BuildContext context) => RegisterTimeScreen()
 };
 
 final Map<String, WidgetBuilder> homeRoutes = <String, WidgetBuilder>{
