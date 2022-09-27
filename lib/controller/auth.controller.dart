@@ -131,13 +131,12 @@ class AuthController extends GetxController {
       throw MelodisticException('Unauthorized');
     }
     final String? userToken = await UserSession.getSession();
-    token.value = Token(token: userToken!);
     final Response<dynamic>? response = await APIClient().post('/user/duration',
         data: <String, int>{
           'duration_hour': hours,
           'duration_minute': minutes,
         },
-        headers: APIClient.getAuthHeaders(token.value!.token));
+        headers: APIClient.getAuthHeaders(userToken!));
     if (response == null) {
       return false;
     }

@@ -13,6 +13,7 @@ import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class RegisterTimeScreen extends StatelessWidget {
   RegisterTimeScreen({Key? key}) : super(key: key);
+
   final AuthController authController = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -53,10 +54,12 @@ class RegisterTimeScreen extends StatelessWidget {
             button: ButtonType.mainButton,
             text: 'Done',
             handleClick: () async {
-              bool success = await authController.configDuration();
-              if (success) {
-                Get.toNamed<dynamic>(RoutesName.home);
-              }
+              try {
+                bool success = await authController.configDuration();
+                if (success) {
+                  Get.toNamed<dynamic>(RoutesName.home);
+                }
+              } catch (_) {}
             },
           ),
           const ButtonWidget(button: ButtonType.textButton, text: 'Not now')

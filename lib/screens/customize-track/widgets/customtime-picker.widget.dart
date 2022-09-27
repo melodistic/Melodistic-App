@@ -8,8 +8,9 @@ class CustomTimePicker extends StatelessWidget {
   const CustomTimePicker(
       {Key? key, required this.onChanged, required this.duration})
       : super(key: key);
-  final Function onChanged;
+  final ValueChanged<Duration> onChanged;
   final Duration duration;
+
   void _showDialog(BuildContext context, Widget child) {
     showCupertinoModalPopup<void>(
         context: context,
