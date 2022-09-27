@@ -13,26 +13,17 @@ import 'package:melodistic/screens/home/widgets/trackbox.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  HomeScreen({Key? key}) : super(key: key);
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   final TrackController trackController = Get.find();
   final HomeTabController homeTabController = Get.find();
   final AuthController authController = Get.find();
-  @override
-  void initState() {
-    trackController.fetchPublicTracks();
-    authController.tryAutoLogin();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
+    trackController.fetchPublicTracks();
+    authController.tryAutoLogin();
     return ScreenWrapper(
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
@@ -53,13 +44,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                         TablistWidget(),
-                        Obx(() => Padding(
+                        Padding(
                             padding: const EdgeInsets.symmetric(
                                 vertical: kSizeS, horizontal: kSizeXXS),
                             child: Text(
                               '${homeTabController.selectedTab?.value.label} Track',
                               style: kHeading2.copyWith(color: kPrimaryColor),
-                            ))),
+                            )),
                         Expanded(
                             child: ListView.separated(
                                 itemCount: trackController.publicTracks.length,

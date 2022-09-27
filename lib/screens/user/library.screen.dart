@@ -9,23 +9,13 @@ import 'package:melodistic/screens/home/widgets/trackbox.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
-class LibraryScreen extends StatefulWidget {
-  const LibraryScreen({Key? key}) : super(key: key);
-
-  @override
-  State<LibraryScreen> createState() => _LibraryScreenState();
-}
-
-class _LibraryScreenState extends State<LibraryScreen> {
+class LibraryScreen extends StatelessWidget {
+  LibraryScreen({Key? key}) : super(key: key);
   final TrackController trackController = TrackController();
-  @override
-  void initState() {
-    trackController.fetchLibraryTrack();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
+    trackController.fetchLibraryTrack();
     return ScreenWrapper(
         screen: MelodisticScreenType.withTitle,
         child: Container(
@@ -44,7 +34,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                               style:
                                   kBody3Medium.copyWith(color: kPrimaryColor),
                             )),
-                        Obx(() => Expanded(
+                        Expanded(
                             child: ListView.separated(
                                 itemCount: trackController.libraryTracks.length,
                                 itemBuilder: (BuildContext context, int index) {
@@ -54,7 +44,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                                 },
                                 separatorBuilder:
                                     ((BuildContext context, int index) =>
-                                        kSizedBoxVerticalS))))
+                                        kSizedBoxVerticalS)))
                       ]))));
   }
 }
