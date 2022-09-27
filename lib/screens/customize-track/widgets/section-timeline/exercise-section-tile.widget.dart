@@ -48,22 +48,20 @@ class ExerciseSectionTile extends StatelessWidget {
               style: kHeading3.copyWith(color: kSecondaryColor),
             ),
             Text('${section.exerciseType}, ${section.mood}',
-                style: kBody4.copyWith(color: kGrayScaleColor600)),
+                style: kBody3.copyWith(color: kGrayScaleColor600)),
             Text(
               '${section.duration} mins',
-              style: kBody4.copyWith(color: kGrayScaleColor600),
+              style: kBody3.copyWith(color: kGrayScaleColor600),
             ),
           ],
         )),
         kSizedBoxHorizontalS,
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'Edit',
-              style: kBody4.copyWith(
-                  color: kGrayScaleColor600,
-                  decoration: TextDecoration.underline),
+          children: const <Widget>[
+            Icon(
+              Icons.more_vert,
+              color: kGrayScaleColor700,
             ),
           ],
         )

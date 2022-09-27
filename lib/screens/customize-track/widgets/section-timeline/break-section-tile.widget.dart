@@ -10,20 +10,31 @@ class BreakSectionTile extends StatelessWidget {
   final Section section;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        kSizedBoxHorizontalXXS,
-        kSizedBoxHorizontalS,
-        const Icon(
-          MelodisticIcon.coffee,
-          color: kGrayScaleColor600,
-        ),
-        kSizedBoxHorizontalXS,
-        Text(
-          '${section.mood} break ${section.duration} mins',
-          style: kBody3.copyWith(color: kGrayScaleColor600),
-        )
-      ],
-    );
+    return Padding(
+        padding:
+            const EdgeInsets.symmetric(horizontal: kSizeXS, vertical: kSizeXXS),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+                child: Row(
+              children: <Widget>[
+                kSizedBoxHorizontalS,
+                const Icon(
+                  MelodisticIcon.coffee,
+                  color: kGrayScaleColor600,
+                ),
+                kSizedBoxHorizontalXS,
+                Text(
+                  '${section.mood} break ${section.duration} mins',
+                  style: kBody3.copyWith(color: kGrayScaleColor600),
+                )
+              ],
+            )),
+            const Icon(
+              Icons.more_vert,
+              color: kGrayScaleColor700,
+            ),
+          ],
+        ));
   }
 }

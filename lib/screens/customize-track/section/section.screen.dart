@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
@@ -20,8 +21,7 @@ class CustomizeSectionScreen extends StatelessWidget {
     return ScreenWrapper(
         screen: MelodisticScreenType.withBack,
         child: Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: kSizeS * 1.5, vertical: kSizeS),
+            padding: const EdgeInsets.symmetric(horizontal: kSizeS * 1.25),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -30,8 +30,8 @@ class CustomizeSectionScreen extends StatelessWidget {
                   style: kHeading1,
                 ),
                 kSizedBoxVerticalS,
-                const Text(
-                    'Create a special workout music program just for you.'),
+                Text('Create a special workout music program just for you.',
+                    style: kBody2.copyWith(color: kGrayScaleColor600)),
                 kSizedBoxVerticalS,
                 Expanded(
                     child: Column(
