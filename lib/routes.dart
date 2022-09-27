@@ -69,7 +69,7 @@ final Map<String, WidgetBuilder> homeRoutes = <String, WidgetBuilder>{
 final Map<String, WidgetBuilder> customizeTrackRoutes = <String, WidgetBuilder>{
   RoutesName.customize: (BuildContext context) => const CustomizeScreen(),
   RoutesName.customizeSection: (BuildContext context) =>
-      const CustomizeSectionScreen(),
+      CustomizeSectionScreen(),
   RoutesName.customizeExerciseSection: (BuildContext context) =>
       CustomizeExerciseScreen(),
   RoutesName.customizeBreakSection: (BuildContext context) =>

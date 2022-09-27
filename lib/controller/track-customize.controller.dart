@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/screens/customize-track/type/Section.type.dart';
 import 'package:melodistic/widgets/common/type/option-item.type.dart';
 import 'package:melodistic/widgets/common/type/section.type.dart';
 
@@ -25,6 +26,8 @@ class TrackCustomizeController extends GetxController {
     OptionItem(id: 4, label: 'Chill', position: 0)
   ];
 
+  late RxList<Section> sectionList;
+
   late Rx<OptionItem> muscleGroup;
   late Rx<SectionType> sectionType;
   late Rx<OptionItem> sectionExerciseType;
@@ -37,6 +40,8 @@ class TrackCustomizeController extends GetxController {
     sectionExerciseType = exerciseTypeList[0].obs;
     sectionMood = moodList[0].obs;
     sectionDuration = 15.obs;
+    // mock data
+    sectionList = getMockSectionList().obs;
   }
 
   void setupNewSection() {
@@ -78,5 +83,34 @@ class TrackCustomizeController extends GetxController {
 
   void setSectionDuration(int duration) {
     sectionDuration.value = duration;
+  }
+
+  List<Section> getMockSectionList() {
+    return <Section>[
+      Section(
+          name: 'Warm up',
+          type: SectionType.exerciseSection,
+          exerciseType: 'Warm up',
+          mood: 'Chill',
+          duration: 15),
+      Section(
+          name: 'Break',
+          type: SectionType.breakSection,
+          exerciseType: 'break',
+          mood: 'Chill',
+          duration: 5),
+      Section(
+          name: 'Set 1',
+          type: SectionType.exerciseSection,
+          exerciseType: 'Exercise',
+          mood: 'Focus',
+          duration: 15),
+      Section(
+          name: 'Set 2',
+          type: SectionType.exerciseSection,
+          exerciseType: 'Exercise',
+          mood: 'Party',
+          duration: 15)
+    ];
   }
 }
