@@ -41,6 +41,7 @@ class TrackCustomizeController extends GetxController {
   Rxn<String> programName = Rxn<String>();
   Rxn<File> programPicture = Rxn<File>();
   Rxn<String> errorMessage = Rxn<String>();
+  Rxn<String> sectionName = Rxn<String>();
 
   TrackCustomizeController() {
     muscleGroup = muscleGroupList[0].obs;
@@ -68,6 +69,10 @@ class TrackCustomizeController extends GetxController {
     }
     return null;
   };
+
+  Future<void> setSectionName(String newSectionName) async {
+    sectionName.value = newSectionName;
+  }
 
   Future<void> setProgramName(String newProgramName) async {
     programName.value = newProgramName;

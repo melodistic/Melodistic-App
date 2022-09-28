@@ -119,7 +119,12 @@ class CustomizeExerciseScreen extends StatelessWidget {
                   button: ButtonType.mainButton,
                   text: 'Add',
                   handleClick: () {
-                    Get.toNamed<dynamic>(RoutesName.customizeSection);
+                    if (trackCustomizeController.customizeFormKey.currentState!
+                        .validate()) {
+                      String sectionName = _sectionname.text;
+                      trackCustomizeController.setSectionName(sectionName);
+                      Get.toNamed<dynamic>(RoutesName.customizeSection);
+                    }
                   },
                 )
               ],
