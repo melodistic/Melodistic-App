@@ -6,6 +6,7 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/auth.controller.dart';
 import 'package:melodistic/controller/hometab.controller.dart';
+import 'package:melodistic/controller/track-customize.controller.dart';
 import 'package:melodistic/controller/track.controller.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/screens/home/widgets/tablist.widget.dart';
@@ -19,6 +20,7 @@ class HomeScreen extends StatelessWidget {
   final TrackController trackController = Get.find();
   final HomeTabController homeTabController = Get.find();
   final AuthController authController = Get.find();
+  final TrackCustomizeController trackCustomizeController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class HomeScreen extends StatelessWidget {
           child: const Icon(Icons.add),
           backgroundColor: Colors.black,
           onPressed: () {
+            trackCustomizeController.setupNewTrack();
             Get.toNamed<dynamic>(RoutesName.customize);
           },
         ),
