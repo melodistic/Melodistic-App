@@ -18,6 +18,7 @@ class CustomizeBreakScreen extends StatelessWidget {
   CustomizeBreakScreen({Key? key}) : super(key: key);
 
   final TrackCustomizeController trackCustomizeController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
@@ -103,7 +104,7 @@ class CustomizeBreakScreen extends StatelessWidget {
                   button: ButtonType.mainButton,
                   text: 'Add',
                   handleClick: () {
-                    Get.toNamed<dynamic>(RoutesName.customizeSection);
+                    trackCustomizeController.addSection('Break Section');
                   },
                 )
               ],
