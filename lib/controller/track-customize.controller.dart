@@ -1,11 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/screens/customize-track/type/Section.type.dart';
+import 'package:melodistic/widgets/common/type/field.type.dart';
 import 'package:melodistic/widgets/common/type/option-item.type.dart';
 import 'package:melodistic/widgets/common/type/section.type.dart';
 
 class TrackCustomizeController extends GetxController {
+  final GlobalKey<FormState> customizeFormKey = GlobalKey<FormState>();
+
   final List<OptionItem> muscleGroupList = <OptionItem>[
     OptionItem(id: 1, label: 'Full body', position: 0),
     OptionItem(id: 2, label: 'Core', position: 0),
@@ -33,6 +38,9 @@ class TrackCustomizeController extends GetxController {
   late Rx<OptionItem> sectionExerciseType;
   late Rx<OptionItem> sectionMood;
   late Rx<int> sectionDuration;
+  Rxn<String> programName = Rxn<String>();
+  Rxn<File> programPicture = Rxn<File>();
+  Rxn<String> errorMessage = Rxn<String>();
 
   TrackCustomizeController() {
     muscleGroup = muscleGroupList[0].obs;
@@ -44,10 +52,41 @@ class TrackCustomizeController extends GetxController {
     sectionList = getMockSectionList().obs;
   }
 
+  bool validateProgramPicture() {
+    if (programPicture.value == null) {
+      errorMessage.value = 'Program Picture is required';
+      return false;
+    } else {
+      errorMessage.value = null;
+      return true;
+    }
+  }
+
+  ValidateFunction validateProgramName = (String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Program Name is required';
+    }
+    return null;
+  };
+
+  Future<void> setProgramName(String newProgramName) async {
+    programName.value = newProgramName;
+  }
+
+  Future<void> setProgramPicture(File newProgramPicture) async {
+    programPicture.value = newProgramPicture;
+  }
+
   void setupNewSection() {
     sectionExerciseType.value = exerciseTypeList[0];
     sectionMood.value = moodList[0];
     sectionDuration.value = 15;
+  }
+
+  void setupNewTrack() {
+    programName.value = null;
+    programPicture.value = null;
+    muscleGroup.value = muscleGroupList[0];
   }
 
   void createNewSection() {
