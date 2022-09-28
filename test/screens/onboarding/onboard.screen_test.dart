@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:melodistic/screens/onboarding/onboard.screen.dart';
+import 'package:melodistic/singleton/controller.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/type/screen.type.dart';
 
@@ -9,6 +10,7 @@ import '../../utils.dart';
 void main() {
   testWidgets('Onboarding Screen is rendered correctly',
       (WidgetTester tester) async {
+    Controller.setup();
     await tester
         .pumpWidget(createWidgetForTesting(child: const OnboardingScreen()));
     expect(find.byType(ScreenWrapper), findsOneWidget);

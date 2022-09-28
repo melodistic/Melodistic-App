@@ -5,11 +5,11 @@ import 'package:melodistic/screens/customize-track/section/exercise.screen.dart'
 import 'package:melodistic/screens/customize-track/section/section.screen.dart';
 import 'package:melodistic/screens/forget-password/forget-password.screen.dart';
 import 'package:melodistic/screens/forget-password/new-password.screen.dart';
+import 'package:melodistic/screens/forget-password/validate-otp.screen.dart';
 import 'package:melodistic/screens/home/home.screen.dart';
 import 'package:melodistic/screens/home/track.screen.dart';
 import 'package:melodistic/screens/onboarding/login.screen.dart';
 import 'package:melodistic/screens/onboarding/onboard.screen.dart';
-import 'package:melodistic/screens/onboarding/register/profile.screen.dart';
 import 'package:melodistic/screens/onboarding/register/register.screen.dart';
 import 'package:melodistic/screens/onboarding/register/time.screen.dart';
 import 'package:melodistic/screens/setting/help.screen.dart';
@@ -25,7 +25,6 @@ class RoutesName {
   static const String onboard = '/onboard';
   static const String login = '/onboard/login';
   static const String register = '/onboard/register';
-  static const String registerProfile = '/onboard/register/profile';
   static const String registerTime = '/onboard/register/time';
 
   // Home
@@ -51,6 +50,7 @@ class RoutesName {
 
   // Forget Password
   static const String forgetPassword = '/forget-password';
+  static const String validateOtp = '/validate-otp';
   static const String newPassword = '/forget-password/new-password';
 }
 
@@ -58,20 +58,18 @@ final Map<String, WidgetBuilder> onboardingRoutes = <String, WidgetBuilder>{
   RoutesName.onboard: (BuildContext context) => const OnboardingScreen(),
   RoutesName.login: (BuildContext context) => LoginScreen(),
   RoutesName.register: (BuildContext context) => RegisterScreen(),
-  RoutesName.registerProfile: (BuildContext context) =>
-      const RegisterProfileScreen(),
-  RoutesName.registerTime: (BuildContext context) => const RegisterTimeScreen()
+  RoutesName.registerTime: (BuildContext context) => RegisterTimeScreen()
 };
 
 final Map<String, WidgetBuilder> homeRoutes = <String, WidgetBuilder>{
-  RoutesName.home: (BuildContext context) => const HomeScreen(),
+  RoutesName.home: (BuildContext context) => HomeScreen(),
   RoutesName.track: (BuildContext context) => const TrackScreen()
 };
 
 final Map<String, WidgetBuilder> customizeTrackRoutes = <String, WidgetBuilder>{
   RoutesName.customize: (BuildContext context) => const CustomizeScreen(),
   RoutesName.customizeSection: (BuildContext context) =>
-      const CustomizeSectionScreen(),
+      CustomizeSectionScreen(),
   RoutesName.customizeExerciseSection: (BuildContext context) =>
       CustomizeExerciseScreen(),
   RoutesName.customizeBreakSection: (BuildContext context) =>
@@ -95,6 +93,7 @@ final Map<String, WidgetBuilder> settingRoutes = <String, WidgetBuilder>{
 
 final Map<String, WidgetBuilder> newPasswordRoutes = <String, WidgetBuilder>{
   RoutesName.forgetPassword: (BuildContext context) => ForgetPasswordScreen(),
+  RoutesName.validateOtp: (BuildContext context) => ValidateOtpScreen(),
   RoutesName.newPassword: (BuildContext context) => NewPasswordScreen()
 };
 

@@ -4,9 +4,11 @@ import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/screens/home/widgets/trackbox.widget.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
+import 'package:melodistic/singleton/controller.dart';
 import '../../utils.dart';
 
 void main() {
+  Controller.setup();
   testWidgets('trackbox render correctly when get data',
       (WidgetTester tester) async {
     Track data = Track(

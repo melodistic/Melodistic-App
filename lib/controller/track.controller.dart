@@ -1,12 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:get/state_manager.dart';
+import 'package:melodistic/models/exception.model.dart';
 import 'package:melodistic/models/track.model.dart';
 
 import 'package:melodistic/singleton/api_client.dart';
+import 'package:melodistic/singleton/user_session.dart';
 
 class TrackController extends GetxController {
-  List<Track> publicTracks = List<Track>.empty().obs;
-  List<Track> favoriteTracks = List<Track>.empty().obs;
+  RxList<Track> publicTracks = List<Track>.empty().obs;
+  RxList<Track> libraryTracks = List<Track>.empty().obs;
+  RxList<Track> favoriteTracks = List<Track>.empty().obs;
   RxBool isFetching = false.obs;
 
   void updateFetching(bool? status) {
@@ -14,10 +17,15 @@ class TrackController extends GetxController {
   }
 
   Future<void> fetchPublicTracks() async {
+    await Future<void>.delayed(Duration.zero);
     updateFetching(true);
     try {
-      final Response<List<dynamic>>? response =
-          await APIClient().get<List<dynamic>>('/track');
+      final bool hasSession = await UserSession.hasSession();
+      if (!hasSession) throw MelodisticException('Unauthorized');
+      final String? userToken = await UserSession.getSession();
+      final Response<List<dynamic>>? response = await APIClient()
+          .get<List<dynamic>>('/track',
+              headers: APIClient.getAuthHeaders(userToken!));
       if (response == null) {
         updateFetching(false);
         return;
@@ -25,13 +33,39 @@ class TrackController extends GetxController {
       final List<Track> tracks = response.data!
           .map((dynamic data) => Track.fromJson(data as Map<String, dynamic>))
           .toList();
-      publicTracks = tracks.obs;
+      publicTracks.value = tracks;
+    } catch (_) {
+    } finally {
+      updateFetching(false);
+    }
+  }
+
+  Future<void> fetchLibraryTrack() async {
+    await Future<void>.delayed(Duration.zero);
+    updateFetching(true);
+    try {
+      final bool hasSession = await UserSession.hasSession();
+      if (!hasSession) throw MelodisticException('Unauthorized');
+      final String? userToken = await UserSession.getSession();
+      final Response<List<dynamic>>? response = await APIClient()
+          .get<List<dynamic>>('/user/library',
+              headers: APIClient.getAuthHeaders(userToken!));
+      if (response == null) {
+        updateFetching(false);
+        return;
+      }
+      final List<Track> tracks = response.data!
+          .map((dynamic data) => Track.fromJson(data as Map<String, dynamic>))
+          .toList();
+      libraryTracks.value = tracks;
+    } catch (_) {
     } finally {
       updateFetching(false);
     }
   }
 
   Future<void> fetchFavoriteTracks() async {
+    await Future<void>.delayed(Duration.zero);
     updateFetching(true);
     try {
       final bool hasSession = await UserSession.hasSession();
