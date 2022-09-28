@@ -34,8 +34,12 @@ class TrackController extends GetxController {
   Future<void> fetchFavoriteTracks() async {
     updateFetching(true);
     try {
-      final Response<List<dynamic>>? response =
-          await APIClient().get<List<dynamic>>('/track');
+      final bool hasSession = await UserSession.hasSession();
+      if (!hasSession) throw MelodisticException('Unauthorized');
+      final String? userToken = await UserSession.getSession();
+      final Response<List<dynamic>>? response = await APIClient()
+          .get<List<dynamic>>('/user/favorite',
+              headers: APIClient.getAuthHeaders(userToken!));
       if (response == null) {
         updateFetching(false);
         return;
@@ -43,7 +47,8 @@ class TrackController extends GetxController {
       final List<Track> tracks = response.data!
           .map((dynamic data) => Track.fromJson(data as Map<String, dynamic>))
           .toList();
-      publicTracks = tracks.obs;
+      favoriteTracks.value = tracks;
+    } catch (_) {
     } finally {
       updateFetching(false);
     }

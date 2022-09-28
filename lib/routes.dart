@@ -80,8 +80,8 @@ final Map<String, WidgetBuilder> customizeTrackRoutes = <String, WidgetBuilder>{
 
 final Map<String, WidgetBuilder> userRoutes = <String, WidgetBuilder>{
   RoutesName.upload: (BuildContext context) => const UploadScreen(),
-  RoutesName.library: (BuildContext context) => const LibraryScreen(),
-  RoutesName.favorite: (BuildContext context) => const FavoriteScreen()
+  RoutesName.library: (BuildContext context) => LibraryScreen(),
+  RoutesName.favorite: (BuildContext context) => FavoriteScreen()
 };
 
 final Map<String, WidgetBuilder> settingRoutes = <String, WidgetBuilder>{
