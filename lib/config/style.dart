@@ -28,6 +28,11 @@ const TextStyle kBody1 = TextStyle(
     fontSize: kFontSizeL,
     fontWeight: kFontWeightRegular);
 
+const TextStyle kBody1Medium = TextStyle(
+    fontFamily: kPoppinsFont,
+    fontSize: kFontSizeL,
+    fontWeight: kFontWeightMedium);
+
 const TextStyle kBody2 = TextStyle(
     fontFamily: kPoppinsFont,
     fontSize: kFontSizeM,

@@ -11,8 +11,8 @@ import 'package:melodistic/controller/track.controller.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/screens/home/widgets/tablist.widget.dart';
 import 'package:melodistic/screens/home/widgets/trackbox.widget.dart';
+import 'package:melodistic/widgets/common/appbar/main.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
-import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
             Get.toNamed<dynamic>(RoutesName.customize);
           },
         ),
-        screen: MelodisticScreenType.withTitle,
+        customAppbar: const MainAppbar(title: 'Melodistic'),
         child: Container(
             padding:
                 const EdgeInsets.symmetric(horizontal: kSizeS, vertical: 10),

@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
+import 'package:melodistic/config/style.dart';
 
-class HomeAppbar extends StatelessWidget with PreferredSizeWidget {
-  const HomeAppbar({Key? key}) : super(key: key);
+class MainAppbar extends StatelessWidget with PreferredSizeWidget {
+  const MainAppbar({Key? key, required this.title}) : super(key: key);
+
+  final String title;
 
   @override
   Size get preferredSize => const Size.fromHeight(kSizeL);
@@ -26,11 +29,11 @@ class HomeAppbar extends StatelessWidget with PreferredSizeWidget {
             },
           ),
         ),
-        title: const Text(
-          'Melodistic',
-          style: TextStyle(color: kGrayScaleColorBlack),
+        title: Text(
+          title,
+          style: kBody1Medium.copyWith(color: kPrimaryColor),
         ),
         elevation: 0,
-        backgroundColor: kGrayScaleColorWhite);
+        backgroundColor: kTransparent);
   }
 }

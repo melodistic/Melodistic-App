@@ -6,8 +6,8 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/track.controller.dart';
 import 'package:melodistic/screens/home/widgets/trackbox.widget.dart';
+import 'package:melodistic/widgets/common/appbar/main.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
-import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class LibraryScreen extends StatelessWidget {
   LibraryScreen({Key? key}) : super(key: key);
@@ -17,7 +17,9 @@ class LibraryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     trackController.fetchLibraryTrack();
     return ScreenWrapper(
-        screen: MelodisticScreenType.withTitle,
+        customAppbar: const MainAppbar(
+          title: 'My library',
+        ),
         child: Container(
             padding: const EdgeInsets.symmetric(horizontal: kSizeS),
             child: Obx(() => trackController.isFetching.isTrue
