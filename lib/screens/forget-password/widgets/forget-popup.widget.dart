@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/route_manager.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
@@ -55,9 +57,12 @@ class _ForgetPopupState extends State<ForgetPopup> {
                           pressed = true;
                         });
                       }),
-              const ButtonWidget(
+              ButtonWidget(
                 button: ButtonType.textButton,
                 text: 'Change email',
+                handleClick: () {
+                  Get.back<void>();
+                },
               )
             ],
           )
