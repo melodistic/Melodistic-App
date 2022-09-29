@@ -19,7 +19,7 @@ class BackAppbar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       key: const Key('melodistic-appbar'),
-      leading: Padding(
+      title: Padding(
           padding: const EdgeInsets.symmetric(horizontal: kSizeS),
           child: SizedBox(
               child: GestureDetector(
@@ -38,8 +38,10 @@ class BackAppbar extends StatelessWidget with PreferredSizeWidget {
                       style: kBody1Medium.copyWith(color: kPrimaryColor),
                     )
                   ])))),
-      leadingWidth: double.infinity,
       elevation: 0,
+      titleSpacing: 0,
+      centerTitle: false,
+      automaticallyImplyLeading: false,
       backgroundColor: kTransparent,
     );
   }
