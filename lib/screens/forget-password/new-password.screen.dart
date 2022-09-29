@@ -3,13 +3,13 @@ import 'package:get/route_manager.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/widgets/common/appbar/back.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/popup/popup_dialog.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
-import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class NewPasswordScreen extends StatelessWidget {
   NewPasswordScreen({Key? key}) : super(key: key);
@@ -17,7 +17,9 @@ class NewPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-      screen: MelodisticScreenType.withBack,
+      customAppbar: const BackAppbar(
+        title: 'Create New Password',
+      ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeXXXS),
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <

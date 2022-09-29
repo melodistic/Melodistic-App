@@ -9,6 +9,7 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/widgets/common/appbar/back.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/scrollable-select.widget.dart';
@@ -16,7 +17,6 @@ import 'package:melodistic/widgets/common/textfield.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
 import 'package:melodistic/widgets/common/type/option-item.type.dart';
-import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class CustomizeScreen extends StatefulWidget {
   const CustomizeScreen({Key? key}) : super(key: key);
@@ -31,7 +31,9 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
   Widget build(BuildContext context) {
     TextEditingController _programController = TextEditingController();
     return ScreenWrapper(
-        screen: MelodisticScreenType.withBack,
+        customAppbar: const BackAppbar(
+          title: 'Back',
+        ),
         child: Container(
             padding: const EdgeInsets.symmetric(horizontal: kSizeS * 1.25),
             child: Form(

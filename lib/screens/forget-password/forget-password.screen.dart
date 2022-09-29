@@ -3,11 +3,11 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/screens/forget-password/widgets/forget-popup.widget.dart';
 import 'package:melodistic/singleton/alert.dart';
+import 'package:melodistic/widgets/common/appbar/back.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
-import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   ForgetPasswordScreen({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class ForgetPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-      screen: MelodisticScreenType.withBack,
+      customAppbar: const BackAppbar(title: 'Forget Password'),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeXXXS),
         child: Column(

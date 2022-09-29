@@ -7,6 +7,7 @@ import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/auth.controller.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
+import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
@@ -21,8 +22,8 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
+    return ScreenWrapper(
+        child: Container(
             height: double.infinity,
             width: double.infinity,
             decoration: const BoxDecoration(

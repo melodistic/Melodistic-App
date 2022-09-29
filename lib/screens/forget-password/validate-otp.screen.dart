@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/widgets/common/appbar/back.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
-import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class ValidateOtpScreen extends StatelessWidget {
   ValidateOtpScreen({Key? key}) : super(key: key);
@@ -13,7 +13,9 @@ class ValidateOtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-      screen: MelodisticScreenType.withBack,
+      customAppbar: const BackAppbar(
+        title: 'Validate OTP',
+      ),
       child: Padding(
         padding:
             const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeS * 1.5, kSizeXXXS),
