@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
