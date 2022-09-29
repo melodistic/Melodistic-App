@@ -9,8 +9,10 @@ class ForgetPasswordController extends GetxController {
   final GlobalKey<FormState> requestResetPasswordFormKey =
       GlobalKey<FormState>();
   final GlobalKey<FormState> otpValidateFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> newPasswordFormKey = GlobalKey<FormState>();
 
   Rxn<String> email = Rxn<String>();
+  Rxn<String> otp = Rxn<String>();
   Rx<bool> isLoading = false.obs;
   Rx<bool> isResendEmail = false.obs;
 
@@ -30,6 +32,27 @@ class ForgetPasswordController extends GetxController {
     }
     if (!RegExp(r'^[0-9]{6}$').hasMatch(value)) {
       return 'OTP is invalid';
+    }
+    return null;
+  };
+
+  ValidateFunction validatePassword = (String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Password is required';
+    }
+    if (value.length < 6) {
+      return 'Password must be at least 6 characters';
+    }
+    return null;
+  };
+
+  ConfirmPasswordValidateFunction validateConfirmPassword =
+      (String? confirmPassword, String? password) {
+    if (confirmPassword == null || confirmPassword.isEmpty) {
+      return 'Confirm password is required';
+    }
+    if (confirmPassword != password) {
+      return 'Confirm password must be the same as password';
     }
     return null;
   };
@@ -77,6 +100,30 @@ class ForgetPasswordController extends GetxController {
       if (response == null) {
         return false;
       }
+      otp.value = token;
+      return true;
+    } catch (_) {
+      isLoading.value = false;
+      return false;
+    }
+  }
+
+  Future<bool> setNewPassword(String newPassword) async {
+    if (isLoading.value) return false;
+    isLoading.value = true;
+    try {
+      final Response<dynamic>? response =
+          await APIClient().post('/auth/reset-password', data: <String, String>{
+        'email': email.value!,
+        'token': otp.value!,
+        'password': newPassword,
+      });
+      isLoading.value = false;
+      if (response == null) {
+        return false;
+      }
+      email.value = null;
+      otp.value = null;
       return true;
     } catch (_) {
       isLoading.value = false;
