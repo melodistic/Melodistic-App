@@ -23,7 +23,7 @@ class ForgetPasswordScreen extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeXXXS),
         child: Form(
-            key: forgetPasswordController.customizeFormKey,
+            key: forgetPasswordController.requestResetPasswordFormKey,
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
@@ -49,11 +49,16 @@ class ForgetPasswordScreen extends StatelessWidget {
                   ButtonWidget(
                       button: ButtonType.mainButton,
                       text: 'Send reset password link',
-                      handleClick: () {
+                      handleClick: () async {
+                        String email = emailController.text;
                         if (forgetPasswordController
-                            .customizeFormKey.currentState!
+                            .requestResetPasswordFormKey.currentState!
                             .validate()) {
-                          Alert.showAlert(const ForgetPopup());
+                          bool success = await forgetPasswordController
+                              .configRequestResetPassword(email);
+                          if (success) {
+                            Alert.showAlert(const ForgetPopup());
+                          }
                         }
                       })
                 ])),
