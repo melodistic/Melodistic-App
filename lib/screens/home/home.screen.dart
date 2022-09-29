@@ -3,6 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
+import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/auth.controller.dart';
 import 'package:melodistic/controller/hometab.controller.dart';
@@ -28,7 +29,7 @@ class HomeScreen extends StatelessWidget {
     authController.tryAutoLogin();
     return ScreenWrapper(
         floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
+          child: const Icon(MelodisticIcon.plus),
           backgroundColor: Colors.black,
           onPressed: () {
             trackCustomizeController.setupNewTrack();

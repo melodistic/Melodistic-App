@@ -67,7 +67,7 @@ class MusicPlayer extends StatelessWidget {
                     borderRadius: kBorderRadiusM, color: kGrayScaleColorWhite),
                 child: IconButton(
                     icon: const Icon(
-                      Icons.pause,
+                      MelodisticIcon.pause_outline,
                     ),
                     iconSize: kSizeM,
                     onPressed: playerController.stop)))
