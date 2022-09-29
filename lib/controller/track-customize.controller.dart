@@ -10,6 +10,7 @@ import 'package:melodistic/widgets/common/type/section.type.dart';
 
 class TrackCustomizeController extends GetxController {
   final GlobalKey<FormState> customizeFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> sectionFormKey = GlobalKey<FormState>();
 
   final List<OptionItem> muscleGroupList = <OptionItem>[
     OptionItem(id: 1, label: 'Full body', position: 0),
@@ -49,7 +50,7 @@ class TrackCustomizeController extends GetxController {
     sectionMood = moodList[0].obs;
     sectionDuration = 15.obs;
     // mock data
-    sectionList = getMockSectionList().obs;
+    sectionList = RxList<Section>.empty();
   }
 
   bool validateProgramPicture() {
@@ -65,6 +66,13 @@ class TrackCustomizeController extends GetxController {
   ValidateFunction validateProgramName = (String? value) {
     if (value == null || value.isEmpty) {
       return 'Program Name is required';
+    }
+    return null;
+  };
+
+  ValidateFunction validateSectionName = (String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Section Name is required';
     }
     return null;
   };
@@ -124,32 +132,14 @@ class TrackCustomizeController extends GetxController {
     sectionDuration.value = duration;
   }
 
-  List<Section> getMockSectionList() {
-    return <Section>[
-      Section(
-          name: 'Warm up',
-          type: SectionType.exerciseSection,
-          exerciseType: 'Warm up',
-          mood: 'Chill',
-          duration: 15),
-      Section(
-          name: 'Break',
-          type: SectionType.breakSection,
-          exerciseType: 'break',
-          mood: 'Chill',
-          duration: 5),
-      Section(
-          name: 'Set 1',
-          type: SectionType.exerciseSection,
-          exerciseType: 'Exercise',
-          mood: 'Focus',
-          duration: 15),
-      Section(
-          name: 'Set 2',
-          type: SectionType.exerciseSection,
-          exerciseType: 'Exercise',
-          mood: 'Party',
-          duration: 15)
-    ];
+  void addSection(String sectionName) {
+    sectionList.add(Section(
+        name: sectionName,
+        type: sectionType.value,
+        exerciseType: sectionExerciseType.value.label,
+        mood: sectionMood.value.label,
+        duration: sectionDuration.value));
+    Get.back<void>();
+    Get.back<void>();
   }
 }
