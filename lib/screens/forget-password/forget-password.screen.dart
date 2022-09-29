@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/forget-password.controller.dart';
+import 'package:melodistic/routes.dart';
 import 'package:melodistic/screens/forget-password/widgets/forget-popup.widget.dart';
 import 'package:melodistic/singleton/alert.dart';
 import 'package:melodistic/widgets/common/appbar/back.widget.dart';
@@ -57,7 +58,9 @@ class ForgetPasswordScreen extends StatelessWidget {
                           bool success = await forgetPasswordController
                               .configRequestResetPassword(email);
                           if (success) {
-                            Alert.showAlert(const ForgetPopup());
+                            Alert.showAlert(ForgetPopup(), action: () {
+                              Get.toNamed<void>(RoutesName.validateOtp);
+                            });
                           }
                         }
                       })

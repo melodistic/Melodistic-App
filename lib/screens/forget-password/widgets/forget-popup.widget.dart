@@ -8,15 +8,9 @@ import 'package:melodistic/controller/forget-password.controller.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 
-class ForgetPopup extends StatefulWidget {
-  const ForgetPopup({Key? key}) : super(key: key);
+class ForgetPopup extends StatelessWidget {
+  ForgetPopup({Key? key}) : super(key: key);
 
-  @override
-  State<ForgetPopup> createState() => _ForgetPopupState();
-}
-
-class _ForgetPopupState extends State<ForgetPopup> {
-  bool pressed = false;
   final ForgetPasswordController forgetPasswordController = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -34,7 +28,7 @@ class _ForgetPopupState extends State<ForgetPopup> {
                   style: kBody2)),
           Column(
             children: <Widget>[
-              pressed
+              Obx(() => forgetPasswordController.isResendEmail.value
                   ? ButtonWidget(
                       button: ButtonType.mainButton,
                       customContent: Row(
@@ -54,14 +48,9 @@ class _ForgetPopupState extends State<ForgetPopup> {
                       button: ButtonType.mainButton,
                       text: 'resend',
                       handleClick: () async {
-                        bool success = await forgetPasswordController
-                            .requestResetPassword();
-                        if (success) {
-                          setState(() {
-                            pressed = true;
-                          });
-                        }
-                      }),
+                        await forgetPasswordController
+                            .resendRequestResetPasswordEmail();
+                      })),
               ButtonWidget(
                 button: ButtonType.textButton,
                 text: 'Change email',

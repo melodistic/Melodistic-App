@@ -17,8 +17,14 @@ class NewPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-      customAppbar: const BackAppbar(
+      customAppbar: BackAppbar(
         title: 'Create New Password',
+        customAction: () {
+          Get.back<void>();
+          Get.back<void>();
+          Get.back<void>();
+          Get.back<void>();
+        },
       ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeXXXS),
