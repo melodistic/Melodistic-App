@@ -60,7 +60,7 @@ class ExerciseSectionTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const <Widget>[
             Icon(
-              Icons.more_vert,
+              MelodisticIcon.menu_vertical,
               color: kGrayScaleColor700,
             ),
           ],
