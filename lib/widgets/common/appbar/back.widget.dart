@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 
 class BackAppbar extends StatelessWidget with PreferredSizeWidget {
-  const BackAppbar({Key? key, required this.title}) : super(key: key);
+  const BackAppbar({Key? key, required this.title, this.customAction})
+      : super(key: key);
 
   final String title;
+  final VoidCallback? customAction;
 
   @override
   Size get preferredSize => const Size.fromHeight(kSizeL);
@@ -20,9 +23,10 @@ class BackAppbar extends StatelessWidget with PreferredSizeWidget {
           padding: const EdgeInsets.symmetric(horizontal: kSizeS),
           child: SizedBox(
               child: GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
+                  onTap: customAction ??
+                      () {
+                        Get.back<void>();
+                      },
                   child: Row(children: <Widget>[
                     const Icon(
                       MelodisticIcon.chevron_left,

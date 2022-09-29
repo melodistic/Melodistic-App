@@ -5,7 +5,6 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
-import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/appbar/back.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
@@ -18,6 +17,7 @@ class CustomizeBreakScreen extends StatelessWidget {
   CustomizeBreakScreen({Key? key}) : super(key: key);
 
   final TrackCustomizeController trackCustomizeController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
@@ -105,7 +105,7 @@ class CustomizeBreakScreen extends StatelessWidget {
                   button: ButtonType.mainButton,
                   text: 'Add',
                   handleClick: () {
-                    Get.toNamed<dynamic>(RoutesName.customizeSection);
+                    trackCustomizeController.addSection('Break Section');
                   },
                 )
               ],

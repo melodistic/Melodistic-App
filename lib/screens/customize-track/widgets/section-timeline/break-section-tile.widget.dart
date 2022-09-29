@@ -31,7 +31,7 @@ class BreakSectionTile extends StatelessWidget {
               ],
             )),
             const Icon(
-              Icons.more_vert,
+              MelodisticIcon.menu_vertical,
               color: kGrayScaleColor700,
             ),
           ],
