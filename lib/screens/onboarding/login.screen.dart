@@ -23,6 +23,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
+        extendBodyBehindAppBar: true,
         child: Container(
             height: double.infinity,
             width: double.infinity,
