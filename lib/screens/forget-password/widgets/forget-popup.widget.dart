@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/controller/forget-password.controller.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 
@@ -15,6 +17,7 @@ class ForgetPopup extends StatefulWidget {
 
 class _ForgetPopupState extends State<ForgetPopup> {
   bool pressed = false;
+  final ForgetPasswordController forgetPasswordController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -50,14 +53,21 @@ class _ForgetPopupState extends State<ForgetPopup> {
                   : ButtonWidget(
                       button: ButtonType.mainButton,
                       text: 'resend',
-                      handleClick: () {
-                        setState(() {
-                          pressed = true;
-                        });
+                      handleClick: () async {
+                        bool success = await forgetPasswordController
+                            .requestResetPassword();
+                        if (success) {
+                          setState(() {
+                            pressed = true;
+                          });
+                        }
                       }),
-              const ButtonWidget(
+              ButtonWidget(
                 button: ButtonType.textButton,
                 text: 'Change email',
+                handleClick: () {
+                  Get.back<void>();
+                },
               )
             ],
           )
