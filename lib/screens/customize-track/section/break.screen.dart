@@ -5,23 +5,25 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
-import 'package:melodistic/routes.dart';
+import 'package:melodistic/widgets/common/appbar/back.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/scrollable-select.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 import 'package:melodistic/widgets/common/type/option-item.type.dart';
-import 'package:melodistic/widgets/common/type/screen.type.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class CustomizeBreakScreen extends StatelessWidget {
   CustomizeBreakScreen({Key? key}) : super(key: key);
 
   final TrackCustomizeController trackCustomizeController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-        screen: MelodisticScreenType.withBack,
+        customAppbar: const BackAppbar(
+          title: 'Back',
+        ),
         child: Container(
             padding: const EdgeInsets.symmetric(horizontal: kSizeS * 1.25),
             child: Column(
@@ -103,7 +105,7 @@ class CustomizeBreakScreen extends StatelessWidget {
                   button: ButtonType.mainButton,
                   text: 'Add',
                   handleClick: () {
-                    Get.toNamed<dynamic>(RoutesName.customizeSection);
+                    trackCustomizeController.addSection('Break Section');
                   },
                 )
               ],

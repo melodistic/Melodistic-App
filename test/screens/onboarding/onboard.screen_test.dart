@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:melodistic/screens/onboarding/onboard.screen.dart';
 import 'package:melodistic/singleton/controller.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
-import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 import '../../utils.dart';
 
@@ -14,10 +13,6 @@ void main() {
     await tester
         .pumpWidget(createWidgetForTesting(child: const OnboardingScreen()));
     expect(find.byType(ScreenWrapper), findsOneWidget);
-    expect(
-        getWidgetByType(tester, ScreenWrapper),
-        isA<ScreenWrapper>().having((ScreenWrapper wrapper) => wrapper.screen,
-            'Screen Type', MelodisticScreenType.noTitle));
     expect(getWidgetByKey(tester, const Key('onboarding-container')),
         isA<Container>());
     expect(

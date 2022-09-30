@@ -3,15 +3,17 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
+import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/auth.controller.dart';
 import 'package:melodistic/controller/hometab.controller.dart';
+import 'package:melodistic/controller/track-customize.controller.dart';
 import 'package:melodistic/controller/track.controller.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/screens/home/widgets/tablist.widget.dart';
 import 'package:melodistic/screens/home/widgets/trackbox.widget.dart';
+import 'package:melodistic/widgets/common/appbar/main.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
-import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -19,6 +21,7 @@ class HomeScreen extends StatelessWidget {
   final TrackController trackController = Get.find();
   final HomeTabController homeTabController = Get.find();
   final AuthController authController = Get.find();
+  final TrackCustomizeController trackCustomizeController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +29,14 @@ class HomeScreen extends StatelessWidget {
     authController.tryAutoLogin();
     return ScreenWrapper(
         floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
+          child: const Icon(MelodisticIcon.plus),
           backgroundColor: Colors.black,
           onPressed: () {
+            trackCustomizeController.setupNewTrack();
             Get.toNamed<dynamic>(RoutesName.customize);
           },
         ),
-        screen: MelodisticScreenType.withTitle,
+        customAppbar: const MainAppbar(title: 'Melodistic'),
         child: Container(
             padding:
                 const EdgeInsets.symmetric(horizontal: kSizeS, vertical: 10),

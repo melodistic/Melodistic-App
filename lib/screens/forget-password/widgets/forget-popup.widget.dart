@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/controller/forget-password.controller.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 
-class ForgetPopup extends StatefulWidget {
-  const ForgetPopup({Key? key}) : super(key: key);
+class ForgetPopup extends StatelessWidget {
+  ForgetPopup({Key? key}) : super(key: key);
 
-  @override
-  State<ForgetPopup> createState() => _ForgetPopupState();
-}
-
-class _ForgetPopupState extends State<ForgetPopup> {
-  bool pressed = false;
+  final ForgetPasswordController forgetPasswordController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,7 +28,7 @@ class _ForgetPopupState extends State<ForgetPopup> {
                   style: kBody2)),
           Column(
             children: <Widget>[
-              pressed
+              Obx(() => forgetPasswordController.isResendEmail.value
                   ? ButtonWidget(
                       button: ButtonType.mainButton,
                       customContent: Row(
@@ -50,14 +47,16 @@ class _ForgetPopupState extends State<ForgetPopup> {
                   : ButtonWidget(
                       button: ButtonType.mainButton,
                       text: 'resend',
-                      handleClick: () {
-                        setState(() {
-                          pressed = true;
-                        });
-                      }),
-              const ButtonWidget(
+                      handleClick: () async {
+                        await forgetPasswordController
+                            .resendRequestResetPasswordEmail();
+                      })),
+              ButtonWidget(
                 button: ButtonType.textButton,
                 text: 'Change email',
+                handleClick: () {
+                  Get.back<void>();
+                },
               )
             ],
           )

@@ -9,7 +9,6 @@ import 'package:melodistic/screens/customize-track/widgets/customtime-picker.wid
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
-import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class RegisterTimeScreen extends StatelessWidget {
   RegisterTimeScreen({Key? key}) : super(key: key);
@@ -18,7 +17,6 @@ class RegisterTimeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-      screen: MelodisticScreenType.noTitle,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(kSizeM, kSizeXL, kSizeM, kSizeXS),
         child: Column(children: <Widget>[

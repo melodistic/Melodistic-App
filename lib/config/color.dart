@@ -24,6 +24,7 @@ const Color kGrayScaleColor300 = Color(0xFFE0E0E0);
 const Color kGrayScaleColor200 = Color(0xFFEDF2F6);
 const Color kGrayScaleColor100 = Color(0xFFF5F5F5);
 const Color kGrayScaleColorWhite = Color(0xFFFFFFFF);
+const Color kTransparent = Color(0x00000000);
 
 const Color kSuccessColor = Color(0xFF87E29B);
 const Color kWarningColor = Color(0xFFFCCF6F);

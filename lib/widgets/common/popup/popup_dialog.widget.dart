@@ -5,8 +5,9 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 
 class PopupWidget extends StatelessWidget {
-  const PopupWidget({Key? key, this.content}) : super(key: key);
+  const PopupWidget({Key? key, this.content, this.action}) : super(key: key);
   final Widget? content;
+  final VoidCallback? action;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +22,10 @@ class PopupWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   GestureDetector(
-                    onTap: () {
-                      Get.back<void>();
-                    },
+                    onTap: action ??
+                        () {
+                          Get.back<void>();
+                        },
                     child: const Icon(
                       MelodisticIcon.cross,
                       color: kPrimaryColor,

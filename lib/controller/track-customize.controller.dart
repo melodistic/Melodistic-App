@@ -1,11 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/screens/customize-track/type/Section.type.dart';
+import 'package:melodistic/widgets/common/type/field.type.dart';
 import 'package:melodistic/widgets/common/type/option-item.type.dart';
 import 'package:melodistic/widgets/common/type/section.type.dart';
 
 class TrackCustomizeController extends GetxController {
+  final GlobalKey<FormState> customizeFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> sectionFormKey = GlobalKey<FormState>();
+
   final List<OptionItem> muscleGroupList = <OptionItem>[
     OptionItem(id: 1, label: 'Full body', position: 0),
     OptionItem(id: 2, label: 'Core', position: 0),
@@ -33,6 +39,9 @@ class TrackCustomizeController extends GetxController {
   late Rx<OptionItem> sectionExerciseType;
   late Rx<OptionItem> sectionMood;
   late Rx<int> sectionDuration;
+  Rxn<String> programName = Rxn<String>();
+  Rxn<File> programPicture = Rxn<File>();
+  Rxn<String> errorMessage = Rxn<String>();
 
   TrackCustomizeController() {
     muscleGroup = muscleGroupList[0].obs;
@@ -41,13 +50,51 @@ class TrackCustomizeController extends GetxController {
     sectionMood = moodList[0].obs;
     sectionDuration = 15.obs;
     // mock data
-    sectionList = getMockSectionList().obs;
+    sectionList = RxList<Section>.empty();
+  }
+
+  bool validateProgramPicture() {
+    if (programPicture.value == null) {
+      errorMessage.value = 'Program Picture is required';
+      return false;
+    } else {
+      errorMessage.value = null;
+      return true;
+    }
+  }
+
+  ValidateFunction validateProgramName = (String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Program Name is required';
+    }
+    return null;
+  };
+
+  ValidateFunction validateSectionName = (String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Section Name is required';
+    }
+    return null;
+  };
+
+  Future<void> setProgramName(String newProgramName) async {
+    programName.value = newProgramName;
+  }
+
+  Future<void> setProgramPicture(File newProgramPicture) async {
+    programPicture.value = newProgramPicture;
   }
 
   void setupNewSection() {
     sectionExerciseType.value = exerciseTypeList[0];
     sectionMood.value = moodList[0];
     sectionDuration.value = 15;
+  }
+
+  void setupNewTrack() {
+    programName.value = null;
+    programPicture.value = null;
+    muscleGroup.value = muscleGroupList[0];
   }
 
   void createNewSection() {
@@ -85,32 +132,14 @@ class TrackCustomizeController extends GetxController {
     sectionDuration.value = duration;
   }
 
-  List<Section> getMockSectionList() {
-    return <Section>[
-      Section(
-          name: 'Warm up',
-          type: SectionType.exerciseSection,
-          exerciseType: 'Warm up',
-          mood: 'Chill',
-          duration: 15),
-      Section(
-          name: 'Break',
-          type: SectionType.breakSection,
-          exerciseType: 'break',
-          mood: 'Chill',
-          duration: 5),
-      Section(
-          name: 'Set 1',
-          type: SectionType.exerciseSection,
-          exerciseType: 'Exercise',
-          mood: 'Focus',
-          duration: 15),
-      Section(
-          name: 'Set 2',
-          type: SectionType.exerciseSection,
-          exerciseType: 'Exercise',
-          mood: 'Party',
-          duration: 15)
-    ];
+  void addSection(String sectionName) {
+    sectionList.add(Section(
+        name: sectionName,
+        type: sectionType.value,
+        exerciseType: sectionExerciseType.value.label,
+        mood: sectionMood.value.label,
+        duration: sectionDuration.value));
+    Get.back<void>();
+    Get.back<void>();
   }
 }

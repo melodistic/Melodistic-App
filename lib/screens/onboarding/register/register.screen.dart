@@ -6,12 +6,12 @@ import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/auth.controller.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/widgets/common/appbar/back.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
-import 'package:melodistic/widgets/common/type/screen.type.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-        screen: MelodisticScreenType.withBack,
+        customAppbar: const BackAppbar(title: 'Back'),
         child: Padding(
             padding: const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeM),
             child: Column(
