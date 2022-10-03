@@ -4,7 +4,10 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/controller/player.controller.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
+import 'package:melodistic/models/track.model.dart';
+import 'package:melodistic/routes.dart';
 import 'package:melodistic/screens/customize-track/widgets/section-timeline/section-timeline.widget.dart';
 import 'package:melodistic/screens/customize-track/widgets/selection-section-popup.widget.dart';
 import 'package:melodistic/widgets/common/appbar/back.widget.dart';
@@ -53,9 +56,18 @@ class CustomizeSectionScreen extends StatelessWidget {
                   ],
                 )),
                 kSizedBoxVerticalS,
-                const ButtonWidget(
+                ButtonWidget(
                   button: ButtonType.mainButton,
                   text: 'Start Exercise',
+                  handleClick: () async {
+                    Track? track =
+                        await trackCustomizeController.generateTrack();
+                    if (track != null) {
+                      PlayerController playerController = Get.find();
+                      await playerController.setupPlayer(track);
+                      Get.offNamed<void>(RoutesName.track);
+                    }
+                  },
                 )
               ],
             )));

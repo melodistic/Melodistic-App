@@ -18,7 +18,7 @@ class APIClient {
 
   Future<Response<T>?> createOperation<T>(String path,
       {required String method,
-      Map<String, dynamic>? data,
+      dynamic data,
       Map<String, dynamic>? headers}) async {
     try {
       try {
@@ -30,7 +30,7 @@ class APIClient {
         throw MelodisticException('No Internet Connection');
       } on DioError catch (e) {
         if (e.response != null) {
-          final String message = e.response?.data['message'].toString() ??
+          final String message = e.response?.data?['message'].toString() ??
               'Doh!, Something went wrong';
           throw MelodisticException(message);
         }
@@ -51,6 +51,14 @@ class APIClient {
       {Map<String, dynamic>? data, Map<String, dynamic>? headers}) async {
     return createOperation<T>(path,
         method: 'POST', data: data, headers: headers);
+  }
+
+  Future<Response<T>?> postFormData<T>(String path,
+      {Map<String, dynamic>? data, Map<String, dynamic>? headers}) async {
+    return createOperation<T>(path,
+        method: 'POST',
+        data: FormData.fromMap(data ?? <String, String>{}),
+        headers: headers);
   }
 
   static Map<String, String> getAuthHeaders(String token) {
