@@ -49,6 +49,8 @@ class TrackCustomizeController extends GetxController {
   Rxn<File> programPicture = Rxn<File>();
   Rxn<String> errorMessage = Rxn<String>();
 
+  RxBool isProcessing = false.obs;
+
   TrackCustomizeController() {
     muscleGroup = muscleGroupList[0].obs;
     sectionType = SectionType.exerciseSection.obs;
@@ -150,6 +152,7 @@ class TrackCustomizeController extends GetxController {
   }
 
   Future<Track?> generateTrack() async {
+    isProcessing.value = true;
     final bool hasSession = await UserSession.hasSession();
     if (!hasSession) {
       Get.offAllNamed<void>(RoutesName.onboard);
@@ -171,8 +174,10 @@ class TrackCustomizeController extends GetxController {
       final Response<Map<String, dynamic>>? trackResponse = await APIClient()
           .get('/track/$trackId', headers: APIClient.getAuthHeaders(userToken));
       final Track track = Track.fromJson(trackResponse!.data!);
+      isProcessing.value = true;
       return track;
     } else {
+      isProcessing.value = false;
       return null;
     }
   }

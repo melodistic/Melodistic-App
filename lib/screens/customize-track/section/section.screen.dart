@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
@@ -56,19 +57,27 @@ class CustomizeSectionScreen extends StatelessWidget {
                   ],
                 )),
                 kSizedBoxVerticalS,
-                ButtonWidget(
-                  button: ButtonType.mainButton,
-                  text: 'Start Exercise',
-                  handleClick: () async {
-                    Track? track =
-                        await trackCustomizeController.generateTrack();
-                    if (track != null) {
-                      PlayerController playerController = Get.find();
-                      await playerController.setupPlayer(track);
-                      Get.offNamed<void>(RoutesName.track);
-                    }
-                  },
-                )
+                Obx(() => ButtonWidget(
+                      button: ButtonType.mainButton,
+                      text: 'Start Exercise',
+                      customContent: trackCustomizeController.isProcessing.value
+                          ? const SpinKitFadingCircle(
+                              color: kGrayScaleColor300,
+                              size: 18,
+                            )
+                          : null,
+                      handleClick: () async {
+                        if (!trackCustomizeController.isProcessing.value) {
+                          Track? track =
+                              await trackCustomizeController.generateTrack();
+                          if (track != null) {
+                            PlayerController playerController = Get.find();
+                            await playerController.setupPlayer(track);
+                            Get.offAllNamed<void>(RoutesName.track);
+                          }
+                        }
+                      },
+                    ))
               ],
             )));
   }

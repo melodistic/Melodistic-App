@@ -4,6 +4,7 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/routes.dart';
 
 class BackAppbar extends StatelessWidget with PreferredSizeWidget {
   const BackAppbar({Key? key, required this.title, this.customAction})
@@ -25,7 +26,9 @@ class BackAppbar extends StatelessWidget with PreferredSizeWidget {
               child: GestureDetector(
                   onTap: customAction ??
                       () {
-                        Get.back<void>();
+                        Get.routeTree.routes.isEmpty
+                            ? Get.offAllNamed<void>(RoutesName.home)
+                            : Get.back<void>();
                       },
                   child: Row(children: <Widget>[
                     const Icon(
