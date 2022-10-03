@@ -77,7 +77,7 @@ final Map<String, WidgetBuilder> customizeTrackRoutes = <String, WidgetBuilder>{
 };
 
 final Map<String, WidgetBuilder> userRoutes = <String, WidgetBuilder>{
-  RoutesName.upload: (BuildContext context) => const UploadScreen(),
+  RoutesName.upload: (BuildContext context) => UploadScreen(),
   RoutesName.library: (BuildContext context) => LibraryScreen(),
   RoutesName.favorite: (BuildContext context) => FavoriteScreen()
 };
