@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/widgets/common/divider.widget.dart';
 
 class UploadedSongWidget extends StatelessWidget {
   const UploadedSongWidget({Key? key, this.name, this.artist, this.time})
@@ -38,7 +39,7 @@ class UploadedSongWidget extends StatelessWidget {
           ],
         ),
         kSizedBoxVerticalXS,
-        const Divider(thickness: 1, color: kGrayScaleColor200)
+        const MelodisticDivider()
       ],
     );
   }
