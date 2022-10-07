@@ -87,4 +87,20 @@ class TrackController extends GetxController {
       updateFetching(false);
     }
   }
+
+  Future<Track> getTrackInformation(String trackId) async {
+    await Future<void>.delayed(Duration.zero);
+    try {
+      final bool hasSession = await UserSession.hasSession();
+      if (!hasSession) throw MelodisticException('Unauthorized');
+      final String? userToken = await UserSession.getSession();
+      final Response<Map<String, dynamic>>? trackResponse = await APIClient()
+          .get('/track/$trackId',
+              headers: APIClient.getAuthHeaders(userToken!));
+      final Track track = Track.fromJson(trackResponse!.data!);
+      return track;
+    } catch (_) {
+      rethrow;
+    }
+  }
 }

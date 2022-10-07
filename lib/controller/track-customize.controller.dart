@@ -4,7 +4,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:get/route_manager.dart';
+import 'package:get/instance_manager.dart';
 import 'package:http_parser/http_parser.dart';
+import 'package:melodistic/controller/track.controller.dart';
 import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/screens/customize-track/type/Section.type.dart';
@@ -171,9 +173,8 @@ class TrackCustomizeController extends GetxController {
     if (response!.data != null) {
       final String trackId = response.data['track_id'] as String;
       await uploadTrackImage(trackId);
-      final Response<Map<String, dynamic>>? trackResponse = await APIClient()
-          .get('/track/$trackId', headers: APIClient.getAuthHeaders(userToken));
-      final Track track = Track.fromJson(trackResponse!.data!);
+      final TrackController trackController = Get.find();
+      final Track track = await trackController.getTrackInformation(trackId);
       isProcessing.value = true;
       return track;
     } else {
