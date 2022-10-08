@@ -12,9 +12,9 @@ class BottomSheetActionWidget extends StatelessWidget {
       required this.icon,
       required this.handleClick})
       : super(key: key);
-  final String? title;
-  final IconData? icon;
-  final VoidCallback? handleClick;
+  final String title;
+  final IconData icon;
+  final VoidCallback handleClick;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class BottomSheetActionWidget extends StatelessWidget {
             ),
           ),
           kSizedBoxHorizontalS,
-          Text(title!, style: kBody2.copyWith(color: kPrimaryColor))
+          Text(title, style: kBody2.copyWith(color: kPrimaryColor))
         ],
       ),
     );

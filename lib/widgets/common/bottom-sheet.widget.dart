@@ -13,9 +13,9 @@ class BottomSheetWidget extends StatelessWidget {
       required this.description,
       required this.actionList})
       : super(key: key);
-  final String? title;
-  final String? description;
-  final List<BottomSheetAction>? actionList;
+  final String title;
+  final String description;
+  final List<BottomSheetAction> actionList;
 
   @override
   Widget build(BuildContext context) {
@@ -27,22 +27,18 @@ class BottomSheetWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(title!, style: kHeading2),
-              Text(description!,
+              Text(title, style: kHeading2),
+              Text(description,
                   style: kBody2.copyWith(color: kGrayScaleColor600)),
               kSizedBoxVerticalXS,
               const MelodisticDivider(),
               kSizedBoxVerticalXS,
-              Expanded(
-                child: Column(
-                    children: actionList!
-                        .map((BottomSheetAction item) =>
-                            BottomSheetActionWidget(
-                                title: item.title,
-                                icon: item.icon,
-                                handleClick: item.handleClick))
-                        .toList()),
-              )
+              ...actionList
+                  .map((BottomSheetAction item) => BottomSheetActionWidget(
+                      title: item.title,
+                      icon: item.icon,
+                      handleClick: item.handleClick))
+                  .toList()
             ]));
   }
 }

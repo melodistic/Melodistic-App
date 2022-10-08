@@ -5,5 +5,6 @@ class BottomSheetAction {
   final IconData icon;
   final VoidCallback handleClick;
 
-  BottomSheetAction(this.title, this.icon, this.handleClick);
+  BottomSheetAction(
+      {required this.title, required this.icon, required this.handleClick});
 }
