@@ -16,4 +16,13 @@ class Section {
     required this.duration,
     this.includedMusicId = const <int>[],
   });
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'section_name': name,
+      'section_type': type.toString(),
+      'mood': mood,
+      'duration': duration
+    };
+  }
 }
