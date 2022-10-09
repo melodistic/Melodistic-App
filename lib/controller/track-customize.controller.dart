@@ -124,6 +124,7 @@ class TrackCustomizeController extends GetxController {
 
   void selectNewSectionType(SectionType type) {
     sectionType.value = type;
+    createNewSection();
   }
 
   void selectExerciseType(OptionItem tab, ScrollController scrollController) {

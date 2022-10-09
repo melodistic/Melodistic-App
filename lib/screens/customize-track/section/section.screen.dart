@@ -9,11 +9,10 @@ import 'package:melodistic/controller/player.controller.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
 import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/screens/customize-track/widgets/section-bottomsheet.widget.dart';
 import 'package:melodistic/screens/customize-track/widgets/section-timeline/section-timeline.widget.dart';
-import 'package:melodistic/screens/customize-track/widgets/selection-section-popup.widget.dart';
 import 'package:melodistic/widgets/common/appbar/back.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
-import 'package:melodistic/widgets/common/popup/popup_dialog.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 
@@ -49,11 +48,18 @@ class CustomizeSectionScreen extends StatelessWidget {
                         button: ButtonType.softButton,
                         prefixIcon: MelodisticIcon.plus,
                         text: 'Add section',
-                        handleClick: () => showDialog<String>(
+                        handleClick: () {
+                          showModalBottomSheet<void>(
                               context: context,
-                              builder: (BuildContext context) =>
-                                  PopupWidget(content: SelectSectionPopup()),
-                            ))
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20.0),
+                                    topRight: Radius.circular(20.0)),
+                              ),
+                              builder: (BuildContext context) {
+                                return SectionBottomSheet();
+                              });
+                        })
                   ],
                 )),
                 kSizedBoxVerticalS,
