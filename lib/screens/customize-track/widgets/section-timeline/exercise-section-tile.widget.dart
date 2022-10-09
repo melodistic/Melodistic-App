@@ -4,6 +4,7 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/screens/customize-track/type/Section.type.dart';
+import 'package:melodistic/screens/customize-track/widgets/edit-section-bottomsheet.widget.dart';
 
 class ExerciseSectionTile extends StatelessWidget {
   const ExerciseSectionTile({Key? key, required this.section})
@@ -58,10 +59,24 @@ class ExerciseSectionTile extends StatelessWidget {
         kSizedBoxHorizontalS,
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const <Widget>[
-            Icon(
-              MelodisticIcon.menu_vertical,
-              color: kGrayScaleColor700,
+          children: <Widget>[
+            IconButton(
+              icon: const Icon(
+                MelodisticIcon.menu_vertical,
+                color: kGrayScaleColor700,
+              ),
+              onPressed: () {
+                showModalBottomSheet<void>(
+                    context: context,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(kSizeS * 1.25),
+                          topRight: Radius.circular(kSizeS * 1.25)),
+                    ),
+                    builder: (BuildContext context) {
+                      return EditSectionBottomSheet(title: section.name);
+                    });
+              },
             ),
           ],
         )

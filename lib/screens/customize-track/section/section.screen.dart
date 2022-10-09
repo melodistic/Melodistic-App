@@ -53,8 +53,8 @@ class CustomizeSectionScreen extends StatelessWidget {
                               context: context,
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20.0),
-                                    topRight: Radius.circular(20.0)),
+                                    topLeft: Radius.circular(kSizeS * 1.25),
+                                    topRight: Radius.circular(kSizeS * 1.25)),
                               ),
                               builder: (BuildContext context) {
                                 return SectionBottomSheet();
