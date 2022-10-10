@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
@@ -32,7 +33,7 @@ class _EditSectionBottomSheetState extends State<EditSectionBottomSheet> {
               title: 'Remove section',
               icon: MelodisticIcon.carbon_close_filled,
               handleClick: () {
-                Navigator.pop(context);
+                Get.back<void>();
                 final SnackBar snackBar = SnackBar(
                   behavior: SnackBarBehavior.floating,
                   margin: const EdgeInsets.fromLTRB(

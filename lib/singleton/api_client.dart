@@ -61,6 +61,12 @@ class APIClient {
         headers: headers);
   }
 
+  Future<Response<T>?> delete<T>(String path,
+      {Map<String, dynamic>? data, Map<String, dynamic>? headers}) async {
+    return createOperation<T>(path,
+        method: 'DELETE', data: data, headers: headers);
+  }
+
   static Map<String, String> getAuthHeaders(String token) {
     return <String, String>{'Authorization': 'Bearer $token'};
   }
