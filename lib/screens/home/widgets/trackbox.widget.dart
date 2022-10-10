@@ -8,6 +8,7 @@ import 'package:melodistic/controller/player.controller.dart';
 import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/screens/home/widgets/track-setting-bottomsheet.widget.dart';
+import 'package:melodistic/utils/display.dart';
 
 class TrackBox extends StatelessWidget {
   TrackBox({Key? key, required this.track}) : super(key: key);
@@ -57,17 +58,8 @@ class TrackBox extends StatelessWidget {
                             icon: const Icon(MelodisticIcon.menu_vertical,
                                 color: kGrayScaleColorWhite),
                             onPressed: () {
-                              showModalBottomSheet<void>(
-                                  context: context,
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(kSizeS * 1.25),
-                                        topRight:
-                                            Radius.circular(kSizeS * 1.25)),
-                                  ),
-                                  builder: (BuildContext context) {
-                                    return TrackSettingBottomSheet();
-                                  });
+                              showMelodisticBottomSheet(
+                                  context, TrackSettingBottomSheet());
                             },
                           ),
                         Row(
