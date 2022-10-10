@@ -16,6 +16,19 @@ class TrackController extends GetxController {
     isFetching.value = status ?? false;
   }
 
+  Future<bool> deleteTrack(String? trackId) async {
+    try {
+      final bool hasSession = await UserSession.hasSession();
+      if (!hasSession) throw MelodisticException('Unauthorized');
+      final String? userToken = await UserSession.getSession();
+      await APIClient().delete<Map<String, dynamic>>('/track/$trackId',
+          headers: APIClient.getAuthHeaders(userToken!));
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
   Future<void> fetchPublicTracks() async {
     await Future<void>.delayed(Duration.zero);
     updateFetching(true);

@@ -11,7 +11,7 @@ import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 
 class FavoriteScreen extends StatelessWidget {
   FavoriteScreen({Key? key}) : super(key: key);
-  final TrackController trackController = TrackController();
+  final TrackController trackController = Get.find();
 
   @override
   Widget build(BuildContext context) {

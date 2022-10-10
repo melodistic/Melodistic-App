@@ -54,12 +54,14 @@ class TrackBox extends StatelessWidget {
                           : MainAxisAlignment.end,
                       children: <Widget>[
                         if (!track.isPublic)
-                          IconButton(
-                            icon: const Icon(MelodisticIcon.menu_vertical,
+                          GestureDetector(
+                            child: const Icon(MelodisticIcon.menu_vertical,
                                 color: kGrayScaleColorWhite),
-                            onPressed: () {
+                            onTap: () {
                               showMelodisticBottomSheet(
-                                  context, TrackSettingBottomSheet());
+                                  context,
+                                  TrackSettingBottomSheet(
+                                      trackId: track.trackId));
                             },
                           ),
                         Row(
@@ -111,7 +113,7 @@ class TrackBox extends StatelessWidget {
           )),
       onTap: () async {
         await playerController.setupPlayer(track);
-        Navigator.of(context).pushNamed(RoutesName.track);
+        Get.toNamed<void>(RoutesName.track);
       },
     );
   }
