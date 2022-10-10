@@ -12,19 +12,19 @@ import 'package:melodistic/widgets/common/type/button.type.dart';
 
 class UploadScreen extends StatelessWidget {
   UploadScreen({Key? key}) : super(key: key);
-  // final List<Map<String, String>> uploadedSong = <Map<String,String>>[];
-  final List<Map<String, String>> uploadedSong = <Map<String, String>>[
-    <String, String>{
-      'name': 'how you like that',
-      'artist': 'black pink',
-      'time': '2.03'
-    },
-    <String, String>{
-      'name': 'not a home',
-      'artist': 'pardyalone',
-      'time': '3.23'
-    },
-  ];
+  final List<Map<String, String>> uploadedSong = <Map<String, String>>[];
+  // final List<Map<String, String>> uploadedSong = <Map<String, String>>[
+  //   <String, String>{
+  //     'name': 'how you like that',
+  //     'artist': 'black pink',
+  //     'time': '2.03'
+  //   },
+  //   <String, String>{
+  //     'name': 'not a home',
+  //     'artist': 'pardyalone',
+  //     'time': '3.23'
+  //   },
+  // ];
   final bool isVerified = true;
 
   @override
