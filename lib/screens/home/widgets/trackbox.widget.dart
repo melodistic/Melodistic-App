@@ -7,6 +7,7 @@ import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/player.controller.dart';
 import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/screens/home/widgets/track-setting-bottomsheet.widget.dart';
 
 class TrackBox extends StatelessWidget {
   TrackBox({Key? key, required this.track}) : super(key: key);
@@ -52,8 +53,23 @@ class TrackBox extends StatelessWidget {
                           : MainAxisAlignment.end,
                       children: <Widget>[
                         if (!track.isPublic)
-                          const Icon(MelodisticIcon.menu_vertical,
-                              color: kGrayScaleColorWhite),
+                          IconButton(
+                            icon: const Icon(MelodisticIcon.menu_vertical,
+                                color: kGrayScaleColorWhite),
+                            onPressed: () {
+                              showModalBottomSheet<void>(
+                                  context: context,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(kSizeS * 1.25),
+                                        topRight:
+                                            Radius.circular(kSizeS * 1.25)),
+                                  ),
+                                  builder: (BuildContext context) {
+                                    return TrackSettingBottomSheet();
+                                  });
+                            },
+                          ),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
