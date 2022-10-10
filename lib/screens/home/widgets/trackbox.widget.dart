@@ -38,8 +38,8 @@ class TrackBox extends StatelessWidget {
                                 begin: Alignment.topLeft,
                                 end: Alignment.topRight,
                                 colors: <Color>[
-                              Colors.black.withOpacity(.3),
-                              Colors.black.withOpacity(.3),
+                              kGrayScaleColorBlack.withOpacity(.3),
+                              kGrayScaleColorBlack.withOpacity(.3),
                             ])),
                       )),
                   Container(
