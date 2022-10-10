@@ -95,7 +95,7 @@ class UploadScreen extends StatelessWidget {
                                   time: uploadedSong[index]['time'],
                                 );
                               }),
-                        ),
+                        )
                       ],
                     ),
                   ))

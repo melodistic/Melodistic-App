@@ -22,7 +22,7 @@ class ImportLinkPopup extends StatelessWidget {
         kSizedBoxVerticalS,
         ButtonWidget(
           button: ButtonType.mainButton,
-          text: 'Add',
+          text: 'Upload',
           handleClick: () {
             Get.back<void>();
           },
