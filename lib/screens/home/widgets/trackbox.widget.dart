@@ -35,20 +35,28 @@ class TrackBox extends StatelessWidget {
                   ),
                   Container(
                     padding: const EdgeInsets.all(10),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          Text(
-                            'Play',
-                            style:
-                                kHeading2.copyWith(color: kGrayScaleColorWhite),
-                          ),
-                          kSizedBoxHorizontalXXS,
-                          const Icon(
-                            MelodisticIcon.play,
-                            color: Colors.white,
-                          )
-                        ]),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: <Widget>[
+                        const Icon(MelodisticIcon.menu_vertical,
+                            color: kGrayScaleColorWhite),
+                        kSizedBoxVerticalXL,
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Text(
+                                'Play',
+                                style: kHeading2.copyWith(
+                                    color: kGrayScaleColorWhite),
+                              ),
+                              kSizedBoxHorizontalXXS,
+                              const Icon(
+                                MelodisticIcon.play,
+                                color: Colors.white,
+                              )
+                            ]),
+                      ],
+                    ),
                   ),
                 ],
               ),
