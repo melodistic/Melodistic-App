@@ -3,10 +3,13 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/screens/user/widget/delete-song-bottomsheet.widget.dart';
+import 'package:melodistic/utils/display.dart';
 import 'package:melodistic/widgets/common/divider.widget.dart';
 
 class UploadedSongWidget extends StatelessWidget {
-  const UploadedSongWidget({Key? key, this.name, this.artist, this.time})
+  const UploadedSongWidget(
+      {Key? key, required this.name, required this.artist, required this.time})
       : super(key: key);
   final String? name;
   final String? artist;
@@ -28,9 +31,9 @@ class UploadedSongWidget extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text('$name',
+                      Text(name!,
                           style: kBody3Medium.copyWith(color: kPrimaryColor)),
-                      Text('$time',
+                      Text(time!,
                           style:
                               kBody3Medium.copyWith(color: kGrayScaleColor600))
                     ],
@@ -38,7 +41,11 @@ class UploadedSongWidget extends StatelessWidget {
                 ])),
             GestureDetector(
                 child: const Icon(MelodisticIcon.menu_vertical,
-                    color: kGrayScaleColor800))
+                    color: kGrayScaleColor800),
+                onTap: () {
+                  showMelodisticBottomSheet(context,
+                      DeleteSongBottomSheet(title: name!, time: time!));
+                })
           ],
         ),
         kSizedBoxVerticalXS,
