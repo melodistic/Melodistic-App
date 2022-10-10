@@ -6,7 +6,7 @@ import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/widgets/common/bottom-sheet.widget.dart';
 import 'package:melodistic/widgets/common/type/bottom-sheet.type.dart';
 
-class DeleteSongBottomSheet extends StatefulWidget {
+class DeleteSongBottomSheet extends StatelessWidget {
   const DeleteSongBottomSheet(
       {Key? key, required this.title, required this.time})
       : super(key: key);
@@ -14,18 +14,10 @@ class DeleteSongBottomSheet extends StatefulWidget {
   final String time;
 
   @override
-  State<DeleteSongBottomSheet> createState() => _DeleteSongBottomSheet();
-}
-
-class _DeleteSongBottomSheet extends State<DeleteSongBottomSheet> {
-  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
-      GlobalKey<ScaffoldMessengerState>();
-
-  @override
   Widget build(BuildContext context) {
     return BottomSheetWidget(
-        title: widget.title,
-        description: widget.time,
+        title: title,
+        description: time,
         actionList: <BottomSheetAction>[
           BottomSheetAction(
               title: 'Delete music',

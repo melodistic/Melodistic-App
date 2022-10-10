@@ -6,23 +6,15 @@ import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/widgets/common/bottom-sheet.widget.dart';
 import 'package:melodistic/widgets/common/type/bottom-sheet.type.dart';
 
-class EditSectionBottomSheet extends StatefulWidget {
+class EditSectionBottomSheet extends StatelessWidget {
   const EditSectionBottomSheet({Key? key, required this.title})
       : super(key: key);
   final String title;
 
   @override
-  State<EditSectionBottomSheet> createState() => _EditSectionBottomSheetState();
-}
-
-class _EditSectionBottomSheetState extends State<EditSectionBottomSheet> {
-  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
-      GlobalKey<ScaffoldMessengerState>();
-
-  @override
   Widget build(BuildContext context) {
     return BottomSheetWidget(
-        title: widget.title,
+        title: title,
         description: 'you can edit or delete this section',
         actionList: <BottomSheetAction>[
           BottomSheetAction(
