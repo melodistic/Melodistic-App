@@ -6,23 +6,21 @@ import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/widgets/common/bottom-sheet.widget.dart';
 import 'package:melodistic/widgets/common/type/bottom-sheet.type.dart';
 
-class EditSectionBottomSheet extends StatelessWidget {
-  const EditSectionBottomSheet({Key? key, required this.title})
+class DeleteSongBottomSheet extends StatelessWidget {
+  const DeleteSongBottomSheet(
+      {Key? key, required this.title, required this.time})
       : super(key: key);
   final String title;
+  final String time;
 
   @override
   Widget build(BuildContext context) {
     return BottomSheetWidget(
         title: title,
-        description: 'you can edit or delete this section',
+        description: time,
         actionList: <BottomSheetAction>[
           BottomSheetAction(
-              title: 'Edit section',
-              icon: MelodisticIcon.edit_filled,
-              handleClick: () {}),
-          BottomSheetAction(
-              title: 'Remove section',
+              title: 'Delete music',
               icon: MelodisticIcon.carbon_close_filled,
               handleClick: () {
                 Get.back<void>();
@@ -31,7 +29,7 @@ class EditSectionBottomSheet extends StatelessWidget {
                   margin: const EdgeInsets.fromLTRB(
                       kSizeS * 1.25, kSizeS * 1.25, kSizeS * 1.25, kSizeL),
                   elevation: 2,
-                  content: const Text('Section removed.'),
+                  content: const Text('Music removed.'),
                   action: SnackBarAction(
                     textColor: kSecondaryColor,
                     label: 'Undo',
