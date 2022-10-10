@@ -25,30 +25,51 @@ class TrackBox extends StatelessWidget {
               Stack(
                 alignment: Alignment.bottomRight,
                 children: <Widget>[
-                  SizedBox(
-                    height: 180,
-                    width: double.infinity,
-                    child: Image.network(
-                      track.trackImageUrl,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
                   Container(
+                      height: 200,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(track.trackImageUrl),
+                              fit: BoxFit.cover)),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.topRight,
+                                colors: <Color>[
+                              kGrayScaleColorBlack.withOpacity(.3),
+                              kGrayScaleColorBlack.withOpacity(.3),
+                            ])),
+                      )),
+                  Container(
+                    height: 200,
                     padding: const EdgeInsets.all(10),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          Text(
-                            'Play',
-                            style:
-                                kHeading2.copyWith(color: kGrayScaleColorWhite),
-                          ),
-                          kSizedBoxHorizontalXXS,
-                          const Icon(
-                            MelodisticIcon.play,
-                            color: Colors.white,
-                          )
-                        ]),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: !track.isPublic
+                          ? MainAxisAlignment.spaceBetween
+                          : MainAxisAlignment.end,
+                      children: <Widget>[
+                        if (!track.isPublic)
+                          const Icon(MelodisticIcon.menu_vertical,
+                              color: kGrayScaleColorWhite),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Text(
+                                'Play',
+                                style: kHeading2.copyWith(
+                                    color: kGrayScaleColorWhite),
+                              ),
+                              kSizedBoxHorizontalXXS,
+                              const Icon(
+                                MelodisticIcon.octicon_play,
+                                color: kGrayScaleColorWhite,
+                              )
+                            ]),
+                      ],
+                    ),
                   ),
                 ],
               ),
