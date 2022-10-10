@@ -27,10 +27,10 @@ void main() {
     final Finder trackName = find.text("It's long time ago");
     final Finder muscleGroup = find.text('ABS');
     final Finder description = find.text('12 minutes of abs workout');
-    final Image image = getWidgetByType(tester, Image) as Image;
+    // final Image image = getWidgetByType(tester, Image) as Image;
     expect(trackName, findsOneWidget);
     expect(muscleGroup, findsOneWidget);
     expect(description, findsOneWidget);
-    expect((image.image as NetworkImage).url, data.trackImageUrl);
+    // expect((image.image as NetworkImage).url, data.trackImageUrl);
   });
 }
