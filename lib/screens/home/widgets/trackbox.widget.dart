@@ -47,11 +47,11 @@ class TrackBox extends StatelessWidget {
                     padding: const EdgeInsets.all(10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: !track.isFav
+                      mainAxisAlignment: !track.isPublic
                           ? MainAxisAlignment.spaceBetween
                           : MainAxisAlignment.end,
                       children: <Widget>[
-                        if (!track.isFav)
+                        if (!track.isPublic)
                           const Icon(MelodisticIcon.menu_vertical,
                               color: kGrayScaleColorWhite),
                         Row(
