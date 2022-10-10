@@ -7,11 +7,12 @@ class MelodisticIcon {
 
   static const String _kFontFam = 'MelodisticIcon';
   static const String? _kFontPkg = null;
-  static const IconData menu_vertical =
+
+  static const IconData carbon_close_filled =
       IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData pause_outline =
+  static const IconData chevron_right =
       IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData play =
+  static const IconData octicon_play =
       IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData audio_wave =
       IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
@@ -63,20 +64,26 @@ class MelodisticIcon {
       IconData(0xe81a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData menu_hamburger =
       IconData(0xe81b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData pen =
+  static const IconData menu_vertical =
       IconData(0xe81c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData picture =
+  static const IconData pause_outline =
       IconData(0xe81d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData plus =
+  static const IconData pen =
       IconData(0xe81e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData pull_up =
+  static const IconData picture =
       IconData(0xe81f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData running =
+  static const IconData play =
       IconData(0xe820, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData settings =
+  static const IconData plus =
       IconData(0xe821, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData warning_circle =
+  static const IconData pull_up =
       IconData(0xe822, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData write =
+  static const IconData running =
       IconData(0xe823, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData settings =
+      IconData(0xe824, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData warning_circle =
+      IconData(0xe825, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData write =
+      IconData(0xe826, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
