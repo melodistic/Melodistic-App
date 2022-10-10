@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
+import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/widgets/common/divider.widget.dart';
 
@@ -29,13 +30,15 @@ class UploadedSongWidget extends StatelessWidget {
                     children: <Widget>[
                       Text('$name',
                           style: kBody3Medium.copyWith(color: kPrimaryColor)),
-                      Text('$artist',
+                      Text('$time',
                           style:
                               kBody3Medium.copyWith(color: kGrayScaleColor600))
                     ],
                   )
                 ])),
-            Text('$time', style: kBody4.copyWith(color: kGrayScaleColor600))
+            GestureDetector(
+                child: const Icon(MelodisticIcon.menu_vertical,
+                    color: kGrayScaleColor800))
           ],
         ),
         kSizedBoxVerticalXS,
