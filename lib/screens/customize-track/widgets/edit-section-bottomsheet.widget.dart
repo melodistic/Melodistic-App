@@ -30,7 +30,7 @@ class _EditSectionBottomSheetState extends State<EditSectionBottomSheet> {
               handleClick: () {}),
           BottomSheetAction(
               title: 'Remove section',
-              icon: MelodisticIcon.cross,
+              icon: MelodisticIcon.carbon_close_filled,
               handleClick: () {
                 Navigator.pop(context);
                 final SnackBar snackBar = SnackBar(

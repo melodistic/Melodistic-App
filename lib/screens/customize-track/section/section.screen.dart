@@ -11,6 +11,7 @@ import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/screens/customize-track/widgets/section-bottomsheet.widget.dart';
 import 'package:melodistic/screens/customize-track/widgets/section-timeline/section-timeline.widget.dart';
+import 'package:melodistic/utils/display.dart';
 import 'package:melodistic/widgets/common/appbar/back.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
@@ -49,16 +50,8 @@ class CustomizeSectionScreen extends StatelessWidget {
                         prefixIcon: MelodisticIcon.plus,
                         text: 'Add section',
                         handleClick: () {
-                          showModalBottomSheet<void>(
-                              context: context,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(kSizeS * 1.25),
-                                    topRight: Radius.circular(kSizeS * 1.25)),
-                              ),
-                              builder: (BuildContext context) {
-                                return SectionBottomSheet();
-                              });
+                          showMelodisticBottomSheet(
+                              context, SectionBottomSheet());
                         })
                   ],
                 )),
