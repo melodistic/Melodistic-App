@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
-import 'package:melodistic/routes.dart';
 
 class MainActionAppbar extends StatelessWidget with PreferredSizeWidget {
   const MainActionAppbar({Key? key, required this.title, required this.action})
