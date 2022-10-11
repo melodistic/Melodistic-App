@@ -6,7 +6,7 @@ import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/player.controller.dart';
 import 'package:melodistic/screens/home/widgets/music-player.widget.dart';
-import 'package:melodistic/widgets/common/appbar/action.widget.dart';
+import 'package:melodistic/widgets/common/appbar/back-action.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 
 class TrackScreen extends StatelessWidget {
@@ -16,7 +16,7 @@ class TrackScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final PlayerController playerController = Get.find();
     return ScreenWrapper(
-        customAppbar: ActionAppbar(
+        customAppbar: BackActionAppbar(
           title: 'Song',
           action: GestureDetector(child: const Icon(MelodisticIcon.favorite)),
         ),

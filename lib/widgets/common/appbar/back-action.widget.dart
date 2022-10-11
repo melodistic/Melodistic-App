@@ -6,8 +6,8 @@ import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/routes.dart';
 
-class ActionAppbar extends StatelessWidget with PreferredSizeWidget {
-  const ActionAppbar(
+class BackActionAppbar extends StatelessWidget with PreferredSizeWidget {
+  const BackActionAppbar(
       {Key? key,
       required this.title,
       required this.action,
