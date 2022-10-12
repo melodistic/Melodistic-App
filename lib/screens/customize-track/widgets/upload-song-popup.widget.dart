@@ -41,7 +41,7 @@ class UploadSongPopup extends StatelessWidget {
         SizedBox(
           width: 260,
           height: 180,
-          child: ListView.builder(
+          child: ListView.separated(
               itemCount: uploadedSong.length,
               itemBuilder: (BuildContext context, int index) {
                 return Expanded(
@@ -58,7 +58,9 @@ class UploadSongPopup extends StatelessWidget {
                             selectedSong.remove(uploadedSong[index]);
                           }
                         }));
-              }),
+              },
+              separatorBuilder: ((BuildContext context, int index) =>
+                  const MelodisticDivider())),
         ),
         const ButtonWidget(
           text: 'Add',

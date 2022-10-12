@@ -24,31 +24,26 @@ class ImportedSongWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Column(
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: kSizeXXS),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          MelodisticCheckBox<Map<String, String>>(
+              value: value, groupValue: groupValue, onChanged: onChanged),
+          kSizedBoxHorizontalXS,
+          Image.asset('assets/images/song.png'),
+          kSizedBoxHorizontalS,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              MelodisticCheckBox<Map<String, String>>(
-                  value: value, groupValue: groupValue, onChanged: onChanged),
-              kSizedBoxHorizontalXS,
-              Image.asset('assets/images/song.png'),
-              kSizedBoxHorizontalS,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Text(name!, style: kBody4.copyWith(color: kPrimaryColor)),
-                  kSizedBoxVerticalXS,
-                  Text(time!, style: kBody4.copyWith(color: kGrayScaleColor600))
-                ],
-              ),
+              Text(name!, style: kBody4.copyWith(color: kPrimaryColor)),
+              kSizedBoxVerticalXS,
+              Text(time!, style: kBody4.copyWith(color: kGrayScaleColor600))
             ],
           ),
-          kSizedBoxVerticalXXS,
-          const MelodisticDivider()
         ],
       ),
     );
