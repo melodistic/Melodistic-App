@@ -68,7 +68,10 @@ class ExerciseSectionTile extends StatelessWidget {
               ),
               onPressed: () {
                 showMelodisticBottomSheet(
-                    context, EditSectionBottomSheet(title: section.name));
+                    context,
+                    EditSectionBottomSheet(
+                      section: section,
+                    ));
               },
             ),
           ],

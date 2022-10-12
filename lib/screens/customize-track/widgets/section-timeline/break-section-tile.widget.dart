@@ -39,7 +39,10 @@ class BreakSectionTile extends StatelessWidget {
               ),
               onPressed: () {
                 showMelodisticBottomSheet(
-                    context, EditSectionBottomSheet(title: section.mood));
+                    context,
+                    EditSectionBottomSheet(
+                      section: section,
+                    ));
               },
             ),
           ],
