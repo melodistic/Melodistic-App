@@ -22,22 +22,21 @@ class UploadedSongWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Expanded(
-                flex: 2,
                 child: Row(children: <Widget>[
-                  Image.asset('assets/images/song.png'),
-                  kSizedBoxHorizontalS,
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(name!,
-                          overflow: TextOverflow.ellipsis,
-                          style: kBody3Medium.copyWith(color: kPrimaryColor)),
-                      Text(time!,
-                          style:
-                              kBody3Medium.copyWith(color: kGrayScaleColor600))
-                    ],
-                  )
-                ])),
+              Image.asset('assets/images/song.png'),
+              kSizedBoxHorizontalS,
+              Expanded(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(name!,
+                      overflow: TextOverflow.ellipsis,
+                      style: kBody3Medium.copyWith(color: kPrimaryColor)),
+                  Text(time!,
+                      style: kBody3Medium.copyWith(color: kGrayScaleColor600))
+                ],
+              ))
+            ])),
             GestureDetector(
                 child: const Icon(MelodisticIcon.menu_vertical,
                     color: kGrayScaleColor800),

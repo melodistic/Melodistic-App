@@ -4,9 +4,11 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/processed-music.controller.dart';
+import 'package:melodistic/models/processed-music.model.dart';
 import 'package:melodistic/screens/user/widget/import-link-popup.widget.dart';
 import 'package:melodistic/screens/user/widget/uploaded-song.widget.dart';
 import 'package:melodistic/singleton/alert.dart';
+import 'package:melodistic/utils/format.dart';
 import 'package:melodistic/widgets/common/appbar/main.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
@@ -95,13 +97,12 @@ class UploadScreen extends StatelessWidget {
                           child: ListView.builder(
                               itemCount: musicController.processedMusic.length,
                               itemBuilder: (BuildContext context, int index) {
+                                ProcessedMusic processedMusic =
+                                    musicController.processedMusic[index];
                                 return UploadedSongWidget(
-                                  name: musicController
-                                      .processedMusic[index].musicName,
-                                  time: (musicController
-                                              .processedMusic[index].duration /
-                                          60)
-                                      .toStringAsFixed(2),
+                                  name: processedMusic.musicName,
+                                  time: durationString(Duration(
+                                      seconds: processedMusic.duration)),
                                 );
                               }),
                         )
