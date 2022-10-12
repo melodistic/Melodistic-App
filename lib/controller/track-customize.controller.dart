@@ -42,6 +42,10 @@ class TrackCustomizeController extends GetxController {
 
   late RxList<Section> sectionList;
 
+  late RxList<Section> removedSection;
+
+  Rxn<int> indexOfRemovedSection = Rxn<int>();
+
   late Rx<OptionItem> muscleGroup;
   late Rx<SectionType> sectionType;
   late Rx<OptionItem> sectionExerciseType;
@@ -152,6 +156,16 @@ class TrackCustomizeController extends GetxController {
         duration: sectionDuration.value));
     Get.back<void>();
     Get.back<void>();
+  }
+
+  void removeSection(int index) {
+    indexOfRemovedSection.value = index;
+    removedSection.add(sectionList[index]);
+    sectionList.removeAt(index);
+  }
+
+  void undoSection() {
+    sectionList.insert(indexOfRemovedSection.value!, removedSection[0]);
   }
 
   Future<Track?> generateTrack() async {
