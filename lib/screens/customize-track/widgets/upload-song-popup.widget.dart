@@ -3,9 +3,7 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/screens/user/widget/imported-song.widget.dart';
-import 'package:melodistic/screens/user/widget/uploaded-song.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
-import 'package:melodistic/widgets/common/checkbox.widget.dart';
 import 'package:melodistic/widgets/common/divider.widget.dart';
 
 class UploadSongPopup extends StatelessWidget {

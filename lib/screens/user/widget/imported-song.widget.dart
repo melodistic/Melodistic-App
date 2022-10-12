@@ -18,8 +18,8 @@ class ImportedSongWidget extends StatelessWidget {
   final String? name;
   final String? artist;
   final String? time;
-  final String value;
-  final List<String> groupValue;
+  final Map<String, String> value;
+  final List<Map<String, String>> groupValue;
   final void Function(bool?) onChanged;
 
   @override
@@ -31,7 +31,7 @@ class ImportedSongWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              MelodisticCheckBox<String>(
+              MelodisticCheckBox<Map<String, String>>(
                   value: value, groupValue: groupValue, onChanged: onChanged),
               kSizedBoxHorizontalXS,
               Image.asset('assets/images/song.png'),
