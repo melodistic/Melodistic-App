@@ -8,11 +8,9 @@ import 'package:melodistic/screens/customize-track/widgets/edit-section-bottomsh
 import 'package:melodistic/utils/display.dart';
 
 class ExerciseSectionTile extends StatelessWidget {
-  const ExerciseSectionTile(
-      {Key? key, required this.section, required this.index})
+  const ExerciseSectionTile({Key? key, required this.section})
       : super(key: key);
   final Section section;
-  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -72,8 +70,7 @@ class ExerciseSectionTile extends StatelessWidget {
                 showMelodisticBottomSheet(
                     context,
                     EditSectionBottomSheet(
-                      title: section.name,
-                      index: index,
+                      section: section,
                     ));
               },
             ),

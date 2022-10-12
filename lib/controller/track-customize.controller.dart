@@ -9,6 +9,7 @@ import 'package:http_parser/http_parser.dart';
 import 'package:melodistic/controller/track.controller.dart';
 import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/screens/customize-track/type/RemovedSection.type.dart';
 import 'package:melodistic/screens/customize-track/type/Section.type.dart';
 import 'package:melodistic/singleton/api_client.dart';
 import 'package:melodistic/singleton/user_session.dart';
@@ -154,12 +155,14 @@ class TrackCustomizeController extends GetxController {
     Get.back<void>();
   }
 
-  Section removeSection(int index) {
-    return sectionList.removeAt(index);
+  RemovedSection removeSection(Section section) {
+    int index = sectionList.indexOf(section);
+    Section removedSection = sectionList.removeAt(index);
+    return RemovedSection(section: removedSection, index: index);
   }
 
-  void undoSection(Section section, int index) {
-    sectionList.insert(index, section);
+  void undoSection(RemovedSection removedSection) {
+    sectionList.insert(removedSection.index, removedSection.section);
   }
 
   Future<Track?> generateTrack() async {

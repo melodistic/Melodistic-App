@@ -13,14 +13,11 @@ class SectionTimeLine extends StatelessWidget {
 
   final List<Section> sectionList;
 
-  Widget renderSectionTile(Section section, int index) {
+  Widget renderSectionTile(Section section) {
     if (section.type == SectionType.exerciseSection) {
-      return ExerciseSectionTile(section: section, index: index);
+      return ExerciseSectionTile(section: section);
     } else if (section.type == SectionType.breakSection) {
-      return BreakSectionTile(
-        section: section,
-        index: index,
-      );
+      return BreakSectionTile(section: section);
     }
     return Container();
   }
@@ -42,7 +39,7 @@ class SectionTimeLine extends StatelessWidget {
                       ],
                     ),
                     for (Section section in sectionList) ...<Widget>[
-                      renderSectionTile(section, sectionList.indexOf(section)),
+                      renderSectionTile(section),
                       const ConnectorLine()
                     ]
                   ],

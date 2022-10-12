@@ -4,21 +4,20 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
+import 'package:melodistic/screens/customize-track/type/RemovedSection.type.dart';
 import 'package:melodistic/screens/customize-track/type/Section.type.dart';
 import 'package:melodistic/widgets/common/bottom-sheet.widget.dart';
 import 'package:melodistic/widgets/common/type/bottom-sheet.type.dart';
 
 class EditSectionBottomSheet extends StatelessWidget {
-  EditSectionBottomSheet({Key? key, required this.title, required this.index})
-      : super(key: key);
-  final String title;
-  final int index;
+  EditSectionBottomSheet({Key? key, required this.section}) : super(key: key);
+  final Section section;
   final TrackCustomizeController trackCustomizeController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return BottomSheetWidget(
-        title: title,
+        title: section.name,
         description: 'you can edit or delete this section',
         actionList: <BottomSheetAction>[
           BottomSheetAction(
@@ -29,8 +28,8 @@ class EditSectionBottomSheet extends StatelessWidget {
               title: 'Remove section',
               icon: MelodisticIcon.carbon_close_filled,
               handleClick: () {
-                Section removedSection =
-                    trackCustomizeController.removeSection(index);
+                RemovedSection removedSection =
+                    trackCustomizeController.removeSection(section);
                 Get.back<void>();
                 final SnackBar snackBar = SnackBar(
                   behavior: SnackBarBehavior.floating,
@@ -42,8 +41,7 @@ class EditSectionBottomSheet extends StatelessWidget {
                     textColor: kSecondaryColor,
                     label: 'Undo',
                     onPressed: () {
-                      trackCustomizeController.undoSection(
-                          removedSection, index);
+                      trackCustomizeController.undoSection(removedSection);
                     },
                   ),
                 );

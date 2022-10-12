@@ -8,10 +8,8 @@ import 'package:melodistic/screens/customize-track/widgets/edit-section-bottomsh
 import 'package:melodistic/utils/display.dart';
 
 class BreakSectionTile extends StatelessWidget {
-  const BreakSectionTile({Key? key, required this.section, required this.index})
-      : super(key: key);
+  const BreakSectionTile({Key? key, required this.section}) : super(key: key);
   final Section section;
-  final int index;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,8 +41,7 @@ class BreakSectionTile extends StatelessWidget {
                 showMelodisticBottomSheet(
                     context,
                     EditSectionBottomSheet(
-                      title: section.mood,
-                      index: index,
+                      section: section,
                     ));
               },
             ),
