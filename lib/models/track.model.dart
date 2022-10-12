@@ -1,12 +1,14 @@
 class Track {
-  late String trackId;
-  late String trackName;
-  late String trackImageUrl;
-  late String muscleGroup;
-  late String description;
-  late int duration;
-  late bool isPublic;
-  late bool isFav;
+  String trackId;
+  String trackName;
+  String trackImageUrl;
+  String muscleGroup;
+  String description;
+  int duration;
+  bool isPublic;
+  bool isFav;
+  String tag;
+
   Track({
     required this.trackId,
     required this.trackName,
@@ -16,18 +18,8 @@ class Track {
     required this.duration,
     required this.isPublic,
     required this.isFav,
+    required this.tag,
   });
-  static Track get base {
-    return Track(
-        trackId: '0',
-        trackName: '',
-        trackImageUrl: '',
-        muscleGroup: '',
-        description: '',
-        duration: 0,
-        isPublic: true,
-        isFav: false);
-  }
 
   static Track fromJson(Map<String, dynamic> rawData) {
     return Track(
@@ -38,6 +30,7 @@ class Track {
         description: (rawData['description'] ?? '').toString(),
         duration: int.parse((rawData['duration'] ?? '0').toString()),
         isPublic: (rawData['is_public'] as bool?) ?? false,
-        isFav: (rawData['is_favorite'] as bool?) ?? false);
+        isFav: (rawData['is_favorite'] as bool?) ?? false,
+        tag: (rawData['tag'] ?? '').toString());
   }
 }

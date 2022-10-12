@@ -18,7 +18,8 @@ void main() {
         description: '12 minutes of abs workout',
         duration: 720,
         isPublic: true,
-        isFav: false);
+        isFav: false,
+        tag: 'Running');
     await mockNetworkImagesFor(() => tester.pumpWidget(createScaffoldForTesting(
             child: TrackBox(
           track: data,
