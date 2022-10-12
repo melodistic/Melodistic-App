@@ -3,6 +3,7 @@ import 'package:melodistic/controller/auth.controller.dart';
 import 'package:melodistic/controller/forget-password.controller.dart';
 import 'package:melodistic/controller/hometab.controller.dart';
 import 'package:melodistic/controller/player.controller.dart';
+import 'package:melodistic/controller/processed-music.controller.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
 import 'package:melodistic/controller/track.controller.dart';
 
@@ -14,5 +15,6 @@ class Controller {
     Get.lazyPut(() => TrackCustomizeController());
     Get.lazyPut(() => PlayerController());
     Get.lazyPut(() => ForgetPasswordController());
+    Get.lazyPut(() => ProcessedMusicController());
   }
 }

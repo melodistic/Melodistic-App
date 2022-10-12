@@ -8,11 +8,9 @@ import 'package:melodistic/utils/display.dart';
 import 'package:melodistic/widgets/common/divider.widget.dart';
 
 class UploadedSongWidget extends StatelessWidget {
-  const UploadedSongWidget(
-      {Key? key, required this.name, required this.artist, required this.time})
+  const UploadedSongWidget({Key? key, required this.name, required this.time})
       : super(key: key);
   final String? name;
-  final String? artist;
   final String? time;
   @override
   Widget build(BuildContext context) {
@@ -32,6 +30,7 @@ class UploadedSongWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(name!,
+                          overflow: TextOverflow.ellipsis,
                           style: kBody3Medium.copyWith(color: kPrimaryColor)),
                       Text(time!,
                           style:
