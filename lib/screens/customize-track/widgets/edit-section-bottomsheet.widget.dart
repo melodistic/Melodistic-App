@@ -4,6 +4,7 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
+import 'package:melodistic/screens/customize-track/type/Section.type.dart';
 import 'package:melodistic/widgets/common/bottom-sheet.widget.dart';
 import 'package:melodistic/widgets/common/type/bottom-sheet.type.dart';
 
@@ -28,7 +29,8 @@ class EditSectionBottomSheet extends StatelessWidget {
               title: 'Remove section',
               icon: MelodisticIcon.carbon_close_filled,
               handleClick: () {
-                trackCustomizeController.removeSection(index);
+                Section removedSection =
+                    trackCustomizeController.removeSection(index);
                 Get.back<void>();
                 final SnackBar snackBar = SnackBar(
                   behavior: SnackBarBehavior.floating,
@@ -40,7 +42,8 @@ class EditSectionBottomSheet extends StatelessWidget {
                     textColor: kSecondaryColor,
                     label: 'Undo',
                     onPressed: () {
-                      trackCustomizeController.undoSection();
+                      trackCustomizeController.undoSection(
+                          removedSection, index);
                     },
                   ),
                 );
