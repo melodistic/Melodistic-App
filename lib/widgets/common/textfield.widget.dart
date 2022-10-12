@@ -49,7 +49,7 @@ class TextFieldWidgetState extends State<TextFieldWidget> {
               labelText: widget.hintTitle,
               errorStyle: const TextStyle(color: kErrorColor),
               labelStyle: const TextStyle(color: kGrayScaleColor500),
-              fillColor: kSecondaryColor900,
+              fillColor: kSecondaryColor,
               suffixIcon: IconButton(
                   onPressed: showPassword,
                   icon: Icon(
