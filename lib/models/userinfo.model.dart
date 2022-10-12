@@ -3,12 +3,14 @@ class UserInfo {
   String profileImage;
   int exerciseDurationHour;
   int exerciseDurationMinute;
+  bool isEmailVerified;
 
   UserInfo(
       {required this.email,
       required this.profileImage,
       required this.exerciseDurationHour,
-      required this.exerciseDurationMinute});
+      required this.exerciseDurationMinute,
+      required this.isEmailVerified});
 
   static UserInfo fromJson(Map<String, dynamic> rawData) {
     return UserInfo(
@@ -18,6 +20,7 @@ class UserInfo {
             .toString(),
         exerciseDurationHour: (rawData['exercise_duration_hour'] as int?) ?? 0,
         exerciseDurationMinute:
-            (rawData['exercise_duration_minute'] as int?) ?? 0);
+            (rawData['exercise_duration_minute'] as int?) ?? 0,
+        isEmailVerified: (rawData['is_email_verified'] as bool?) ?? false);
   }
 }
