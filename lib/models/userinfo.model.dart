@@ -21,6 +21,6 @@ class UserInfo {
         exerciseDurationHour: (rawData['exercise_duration_hour'] as int?) ?? 0,
         exerciseDurationMinute:
             (rawData['exercise_duration_minute'] as int?) ?? 0,
-        isEmailVerified: (rawData['is_email_verified'] as bool?) ?? false);
+        isEmailVerified: (rawData['email_verified'] as bool?) ?? false);
   }
 }
