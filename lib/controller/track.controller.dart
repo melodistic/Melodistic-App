@@ -131,9 +131,10 @@ class TrackController extends GetxController {
       libraryTracks.value = libraryTracks
           .map((Track element) => toggleFavoriteMapper(element, track))
           .toList();
-      favoriteTracks.value = favoriteTracks
-          .map((Track element) => toggleFavoriteMapper(element, track))
-          .toList();
+      if (track.isFav) {
+        favoriteTracks
+            .removeWhere((Track element) => element.trackId == track.trackId);
+      }
       return true;
     } catch (_) {
       return false;
