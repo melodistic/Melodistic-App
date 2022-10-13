@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/controller/auth.controller.dart';
 import 'package:melodistic/controller/processed-music.controller.dart';
 import 'package:melodistic/models/processed-music.model.dart';
 import 'package:melodistic/screens/user/widget/import-link-popup.widget.dart';
@@ -31,13 +32,14 @@ class UploadScreen extends StatelessWidget {
   ];
   final bool isVerified = true;
   final ProcessedMusicController musicController = Get.find();
+  final AuthController authController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     musicController.fetchProcessedMusic();
     return ScreenWrapper(
         customAppbar: const MainAppbar(title: 'Upload'),
-        child: Obx(() => isVerified
+        child: Obx(() => authController.userInfo.value!.isEmailVerified
             ? (musicController.processedMusic.isEmpty
                 ? Padding(
                     padding: const EdgeInsets.fromLTRB(
@@ -103,6 +105,7 @@ class UploadScreen extends StatelessWidget {
                                   name: processedMusic.musicName,
                                   time: durationString(Duration(
                                       seconds: processedMusic.duration)),
+                                  isProcessing: processedMusic.isProcessing,
                                 );
                               }),
                         )

@@ -6,7 +6,7 @@ import 'package:melodistic/singleton/api_client.dart';
 import 'package:melodistic/singleton/user_session.dart';
 
 class ProcessedMusicController extends GetxController {
-  RxList<ProcessedMusic> processedMusic = List<ProcessedMusic>.empty().obs;
+  RxList<ProcessedMusic> processedMusic = RxList<ProcessedMusic>();
   RxBool isFetching = false.obs;
 
   void updateFetching(bool? status) {

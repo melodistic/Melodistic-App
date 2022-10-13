@@ -4,14 +4,20 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/screens/user/widget/delete-song-bottomsheet.widget.dart';
+import 'package:melodistic/screens/user/widget/uploaded-status.widget.dart';
 import 'package:melodistic/utils/display.dart';
 import 'package:melodistic/widgets/common/divider.widget.dart';
 
 class UploadedSongWidget extends StatelessWidget {
-  const UploadedSongWidget({Key? key, required this.name, required this.time})
+  const UploadedSongWidget(
+      {Key? key,
+      required this.name,
+      required this.time,
+      required this.isProcessing})
       : super(key: key);
   final String? name;
   final String? time;
+  final bool isProcessing;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,9 +35,18 @@ class UploadedSongWidget extends StatelessWidget {
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(name!,
-                      overflow: TextOverflow.ellipsis,
-                      style: kBody3Medium.copyWith(color: kPrimaryColor)),
+                  Row(
+                    children: <Widget>[
+                      SizedBox(
+                        width: kSizeXL,
+                        child: Text(name!,
+                            overflow: TextOverflow.ellipsis,
+                            style: kBody3Medium.copyWith(color: kPrimaryColor)),
+                      ),
+                      kSizedBoxHorizontalXS,
+                      UploadedStatusWidget(isProcessing: isProcessing)
+                    ],
+                  ),
                   Text(time!,
                       style: kBody3Medium.copyWith(color: kGrayScaleColor600))
                 ],
