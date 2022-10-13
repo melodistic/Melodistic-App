@@ -103,8 +103,7 @@ class TrackBox extends StatelessWidget {
                             ),
                             GestureDetector(
                                 onTap: () async {
-                                  await trackController
-                                      .toggleFavorite(track.trackId);
+                                  await trackController.toggleFavorite(track);
                                 },
                                 child: track.isFav
                                     ? const Icon(MelodisticIcon.favorite_filled,
