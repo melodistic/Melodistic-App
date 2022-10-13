@@ -1,42 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:melodistic/config/color.dart';
-import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
+import 'package:melodistic/controller/processed-music.controller.dart';
 import 'package:melodistic/widgets/common/bottom-sheet.widget.dart';
 import 'package:melodistic/widgets/common/type/bottom-sheet.type.dart';
 
 class DeleteSongBottomSheet extends StatelessWidget {
-  const DeleteSongBottomSheet(
-      {Key? key, required this.title, required this.time})
+  DeleteSongBottomSheet(
+      {Key? key,
+      required this.title,
+      required this.time,
+      required this.processId})
       : super(key: key);
-  final String title;
+  final Widget title;
   final String time;
+  final String processId;
+  final ProcessedMusicController processedMusicController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return BottomSheetWidget(
-        title: title,
+        customTitle: title,
         description: time,
         actionList: <BottomSheetAction>[
           BottomSheetAction(
               title: 'Delete music',
               icon: MelodisticIcon.carbon_close_filled,
-              handleClick: () {
+              handleClick: () async {
+                await processedMusicController.deleteProcessedMusic(processId);
+                await processedMusicController.fetchProcessedMusic();
                 Get.back<void>();
-                final SnackBar snackBar = SnackBar(
-                  behavior: SnackBarBehavior.floating,
-                  margin: const EdgeInsets.fromLTRB(
-                      kSizeS * 1.25, kSizeS * 1.25, kSizeS * 1.25, kSizeL),
-                  elevation: 2,
-                  content: const Text('Music removed.'),
-                  action: SnackBarAction(
-                    textColor: kSecondaryColor,
-                    label: 'Undo',
-                    onPressed: () {},
-                  ),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
               }),
         ]);
   }

@@ -9,7 +9,9 @@ import 'package:melodistic/controller/auth.controller.dart';
 import 'package:melodistic/controller/hometab.controller.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
 import 'package:melodistic/controller/track.controller.dart';
+import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/screens/home/type/hometab.type.dart';
 import 'package:melodistic/screens/home/widgets/tablist.widget.dart';
 import 'package:melodistic/screens/home/widgets/trackbox.widget.dart';
 import 'package:melodistic/widgets/common/appbar/main.widget.dart';
@@ -40,32 +42,38 @@ class HomeScreen extends StatelessWidget {
         child: Container(
             padding:
                 const EdgeInsets.symmetric(horizontal: kSizeS, vertical: 10),
-            child: Obx(() => trackController.isFetching.isTrue
-                ? const SpinKitFadingCircle(
-                    color: kGrayScaleColor300,
-                  )
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                        TablistWidget(),
-                        Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: kSizeS, horizontal: kSizeXXS),
-                            child: Text(
-                              '${homeTabController.selectedTab?.value.label} Track',
-                              style: kHeading2.copyWith(color: kPrimaryColor),
-                            )),
-                        Expanded(
-                            child: ListView.separated(
-                                itemCount: trackController.publicTracks.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return TrackBox(
-                                    track: trackController.publicTracks[index],
-                                  );
-                                },
-                                separatorBuilder:
-                                    ((BuildContext context, int index) =>
-                                        kSizedBoxVerticalS)))
-                      ]))));
+            child: Obx(() {
+              if (trackController.isFetching.isTrue) {
+                return const SpinKitFadingCircle(
+                  color: kGrayScaleColor300,
+                );
+              }
+              List<Track> displayTracks = trackController.publicTracks
+                  .where((Track track) =>
+                      homeTabController.selectedTab?.value.type ==
+                          HomeTabType.all ||
+                      homeTabController.selectedTab?.value.label == track.tag)
+                  .toList();
+              return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    TablistWidget(),
+                    Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: kSizeS, horizontal: kSizeXXS),
+                        child: Text(
+                          '${homeTabController.selectedTab?.value.label} Track',
+                          style: kHeading2.copyWith(color: kPrimaryColor),
+                        )),
+                    Expanded(
+                        child: ListView.separated(
+                            itemCount: displayTracks.length,
+                            itemBuilder: (BuildContext context, int index) =>
+                                TrackBox(track: displayTracks[index]),
+                            separatorBuilder:
+                                (BuildContext context, int index) =>
+                                    kSizedBoxVerticalS))
+                  ]);
+            })));
   }
 }

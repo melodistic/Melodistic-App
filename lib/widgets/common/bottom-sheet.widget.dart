@@ -7,15 +7,17 @@ import 'package:melodistic/widgets/common/divider.widget.dart';
 import 'package:melodistic/widgets/common/type/bottom-sheet.type.dart';
 
 class BottomSheetWidget extends StatelessWidget {
-  const BottomSheetWidget(
-      {Key? key,
-      required this.title,
-      required this.description,
-      required this.actionList})
-      : super(key: key);
-  final String title;
+  const BottomSheetWidget({
+    Key? key,
+    this.title,
+    required this.description,
+    required this.actionList,
+    this.customTitle,
+  }) : super(key: key);
+  final String? title;
   final String description;
   final List<BottomSheetAction> actionList;
+  final Widget? customTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class BottomSheetWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(title, style: kHeading2),
+              customTitle ?? Text(title!, style: kHeading2),
               Text(description,
                   style: kBody2.copyWith(color: kGrayScaleColor600)),
               kSizedBoxVerticalXS,

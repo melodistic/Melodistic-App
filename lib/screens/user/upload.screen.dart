@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/controller/auth.controller.dart';
+import 'package:melodistic/controller/processed-music.controller.dart';
+import 'package:melodistic/models/processed-music.model.dart';
 import 'package:melodistic/screens/user/widget/import-link-popup.widget.dart';
 import 'package:melodistic/screens/user/widget/uploaded-song.widget.dart';
 import 'package:melodistic/singleton/alert.dart';
 import 'package:melodistic/widgets/common/appbar/main.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
+import 'package:melodistic/widgets/common/divider.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 
@@ -26,13 +31,16 @@ class UploadScreen extends StatelessWidget {
     },
   ];
   final bool isVerified = true;
+  final ProcessedMusicController musicController = Get.find();
+  final AuthController authController = Get.find();
 
   @override
   Widget build(BuildContext context) {
+    musicController.fetchProcessedMusic();
     return ScreenWrapper(
         customAppbar: const MainAppbar(title: 'Upload'),
-        child: isVerified
-            ? (uploadedSong.isEmpty
+        child: Obx(() => authController.userInfo.value!.isEmailVerified
+            ? (musicController.processedMusic.isEmpty
                 ? Padding(
                     padding: const EdgeInsets.fromLTRB(
                         kSizeL * 1.25, kSizeS, kSizeL * 1.25, kSizeM),
@@ -80,21 +88,22 @@ class UploadScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: <Widget>[
-                        uploadedSong.length > 1
-                            ? Text('${uploadedSong.length} tracks',
-                                style: kBody3Medium)
-                            : Text('${uploadedSong.length} track',
-                                style: kBody3Medium),
+                        Text(
+                            '${musicController.processedMusic.length} track${musicController.processedMusic.length > 1 ? 's' : ''}',
+                            style: kBody3Medium),
                         Expanded(
-                          child: ListView.builder(
-                              itemCount: uploadedSong.length,
+                          child: ListView.separated(
+                              itemCount: musicController.processedMusic.length,
                               itemBuilder: (BuildContext context, int index) {
+                                ProcessedMusic processedMusic =
+                                    musicController.processedMusic[index];
                                 return UploadedSongWidget(
-                                  name: uploadedSong[index]['name'],
-                                  artist: uploadedSong[index]['artist'],
-                                  time: uploadedSong[index]['time'],
+                                  processedMusic: processedMusic,
                                 );
-                              }),
+                              },
+                              separatorBuilder:
+                                  ((BuildContext context, int index) =>
+                                      const MelodisticDivider())),
                         )
                       ],
                     ),
@@ -127,6 +136,6 @@ class UploadScreen extends StatelessWidget {
                           size: ButtonSize.small),
                     ),
                   ],
-                )));
+                ))));
   }
 }
