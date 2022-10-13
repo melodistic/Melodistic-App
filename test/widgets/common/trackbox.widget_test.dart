@@ -22,6 +22,7 @@ void main() {
     await mockNetworkImagesFor(() => tester.pumpWidget(createScaffoldForTesting(
             child: TrackBox(
           track: data,
+          trackId: '',
         ))));
     final Finder trackName = find.text("It's long time ago");
     final Finder muscleGroup = find.text('ABS');

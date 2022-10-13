@@ -41,8 +41,9 @@ class LibraryScreen extends StatelessWidget {
                                 itemCount: trackController.libraryTracks.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return TrackBox(
-                                      track:
-                                          trackController.libraryTracks[index]);
+                                    track: trackController.libraryTracks[index],
+                                    trackId: '',
+                                  );
                                 },
                                 separatorBuilder:
                                     ((BuildContext context, int index) =>

@@ -60,8 +60,9 @@ class HomeScreen extends StatelessWidget {
                                 itemCount: trackController.publicTracks.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return TrackBox(
-                                      track:
-                                          trackController.publicTracks[index]);
+                                    track: trackController.publicTracks[index],
+                                    trackId: '',
+                                  );
                                 },
                                 separatorBuilder:
                                     ((BuildContext context, int index) =>
