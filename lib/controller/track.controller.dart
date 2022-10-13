@@ -23,6 +23,12 @@ class TrackController extends GetxController {
       final String? userToken = await UserSession.getSession();
       await APIClient().delete<Map<String, dynamic>>('/track/$trackId',
           headers: APIClient.getAuthHeaders(userToken!));
+      favoriteTracks.value = favoriteTracks
+          .where((Track element) => element.trackId != trackId)
+          .toList();
+      libraryTracks.value = libraryTracks
+          .where((Track element) => element.trackId != trackId)
+          .toList();
       return true;
     } catch (_) {
       return false;
