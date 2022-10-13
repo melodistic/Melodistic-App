@@ -1,11 +1,13 @@
 class ProcessedMusic {
-  late String musicName;
-  late int duration;
-  late String mood;
-  late String bpm;
-  late bool isProcessing;
+  String processId;
+  String musicName;
+  int duration;
+  String mood;
+  String bpm;
+  bool isProcessing;
 
   ProcessedMusic({
+    required this.processId,
     required this.musicName,
     required this.duration,
     required this.mood,
@@ -15,6 +17,7 @@ class ProcessedMusic {
 
   static ProcessedMusic fromJson(Map<String, dynamic> rawData) {
     return ProcessedMusic(
+        processId: (rawData['process_id'] ?? '').toString(),
         musicName: (rawData['music_name'] ?? '').toString(),
         duration: int.parse((rawData['duration'] ?? '0').toString()),
         mood: (rawData['mood'] ?? '').toString(),

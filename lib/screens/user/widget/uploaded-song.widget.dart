@@ -6,7 +6,6 @@ import 'package:melodistic/config/style.dart';
 import 'package:melodistic/screens/user/widget/delete-song-bottomsheet.widget.dart';
 import 'package:melodistic/screens/user/widget/uploaded-status.widget.dart';
 import 'package:melodistic/utils/display.dart';
-import 'package:melodistic/widgets/common/divider.widget.dart';
 
 class UploadedSongWidget extends StatelessWidget {
   const UploadedSongWidget(
@@ -20,49 +19,38 @@ class UploadedSongWidget extends StatelessWidget {
   final bool isProcessing;
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        kSizedBoxVerticalXS,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+        Image.asset('assets/images/song.png'),
+        kSizedBoxHorizontalS,
+        Expanded(
+            child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Expanded(
-                child: Row(children: <Widget>[
-              Image.asset('assets/images/song.png'),
-              kSizedBoxHorizontalS,
-              Expanded(
-                  child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      SizedBox(
-                        width: kSizeXL,
-                        child: Text(name!,
-                            overflow: TextOverflow.ellipsis,
-                            style: kBody3Medium.copyWith(color: kPrimaryColor)),
-                      ),
-                      kSizedBoxHorizontalXS,
-                      UploadedStatusWidget(isProcessing: isProcessing)
-                    ],
-                  ),
-                  Text(time!,
-                      style: kBody3Medium.copyWith(color: kGrayScaleColor600))
-                ],
-              ))
-            ])),
-            GestureDetector(
-                child: const Icon(MelodisticIcon.menu_vertical,
-                    color: kGrayScaleColor800),
-                onTap: () {
-                  showMelodisticBottomSheet(context,
-                      DeleteSongBottomSheet(title: name!, time: time!));
-                })
+            Row(
+              children: <Widget>[
+                SizedBox(
+                  width: kSizeXL,
+                  child: Text(name!,
+                      overflow: TextOverflow.ellipsis,
+                      style: kBody3Medium.copyWith(color: kPrimaryColor)),
+                ),
+                kSizedBoxHorizontalXS,
+                UploadedStatusWidget(isProcessing: isProcessing)
+              ],
+            ),
+            Text(time!, style: kBody3Medium.copyWith(color: kGrayScaleColor600))
           ],
-        ),
-        kSizedBoxVerticalXS,
-        const MelodisticDivider()
+        )),
+        GestureDetector(
+            child: const Icon(MelodisticIcon.menu_vertical,
+                color: kGrayScaleColor800),
+            onTap: () {
+              showMelodisticBottomSheet(
+                  context, DeleteSongBottomSheet(title: name!, time: time!));
+            })
       ],
     );
   }

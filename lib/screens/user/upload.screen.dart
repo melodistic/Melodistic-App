@@ -12,6 +12,7 @@ import 'package:melodistic/singleton/alert.dart';
 import 'package:melodistic/utils/format.dart';
 import 'package:melodistic/widgets/common/appbar/main.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
+import 'package:melodistic/widgets/common/divider.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 
@@ -88,15 +89,11 @@ class UploadScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: <Widget>[
-                        musicController.processedMusic.length > 1
-                            ? Text(
-                                '${musicController.processedMusic.length} tracks',
-                                style: kBody3Medium)
-                            : Text(
-                                '${musicController.processedMusic.length} track',
-                                style: kBody3Medium),
+                        Text(
+                            '${musicController.processedMusic.length} track${musicController.processedMusic.length > 1 ? 's' : ''}',
+                            style: kBody3Medium),
                         Expanded(
-                          child: ListView.builder(
+                          child: ListView.separated(
                               itemCount: musicController.processedMusic.length,
                               itemBuilder: (BuildContext context, int index) {
                                 ProcessedMusic processedMusic =
@@ -107,7 +104,10 @@ class UploadScreen extends StatelessWidget {
                                       seconds: processedMusic.duration)),
                                   isProcessing: processedMusic.isProcessing,
                                 );
-                              }),
+                              },
+                              separatorBuilder:
+                                  ((BuildContext context, int index) =>
+                                      const MelodisticDivider())),
                         )
                       ],
                     ),
