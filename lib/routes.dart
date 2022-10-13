@@ -85,7 +85,7 @@ final Map<String, WidgetBuilder> userRoutes = <String, WidgetBuilder>{
 };
 
 final Map<String, WidgetBuilder> settingRoutes = <String, WidgetBuilder>{
-  RoutesName.setting: (BuildContext context) => const SettingScreen(),
+  RoutesName.setting: (BuildContext context) => SettingScreen(),
   RoutesName.settingProfile: (BuildContext context) =>
       const SettingProfileScreen(),
   RoutesName.settingHelp: (BuildContext context) => const SettingHelpScreen(),
