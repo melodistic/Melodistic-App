@@ -12,11 +12,9 @@ import 'package:melodistic/screens/home/widgets/track-setting-bottomsheet.widget
 import 'package:melodistic/utils/display.dart';
 
 class TrackBox extends StatelessWidget {
-  TrackBox({Key? key, required this.track, required this.trackId})
-      : super(key: key);
+  TrackBox({Key? key, required this.track}) : super(key: key);
 
   final Track track;
-  final String? trackId;
   final PlayerController playerController = Get.find();
   final TrackController trackController = Get.find();
 

@@ -44,7 +44,6 @@ class FavoriteScreen extends StatelessWidget {
                                   return TrackBox(
                                     track:
                                         trackController.favoriteTracks[index],
-                                    trackId: '',
                                   );
                                 },
                                 separatorBuilder:
