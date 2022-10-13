@@ -5,13 +5,19 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/player.controller.dart';
+import 'package:melodistic/controller/track.controller.dart';
 import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/screens/home/widgets/track-setting-bottomsheet.widget.dart';
+import 'package:melodistic/utils/display.dart';
 
 class TrackBox extends StatelessWidget {
   TrackBox({Key? key, required this.track}) : super(key: key);
+
   final Track track;
   final PlayerController playerController = Get.find();
+  final TrackController trackController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -25,30 +31,59 @@ class TrackBox extends StatelessWidget {
               Stack(
                 alignment: Alignment.bottomRight,
                 children: <Widget>[
-                  SizedBox(
-                    height: 180,
-                    width: double.infinity,
-                    child: Image.network(
-                      track.trackImageUrl,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
                   Container(
+                      height: 200,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(track.trackImageUrl),
+                              fit: BoxFit.cover)),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.topRight,
+                                colors: <Color>[
+                              kGrayScaleColorBlack.withOpacity(.3),
+                              kGrayScaleColorBlack.withOpacity(.3),
+                            ])),
+                      )),
+                  Container(
+                    height: 200,
                     padding: const EdgeInsets.all(10),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          Text(
-                            'Play',
-                            style:
-                                kHeading2.copyWith(color: kGrayScaleColorWhite),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: !track.isPublic
+                          ? MainAxisAlignment.spaceBetween
+                          : MainAxisAlignment.end,
+                      children: <Widget>[
+                        if (!track.isPublic)
+                          GestureDetector(
+                            child: const Icon(MelodisticIcon.menu_vertical,
+                                color: kGrayScaleColorWhite),
+                            onTap: () {
+                              showMelodisticBottomSheet(
+                                  context,
+                                  TrackSettingBottomSheet(
+                                      trackId: track.trackId));
+                            },
                           ),
-                          kSizedBoxHorizontalXXS,
-                          const Icon(
-                            MelodisticIcon.play,
-                            color: Colors.white,
-                          )
-                        ]),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Text(
+                                'Play',
+                                style: kHeading2.copyWith(
+                                    color: kGrayScaleColorWhite),
+                              ),
+                              kSizedBoxHorizontalXXS,
+                              const Icon(
+                                MelodisticIcon.octicon_play,
+                                color: kGrayScaleColorWhite,
+                              )
+                            ]),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -64,10 +99,14 @@ class TrackBox extends StatelessWidget {
                               track.trackName,
                               style: kHeading2,
                             ),
-                            track.isFav
-                                ? const Icon(MelodisticIcon.favorite_filled,
-                                    color: kSecondaryColor)
-                                : const Icon(MelodisticIcon.favorite)
+                            GestureDetector(
+                                onTap: () async {
+                                  await trackController.toggleFavorite(track);
+                                },
+                                child: track.isFav
+                                    ? const Icon(MelodisticIcon.favorite_filled,
+                                        color: kSecondaryColor)
+                                    : const Icon(MelodisticIcon.favorite))
                           ]),
                       kSizedBoxVerticalXXS,
                       Text(track.description, style: kBody2),
@@ -82,7 +121,7 @@ class TrackBox extends StatelessWidget {
           )),
       onTap: () async {
         await playerController.setupPlayer(track);
-        Navigator.of(context).pushNamed(RoutesName.track);
+        Get.toNamed<void>(RoutesName.track);
       },
     );
   }

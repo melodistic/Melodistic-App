@@ -16,6 +16,25 @@ class TrackController extends GetxController {
     isFetching.value = status ?? false;
   }
 
+  Future<bool> deleteTrack(String? trackId) async {
+    try {
+      final bool hasSession = await UserSession.hasSession();
+      if (!hasSession) throw MelodisticException('Unauthorized');
+      final String? userToken = await UserSession.getSession();
+      await APIClient().delete<Map<String, dynamic>>('/track/$trackId',
+          headers: APIClient.getAuthHeaders(userToken!));
+      favoriteTracks.value = favoriteTracks
+          .where((Track element) => element.trackId != trackId)
+          .toList();
+      libraryTracks.value = libraryTracks
+          .where((Track element) => element.trackId != trackId)
+          .toList();
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
   Future<void> fetchPublicTracks() async {
     await Future<void>.delayed(Duration.zero);
     updateFetching(true);
@@ -86,5 +105,50 @@ class TrackController extends GetxController {
     } finally {
       updateFetching(false);
     }
+  }
+
+  Future<Track> getTrackInformation(String trackId) async {
+    await Future<void>.delayed(Duration.zero);
+    try {
+      final bool hasSession = await UserSession.hasSession();
+      if (!hasSession) throw MelodisticException('Unauthorized');
+      final String? userToken = await UserSession.getSession();
+      final Response<Map<String, dynamic>>? trackResponse = await APIClient()
+          .get('/track/$trackId',
+              headers: APIClient.getAuthHeaders(userToken!));
+      final Track track = Track.fromJson(trackResponse!.data!);
+      return track;
+    } catch (_) {
+      rethrow;
+    }
+  }
+
+  Future<bool> toggleFavorite(Track track) async {
+    try {
+      final bool hasSession = await UserSession.hasSession();
+      if (!hasSession) throw MelodisticException('Unauthorized');
+      final String? userToken = await UserSession.getSession();
+      await APIClient().post<dynamic>('/user/favorite',
+          data: <String, String>{'track_id': track.trackId},
+          headers: APIClient.getAuthHeaders(userToken!));
+      publicTracks.value = publicTracks
+          .map((Track element) => toggleFavoriteMapper(element, track))
+          .toList();
+      libraryTracks.value = libraryTracks
+          .map((Track element) => toggleFavoriteMapper(element, track))
+          .toList();
+      if (track.isFav) {
+        favoriteTracks
+            .removeWhere((Track element) => element.trackId == track.trackId);
+      }
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Track toggleFavoriteMapper(Track element, Track track) {
+    if (element.trackId == track.trackId) element.isFav = !element.isFav;
+    return element;
   }
 }

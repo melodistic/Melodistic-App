@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/routes.dart';
 
-class ActionAppbar extends StatelessWidget with PreferredSizeWidget {
-  const ActionAppbar(
+class BackActionAppbar extends StatelessWidget with PreferredSizeWidget {
+  const BackActionAppbar(
       {Key? key,
       required this.title,
       required this.action,
@@ -28,11 +30,14 @@ class ActionAppbar extends StatelessWidget with PreferredSizeWidget {
           child: SizedBox(
               child: GestureDetector(
             onTap: () {
-              Navigator.pop(context);
+              Get.routeTree.routes.isEmpty
+                  ? Get.offAllNamed<void>(RoutesName.home)
+                  : Get.back<void>();
             },
             child: Icon(
               MelodisticIcon.chevron_left,
               color: color,
+              size: kSizeM,
             ),
           ))),
       title: Text(

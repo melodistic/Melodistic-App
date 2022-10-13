@@ -15,9 +15,7 @@ class SectionTimeLine extends StatelessWidget {
 
   Widget renderSectionTile(Section section) {
     if (section.type == SectionType.exerciseSection) {
-      return ExerciseSectionTile(
-        section: section,
-      );
+      return ExerciseSectionTile(section: section);
     } else if (section.type == SectionType.breakSection) {
       return BreakSectionTile(section: section);
     }

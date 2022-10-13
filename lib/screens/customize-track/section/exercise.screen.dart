@@ -5,6 +5,8 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
+import 'package:melodistic/screens/customize-track/widgets/upload-song-popup.widget.dart';
+import 'package:melodistic/singleton/alert.dart';
 import 'package:melodistic/widgets/common/appbar/back.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
@@ -84,6 +86,9 @@ class CustomizeExerciseScreen extends StatelessWidget {
                             )),
                         Expanded(
                             child: ButtonWidget(
+                          handleClick: () {
+                            Alert.showAlert(UploadSongPopup());
+                          },
                           button: ButtonType.outlineButton,
                           size: ButtonSize.small,
                           prefixIcon: MelodisticIcon.pull_up,

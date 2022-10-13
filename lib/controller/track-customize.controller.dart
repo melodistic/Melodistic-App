@@ -1,9 +1,18 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
+import 'package:get/route_manager.dart';
+import 'package:get/instance_manager.dart';
+import 'package:http_parser/http_parser.dart';
+import 'package:melodistic/controller/track.controller.dart';
+import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/screens/customize-track/type/RemovedSection.type.dart';
 import 'package:melodistic/screens/customize-track/type/Section.type.dart';
+import 'package:melodistic/singleton/api_client.dart';
+import 'package:melodistic/singleton/user_session.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
 import 'package:melodistic/widgets/common/type/option-item.type.dart';
 import 'package:melodistic/widgets/common/type/section.type.dart';
@@ -42,6 +51,8 @@ class TrackCustomizeController extends GetxController {
   Rxn<String> programName = Rxn<String>();
   Rxn<File> programPicture = Rxn<File>();
   Rxn<String> errorMessage = Rxn<String>();
+
+  RxBool isProcessing = false.obs;
 
   TrackCustomizeController() {
     muscleGroup = muscleGroupList[0].obs;
@@ -114,6 +125,7 @@ class TrackCustomizeController extends GetxController {
 
   void selectNewSectionType(SectionType type) {
     sectionType.value = type;
+    createNewSection();
   }
 
   void selectExerciseType(OptionItem tab, ScrollController scrollController) {
@@ -141,5 +153,69 @@ class TrackCustomizeController extends GetxController {
         duration: sectionDuration.value));
     Get.back<void>();
     Get.back<void>();
+  }
+
+  RemovedSection removeSection(Section section) {
+    int index = sectionList.indexOf(section);
+    Section removedSection = sectionList.removeAt(index);
+    return RemovedSection(section: removedSection, index: index);
+  }
+
+  void undoSection(RemovedSection removedSection) {
+    sectionList.insert(removedSection.index, removedSection.section);
+  }
+
+  Future<Track?> generateTrack() async {
+    isProcessing.value = true;
+    final bool hasSession = await UserSession.hasSession();
+    if (!hasSession) {
+      Get.offAllNamed<void>(RoutesName.onboard);
+      return null;
+    }
+    final String? userToken = await UserSession.getSession();
+
+    final Response<dynamic>? response = await APIClient().post('/track',
+        data: <String, dynamic>{
+          'program_name': programName.value,
+          'muscle_group': muscleGroup.value.label,
+          'sections':
+              sectionList.map((Section element) => element.toJson()).toList()
+        },
+        headers: APIClient.getAuthHeaders(userToken!));
+    if (response!.data != null) {
+      final String trackId = response.data['track_id'] as String;
+      await uploadTrackImage(trackId);
+      final TrackController trackController = Get.find();
+      final Track track = await trackController.getTrackInformation(trackId);
+      isProcessing.value = true;
+      return track;
+    } else {
+      isProcessing.value = false;
+      return null;
+    }
+  }
+
+  Future<bool> uploadTrackImage(String trackId) async {
+    final bool hasSession = await UserSession.hasSession();
+    if (!hasSession) {
+      Get.offAllNamed<void>(RoutesName.onboard);
+      return false;
+    }
+    final String? userToken = await UserSession.getSession();
+    final String fileExt = programPicture.value!.path.split('.').last;
+    MultipartFile file = await MultipartFile.fromFile(
+        programPicture.value!.path,
+        filename: 'program_image.$fileExt',
+        contentType:
+            MediaType.parse('image/${fileExt == 'jpg' ? 'jpeg' : fileExt}'));
+    final Response<dynamic>? response = await APIClient().postFormData(
+        '/track/$trackId/image',
+        data: <String, MultipartFile>{'program_image': file},
+        headers: APIClient.getAuthHeaders(userToken!));
+    if (response!.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

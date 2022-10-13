@@ -6,6 +6,7 @@ import 'package:get/utils.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:melodistic/models/exception.model.dart';
 import 'package:melodistic/models/token.model.dart';
+import 'package:melodistic/models/userinfo.model.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/singleton/api_client.dart';
 import 'package:melodistic/singleton/user_session.dart';
@@ -16,6 +17,7 @@ class AuthController extends GetxController {
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
   final Rx<Duration> duration = Duration.zero.obs;
+  final Rxn<UserInfo> userInfo = Rxn<UserInfo>();
 
   ValidateFunction validateEmail = (String? value) {
     if (value == null || value.isEmpty) {
@@ -88,8 +90,7 @@ class AuthController extends GetxController {
     token.value = Token(token: userToken!);
 
     try {
-      await APIClient().get<dynamic>('/auth/me',
-          headers: APIClient.getAuthHeaders(token.value!.token));
+      await fetchUserProfile();
     } on MelodisticException catch (_) {
       await logout();
     }
@@ -141,5 +142,21 @@ class AuthController extends GetxController {
       return false;
     }
     return true;
+  }
+
+  Future<void> fetchUserProfile() async {
+    try {
+      final bool hasSession = await UserSession.hasSession();
+      if (!hasSession) throw MelodisticException('Unauthorized');
+      final String? userToken = await UserSession.getSession();
+
+      final Response<Map<String, dynamic>>? response = await APIClient()
+          .get<Map<String, dynamic>>('/auth/me',
+              headers: APIClient.getAuthHeaders(userToken!));
+      if (response == null) throw MelodisticException('Unauthorized');
+      userInfo.value = UserInfo.fromJson(response.data!);
+    } on MelodisticException catch (_) {
+      rethrow;
+    }
   }
 }

@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/controller/player.controller.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
+import 'package:melodistic/models/track.model.dart';
+import 'package:melodistic/routes.dart';
+import 'package:melodistic/screens/customize-track/widgets/section-bottomsheet.widget.dart';
 import 'package:melodistic/screens/customize-track/widgets/section-timeline/section-timeline.widget.dart';
-import 'package:melodistic/screens/customize-track/widgets/selection-section-popup.widget.dart';
+import 'package:melodistic/utils/display.dart';
 import 'package:melodistic/widgets/common/appbar/back.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
-import 'package:melodistic/widgets/common/popup/popup_dialog.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 
@@ -45,18 +49,34 @@ class CustomizeSectionScreen extends StatelessWidget {
                         button: ButtonType.softButton,
                         prefixIcon: MelodisticIcon.plus,
                         text: 'Add section',
-                        handleClick: () => showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) =>
-                                  PopupWidget(content: SelectSectionPopup()),
-                            ))
+                        handleClick: () {
+                          showMelodisticBottomSheet(
+                              context, SectionBottomSheet());
+                        })
                   ],
                 )),
                 kSizedBoxVerticalS,
-                const ButtonWidget(
-                  button: ButtonType.mainButton,
-                  text: 'Start Exercise',
-                )
+                Obx(() => ButtonWidget(
+                      button: ButtonType.mainButton,
+                      text: 'Start Exercise',
+                      customContent: trackCustomizeController.isProcessing.value
+                          ? const SpinKitFadingCircle(
+                              color: kGrayScaleColor300,
+                              size: 18,
+                            )
+                          : null,
+                      handleClick: () async {
+                        if (!trackCustomizeController.isProcessing.value) {
+                          Track? track =
+                              await trackCustomizeController.generateTrack();
+                          if (track != null) {
+                            PlayerController playerController = Get.find();
+                            await playerController.setupPlayer(track);
+                            Get.offAllNamed<void>(RoutesName.track);
+                          }
+                        }
+                      },
+                    ))
               ],
             )));
   }

@@ -4,6 +4,8 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/screens/customize-track/type/Section.type.dart';
+import 'package:melodistic/screens/customize-track/widgets/edit-section-bottomsheet.widget.dart';
+import 'package:melodistic/utils/display.dart';
 
 class BreakSectionTile extends StatelessWidget {
   const BreakSectionTile({Key? key, required this.section}) : super(key: key);
@@ -30,9 +32,18 @@ class BreakSectionTile extends StatelessWidget {
                 )
               ],
             )),
-            const Icon(
-              MelodisticIcon.menu_vertical,
-              color: kGrayScaleColor700,
+            IconButton(
+              icon: const Icon(
+                MelodisticIcon.menu_vertical,
+                color: kGrayScaleColor700,
+              ),
+              onPressed: () {
+                showMelodisticBottomSheet(
+                    context,
+                    EditSectionBottomSheet(
+                      section: section,
+                    ));
+              },
             ),
           ],
         ));

@@ -24,13 +24,13 @@ class PlayerController extends GetxController {
   }
 
   Future<void> play() async {
-    await player.play();
     isPlaying.value = true;
+    await player.play();
   }
 
   Future<void> pause() async {
-    await player.pause();
     isPlaying.value = false;
+    await player.pause();
   }
 
   Future<void> seek(Duration duration) async {
@@ -39,7 +39,7 @@ class PlayerController extends GetxController {
   }
 
   Future<void> stop() async {
-    await player.stop();
     isPlaying.value = false;
+    await player.stop();
   }
 }

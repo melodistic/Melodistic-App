@@ -10,4 +10,4 @@ class HomeTab {
       required this.position});
 }
 
-enum HomeTabType { recommended, running, cardio, yoga }
+enum HomeTabType { all, running, cardio, yoga, pilatis }

@@ -25,17 +25,17 @@ class MelodisticDrawer extends StatelessWidget {
       padding: const EdgeInsets.all(kSizeS * 1.5),
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const <Widget>[
-            CircleAvatar(
-              backgroundImage:
-                  NetworkImage('https://portfolio.ggolfz.me/profile.jpg'),
-              radius: kSizeM + kSizeXS,
-            ),
+          children: <Widget>[
+            Obx(() => CircleAvatar(
+                  backgroundImage:
+                      NetworkImage(authController.userInfo.value!.profileImage),
+                  radius: kSizeM + kSizeXS,
+                )),
             kSizedBoxVerticalS,
-            Text(
-              'name@gmail.com',
-              style: kHeading2,
-            )
+            Obx(() => Text(
+                  authController.userInfo.value!.email,
+                  style: kHeading2,
+                ))
           ]),
     );
   }

@@ -20,6 +20,7 @@ dependencies:
   image_picker: ^0.8.5+3
   syncfusion_flutter_sliders: ^20.2.49
   shared_preferences: ^2.0.15
+  http_parser: ^4.0.1
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +30,7 @@ dev_dependencies:
   mockito: ^5.3.0
   build_runner: ^2.2.0
   network_image_mock: ^2.1.1
+  any_link_preview: ^2.0.9
 
 flutter:
   uses-material-design: true

@@ -11,7 +11,7 @@ import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 
 class LibraryScreen extends StatelessWidget {
   LibraryScreen({Key? key}) : super(key: key);
-  final TrackController trackController = TrackController();
+  final TrackController trackController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +41,8 @@ class LibraryScreen extends StatelessWidget {
                                 itemCount: trackController.libraryTracks.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return TrackBox(
-                                      track:
-                                          trackController.libraryTracks[index]);
+                                    track: trackController.libraryTracks[index],
+                                  );
                                 },
                                 separatorBuilder:
                                     ((BuildContext context, int index) =>
