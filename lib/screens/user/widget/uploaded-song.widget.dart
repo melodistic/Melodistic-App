@@ -49,7 +49,22 @@ class UploadedSongWidget extends StatelessWidget {
                 color: kGrayScaleColor800),
             onTap: () {
               showMelodisticBottomSheet(
-                  context, DeleteSongBottomSheet(title: name!, time: time!));
+                  context,
+                  DeleteSongBottomSheet(
+                      title: Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: kSizeXL,
+                            child: Text(name!,
+                                overflow: TextOverflow.ellipsis,
+                                style: kBody3Medium.copyWith(
+                                    color: kPrimaryColor)),
+                          ),
+                          kSizedBoxHorizontalXS,
+                          UploadedStatusWidget(isProcessing: isProcessing)
+                        ],
+                      ),
+                      time: time! + ' m'));
             })
       ],
     );

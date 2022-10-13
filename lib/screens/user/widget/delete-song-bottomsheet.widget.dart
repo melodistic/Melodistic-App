@@ -10,13 +10,13 @@ class DeleteSongBottomSheet extends StatelessWidget {
   const DeleteSongBottomSheet(
       {Key? key, required this.title, required this.time})
       : super(key: key);
-  final String title;
+  final Widget title;
   final String time;
 
   @override
   Widget build(BuildContext context) {
     return BottomSheetWidget(
-        title: title,
+        customTitle: title,
         description: time,
         actionList: <BottomSheetAction>[
           BottomSheetAction(
