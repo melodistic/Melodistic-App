@@ -91,8 +91,7 @@ final Map<String, WidgetBuilder> settingRoutes = <String, WidgetBuilder>{
   RoutesName.settingHelp: (BuildContext context) => const SettingHelpScreen(),
   RoutesName.settingPreference: (BuildContext context) =>
       const SettingPreferenceScreen(),
-  RoutesName.settingPassword: (BuildContext context) =>
-      const SettingPasswordScreen(),
+  RoutesName.settingPassword: (BuildContext context) => SettingPasswordScreen(),
 };
 
 final Map<String, WidgetBuilder> newPasswordRoutes = <String, WidgetBuilder>{
