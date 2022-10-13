@@ -123,7 +123,7 @@ class TrackController extends GetxController {
       if (!hasSession) throw MelodisticException('Unauthorized');
       final String? userToken = await UserSession.getSession();
       await APIClient().post<dynamic>('/user/favorite',
-          data: {'track_id': trackId},
+          data: <String, String>{'track_id': trackId!},
           headers: APIClient.getAuthHeaders(userToken!));
       return true;
     } catch (_) {
