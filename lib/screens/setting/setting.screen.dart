@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
+import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/auth.controller.dart';
 import 'package:melodistic/routes.dart';
-import 'package:melodistic/screens/setting/widget/setting-tab.widget.dart';
 import 'package:melodistic/widgets/common/appbar/main.widget.dart';
-import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
-import 'package:melodistic/widgets/common/type/button.type.dart';
 
 class SettingScreen extends StatelessWidget {
   SettingScreen({Key? key}) : super(key: key);
@@ -24,16 +22,22 @@ class SettingScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SettingTabWidget(
-                  title: 'Profile setting',
-                  handleClick: () {
+              ListTile(
+                  onTap: () {
                     Get.toNamed<dynamic>(RoutesName.settingProfile);
-                  }),
-              SettingTabWidget(
-                  title: 'Change password',
-                  handleClick: () {
+                  },
+                  title: Text('Profile setting',
+                      style: kBody2.copyWith(color: kGrayScaleColorBlack)),
+                  trailing: const Icon(MelodisticIcon.chevron_right,
+                      color: kGrayScaleColorBlack)),
+              ListTile(
+                  onTap: () {
                     Get.toNamed<dynamic>(RoutesName.settingPassword);
-                  }),
+                  },
+                  title: Text('Change password',
+                      style: kBody2.copyWith(color: kGrayScaleColorBlack)),
+                  trailing: const Icon(MelodisticIcon.chevron_right,
+                      color: kGrayScaleColorBlack)),
               ListTile(
                 onTap: () {
                   authController.logout();
