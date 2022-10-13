@@ -9,7 +9,6 @@ import 'package:melodistic/models/processed-music.model.dart';
 import 'package:melodistic/screens/user/widget/import-link-popup.widget.dart';
 import 'package:melodistic/screens/user/widget/uploaded-song.widget.dart';
 import 'package:melodistic/singleton/alert.dart';
-import 'package:melodistic/utils/format.dart';
 import 'package:melodistic/widgets/common/appbar/main.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/divider.widget.dart';
@@ -99,10 +98,7 @@ class UploadScreen extends StatelessWidget {
                                 ProcessedMusic processedMusic =
                                     musicController.processedMusic[index];
                                 return UploadedSongWidget(
-                                  name: processedMusic.musicName,
-                                  time: durationString(Duration(
-                                      seconds: processedMusic.duration)),
-                                  isProcessing: processedMusic.isProcessing,
+                                  processedMusic: processedMusic,
                                 );
                               },
                               separatorBuilder:
