@@ -3,22 +3,16 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/models/processed-music.model.dart';
 import 'package:melodistic/screens/user/widget/delete-song-bottomsheet.widget.dart';
 import 'package:melodistic/screens/user/widget/uploaded-status.widget.dart';
 import 'package:melodistic/utils/display.dart';
+import 'package:melodistic/utils/format.dart';
 
 class UploadedSongWidget extends StatelessWidget {
-  const UploadedSongWidget(
-      {Key? key,
-      required this.name,
-      required this.time,
-      required this.isProcessing,
-      required this.processId})
+  const UploadedSongWidget({Key? key, required this.processedMusic})
       : super(key: key);
-  final String? name;
-  final String? time;
-  final bool isProcessing;
-  final String processId;
+  final ProcessedMusic processedMusic;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -35,15 +29,16 @@ class UploadedSongWidget extends StatelessWidget {
               children: <Widget>[
                 SizedBox(
                   width: kSizeXL,
-                  child: Text(name!,
+                  child: Text(processedMusic.musicName,
                       overflow: TextOverflow.ellipsis,
                       style: kBody3Medium.copyWith(color: kPrimaryColor)),
                 ),
                 kSizedBoxHorizontalXS,
-                UploadedStatusWidget(isProcessing: isProcessing)
+                UploadedStatusWidget(isProcessing: processedMusic.isProcessing)
               ],
             ),
-            Text(time!, style: kBody3Medium.copyWith(color: kGrayScaleColor600))
+            Text(durationString(Duration(seconds: processedMusic.duration)),
+                style: kBody3Medium.copyWith(color: kGrayScaleColor600))
           ],
         )),
         GestureDetector(
@@ -53,21 +48,24 @@ class UploadedSongWidget extends StatelessWidget {
               showMelodisticBottomSheet(
                   context,
                   DeleteSongBottomSheet(
-                      processId: processId,
+                      processId: processedMusic.processId,
                       title: Row(
                         children: <Widget>[
                           SizedBox(
                             width: kSizeXL,
-                            child: Text(name!,
+                            child: Text(processedMusic.musicName,
                                 overflow: TextOverflow.ellipsis,
                                 style: kBody3Medium.copyWith(
                                     color: kPrimaryColor)),
                           ),
                           kSizedBoxHorizontalXS,
-                          UploadedStatusWidget(isProcessing: isProcessing)
+                          UploadedStatusWidget(
+                              isProcessing: processedMusic.isProcessing)
                         ],
                       ),
-                      time: time! + ' m'));
+                      time: durationString(
+                              Duration(seconds: processedMusic.duration)) +
+                          ' m'));
             })
       ],
     );
