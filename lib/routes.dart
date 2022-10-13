@@ -13,6 +13,7 @@ import 'package:melodistic/screens/onboarding/onboard.screen.dart';
 import 'package:melodistic/screens/onboarding/register/register.screen.dart';
 import 'package:melodistic/screens/onboarding/register/time.screen.dart';
 import 'package:melodistic/screens/setting/help.screen.dart';
+import 'package:melodistic/screens/setting/password.screen.dart';
 import 'package:melodistic/screens/setting/preference.screen.dart';
 import 'package:melodistic/screens/setting/profile.screen.dart';
 import 'package:melodistic/screens/setting/setting.screen.dart';
@@ -47,6 +48,7 @@ class RoutesName {
   static const String settingProfile = '/setting/profile';
   static const String settingHelp = '/setting/help';
   static const String settingPreference = '/setting/preference';
+  static const String settingPassword = '/setting/password';
 
   // Forget Password
   static const String forgetPassword = '/forget-password';
@@ -88,7 +90,9 @@ final Map<String, WidgetBuilder> settingRoutes = <String, WidgetBuilder>{
       const SettingProfileScreen(),
   RoutesName.settingHelp: (BuildContext context) => const SettingHelpScreen(),
   RoutesName.settingPreference: (BuildContext context) =>
-      const SettingPreferenceScreen()
+      const SettingPreferenceScreen(),
+  RoutesName.settingPassword: (BuildContext context) =>
+      const SettingPasswordScreen(),
 };
 
 final Map<String, WidgetBuilder> newPasswordRoutes = <String, WidgetBuilder>{
