@@ -5,6 +5,7 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/player.controller.dart';
+import 'package:melodistic/controller/track.controller.dart';
 import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/screens/home/widgets/track-setting-bottomsheet.widget.dart';
@@ -12,8 +13,11 @@ import 'package:melodistic/utils/display.dart';
 
 class TrackBox extends StatelessWidget {
   TrackBox({Key? key, required this.track}) : super(key: key);
+
   final Track track;
   final PlayerController playerController = Get.find();
+  final TrackController trackController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -95,10 +99,14 @@ class TrackBox extends StatelessWidget {
                               track.trackName,
                               style: kHeading2,
                             ),
-                            track.isFav
-                                ? const Icon(MelodisticIcon.favorite_filled,
-                                    color: kSecondaryColor)
-                                : const Icon(MelodisticIcon.favorite)
+                            GestureDetector(
+                                onTap: () async {
+                                  await trackController.toggleFavorite(track);
+                                },
+                                child: track.isFav
+                                    ? const Icon(MelodisticIcon.favorite_filled,
+                                        color: kSecondaryColor)
+                                    : const Icon(MelodisticIcon.favorite))
                           ]),
                       kSizedBoxVerticalXXS,
                       Text(track.description, style: kBody2),

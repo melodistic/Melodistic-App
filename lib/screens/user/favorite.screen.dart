@@ -42,8 +42,9 @@ class FavoriteScreen extends StatelessWidget {
                                     trackController.favoriteTracks.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return TrackBox(
-                                      track: trackController
-                                          .favoriteTracks[index]);
+                                    track:
+                                        trackController.favoriteTracks[index],
+                                  );
                                 },
                                 separatorBuilder:
                                     ((BuildContext context, int index) =>

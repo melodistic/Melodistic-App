@@ -122,4 +122,33 @@ class TrackController extends GetxController {
       rethrow;
     }
   }
+
+  Future<bool> toggleFavorite(Track track) async {
+    try {
+      final bool hasSession = await UserSession.hasSession();
+      if (!hasSession) throw MelodisticException('Unauthorized');
+      final String? userToken = await UserSession.getSession();
+      await APIClient().post<dynamic>('/user/favorite',
+          data: <String, String>{'track_id': track.trackId},
+          headers: APIClient.getAuthHeaders(userToken!));
+      publicTracks.value = publicTracks
+          .map((Track element) => toggleFavoriteMapper(element, track))
+          .toList();
+      libraryTracks.value = libraryTracks
+          .map((Track element) => toggleFavoriteMapper(element, track))
+          .toList();
+      if (track.isFav) {
+        favoriteTracks
+            .removeWhere((Track element) => element.trackId == track.trackId);
+      }
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Track toggleFavoriteMapper(Track element, Track track) {
+    if (element.trackId == track.trackId) element.isFav = !element.isFav;
+    return element;
+  }
 }
