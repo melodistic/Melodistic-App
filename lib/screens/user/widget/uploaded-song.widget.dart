@@ -12,11 +12,13 @@ class UploadedSongWidget extends StatelessWidget {
       {Key? key,
       required this.name,
       required this.time,
-      required this.isProcessing})
+      required this.isProcessing,
+      required this.processId})
       : super(key: key);
   final String? name;
   final String? time;
   final bool isProcessing;
+  final String processId;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -51,6 +53,7 @@ class UploadedSongWidget extends StatelessWidget {
               showMelodisticBottomSheet(
                   context,
                   DeleteSongBottomSheet(
+                      processId: processId,
                       title: Row(
                         children: <Widget>[
                           SizedBox(

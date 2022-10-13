@@ -13,6 +13,19 @@ class ProcessedMusicController extends GetxController {
     isFetching.value = status ?? false;
   }
 
+  Future<bool> deleteProcessedMusic(String? processId) async {
+    try {
+      final bool hasSession = await UserSession.hasSession();
+      if (!hasSession) throw MelodisticException('Unauthorized');
+      final String? userToken = await UserSession.getSession();
+      await APIClient().delete<Map<String, dynamic>>('/process/$processId',
+          headers: APIClient.getAuthHeaders(userToken!));
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
   Future<void> fetchProcessedMusic() async {
     await Future<void>.delayed(Duration.zero);
     updateFetching(true);

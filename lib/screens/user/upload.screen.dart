@@ -99,6 +99,7 @@ class UploadScreen extends StatelessWidget {
                                 ProcessedMusic processedMusic =
                                     musicController.processedMusic[index];
                                 return UploadedSongWidget(
+                                  processId: processedMusic.processId,
                                   name: processedMusic.musicName,
                                   time: durationString(Duration(
                                       seconds: processedMusic.duration)),
