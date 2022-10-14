@@ -47,7 +47,8 @@ class UploadScreen extends StatelessWidget {
               child: const Icon(MelodisticIcon.folder_add,
                   color: kGrayScaleColorBlack),
               onTap: () {
-                showMelodisticBottomSheet(context, ImportSongBottomSheet());
+                showMelodisticBottomSheet(
+                    context, const ImportSongBottomSheet());
               }),
         ),
         child: Obx(() => authController.userInfo.value!.isEmailVerified
