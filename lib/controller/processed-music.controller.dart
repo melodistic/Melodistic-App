@@ -64,7 +64,7 @@ class ProcessedMusicController extends GetxController {
         '/process/file',
         data: <String, MultipartFile>{'music': file},
         headers: APIClient.getAuthHeaders(userToken!));
-    if (response!.statusCode == 200) {
+    if (response!.statusCode == 201) {
       return true;
     } else {
       return false;
