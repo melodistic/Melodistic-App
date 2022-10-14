@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:melodistic/app.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
+import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/auth.controller.dart';
 import 'package:melodistic/controller/processed-music.controller.dart';
 import 'package:melodistic/models/processed-music.model.dart';
 import 'package:melodistic/screens/user/widget/import-link-popup.widget.dart';
+import 'package:melodistic/screens/user/widget/import-song-bottomsheet.widget.dart';
 import 'package:melodistic/screens/user/widget/uploaded-song.widget.dart';
 import 'package:melodistic/singleton/alert.dart';
+import 'package:melodistic/utils/display.dart';
+import 'package:melodistic/widgets/common/appbar/main-action.widget.dart';
 import 'package:melodistic/widgets/common/appbar/main.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/divider.widget.dart';
@@ -38,7 +43,15 @@ class UploadScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     musicController.fetchProcessedMusic();
     return ScreenWrapper(
-        customAppbar: const MainAppbar(title: 'Upload'),
+        customAppbar: MainActionAppbar(
+          title: 'Upload',
+          action: IconButton(
+              icon: const Icon(MelodisticIcon.folder_add,
+                  color: kGrayScaleColorBlack),
+              onPressed: () {
+                showMelodisticBottomSheet(context, ImportSongBottomSheet());
+              }),
+        ),
         child: Obx(() => authController.userInfo.value!.isEmailVerified
             ? (musicController.processedMusic.isEmpty
                 ? Padding(

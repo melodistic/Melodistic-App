@@ -4,13 +4,13 @@ import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/controller/processed-music.controller.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 
 class ConfirmUploadPopup extends StatelessWidget {
-  const ConfirmUploadPopup({Key? key, required this.metadata})
-      : super(key: key);
+  ConfirmUploadPopup({Key? key, required this.metadata}) : super(key: key);
   final Metadata metadata;
-
+  final ProcessedMusicController processedMusicController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,6 +34,7 @@ class ConfirmUploadPopup extends StatelessWidget {
           ButtonWidget(
             text: 'Confirm',
             handleClick: () {
+              processedMusicController.fetchProcessedMusic();
               Get.back<void>();
             },
           )
