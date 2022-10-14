@@ -9,6 +9,7 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/utils/file.dart';
 import 'package:melodistic/widgets/common/appbar/back.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
@@ -18,14 +19,9 @@ import 'package:melodistic/widgets/common/type/button.type.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
 import 'package:melodistic/widgets/common/type/option-item.type.dart';
 
-class CustomizeScreen extends StatefulWidget {
-  const CustomizeScreen({Key? key}) : super(key: key);
+class CustomizeScreen extends StatelessWidget {
+  CustomizeScreen({Key? key}) : super(key: key);
 
-  @override
-  State<CustomizeScreen> createState() => _CustomizeScreenState();
-}
-
-class _CustomizeScreenState extends State<CustomizeScreen> {
   final TrackCustomizeController trackCustomizeController = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -161,15 +157,5 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                     )
                   ]),
             )));
-  }
-
-  Future<File?> getPhotoFromGallery() async {
-    XFile? pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      File imageFile = File(pickedFile.path);
-      return imageFile;
-    }
-    return null;
   }
 }
