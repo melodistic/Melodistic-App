@@ -7,22 +7,26 @@ import 'package:melodistic/routes.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 
-class ChangePasswordPopup extends StatelessWidget {
-  const ChangePasswordPopup({Key? key}) : super(key: key);
-
+class SettingSuccessPopup extends StatelessWidget {
+  const SettingSuccessPopup(
+      {Key? key, required this.title, required this.description})
+      : super(key: key);
+  final String title;
+  final String description;
   @override
   Widget build(BuildContext context) {
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Image.asset('assets/images/check.png'),
-          const Padding(
-              padding: EdgeInsetsDirectional.only(top: kSizeM),
-              child: Text('Password Updated', style: kHeading2)),
           Padding(
-              padding:
-                  const EdgeInsets.fromLTRB(kSizeXS, kSizeXS, kSizeXS, kSizeM),
-              child: Text('Your password has been change.',
+              padding: const EdgeInsetsDirectional.only(top: kSizeM),
+              child: Text(title, style: kHeading2)),
+          Padding(
+              padding: const EdgeInsets.fromLTRB(
+                  kSizeXXS, kSizeXS, kSizeXXS, kSizeM),
+              child: Text(description,
+                  textAlign: TextAlign.center,
                   style: kBody2.copyWith(color: kGrayScaleColor600))),
           Column(
             children: <Widget>[
