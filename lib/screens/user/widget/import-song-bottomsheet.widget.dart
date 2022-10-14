@@ -1,15 +1,27 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:melodistic/config/icon.dart';
+import 'package:melodistic/controller/processed-music.controller.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
+import 'package:melodistic/screens/user/widget/confirm-upload-popup.widget.dart';
 import 'package:melodistic/screens/user/widget/import-link-popup.widget.dart';
 import 'package:melodistic/singleton/alert.dart';
 import 'package:melodistic/widgets/common/bottom-sheet.widget.dart';
 import 'package:melodistic/widgets/common/type/bottom-sheet.type.dart';
 
-class ImportSongBottomSheet extends StatelessWidget {
-  ImportSongBottomSheet({Key? key}) : super(key: key);
+class ImportSongBottomSheet extends StatefulWidget {
+  const ImportSongBottomSheet({Key? key}) : super(key: key);
+
+  @override
+  State<ImportSongBottomSheet> createState() => _ImportSongBottomSheetState();
+}
+
+class _ImportSongBottomSheetState extends State<ImportSongBottomSheet> {
   final TrackCustomizeController controller = Get.find();
+  final ProcessedMusicController processedMusicController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +33,25 @@ class ImportSongBottomSheet extends StatelessWidget {
           BottomSheetAction(
               title: 'Import from your files',
               icon: MelodisticIcon.list_add,
-              handleClick: () {}),
+              handleClick: () async {
+                File? file = await getMusicFile();
+                if (file != null) {
+                  processedMusicController.setProcessedSongFile(file);
+                  Alert.showAlert(ConfirmUploadPopup(
+                    source: 'Music',
+                    title: file.path.split('/').last,
+                    handleClick: () async {
+                      File? processedFile =
+                          processedMusicController.processedSongFile();
+                      if (processedFile != null) {
+                        Get.back<void>();
+                        Get.back<void>();
+                        processedMusicController.fetchProcessedMusic();
+                      }
+                    },
+                  ));
+                }
+              }),
           BottomSheetAction(
               title: 'Import from youtube link',
               icon: MelodisticIcon.play,
@@ -29,5 +59,15 @@ class ImportSongBottomSheet extends StatelessWidget {
                 Alert.showAlert(ImportLinkPopup());
               }),
         ]);
+  }
+
+  Future<File?> getMusicFile() async {
+    FilePickerResult? pickedSong = await FilePicker.platform
+        .pickFiles(type: FileType.custom, allowedExtensions: <String>['wav']);
+    if (pickedSong != null) {
+      File songFile = File(pickedSong.files.single.name);
+      return songFile;
+    }
+    return null;
   }
 }
