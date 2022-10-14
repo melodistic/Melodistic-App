@@ -179,4 +179,19 @@ class AuthController extends GetxController {
     }
     return true;
   }
+
+  Future<bool> resentEmailVerification() async {
+    final bool hasSession = await UserSession.hasSession();
+    if (!hasSession) {
+      throw MelodisticException('Unauthorized');
+    }
+    final String? userToken = await UserSession.getSession();
+    final Response<dynamic>? response = await APIClient().post(
+        '/auth/resent-verify-email',
+        headers: APIClient.getAuthHeaders(userToken!));
+    if (response == null) {
+      return false;
+    }
+    return true;
+  }
 }

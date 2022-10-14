@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/auth.controller.dart';
-import 'package:melodistic/screens/setting/widget/change-password-popup.widget.dart';
+import 'package:melodistic/screens/setting/widget/setting-success-popup.widget.dart';
 import 'package:melodistic/singleton/alert.dart';
 import 'package:melodistic/widgets/common/appbar/back.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
@@ -69,7 +69,10 @@ class SettingPasswordScreen extends StatelessWidget {
                           _passwordController.text,
                           _newpasswordController.text);
                       if (success) {
-                        Alert.showAlert(const ChangePasswordPopup());
+                        Alert.showAlert(const SettingSuccessPopup(
+                          title: 'Password Updated',
+                          description: 'Your password has been change',
+                        ));
                       }
                     }
                   },
