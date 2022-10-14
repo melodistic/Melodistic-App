@@ -16,6 +16,7 @@ class AuthController extends GetxController {
   final Rxn<Token> token = Rxn<Token>();
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> changePasswordFormKey = GlobalKey<FormState>();
   final Rx<Duration> duration = Duration.zero.obs;
   final Rxn<UserInfo> userInfo = Rxn<UserInfo>();
 
@@ -158,5 +159,24 @@ class AuthController extends GetxController {
     } on MelodisticException catch (_) {
       rethrow;
     }
+  }
+
+  Future<bool> changePassword(String recentPassword, String newPassword) async {
+    final bool hasSession = await UserSession.hasSession();
+    if (!hasSession) {
+      throw MelodisticException('Unauthorized');
+    }
+    final String? userToken = await UserSession.getSession();
+    final Response<dynamic>? response =
+        await APIClient().post('/auth/change-password',
+            data: <String, String>{
+              'recentPassword': recentPassword,
+              'newPassword': newPassword,
+            },
+            headers: APIClient.getAuthHeaders(userToken!));
+    if (response == null) {
+      return false;
+    }
+    return true;
   }
 }
