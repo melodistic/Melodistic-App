@@ -26,6 +26,22 @@ class ProcessedMusicController extends GetxController {
     }
   }
 
+  Future<bool> processedYoutubeLink(String url) async {
+    final bool hasSession = await UserSession.hasSession();
+    if (!hasSession) {
+      throw MelodisticException('Unauthorized');
+    }
+    final String? userToken = await UserSession.getSession();
+    final Response<dynamic>? response = await APIClient().post(
+        '/process/youtube',
+        data: <String, String>{'url': url},
+        headers: APIClient.getAuthHeaders(userToken!));
+    if (response == null) {
+      return false;
+    }
+    return true;
+  }
+
   Future<void> fetchProcessedMusic() async {
     await Future<void>.delayed(Duration.zero);
     updateFetching(true);

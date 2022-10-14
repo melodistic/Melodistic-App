@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
+import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/auth.controller.dart';
 import 'package:melodistic/controller/processed-music.controller.dart';
 import 'package:melodistic/models/processed-music.model.dart';
 import 'package:melodistic/screens/user/widget/import-link-popup.widget.dart';
+import 'package:melodistic/screens/user/widget/import-song-bottomsheet.widget.dart';
 import 'package:melodistic/screens/user/widget/uploaded-song.widget.dart';
 import 'package:melodistic/singleton/alert.dart';
-import 'package:melodistic/widgets/common/appbar/main.widget.dart';
+import 'package:melodistic/utils/display.dart';
+import 'package:melodistic/widgets/common/appbar/main-action.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/divider.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
@@ -38,7 +41,15 @@ class UploadScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     musicController.fetchProcessedMusic();
     return ScreenWrapper(
-        customAppbar: const MainAppbar(title: 'Upload'),
+        customAppbar: MainActionAppbar(
+          title: 'Upload',
+          action: GestureDetector(
+              child: const Icon(MelodisticIcon.folder_add,
+                  color: kGrayScaleColorBlack),
+              onTap: () {
+                showMelodisticBottomSheet(context, ImportSongBottomSheet());
+              }),
+        ),
         child: Obx(() => authController.userInfo.value!.isEmailVerified
             ? (musicController.processedMusic.isEmpty
                 ? Padding(
@@ -91,7 +102,12 @@ class UploadScreen extends StatelessWidget {
                         Text(
                             '${musicController.processedMusic.length} track${musicController.processedMusic.length > 1 ? 's' : ''}',
                             style: kBody3Medium),
+                        kSizedBoxVerticalXS,
                         Expanded(
+                            child: RefreshIndicator(
+                          color: kPrimaryColor,
+                          backgroundColor: kGrayScaleColorWhite,
+                          onRefresh: musicController.fetchProcessedMusic,
                           child: ListView.separated(
                               itemCount: musicController.processedMusic.length,
                               itemBuilder: (BuildContext context, int index) {
@@ -104,7 +120,7 @@ class UploadScreen extends StatelessWidget {
                               separatorBuilder:
                                   ((BuildContext context, int index) =>
                                       const MelodisticDivider())),
-                        )
+                        ))
                       ],
                     ),
                   ))

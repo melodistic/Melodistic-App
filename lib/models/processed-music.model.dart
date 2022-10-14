@@ -22,6 +22,6 @@ class ProcessedMusic {
         duration: int.parse((rawData['duration'] ?? '0').toString()),
         mood: (rawData['mood'] ?? '').toString(),
         bpm: (rawData['bpm'] ?? '').toString(),
-        isProcessing: (rawData['is_favorite'] as bool?) ?? false);
+        isProcessing: (rawData['is_processing'] as bool?) ?? false);
   }
 }
