@@ -18,7 +18,8 @@ class UnverifiedBox extends StatelessWidget {
       padding: const EdgeInsets.all(kSizeS),
       decoration: const BoxDecoration(
           borderRadius: kBorderRadiusXXS, color: kGrayScaleColor100),
-      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      child:
+          Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
         SizedBox(
           width: kSizeM * 1.5,
           height: kSizeM * 1.5,
