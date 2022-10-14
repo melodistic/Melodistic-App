@@ -41,9 +41,9 @@ class _ImportSongBottomSheetState extends State<ImportSongBottomSheet> {
                     source: 'Music',
                     title: file.path.split('/').last,
                     handleClick: () async {
-                      File? processedFile =
-                          processedMusicController.processedSongFile();
-                      if (processedFile != null) {
+                      bool success =
+                          await processedMusicController.processedFile();
+                      if (success) {
                         Get.back<void>();
                         Get.back<void>();
                         processedMusicController.fetchProcessedMusic();
