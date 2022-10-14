@@ -104,6 +104,10 @@ class UploadScreen extends StatelessWidget {
                             style: kBody3Medium),
                         kSizedBoxVerticalXS,
                         Expanded(
+                            child: RefreshIndicator(
+                          color: kPrimaryColor,
+                          backgroundColor: kGrayScaleColorWhite,
+                          onRefresh: musicController.fetchProcessedMusic,
                           child: ListView.separated(
                               itemCount: musicController.processedMusic.length,
                               itemBuilder: (BuildContext context, int index) {
@@ -116,7 +120,7 @@ class UploadScreen extends StatelessWidget {
                               separatorBuilder:
                                   ((BuildContext context, int index) =>
                                       const MelodisticDivider())),
-                        )
+                        ))
                       ],
                     ),
                   ))
