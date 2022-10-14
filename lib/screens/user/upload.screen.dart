@@ -43,10 +43,10 @@ class UploadScreen extends StatelessWidget {
     return ScreenWrapper(
         customAppbar: MainActionAppbar(
           title: 'Upload',
-          action: IconButton(
-              icon: const Icon(MelodisticIcon.folder_add,
+          action: GestureDetector(
+              child: const Icon(MelodisticIcon.folder_add,
                   color: kGrayScaleColorBlack),
-              onPressed: () {
+              onTap: () {
                 showMelodisticBottomSheet(context, ImportSongBottomSheet());
               }),
         ),
@@ -102,6 +102,7 @@ class UploadScreen extends StatelessWidget {
                         Text(
                             '${musicController.processedMusic.length} track${musicController.processedMusic.length > 1 ? 's' : ''}',
                             style: kBody3Medium),
+                        kSizedBoxVerticalXS,
                         Expanded(
                           child: ListView.separated(
                               itemCount: musicController.processedMusic.length,

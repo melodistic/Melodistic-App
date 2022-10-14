@@ -39,11 +39,8 @@ class ImportLinkPopup extends StatelessWidget {
               return;
             }
             Get.back<void>();
-            final bool success =
-                await processedMusicController.processedYoutubeLink(url);
-            if (success) {
-              Alert.showAlert(ConfirmUploadPopup(metadata: _metadata));
-            }
+            Get.back<void>();
+            Alert.showAlert(ConfirmUploadPopup(metadata: _metadata));
           },
         )
       ],

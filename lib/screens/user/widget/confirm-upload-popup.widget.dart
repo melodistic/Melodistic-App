@@ -33,9 +33,13 @@ class ConfirmUploadPopup extends StatelessWidget {
           kSizedBoxVerticalS,
           ButtonWidget(
             text: 'Confirm',
-            handleClick: () {
-              processedMusicController.fetchProcessedMusic();
-              Get.back<void>();
+            handleClick: () async {
+              final bool success = await processedMusicController
+                  .processedYoutubeLink(metadata.url!);
+              if (success) {
+                Get.back<void>();
+                processedMusicController.fetchProcessedMusic();
+              }
             },
           )
         ]);
