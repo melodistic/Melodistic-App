@@ -7,6 +7,7 @@ import 'package:get/route_manager.dart';
 import 'package:get/instance_manager.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:melodistic/controller/track.controller.dart';
+import 'package:melodistic/models/processed-music.model.dart';
 import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/screens/customize-track/type/RemovedSection.type.dart';
@@ -51,6 +52,7 @@ class TrackCustomizeController extends GetxController {
   Rxn<String> programName = Rxn<String>();
   Rxn<File> programPicture = Rxn<File>();
   Rxn<String> errorMessage = Rxn<String>();
+  RxList<String> selectedSong = RxList<String>();
 
   RxBool isProcessing = false.obs;
 
@@ -150,7 +152,8 @@ class TrackCustomizeController extends GetxController {
         type: sectionType.value,
         exerciseType: sectionExerciseType.value.label,
         mood: sectionMood.value.label,
-        duration: sectionDuration.value));
+        duration: sectionDuration.value,
+        includedMusicId: selectedSong));
     Get.back<void>();
     Get.back<void>();
   }
