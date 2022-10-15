@@ -48,6 +48,8 @@ class TrackCustomizeController extends GetxController {
   late Rx<OptionItem> sectionExerciseType;
   late Rx<OptionItem> sectionMood;
   late Rx<int> sectionDuration;
+  late RxList<String> sectionIncludedSong;
+
   Rxn<String> programName = Rxn<String>();
   Rxn<File> programPicture = Rxn<File>();
   Rxn<String> errorMessage = Rxn<String>();
@@ -61,7 +63,7 @@ class TrackCustomizeController extends GetxController {
     sectionExerciseType = exerciseTypeList[0].obs;
     sectionMood = moodList[0].obs;
     sectionDuration = 15.obs;
-    // mock data
+    sectionIncludedSong = RxList<String>.empty();
     sectionList = RxList<Section>.empty();
   }
 
@@ -143,6 +145,15 @@ class TrackCustomizeController extends GetxController {
 
   void setSectionDuration(int duration) {
     sectionDuration.value = duration;
+  }
+
+  void initializeSelectedSongFromSectionIncludedSong() {
+    selectedSong.value = sectionIncludedSong.toList();
+  }
+
+  void setSectionIncludedSong() {
+    sectionIncludedSong.value = selectedSong.toList();
+    selectedSong.value = <String>[];
   }
 
   void addSection(String sectionName) {

@@ -33,6 +33,8 @@ class UploadSongPopup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    musicController.fetchProcessedMusic();
+    trackCustomizeController.initializeSelectedSongFromSectionIncludedSong();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -54,31 +56,35 @@ class UploadSongPopup extends StatelessWidget {
           child: Obx(() => ListView.separated(
               itemCount: musicController.processedMusic.length,
               itemBuilder: (BuildContext context, int index) {
-                return Expanded(
-                    child: ImportedSongWidget(
-                        name: musicController.processedMusic[index].musicName,
-                        time: durationString(Duration(
-                            seconds: musicController
-                                .processedMusic[index].duration)),
-                        value: musicController.processedMusic[index].processId,
-                        groupValue: trackCustomizeController.selectedSong,
-                        onChanged: (bool? check) {
-                          if (check!) {
-                            trackCustomizeController.selectedSong.add(
-                                musicController
-                                    .processedMusic[index].processId);
-                          } else {
-                            trackCustomizeController.selectedSong.remove(
-                                musicController
-                                    .processedMusic[index].processId);
-                          }
-                        }));
+                return Obx(() {
+                  return ImportedSongWidget(
+                      name: musicController.processedMusic[index].musicName,
+                      time: durationString(Duration(
+                          seconds:
+                              musicController.processedMusic[index].duration)),
+                      value: musicController.processedMusic[index].processId,
+                      // ignore: invalid_use_of_protected_member
+                      groupValue: trackCustomizeController.selectedSong.value,
+                      onChanged: (bool? check) {
+                        if (check!) {
+                          trackCustomizeController.selectedSong.add(
+                              musicController.processedMusic[index].processId);
+                        } else {
+                          trackCustomizeController.selectedSong.remove(
+                              musicController.processedMusic[index].processId);
+                        }
+                      });
+                });
               },
               separatorBuilder: ((BuildContext context, int index) =>
                   const MelodisticDivider()))),
         ),
-        const ButtonWidget(
+        ButtonWidget(
           text: 'Add',
+          handleClick: () {
+            trackCustomizeController.setSectionIncludedSong();
+            Get.back<void>();
+          },
         )
       ],
     );
