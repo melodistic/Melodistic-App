@@ -8,8 +8,17 @@ import 'package:melodistic/controller/processed-music.controller.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 
 class ConfirmUploadPopup extends StatelessWidget {
-  ConfirmUploadPopup({Key? key, required this.metadata}) : super(key: key);
-  final Metadata metadata;
+  ConfirmUploadPopup(
+      {Key? key,
+      required this.source,
+      this.metadata,
+      this.title,
+      required this.handleClick})
+      : super(key: key);
+  final Metadata? metadata;
+  final String source;
+  final String? title;
+  final VoidCallback handleClick;
   final ProcessedMusicController processedMusicController = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -17,30 +26,28 @@ class ConfirmUploadPopup extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            'Youtube information:',
+            '$source information:',
             style: kBody3Medium.copyWith(color: kGrayScaleColor600),
           ),
           kSizedBoxVerticalS,
-          Container(
-              padding: const EdgeInsets.symmetric(vertical: kSizeM),
-              color: kGrayScaleColorBlack,
-              child: Image.network(metadata.image!)),
-          kSizedBoxVerticalS,
+          if (source == 'Youtube')
+            Column(
+              children: <Widget>[
+                Container(
+                    padding: const EdgeInsets.symmetric(vertical: kSizeM),
+                    color: kGrayScaleColorBlack,
+                    child: Image.network(metadata!.image!)),
+                kSizedBoxVerticalS,
+              ],
+            ),
           Text(
-            metadata.title!,
+            source == 'Youtube' ? metadata!.title! : title!,
             style: kHeading3.copyWith(color: kGrayScaleColorBlack),
           ),
           kSizedBoxVerticalS,
           ButtonWidget(
             text: 'Confirm',
-            handleClick: () async {
-              final bool success = await processedMusicController
-                  .processedYoutubeLink(metadata.url!);
-              if (success) {
-                Get.back<void>();
-                processedMusicController.fetchProcessedMusic();
-              }
-            },
+            handleClick: handleClick,
           )
         ]);
   }

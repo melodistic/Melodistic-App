@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:get/state_manager.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:melodistic/models/exception.model.dart';
 import 'package:melodistic/models/processed-music.model.dart';
 import 'package:melodistic/singleton/api_client.dart';
@@ -8,6 +11,11 @@ import 'package:melodistic/singleton/user_session.dart';
 class ProcessedMusicController extends GetxController {
   RxList<ProcessedMusic> processedMusic = RxList<ProcessedMusic>();
   RxBool isFetching = false.obs;
+  Rxn<File> processedSongFile = Rxn<File>();
+
+  Future<void> setProcessedSongFile(File newProcessedSongFile) async {
+    processedSongFile.value = newProcessedSongFile;
+  }
 
   void updateFetching(bool? status) {
     isFetching.value = status ?? false;
@@ -40,6 +48,27 @@ class ProcessedMusicController extends GetxController {
       return false;
     }
     return true;
+  }
+
+  Future<bool> processedFile() async {
+    final bool hasSession = await UserSession.hasSession();
+    if (!hasSession) {
+      throw MelodisticException('Unauthorized');
+    }
+    final String? userToken = await UserSession.getSession();
+    MultipartFile file = await MultipartFile.fromFile(
+        processedSongFile.value!.path,
+        filename: processedSongFile.value!.path.split('/').last,
+        contentType: MediaType.parse('audio/wav'));
+    final Response<dynamic>? response = await APIClient().postFormData(
+        '/process/file',
+        data: <String, MultipartFile>{'music': file},
+        headers: APIClient.getAuthHeaders(userToken!));
+    if (response!.statusCode == 201) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   Future<void> fetchProcessedMusic() async {
