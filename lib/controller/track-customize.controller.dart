@@ -7,7 +7,6 @@ import 'package:get/route_manager.dart';
 import 'package:get/instance_manager.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:melodistic/controller/track.controller.dart';
-import 'package:melodistic/models/processed-music.model.dart';
 import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/routes.dart';
 import 'package:melodistic/screens/customize-track/type/RemovedSection.type.dart';
