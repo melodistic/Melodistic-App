@@ -30,7 +30,10 @@ class APIClient {
         throw MelodisticException('No Internet Connection');
       } on DioError catch (e) {
         if (e.response != null) {
-          final String message = e.response?.data?['message'].toString() ??
+          if (e.response?.statusCode == 413) {
+            throw MelodisticException('The size of file is too large');
+          }
+          final String message = e.response?.data?['message']?.toString() ??
               'Doh!, Something went wrong';
           throw MelodisticException(message);
         }
