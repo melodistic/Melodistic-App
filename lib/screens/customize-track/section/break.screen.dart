@@ -5,6 +5,7 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
+import 'package:melodistic/screens/customize-track/type/CustomizeMode.enum.dart';
 import 'package:melodistic/widgets/common/appbar/back.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
@@ -18,6 +19,24 @@ class CustomizeBreakScreen extends StatelessWidget {
 
   final TrackCustomizeController trackCustomizeController = Get.find();
 
+  String getMode(CustomizeMode mode) {
+    switch (mode) {
+      case CustomizeMode.add:
+        return 'Add';
+      case CustomizeMode.edit:
+        return 'Edit';
+    }
+  }
+
+  String getButtonText(CustomizeMode mode) {
+    switch (mode) {
+      case CustomizeMode.add:
+        return 'Add';
+      case CustomizeMode.edit:
+        return 'Save';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
@@ -29,8 +48,8 @@ class CustomizeBreakScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const Text(
-                  'Add Break section',
+                Text(
+                  '${getMode(trackCustomizeController.customizeMode.value)} Break section',
                   style: kHeading1,
                 ),
                 kSizedBoxVerticalXS,
@@ -103,9 +122,15 @@ class CustomizeBreakScreen extends StatelessWidget {
                 kSizedBoxVerticalL,
                 ButtonWidget(
                   button: ButtonType.mainButton,
-                  text: 'Add',
+                  text: getButtonText(
+                      trackCustomizeController.customizeMode.value),
                   handleClick: () {
-                    trackCustomizeController.addSection('Break Section');
+                    if (trackCustomizeController.customizeMode.value ==
+                        CustomizeMode.add) {
+                      trackCustomizeController.addSection('Break Section');
+                    } else {
+                      trackCustomizeController.updateSection('Break Section');
+                    }
                   },
                 )
               ],

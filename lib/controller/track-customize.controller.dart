@@ -9,6 +9,7 @@ import 'package:http_parser/http_parser.dart';
 import 'package:melodistic/controller/track.controller.dart';
 import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/screens/customize-track/type/CustomizeMode.enum.dart';
 import 'package:melodistic/screens/customize-track/type/RemovedSection.type.dart';
 import 'package:melodistic/screens/customize-track/type/Section.type.dart';
 import 'package:melodistic/singleton/api_client.dart';
@@ -43,6 +44,9 @@ class TrackCustomizeController extends GetxController {
 
   late RxList<Section> sectionList;
 
+  late Rx<CustomizeMode> customizeMode;
+  late Rx<int> editIndex;
+
   late Rx<OptionItem> muscleGroup;
   late Rx<SectionType> sectionType;
   late Rx<OptionItem> sectionExerciseType;
@@ -58,6 +62,7 @@ class TrackCustomizeController extends GetxController {
   RxBool isProcessing = false.obs;
 
   TrackCustomizeController() {
+    customizeMode = CustomizeMode.add.obs;
     muscleGroup = muscleGroupList[0].obs;
     sectionType = SectionType.exerciseSection.obs;
     sectionExerciseType = exerciseTypeList[0].obs;
@@ -65,6 +70,7 @@ class TrackCustomizeController extends GetxController {
     sectionDuration = 15.obs;
     sectionIncludedSong = RxList<String>.empty();
     sectionList = RxList<Section>.empty();
+    editIndex = (-1).obs;
   }
 
   bool validateProgramPicture() {
@@ -164,6 +170,18 @@ class TrackCustomizeController extends GetxController {
         mood: sectionMood.value.label,
         duration: sectionDuration.value,
         includedMusicId: selectedSong));
+    Get.back<void>();
+    Get.back<void>();
+  }
+
+  void updateSection(String sectionName) {
+    sectionList[editIndex.value] = Section(
+        name: sectionName,
+        type: sectionType.value,
+        exerciseType: sectionExerciseType.value.label,
+        mood: sectionMood.value.label,
+        duration: sectionDuration.value,
+        includedMusicId: selectedSong);
     Get.back<void>();
     Get.back<void>();
   }
