@@ -8,17 +8,15 @@ class ImportedSongWidget extends StatelessWidget {
   const ImportedSongWidget(
       {Key? key,
       required this.name,
-      required this.artist,
       required this.time,
       required this.value,
       required this.groupValue,
       required this.onChanged})
       : super(key: key);
   final String? name;
-  final String? artist;
   final String? time;
-  final Map<String, String> value;
-  final List<Map<String, String>> groupValue;
+  final String value;
+  final List<String> groupValue;
   final void Function(bool?) onChanged;
 
   @override
@@ -29,7 +27,7 @@ class ImportedSongWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          MelodisticCheckBox<Map<String, String>>(
+          MelodisticCheckBox<String>(
               value: value, groupValue: groupValue, onChanged: onChanged),
           kSizedBoxHorizontalXS,
           Image.asset('assets/images/song.png'),
@@ -38,7 +36,14 @@ class ImportedSongWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Text(name!, style: kBody4.copyWith(color: kPrimaryColor)),
+              SizedBox(
+                width: 120,
+                child: Text(
+                  name!,
+                  style: kBody4.copyWith(color: kPrimaryColor),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
               kSizedBoxVerticalXS,
               Text(time!, style: kBody4.copyWith(color: kGrayScaleColor600))
             ],
