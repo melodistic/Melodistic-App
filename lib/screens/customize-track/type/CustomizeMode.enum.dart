@@ -1,0 +1,4 @@
+enum CustomizeMode {
+  add,
+  edit,
+}
