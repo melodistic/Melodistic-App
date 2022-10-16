@@ -27,14 +27,14 @@ class UploadedSongWidget extends StatelessWidget {
           children: <Widget>[
             Row(
               children: <Widget>[
-                SizedBox(
-                  width: kSizeXL,
+                Expanded(
                   child: Text(processedMusic.musicName,
                       overflow: TextOverflow.ellipsis,
                       style: kBody3Medium.copyWith(color: kPrimaryColor)),
                 ),
                 kSizedBoxHorizontalXS,
-                UploadedStatusWidget(isProcessing: processedMusic.isProcessing)
+                UploadedStatusWidget(isProcessing: processedMusic.isProcessing),
+                kSizedBoxHorizontalXS,
               ],
             ),
             Text(durationString(Duration(seconds: processedMusic.duration)),

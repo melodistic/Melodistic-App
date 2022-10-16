@@ -6,7 +6,7 @@ class Section {
   final String exerciseType;
   final String mood;
   final int duration;
-  final List<int> includedMusicId;
+  final List<String> includedMusicId;
 
   Section({
     required this.name,
@@ -14,7 +14,7 @@ class Section {
     required this.exerciseType,
     required this.mood,
     required this.duration,
-    this.includedMusicId = const <int>[],
+    this.includedMusicId = const <String>[],
   });
 
   Map<String, dynamic> toJson() {
@@ -22,7 +22,8 @@ class Section {
       'section_name': name,
       'section_type': type.toString(),
       'mood': mood,
-      'duration': duration
+      'duration': duration,
+      'music_ids': includedMusicId
     };
   }
 }

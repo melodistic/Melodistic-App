@@ -9,6 +9,7 @@ import 'package:http_parser/http_parser.dart';
 import 'package:melodistic/controller/track.controller.dart';
 import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/screens/customize-track/type/CustomizeMode.enum.dart';
 import 'package:melodistic/screens/customize-track/type/RemovedSection.type.dart';
 import 'package:melodistic/screens/customize-track/type/Section.type.dart';
 import 'package:melodistic/singleton/api_client.dart';
@@ -43,25 +44,33 @@ class TrackCustomizeController extends GetxController {
 
   late RxList<Section> sectionList;
 
+  late Rx<CustomizeMode> customizeMode;
+  late Rx<int> editIndex;
+
   late Rx<OptionItem> muscleGroup;
   late Rx<SectionType> sectionType;
   late Rx<OptionItem> sectionExerciseType;
   late Rx<OptionItem> sectionMood;
   late Rx<int> sectionDuration;
+  late RxList<String> sectionIncludedSong;
+
   Rxn<String> programName = Rxn<String>();
   Rxn<File> programPicture = Rxn<File>();
   Rxn<String> errorMessage = Rxn<String>();
+  RxList<String> selectedSong = RxList<String>();
 
   RxBool isProcessing = false.obs;
 
   TrackCustomizeController() {
+    customizeMode = CustomizeMode.add.obs;
     muscleGroup = muscleGroupList[0].obs;
     sectionType = SectionType.exerciseSection.obs;
     sectionExerciseType = exerciseTypeList[0].obs;
     sectionMood = moodList[0].obs;
     sectionDuration = 15.obs;
-    // mock data
+    sectionIncludedSong = RxList<String>.empty();
     sectionList = RxList<Section>.empty();
+    editIndex = (-1).obs;
   }
 
   bool validateProgramPicture() {
@@ -144,13 +153,35 @@ class TrackCustomizeController extends GetxController {
     sectionDuration.value = duration;
   }
 
+  void initializeSelectedSongFromSectionIncludedSong() {
+    selectedSong.value = sectionIncludedSong.toList();
+  }
+
+  void setSectionIncludedSong() {
+    sectionIncludedSong.value = selectedSong.toList();
+    selectedSong.value = <String>[];
+  }
+
   void addSection(String sectionName) {
     sectionList.add(Section(
         name: sectionName,
         type: sectionType.value,
         exerciseType: sectionExerciseType.value.label,
         mood: sectionMood.value.label,
-        duration: sectionDuration.value));
+        duration: sectionDuration.value,
+        includedMusicId: selectedSong));
+    Get.back<void>();
+    Get.back<void>();
+  }
+
+  void updateSection(String sectionName) {
+    sectionList[editIndex.value] = Section(
+        name: sectionName,
+        type: sectionType.value,
+        exerciseType: sectionExerciseType.value.label,
+        mood: sectionMood.value.label,
+        duration: sectionDuration.value,
+        includedMusicId: selectedSong);
     Get.back<void>();
     Get.back<void>();
   }

@@ -5,6 +5,7 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
+import 'package:melodistic/screens/customize-track/type/CustomizeMode.enum.dart';
 import 'package:melodistic/screens/customize-track/widgets/upload-song-popup.widget.dart';
 import 'package:melodistic/singleton/alert.dart';
 import 'package:melodistic/widgets/common/appbar/back.widget.dart';
@@ -23,8 +24,30 @@ class CustomizeExerciseScreen extends StatelessWidget {
   final TrackCustomizeController trackCustomizeController = Get.find();
   final TextEditingController _sectionname = TextEditingController();
 
+  String getMode(CustomizeMode mode) {
+    switch (mode) {
+      case CustomizeMode.add:
+        return 'Add';
+      case CustomizeMode.edit:
+        return 'Edit';
+    }
+  }
+
+  String getButtonText(CustomizeMode mode) {
+    switch (mode) {
+      case CustomizeMode.add:
+        return 'Add';
+      case CustomizeMode.edit:
+        return 'Save';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (trackCustomizeController.customizeMode.value == CustomizeMode.edit) {
+      _sectionname.text = trackCustomizeController
+          .sectionList[trackCustomizeController.editIndex.value].name;
+    }
     return ScreenWrapper(
         customAppbar: const BackAppbar(
           title: 'Back',
@@ -36,8 +59,8 @@ class CustomizeExerciseScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    const Text(
-                      'Add Exercise section',
+                    Text(
+                      '${getMode(trackCustomizeController.customizeMode.value)} Exercise section',
                       style: kHeading1,
                     ),
                     kSizedBoxVerticalS,
@@ -134,13 +157,19 @@ class CustomizeExerciseScreen extends StatelessWidget {
                     kSizedBoxVerticalXL,
                     ButtonWidget(
                       button: ButtonType.mainButton,
-                      text: 'Add',
+                      text: getButtonText(
+                          trackCustomizeController.customizeMode.value),
                       handleClick: () {
                         if (trackCustomizeController
                             .sectionFormKey.currentState!
                             .validate()) {
                           String sectionName = _sectionname.text;
-                          trackCustomizeController.addSection(sectionName);
+                          if (trackCustomizeController.customizeMode.value ==
+                              CustomizeMode.add) {
+                            trackCustomizeController.addSection(sectionName);
+                          } else {
+                            trackCustomizeController.updateSection(sectionName);
+                          }
                         }
                       },
                     )

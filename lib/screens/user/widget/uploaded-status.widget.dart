@@ -12,22 +12,25 @@ class UploadedStatusWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.symmetric(horizontal: kSizeXS),
+        alignment: Alignment.center,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
             border: Border.all(
                 width: 1, color: isProcessing ? kWarningColor : kSuccessColor)),
+        width: kSizeL,
+        height: kSizeS * 1.5,
         child: isProcessing
             ? Text('In progress', style: kBody4.copyWith(color: kWarningColor))
             : Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                     const Icon(
                       MelodisticIcon.check_circle,
                       color: kSuccessColor,
                       size: kSizeS,
                     ),
-                    kSizedBoxVerticalXS,
+                    kSizedBoxHorizontalXXS,
                     Text('Done', style: kBody4.copyWith(color: kSuccessColor))
                   ]));
   }
