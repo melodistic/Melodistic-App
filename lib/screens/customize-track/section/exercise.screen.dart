@@ -146,6 +146,7 @@ class CustomizeExerciseScreen extends StatelessWidget {
                           interval: 15,
                           showTicks: true,
                           showLabels: true,
+                          enableTooltip: true,
                           value: trackCustomizeController.sectionDuration.value,
                           onChanged: (dynamic newValue) {
                             int duration =
