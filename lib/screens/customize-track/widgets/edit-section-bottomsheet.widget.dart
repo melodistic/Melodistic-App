@@ -32,9 +32,9 @@ class EditSectionBottomSheet extends StatelessWidget {
                 trackCustomizeController.customizeMode.value =
                     CustomizeMode.edit;
                 if (section.type == SectionType.exerciseSection) {
-                  Get.toNamed(RoutesName.customizeExerciseSection);
+                  Get.toNamed<void>(RoutesName.customizeExerciseSection);
                 } else {
-                  Get.toNamed(RoutesName.customizeBreakSection);
+                  Get.toNamed<void>(RoutesName.customizeBreakSection);
                 }
               }),
           BottomSheetAction(
