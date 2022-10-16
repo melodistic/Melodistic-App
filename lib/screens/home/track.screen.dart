@@ -24,12 +24,24 @@ class TrackScreen extends StatelessWidget {
         child: Obx(() => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(
+                Container(
                     height: 450,
                     width: double.infinity,
-                    child: Image.network(
-                        playerController.currentTrack.value!.trackImageUrl,
-                        fit: BoxFit.cover)),
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(playerController
+                                .currentTrack.value!.trackImageUrl),
+                            fit: BoxFit.cover)),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.topRight,
+                              colors: <Color>[
+                            kGrayScaleColorBlack.withOpacity(.3),
+                            kGrayScaleColorBlack.withOpacity(.3),
+                          ])),
+                    )),
                 kSizedBoxVerticalM,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: kSizeS * 1.5),
