@@ -40,7 +40,7 @@ class ImportedSongWidget extends StatelessWidget {
                 width: 120,
                 child: Text(
                   name!,
-                  style: kBody4.copyWith(color: kPrimaryColor),
+                  style: kBody3Medium.copyWith(color: kPrimaryColor),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
