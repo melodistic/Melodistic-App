@@ -4,10 +4,13 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
+import 'package:melodistic/routes.dart';
+import 'package:melodistic/screens/customize-track/type/CustomizeMode.enum.dart';
 import 'package:melodistic/screens/customize-track/type/RemovedSection.type.dart';
 import 'package:melodistic/screens/customize-track/type/Section.type.dart';
 import 'package:melodistic/widgets/common/bottom-sheet.widget.dart';
 import 'package:melodistic/widgets/common/type/bottom-sheet.type.dart';
+import 'package:melodistic/widgets/common/type/section.type.dart';
 
 class EditSectionBottomSheet extends StatelessWidget {
   EditSectionBottomSheet({Key? key, required this.section}) : super(key: key);
@@ -23,7 +26,17 @@ class EditSectionBottomSheet extends StatelessWidget {
           BottomSheetAction(
               title: 'Edit section',
               icon: MelodisticIcon.edit_filled,
-              handleClick: () {}),
+              handleClick: () {
+                trackCustomizeController.editIndex.value =
+                    trackCustomizeController.sectionList.indexOf(section);
+                trackCustomizeController.customizeMode.value =
+                    CustomizeMode.edit;
+                if (section.type == SectionType.exerciseSection) {
+                  Get.toNamed<void>(RoutesName.customizeExerciseSection);
+                } else {
+                  Get.toNamed<void>(RoutesName.customizeBreakSection);
+                }
+              }),
           BottomSheetAction(
               title: 'Remove section',
               icon: MelodisticIcon.carbon_close_filled,
