@@ -17,10 +17,6 @@ class TrackSettingBottomSheet extends StatelessWidget {
         description: 'you can edit or delete this track',
         actionList: <BottomSheetAction>[
           BottomSheetAction(
-              title: 'Edit track',
-              icon: MelodisticIcon.edit_filled,
-              handleClick: () {}),
-          BottomSheetAction(
               title: 'Delete track',
               icon: MelodisticIcon.carbon_close_filled,
               handleClick: () async {
