@@ -5,6 +5,7 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/player.controller.dart';
+import 'package:melodistic/controller/track.controller.dart';
 import 'package:melodistic/screens/home/widgets/music-player.widget.dart';
 import 'package:melodistic/widgets/common/appbar/back-action.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
@@ -15,10 +16,22 @@ class TrackScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final PlayerController playerController = Get.find();
+    final TrackController trackController = Get.find();
     return ScreenWrapper(
         customAppbar: BackActionAppbar(
           title: 'Song',
-          action: GestureDetector(child: const Icon(MelodisticIcon.favorite)),
+          action: GestureDetector(
+              onTap: () async {
+                await trackController
+                    .toggleFavorite(playerController.currentTrack.value!);
+                playerController.currentTrack.value =
+                    playerController.currentTrack.value!.copyWith(
+                        isFav: !playerController.currentTrack.value!.isFav);
+              },
+              child: Obx(() => playerController.currentTrack.value!.isFav
+                  ? const Icon(MelodisticIcon.favorite_filled,
+                      color: kSecondaryColor)
+                  : const Icon(MelodisticIcon.favorite))),
         ),
         extendBodyBehindAppBar: true,
         child: Obx(() => Column(
