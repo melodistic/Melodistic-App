@@ -22,11 +22,11 @@ class TrackScreen extends StatelessWidget {
           title: 'Song',
           action: GestureDetector(
               onTap: () async {
-                await trackController
+                bool isFavorite = await trackController
                     .toggleFavorite(playerController.currentTrack.value!);
-                playerController.currentTrack.value =
-                    playerController.currentTrack.value!.copyWith(
-                        isFav: !playerController.currentTrack.value!.isFav);
+                playerController.currentTrack.value = playerController
+                    .currentTrack.value!
+                    .copyWith(isFav: isFavorite);
               },
               child: Obx(() => playerController.currentTrack.value!.isFav
                   ? const Icon(MelodisticIcon.favorite_filled,
