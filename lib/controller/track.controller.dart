@@ -135,24 +135,27 @@ class TrackController extends GetxController {
       if (response == null || response.data == null) {
         throw MelodisticException('Failed to toggle favorite');
       }
+      bool newFavoriteStatus = response.data!['status'] == 201;
       publicTracks.value = publicTracks
-          .map((Track element) => toggleFavoriteMapper(element, track))
+          .map((Track element) =>
+              toggleFavoriteMapper(element, track, newFavoriteStatus))
           .toList();
       libraryTracks.value = libraryTracks
-          .map((Track element) => toggleFavoriteMapper(element, track))
+          .map((Track element) =>
+              toggleFavoriteMapper(element, track, newFavoriteStatus))
           .toList();
-      if (response.data!['status'] == 200) {
+      if (newFavoriteStatus) {
         favoriteTracks
             .removeWhere((Track element) => element.trackId == track.trackId);
       }
-      return response.data!['status'] == 201;
+      return newFavoriteStatus;
     } catch (_) {
       rethrow;
     }
   }
 
-  Track toggleFavoriteMapper(Track element, Track track) {
-    if (element.trackId == track.trackId) element.isFav = !element.isFav;
+  Track toggleFavoriteMapper(Track element, Track track, bool favoriteStatus) {
+    if (element.trackId == track.trackId) element.isFav = favoriteStatus;
     return element;
   }
 }
