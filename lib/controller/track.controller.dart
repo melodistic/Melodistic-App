@@ -128,27 +128,34 @@ class TrackController extends GetxController {
       final bool hasSession = await UserSession.hasSession();
       if (!hasSession) throw MelodisticException('Unauthorized');
       final String? userToken = await UserSession.getSession();
-      await APIClient().post<dynamic>('/user/favorite',
-          data: <String, String>{'track_id': track.trackId},
-          headers: APIClient.getAuthHeaders(userToken!));
+      final Response<Map<dynamic, dynamic>>? response = await APIClient()
+          .post<Map<dynamic, dynamic>>('/user/favorite',
+              data: <String, String>{'track_id': track.trackId},
+              headers: APIClient.getAuthHeaders(userToken!));
+      if (response == null || response.data == null) {
+        throw MelodisticException('Failed to toggle favorite');
+      }
+      bool newFavoriteStatus = response.data!['status'] == 201;
       publicTracks.value = publicTracks
-          .map((Track element) => toggleFavoriteMapper(element, track))
+          .map((Track element) =>
+              toggleFavoriteMapper(element, track, newFavoriteStatus))
           .toList();
       libraryTracks.value = libraryTracks
-          .map((Track element) => toggleFavoriteMapper(element, track))
+          .map((Track element) =>
+              toggleFavoriteMapper(element, track, newFavoriteStatus))
           .toList();
-      if (track.isFav) {
+      if (newFavoriteStatus) {
         favoriteTracks
             .removeWhere((Track element) => element.trackId == track.trackId);
       }
-      return true;
+      return newFavoriteStatus;
     } catch (_) {
-      return false;
+      rethrow;
     }
   }
 
-  Track toggleFavoriteMapper(Track element, Track track) {
-    if (element.trackId == track.trackId) element.isFav = !element.isFav;
+  Track toggleFavoriteMapper(Track element, Track track, bool favoriteStatus) {
+    if (element.trackId == track.trackId) element.isFav = favoriteStatus;
     return element;
   }
 }
