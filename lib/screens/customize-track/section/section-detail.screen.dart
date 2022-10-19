@@ -133,22 +133,34 @@ class CustomizeSectionDetailScreen extends StatelessWidget {
                                       color: kGrayScaleColor500),
                                 )),
                             Expanded(
-                                child: ButtonWidget(
-                              handleClick: () {
-                                Alert.showAlert(UploadSongPopup());
-                              },
-                              button: ButtonType.outlineButton,
-                              size: ButtonSize.small,
-                              prefixIcon: MelodisticIcon.pull_up,
-                              customContent: Row(children: <Widget>[
-                                const Icon(MelodisticIcon.pull_up,
-                                    color: kPrimaryColor),
-                                kSizedBoxHorizontalXS,
-                                Text('Upload',
-                                    style: kBody3Medium.copyWith(
-                                        color: kPrimaryColor))
-                              ]),
-                            ))
+                                child: Obx(() => ButtonWidget(
+                                      handleClick: () {
+                                        Alert.showAlert(UploadSongPopup());
+                                      },
+                                      button: ButtonType.outlineButton,
+                                      size: ButtonSize.small,
+                                      prefixIcon: MelodisticIcon.pull_up,
+                                      customContent: trackCustomizeController
+                                              .sectionIncludedSong.isEmpty
+                                          ? Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                  const Icon(
+                                                      MelodisticIcon.pull_up,
+                                                      color: kPrimaryColor),
+                                                  kSizedBoxHorizontalXS,
+                                                  Text('Select',
+                                                      style:
+                                                          kBody3Medium.copyWith(
+                                                              color:
+                                                                  kPrimaryColor))
+                                                ])
+                                          : Text(
+                                              '${trackCustomizeController.sectionIncludedSong.length} selected',
+                                              style: kBody3Medium.copyWith(
+                                                  color: kPrimaryColor)),
+                                    )))
                           ],
                         ),
                         kSizedBoxVerticalM,

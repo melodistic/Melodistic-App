@@ -26,20 +26,20 @@ class TrackCustomizeController extends GetxController {
     OptionItem(id: 1, label: 'Full body', position: 0),
     OptionItem(id: 2, label: 'Core', position: 0),
     OptionItem(id: 3, label: 'Abs', position: 0),
-    OptionItem(id: 4, label: 'Arm', position: 50),
-    OptionItem(id: 5, label: 'Leg', position: 60)
+    OptionItem(id: 4, label: 'Arm', position: 5),
+    OptionItem(id: 5, label: 'Leg', position: 5)
   ];
   final List<OptionItem> exerciseTypeList = <OptionItem>[
     OptionItem(id: 1, label: 'Warm up', position: 0),
     OptionItem(id: 2, label: 'Exercise', position: 0),
     OptionItem(id: 3, label: 'Cooldown', position: 0),
-    OptionItem(id: 4, label: 'Running', position: 50)
+    OptionItem(id: 4, label: 'Running', position: 25)
   ];
   final List<OptionItem> moodList = <OptionItem>[
-    OptionItem(id: 1, label: 'Focus', position: 0),
-    OptionItem(id: 2, label: 'Party', position: 0),
-    OptionItem(id: 3, label: 'Romance', position: 0),
-    OptionItem(id: 4, label: 'Chill', position: 0)
+    OptionItem(id: 1, label: 'Chill', position: 0),
+    OptionItem(id: 2, label: 'Focus', position: 0),
+    OptionItem(id: 3, label: 'Party', position: 0),
+    OptionItem(id: 4, label: 'Romance', position: 0)
   ];
 
   late RxList<Section> sectionList;
@@ -128,6 +128,12 @@ class TrackCustomizeController extends GetxController {
   void editSection(Section section) {
     sectionType.value = section.type;
     editIndex.value = sectionList.indexOf(section);
+    sectionExerciseType.value = exerciseTypeList.firstWhere(
+        (OptionItem element) => element.label == section.exerciseType);
+    sectionMood.value = moodList
+        .firstWhere((OptionItem element) => element.label == section.mood);
+    sectionDuration.value = section.duration;
+    sectionIncludedSong.value = section.includedMusicId;
     customizeMode.value = CustomizeMode.edit;
     Get.toNamed<void>(RoutesName.customizeSectionDetail);
   }
@@ -159,7 +165,8 @@ class TrackCustomizeController extends GetxController {
     sectionDuration.value = duration;
   }
 
-  void initializeSelectedSongFromSectionIncludedSong() {
+  Future<void> initializeSelectedSongFromSectionIncludedSong() async {
+    await Future<void>.delayed(Duration.zero);
     selectedSong.value = sectionIncludedSong.toList();
   }
 
