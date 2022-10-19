@@ -30,9 +30,11 @@ class BackActionAppbar extends StatelessWidget with PreferredSizeWidget {
           child: SizedBox(
               child: GestureDetector(
             onTap: () {
-              Get.routeTree.routes.isEmpty
-                  ? Get.offAllNamed<void>(RoutesName.home)
-                  : Get.back<void>();
+              if (Get.routing.route == null || Get.routing.route!.isFirst) {
+                Get.toNamed<void>(RoutesName.home);
+              } else {
+                Get.back<void>();
+              }
             },
             child: Icon(
               MelodisticIcon.chevron_left,
