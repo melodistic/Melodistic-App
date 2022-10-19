@@ -7,8 +7,8 @@ class HomeTabController extends GetxController {
     HomeTab(id: 1, label: 'All', type: HomeTabType.all, position: 0),
     HomeTab(id: 2, label: 'Running', type: HomeTabType.running, position: 0),
     HomeTab(id: 3, label: 'Cardio', type: HomeTabType.cardio, position: 0),
-    HomeTab(id: 4, label: 'Yoga', type: HomeTabType.yoga, position: 50),
-    HomeTab(id: 5, label: 'Pilatis', type: HomeTabType.pilatis, position: 60)
+    HomeTab(id: 4, label: 'Yoga', type: HomeTabType.yoga, position: 0),
+    HomeTab(id: 5, label: 'Pilatis', type: HomeTabType.pilatis, position: 0)
   ];
   Rx<HomeTab>? selectedTab;
   HomeTabController() {
