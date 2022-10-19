@@ -109,21 +109,27 @@ class TrackCustomizeController extends GetxController {
     sectionExerciseType.value = exerciseTypeList[0];
     sectionMood.value = moodList[0];
     sectionDuration.value = 15;
+    sectionIncludedSong.value = <String>[];
+    customizeMode.value = CustomizeMode.add;
   }
 
   void setupNewTrack() {
     programName.value = null;
     programPicture.value = null;
     muscleGroup.value = muscleGroupList[0];
+    sectionList.value = <Section>[];
   }
 
   void createNewSection() {
     setupNewSection();
-    if (sectionType.value == SectionType.exerciseSection) {
-      Get.toNamed<void>(RoutesName.customizeExerciseSection);
-    } else if (sectionType.value == SectionType.breakSection) {
-      Get.toNamed<void>(RoutesName.customizeBreakSection);
-    }
+    Get.toNamed<void>(RoutesName.customizeSectionDetail);
+  }
+
+  void editSection(Section section) {
+    sectionType.value = section.type;
+    editIndex.value = sectionList.indexOf(section);
+    customizeMode.value = CustomizeMode.edit;
+    Get.toNamed<void>(RoutesName.customizeSectionDetail);
   }
 
   void selectMuscleGroup(OptionItem tab, ScrollController scrollController) {
