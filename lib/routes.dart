@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:melodistic/screens/customize-track/customize.screen.dart';
-import 'package:melodistic/screens/customize-track/section/break.screen.dart';
-import 'package:melodistic/screens/customize-track/section/exercise.screen.dart';
+import 'package:melodistic/screens/customize-track/section/section-detail.screen.dart';
 import 'package:melodistic/screens/customize-track/section/section.screen.dart';
 import 'package:melodistic/screens/forget-password/forget-password.screen.dart';
 import 'package:melodistic/screens/forget-password/new-password.screen.dart';
@@ -33,8 +32,7 @@ class RoutesName {
   // Customize track
   static const String customize = '/customize';
   static const String customizeSection = '/customize/section';
-  static const String customizeExerciseSection = '/customize/section/exercise';
-  static const String customizeBreakSection = '/customize/section/break';
+  static const String customizeSectionDetail = '/customize/section/detail';
 
   // User
   static const String upload = '/upload';
@@ -68,10 +66,8 @@ final Map<String, WidgetBuilder> customizeTrackRoutes = <String, WidgetBuilder>{
   RoutesName.customize: (BuildContext context) => CustomizeScreen(),
   RoutesName.customizeSection: (BuildContext context) =>
       CustomizeSectionScreen(),
-  RoutesName.customizeExerciseSection: (BuildContext context) =>
-      CustomizeExerciseScreen(),
-  RoutesName.customizeBreakSection: (BuildContext context) =>
-      CustomizeBreakScreen()
+  RoutesName.customizeSectionDetail: (BuildContext context) =>
+      CustomizeSectionDetailScreen(),
 };
 
 final Map<String, WidgetBuilder> userRoutes = <String, WidgetBuilder>{

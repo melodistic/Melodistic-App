@@ -26,9 +26,12 @@ class BackAppbar extends StatelessWidget with PreferredSizeWidget {
               child: GestureDetector(
                   onTap: customAction ??
                       () {
-                        Get.routeTree.routes.isEmpty
-                            ? Get.offAllNamed<void>(RoutesName.home)
-                            : Get.back<void>();
+                        if (Get.routing.route == null ||
+                            Get.routing.route!.isFirst) {
+                          Get.toNamed<void>(RoutesName.home);
+                        } else {
+                          Get.back<void>();
+                        }
                       },
                   child: Row(children: <Widget>[
                     const Icon(

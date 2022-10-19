@@ -16,20 +16,6 @@ class UploadSongPopup extends StatelessWidget {
   final bool check = false;
   final ProcessedMusicController musicController = Get.find();
   final TrackCustomizeController trackCustomizeController = Get.find();
-  final List<Map<String, String>> uploadedSong = <Map<String, String>>[
-    <String, String>{
-      'name': 'how you like that',
-      'artist': 'black pink',
-      'time': '2.03'
-    },
-    <String, String>{
-      'name': 'not a home',
-      'artist': 'pardyalone',
-      'time': '3.23'
-    },
-  ];
-
-  final List<Map<String, String>> selectedSong = <Map<String, String>>[];
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +65,7 @@ class UploadSongPopup extends StatelessWidget {
               separatorBuilder: ((BuildContext context, int index) =>
                   const MelodisticDivider()))),
         ),
+        kSizedBoxVerticalXS,
         ButtonWidget(
           text: 'Add',
           handleClick: () {

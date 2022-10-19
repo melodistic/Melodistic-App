@@ -50,7 +50,7 @@ class TextFieldWidgetState extends State<TextFieldWidget> {
               labelText: widget.hintTitle,
               hintStyle: kBody2.copyWith(color: kGrayScaleColor600),
               labelStyle: kBody2.copyWith(color: kGrayScaleColor500),
-              errorStyle: kBody2.copyWith(color: kErrorColor),
+              errorStyle: kBody3.copyWith(color: kErrorColor),
               fillColor: kSecondaryColor,
               suffixIcon: IconButton(
                   onPressed: showPassword,
