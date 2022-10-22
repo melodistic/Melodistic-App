@@ -18,6 +18,7 @@ class EditSectionBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomSheetWidget(
+        size: BottomSheetSize.large,
         title: section.type == SectionType.breakSection
             ? 'Break Section'
             : section.name,

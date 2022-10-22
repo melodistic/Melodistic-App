@@ -10,10 +10,12 @@ class BottomSheetWidget extends StatelessWidget {
   const BottomSheetWidget({
     Key? key,
     this.title,
+    this.size = BottomSheetSize.small,
     required this.description,
     required this.actionList,
     this.customTitle,
   }) : super(key: key);
+  final BottomSheetSize? size;
   final String? title;
   final String description;
   final List<BottomSheetAction> actionList;
@@ -22,9 +24,10 @@ class BottomSheetWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.symmetric(
-            horizontal: kSizeS * 1.5, vertical: kSizeM),
-        height: kSizeXXL * 1.4,
+        padding: EdgeInsets.symmetric(
+            horizontal: kSizeS * 1.5,
+            vertical: size == BottomSheetSize.large ? kSizeM : kSizeXS),
+        height: size == BottomSheetSize.large ? kSizeXXL * 1.4 : kSizeXXL,
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
