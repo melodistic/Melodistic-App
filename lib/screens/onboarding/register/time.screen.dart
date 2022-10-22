@@ -60,7 +60,12 @@ class RegisterTimeScreen extends StatelessWidget {
               } catch (_) {}
             },
           ),
-          const ButtonWidget(button: ButtonType.textButton, text: 'Not now')
+          ButtonWidget(
+              button: ButtonType.textButton,
+              text: 'Not now',
+              handleClick: () {
+                Get.toNamed<dynamic>(RoutesName.home);
+              })
         ]),
       ),
     );
