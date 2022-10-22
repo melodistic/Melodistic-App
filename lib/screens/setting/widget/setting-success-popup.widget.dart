@@ -34,7 +34,8 @@ class SettingSuccessPopup extends StatelessWidget {
                 button: ButtonType.mainButton,
                 text: 'Done',
                 handleClick: () {
-                  Get.toNamed<dynamic>(RoutesName.setting);
+                  Get.back<void>();
+                  Get.back<void>();
                 },
               )
             ],

@@ -7,6 +7,7 @@ import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/auth.controller.dart';
 import 'package:melodistic/controller/processed-music.controller.dart';
 import 'package:melodistic/models/processed-music.model.dart';
+import 'package:melodistic/screens/setting/widget/setting-success-popup.widget.dart';
 import 'package:melodistic/screens/user/widget/import-link-popup.widget.dart';
 import 'package:melodistic/screens/user/widget/import-song-bottomsheet.widget.dart';
 import 'package:melodistic/screens/user/widget/uploaded-song.widget.dart';
@@ -144,6 +145,18 @@ class UploadScreen extends StatelessWidget {
                       padding:
                           const EdgeInsets.symmetric(horizontal: kSizeL * 1.25),
                       child: ButtonWidget(
+                          handleClick: () async {
+                            try {
+                              bool success = await authController
+                                  .resentEmailVerification();
+                              if (success) {
+                                Alert.showAlert(const SettingSuccessPopup(
+                                    title: 'Verification Email Sent',
+                                    description:
+                                        'Your verification email has been sent to your email address'));
+                              }
+                            } catch (_) {}
+                          },
                           customContent: Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: kSizeXS),
