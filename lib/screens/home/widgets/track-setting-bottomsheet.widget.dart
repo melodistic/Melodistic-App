@@ -14,7 +14,7 @@ class TrackSettingBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomSheetWidget(
         title: 'Track setting',
-        description: 'you can edit or delete this track',
+        description: 'you can delete this track',
         actionList: <BottomSheetAction>[
           BottomSheetAction(
               title: 'Delete track',
