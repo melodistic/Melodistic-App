@@ -9,11 +9,8 @@ import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/auth.controller.dart';
 import 'package:melodistic/controller/processed-music.controller.dart';
 import 'package:melodistic/models/processed-music.model.dart';
-<<<<<<< HEAD
 import 'package:melodistic/screens/setting/widget/setting-success-popup.widget.dart';
-=======
 import 'package:melodistic/screens/user/widget/confirm-upload-popup.widget.dart';
->>>>>>> 20afba5479baeea5ac36ece564c339c796618b1a
 import 'package:melodistic/screens/user/widget/import-link-popup.widget.dart';
 import 'package:melodistic/screens/user/widget/import-song-bottomsheet.widget.dart';
 import 'package:melodistic/screens/user/widget/uploaded-song.widget.dart';
