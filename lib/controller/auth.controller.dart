@@ -139,6 +139,7 @@ class AuthController extends GetxController {
           'duration_minute': minutes,
         },
         headers: APIClient.getAuthHeaders(userToken!));
+    setDuration(Duration.zero);
     if (response == null) {
       return false;
     }
