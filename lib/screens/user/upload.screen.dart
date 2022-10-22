@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
@@ -7,11 +9,13 @@ import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/auth.controller.dart';
 import 'package:melodistic/controller/processed-music.controller.dart';
 import 'package:melodistic/models/processed-music.model.dart';
+import 'package:melodistic/screens/user/widget/confirm-upload-popup.widget.dart';
 import 'package:melodistic/screens/user/widget/import-link-popup.widget.dart';
 import 'package:melodistic/screens/user/widget/import-song-bottomsheet.widget.dart';
 import 'package:melodistic/screens/user/widget/uploaded-song.widget.dart';
 import 'package:melodistic/singleton/alert.dart';
 import 'package:melodistic/utils/display.dart';
+import 'package:melodistic/utils/file.dart';
 import 'package:melodistic/widgets/common/appbar/main-action.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/divider.widget.dart';
@@ -73,9 +77,29 @@ class UploadScreen extends StatelessWidget {
                               const EdgeInsets.symmetric(horizontal: kSizeS),
                           child: Column(
                             children: <Widget>[
-                              const ButtonWidget(
+                              ButtonWidget(
                                   text: 'Import from files',
-                                  size: ButtonSize.small),
+                                  size: ButtonSize.small,
+                                  handleClick: () async {
+                                    File? file = await getMusicFile();
+                                    if (file != null) {
+                                      musicController
+                                          .setProcessedSongFile(file);
+                                      Alert.showAlert(ConfirmUploadPopup(
+                                        source: 'Music',
+                                        title: file.path.split('/').last,
+                                        handleClick: () async {
+                                          Get.back<void>();
+                                          bool success = await musicController
+                                              .processedFile();
+                                          if (success) {
+                                            musicController
+                                                .fetchProcessedMusic();
+                                          }
+                                        },
+                                      ));
+                                    }
+                                  }),
                               kSizedBoxVerticalXXS,
                               ButtonWidget(
                                   handleClick: () {
