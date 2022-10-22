@@ -57,6 +57,7 @@ class _ImportSongBottomSheetState extends State<ImportSongBottomSheet> {
               title: 'Import from youtube link',
               icon: MelodisticIcon.play,
               handleClick: () {
+                Get.back<void>();
                 Alert.showAlert(ImportLinkPopup());
               }),
         ]);
