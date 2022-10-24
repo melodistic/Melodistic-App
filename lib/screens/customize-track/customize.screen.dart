@@ -100,11 +100,13 @@ class CustomizeScreen extends StatelessWidget {
                                                     }),
                                               ],
                                             )
-                                          : Image.file(
-                                              trackCustomizeController
-                                                  .programPicture.value!,
-                                              fit: BoxFit.contain,
-                                            ))
+                                          : Expanded(
+                                            child: Image.file(
+                                                trackCustomizeController
+                                                    .programPicture.value!,
+                                                fit: BoxFit.contain,
+                                              ),
+                                          ))
                                     ])),
                           ),
                           Obx(() {
