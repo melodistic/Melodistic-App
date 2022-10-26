@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
+import 'package:melodistic/config/style.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
 
 class TextFieldWidget extends StatefulWidget {
@@ -47,8 +48,9 @@ class TextFieldWidgetState extends State<TextFieldWidget> {
                   borderSide: BorderSide(color: kSecondaryColor)),
               hintText: widget.hintTitle,
               labelText: widget.hintTitle,
-              errorStyle: const TextStyle(color: kErrorColor),
-              labelStyle: const TextStyle(color: kGrayScaleColor500),
+              hintStyle: kBody2.copyWith(color: kGrayScaleColor600),
+              labelStyle: kBody2.copyWith(color: kGrayScaleColor500),
+              errorStyle: kBody3.copyWith(color: kErrorColor),
               fillColor: kSecondaryColor,
               suffixIcon: IconButton(
                   onPressed: showPassword,

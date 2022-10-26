@@ -33,4 +33,28 @@ class Track {
         isFav: (rawData['is_favorite'] as bool?) ?? false,
         tag: (rawData['tag'] ?? '').toString());
   }
+
+  Track copyWith({
+    String? trackId,
+    String? trackName,
+    String? trackImageUrl,
+    String? muscleGroup,
+    String? description,
+    int? duration,
+    bool? isPublic,
+    bool? isFav,
+    String? tag,
+  }) {
+    return Track(
+      trackId: trackId ?? this.trackId,
+      trackName: trackName ?? this.trackName,
+      trackImageUrl: trackImageUrl ?? this.trackImageUrl,
+      muscleGroup: muscleGroup ?? this.muscleGroup,
+      description: description ?? this.description,
+      duration: duration ?? this.duration,
+      isPublic: isPublic ?? this.isPublic,
+      isFav: isFav ?? this.isFav,
+      tag: tag ?? this.tag,
+    );
+  }
 }

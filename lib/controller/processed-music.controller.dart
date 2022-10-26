@@ -11,6 +11,7 @@ import 'package:melodistic/singleton/user_session.dart';
 class ProcessedMusicController extends GetxController {
   RxList<ProcessedMusic> processedMusic = RxList<ProcessedMusic>();
   RxBool isFetching = false.obs;
+  RxBool isProcessing = false.obs;
   Rxn<File> processedSongFile = Rxn<File>();
 
   Future<void> setProcessedSongFile(File newProcessedSongFile) async {
@@ -35,6 +36,10 @@ class ProcessedMusicController extends GetxController {
   }
 
   Future<bool> processedYoutubeLink(String url) async {
+    if (isProcessing.value) {
+      return false;
+    }
+    isProcessing.value = true;
     final bool hasSession = await UserSession.hasSession();
     if (!hasSession) {
       throw MelodisticException('Unauthorized');
@@ -44,6 +49,7 @@ class ProcessedMusicController extends GetxController {
         '/process/youtube',
         data: <String, String>{'url': url},
         headers: APIClient.getAuthHeaders(userToken!));
+    isProcessing.value = false;
     if (response == null) {
       return false;
     }
@@ -51,6 +57,10 @@ class ProcessedMusicController extends GetxController {
   }
 
   Future<bool> processedFile() async {
+    if (isProcessing.value) {
+      return false;
+    }
+    isProcessing.value = true;
     final bool hasSession = await UserSession.hasSession();
     if (!hasSession) {
       throw MelodisticException('Unauthorized');
@@ -64,6 +74,7 @@ class ProcessedMusicController extends GetxController {
         '/process/file',
         data: <String, MultipartFile>{'music': file},
         headers: APIClient.getAuthHeaders(userToken!));
+    isProcessing.value = false;
     if (response!.statusCode == 201) {
       return true;
     } else {

@@ -13,6 +13,7 @@ class SectionBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomSheetWidget(
+        size: BottomSheetSize.large,
         title: 'Add section type',
         description: 'Relax and walk around by adding some exercise breaks.',
         actionList: <BottomSheetAction>[

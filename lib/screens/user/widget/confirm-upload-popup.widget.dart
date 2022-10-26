@@ -1,5 +1,6 @@
 import 'package:any_link_preview/any_link_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
@@ -45,10 +46,21 @@ class ConfirmUploadPopup extends StatelessWidget {
             style: kHeading3.copyWith(color: kGrayScaleColorBlack),
           ),
           kSizedBoxVerticalS,
-          ButtonWidget(
-            text: 'Confirm',
-            handleClick: handleClick,
-          )
+          Obx(() => ButtonWidget(
+                customContent: processedMusicController.isProcessing.value
+                    ? const SpinKitFadingCircle(
+                        color: kGrayScaleColor300,
+                        size: 18,
+                      )
+                    : null,
+                text: 'Confirm',
+                handleClick: () {
+                  if (processedMusicController.isProcessing.value) {
+                    return;
+                  }
+                  handleClick();
+                },
+              ))
         ]);
   }
 }

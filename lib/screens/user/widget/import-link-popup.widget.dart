@@ -39,7 +39,6 @@ class ImportLinkPopup extends StatelessWidget {
               return;
             }
             Get.back<void>();
-            Get.back<void>();
             Alert.showAlert(ConfirmUploadPopup(
               source: 'Youtube',
               metadata: _metadata,

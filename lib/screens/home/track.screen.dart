@@ -5,6 +5,7 @@ import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/player.controller.dart';
+import 'package:melodistic/controller/track.controller.dart';
 import 'package:melodistic/screens/home/widgets/music-player.widget.dart';
 import 'package:melodistic/widgets/common/appbar/back-action.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
@@ -15,21 +16,45 @@ class TrackScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final PlayerController playerController = Get.find();
+    final TrackController trackController = Get.find();
     return ScreenWrapper(
         customAppbar: BackActionAppbar(
           title: 'Song',
-          action: GestureDetector(child: const Icon(MelodisticIcon.favorite)),
+          action: GestureDetector(
+              onTap: () async {
+                bool isFavorite = await trackController
+                    .toggleFavorite(playerController.currentTrack.value!);
+                playerController.currentTrack.value = playerController
+                    .currentTrack.value!
+                    .copyWith(isFav: isFavorite);
+              },
+              child: Obx(() => playerController.currentTrack.value!.isFav
+                  ? const Icon(MelodisticIcon.favorite_filled,
+                      color: kSecondaryColor)
+                  : const Icon(MelodisticIcon.favorite))),
         ),
         extendBodyBehindAppBar: true,
         child: Obx(() => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(
+                Container(
                     height: 450,
                     width: double.infinity,
-                    child: Image.network(
-                        playerController.currentTrack.value!.trackImageUrl,
-                        fit: BoxFit.cover)),
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(playerController
+                                .currentTrack.value!.trackImageUrl),
+                            fit: BoxFit.cover)),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.topRight,
+                              colors: <Color>[
+                            kGrayScaleColorBlack.withOpacity(.3),
+                            kGrayScaleColorBlack.withOpacity(.3),
+                          ])),
+                    )),
                 kSizedBoxVerticalM,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: kSizeS * 1.5),

@@ -26,6 +26,7 @@ class _ImportSongBottomSheetState extends State<ImportSongBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return BottomSheetWidget(
+        size: BottomSheetSize.large,
         title: 'Import media',
         description:
             'To import media from the Files app and select them here to add to your upload or enter a youtube link.',
@@ -43,7 +44,6 @@ class _ImportSongBottomSheetState extends State<ImportSongBottomSheet> {
                     handleClick: () async {
                       Get.back<void>();
                       Get.back<void>();
-                      // TODO: show loading animation here
                       bool success =
                           await processedMusicController.processedFile();
                       if (success) {
@@ -57,6 +57,7 @@ class _ImportSongBottomSheetState extends State<ImportSongBottomSheet> {
               title: 'Import from youtube link',
               icon: MelodisticIcon.play,
               handleClick: () {
+                Get.back<void>();
                 Alert.showAlert(ImportLinkPopup());
               }),
         ]);

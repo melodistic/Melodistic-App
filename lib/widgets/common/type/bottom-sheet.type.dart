@@ -8,3 +8,5 @@ class BottomSheetAction {
   BottomSheetAction(
       {required this.title, required this.icon, required this.handleClick});
 }
+
+enum BottomSheetSize { large, small }
