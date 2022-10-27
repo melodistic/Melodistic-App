@@ -33,6 +33,7 @@ class BottomSheetWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               customTitle ?? Text(title!, style: kHeading2),
+              kSizedBoxVerticalXXS,
               Text(description,
                   style: kBody2.copyWith(color: kGrayScaleColor600)),
               kSizedBoxVerticalXS,
