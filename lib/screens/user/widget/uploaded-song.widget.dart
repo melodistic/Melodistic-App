@@ -58,22 +58,22 @@ class UploadedSongWidget extends StatelessWidget {
                   DeleteSongBottomSheet(
                       processId: processedMusic.processId,
                       title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           SizedBox(
                             width: kSizeXL,
                             child: Text(processedMusic.musicName,
                                 overflow: TextOverflow.ellipsis,
-                                style: kBody3Medium.copyWith(
-                                    color: kPrimaryColor)),
+                                style:
+                                    kHeading2.copyWith(color: kPrimaryColor)),
                           ),
-                          kSizedBoxHorizontalXS,
                           UploadedStatusWidget(
                               isProcessing: processedMusic.isProcessing)
                         ],
                       ),
                       time: durationString(
                               Duration(seconds: processedMusic.duration)) +
-                          ' m'));
+                          ' mins '));
             })
       ],
     );
