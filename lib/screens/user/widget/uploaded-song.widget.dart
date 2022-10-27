@@ -30,15 +30,23 @@ class UploadedSongWidget extends StatelessWidget {
                 Expanded(
                   child: Text(processedMusic.musicName,
                       overflow: TextOverflow.ellipsis,
-                      style: kBody3Medium.copyWith(color: kPrimaryColor)),
+                      style: kBody2.copyWith(color: kPrimaryColor)),
                 ),
                 kSizedBoxHorizontalXS,
                 UploadedStatusWidget(isProcessing: processedMusic.isProcessing),
                 kSizedBoxHorizontalXS,
               ],
             ),
-            Text(durationString(Duration(seconds: processedMusic.duration)),
-                style: kBody3Medium.copyWith(color: kGrayScaleColor600))
+            Row(children: <Widget>[
+              Text(processedMusic.mood + ' | ',
+                  style: kBody3.copyWith(color: kGrayScaleColor600)),
+              Text(double.parse(processedMusic.bpm).round().toString() + ' bpm',
+                  style: kBody3.copyWith(color: kGrayScaleColor600))
+            ]),
+            Text(
+                durationString(Duration(seconds: processedMusic.duration)) +
+                    ' mins',
+                style: kBody3Medium.copyWith(color: kGrayScaleColor800))
           ],
         )),
         GestureDetector(
