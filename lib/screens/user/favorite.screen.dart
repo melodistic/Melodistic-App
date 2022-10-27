@@ -27,7 +27,7 @@ class FavoriteScreen extends StatelessWidget {
                 ? const SpinKitFadingCircle(
                     color: kGrayScaleColor300,
                   )
-                : trackController.favoriteTracks.isNotEmpty
+                : (trackController.favoriteTracks.isNotEmpty
                     ? Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -56,6 +56,6 @@ class FavoriteScreen extends StatelessWidget {
                     : const PlaceholderWidget(
                         title: 'No favorite track found',
                         description:
-                            'Click the heart icon on any track you like, and you will see it here the next time you visit'))));
+                            'Click the heart icon on any track you like, and you will see it here the next time you visit')))));
   }
 }

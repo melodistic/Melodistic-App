@@ -27,7 +27,7 @@ class LibraryScreen extends StatelessWidget {
                 ? const SpinKitFadingCircle(
                     color: kGrayScaleColor300,
                   )
-                : trackController.libraryTracks.isNotEmpty
+                : (trackController.libraryTracks.isNotEmpty
                     ? Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -56,6 +56,6 @@ class LibraryScreen extends StatelessWidget {
                     : const PlaceholderWidget(
                         title: 'No library track found',
                         description:
-                            'return to the home page \n to create a new track'))));
+                            'return to the home page \n to create a new track')))));
   }
 }
