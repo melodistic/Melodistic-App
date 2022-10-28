@@ -33,16 +33,23 @@ class UploadedSongWidget extends StatelessWidget {
                       style: kBody2.copyWith(color: kPrimaryColor)),
                 ),
                 kSizedBoxHorizontalXS,
-                UploadedStatusWidget(isProcessing: processedMusic.isProcessing),
                 kSizedBoxHorizontalXS,
               ],
             ),
-            Row(children: <Widget>[
-              Text(processedMusic.mood + ' | ',
-                  style: kBody3.copyWith(color: kGrayScaleColor600)),
-              Text(double.parse(processedMusic.bpm).round().toString() + ' bpm',
-                  style: kBody3.copyWith(color: kGrayScaleColor600))
-            ]),
+            processedMusic.bpm.isNotEmpty
+                ? Row(children: <Widget>[
+                    Text(processedMusic.mood,
+                        style: kBody3.copyWith(color: kGrayScaleColor600)),
+                    Text(
+                        ' | ' +
+                            double.parse(processedMusic.bpm)
+                                .round()
+                                .toString() +
+                            ' bpm',
+                        style: kBody3.copyWith(color: kGrayScaleColor600))
+                  ])
+                : Text('Processing',
+                    style: kBody3.copyWith(color: kWarningColor)),
             Text(
                 durationString(Duration(seconds: processedMusic.duration)) +
                     ' mins',
