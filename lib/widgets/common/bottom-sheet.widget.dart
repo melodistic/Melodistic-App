@@ -7,14 +7,14 @@ import 'package:melodistic/widgets/common/divider.widget.dart';
 import 'package:melodistic/widgets/common/type/bottom-sheet.type.dart';
 
 class BottomSheetWidget extends StatelessWidget {
-  const BottomSheetWidget({
-    Key? key,
-    this.title,
-    this.size = BottomSheetSize.small,
-    required this.description,
-    required this.actionList,
-    this.customTitle,
-  }) : super(key: key);
+  const BottomSheetWidget(
+      {Key? key,
+      this.title,
+      this.size = BottomSheetSize.small,
+      this.description = '',
+      required this.actionList,
+      this.customTitle})
+      : super(key: key);
   final BottomSheetSize? size;
   final String? title;
   final String description;
