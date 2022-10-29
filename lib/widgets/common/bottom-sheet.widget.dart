@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/style.dart';
-import 'package:melodistic/screens/customize-track/type/MoodEmoji.type.dart';
 import 'package:melodistic/widgets/common/bottom-sheet-action.widget.dart';
 import 'package:melodistic/widgets/common/divider.widget.dart';
 import 'package:melodistic/widgets/common/type/bottom-sheet.type.dart';
