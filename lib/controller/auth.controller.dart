@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
@@ -19,6 +21,7 @@ class AuthController extends GetxController {
   final GlobalKey<FormState> changePasswordFormKey = GlobalKey<FormState>();
   final Rx<Duration> duration = Duration.zero.obs;
   final Rxn<UserInfo> userInfo = Rxn<UserInfo>();
+  final RxBool isScheduleFetching = false.obs;
 
   ValidateFunction validateEmail = (String? value) {
     if (value == null || value.isEmpty) {
@@ -157,6 +160,19 @@ class AuthController extends GetxController {
               headers: APIClient.getAuthHeaders(userToken!));
       if (response == null) throw MelodisticException('Unauthorized');
       userInfo.value = UserInfo.fromJson(response.data!);
+      if (userInfo.value != null) {
+        if (userInfo.value!.isEmailVerified == false) {
+          if (isScheduleFetching.value == false) {
+            isScheduleFetching.value = true;
+            Timer(const Duration(seconds: 5), () {
+              isScheduleFetching.value = false;
+              fetchUserProfile();
+            });
+          }
+        } else {
+          isScheduleFetching.value = false;
+        }
+      }
     } on MelodisticException catch (_) {
       rethrow;
     }
@@ -187,7 +203,7 @@ class AuthController extends GetxController {
       throw MelodisticException('Unauthorized');
     }
     final String? userToken = await UserSession.getSession();
-    final Response<dynamic>? response = await APIClient().post(
+    final Response<dynamic>? response = await APIClient().get(
         '/auth/resent-verify-email',
         headers: APIClient.getAuthHeaders(userToken!));
     if (response == null) {
