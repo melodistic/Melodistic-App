@@ -10,6 +10,7 @@ import 'package:melodistic/screens/customize-track/widgets/upload-song-popup.wid
 import 'package:melodistic/singleton/alert.dart';
 import 'package:melodistic/widgets/common/appbar/back.widget.dart';
 import 'package:melodistic/widgets/common/button.widget.dart';
+import 'package:melodistic/widgets/common/popup/error_popup.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 import 'package:melodistic/widgets/common/scrollable-select.widget.dart';
 import 'package:melodistic/widgets/common/textfield.widget.dart';
@@ -202,16 +203,27 @@ class CustomizeSectionDetailScreen extends StatelessWidget {
                       button: ButtonType.mainButton,
                       text: getButtonText(
                           trackCustomizeController.customizeMode.value),
-                      handleClick: () {
-                        if (trackCustomizeController
-                            .sectionFormKey.currentState!
-                            .validate()) {
-                          String sectionName = _sectionname.text;
-                          if (trackCustomizeController.customizeMode.value ==
-                              CustomizeMode.add) {
-                            trackCustomizeController.addSection(sectionName);
-                          } else {
-                            trackCustomizeController.updateSection(sectionName);
+                      handleClick: () async {
+                        bool notExceed =
+                            await trackCustomizeController.totalDuration(
+                                trackCustomizeController.sectionDuration.value);
+                        if (!notExceed) {
+                          Alert.showAlert(const ErrorPopup(
+                              errorMessage: 'Fail to create track',
+                              errorDescription:
+                                  'Total duration of track must less than or equal 60 minutes.'));
+                        } else {
+                          if (trackCustomizeController
+                              .sectionFormKey.currentState!
+                              .validate()) {
+                            String sectionName = _sectionname.text;
+                            if (trackCustomizeController.customizeMode.value ==
+                                CustomizeMode.add) {
+                              trackCustomizeController.addSection(sectionName);
+                            } else {
+                              trackCustomizeController
+                                  .updateSection(sectionName);
+                            }
                           }
                         }
                       },
