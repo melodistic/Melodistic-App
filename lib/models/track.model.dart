@@ -25,7 +25,9 @@ class Track {
     return Track(
         trackId: rawData['track_id'].toString(),
         trackName: (rawData['track_name'] ?? '').toString(),
-        trackImageUrl: (rawData['track_image_url'] ?? '').toString(),
+        trackImageUrl: (rawData['track_image_url'] ??
+                'https://melodistic.me/api/storage/track/default.png')
+            .toString(),
         muscleGroup: (rawData['muscle_group'] ?? '').toString(),
         description: (rawData['description'] ?? '').toString(),
         duration: int.parse((rawData['duration'] ?? '0').toString()),
