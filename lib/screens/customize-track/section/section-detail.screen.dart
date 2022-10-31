@@ -135,7 +135,9 @@ class CustomizeSectionDetailScreen extends StatelessWidget {
                             Expanded(
                                 child: Obx(() => ButtonWidget(
                                       handleClick: () {
-                                        Alert.showAlert(UploadSongPopup());
+                                        Alert.showAlert(UploadSongPopup(
+                                            mood: trackCustomizeController
+                                                .sectionMood.value.label));
                                       },
                                       button: ButtonType.outlineButton,
                                       size: ButtonSize.small,
