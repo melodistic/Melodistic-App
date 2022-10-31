@@ -5,17 +5,18 @@ import 'package:melodistic/config/style.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 
 class ButtonWidget extends StatelessWidget {
-  const ButtonWidget({
-    Key? key,
-    this.button = ButtonType.mainButton,
-    this.text,
-    this.size = ButtonSize.large,
-    this.state = ButtonState.normal,
-    this.prefixIcon,
-    this.suffixIcon,
-    this.handleClick,
-    this.customContent,
-  }) : super(key: key);
+  const ButtonWidget(
+      {Key? key,
+      this.button = ButtonType.mainButton,
+      this.text,
+      this.size = ButtonSize.large,
+      this.state = ButtonState.normal,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.handleClick,
+      this.customContent,
+      this.isBottomSheetAction = false})
+      : super(key: key);
   final ButtonType button;
   final String? text;
   final ButtonState state;
@@ -24,6 +25,7 @@ class ButtonWidget extends StatelessWidget {
   final IconData? suffixIcon;
   final ButtonSize? size;
   final Widget? customContent;
+  final bool isBottomSheetAction;
 
   ButtonStyle getButtonStyle() {
     if (button == ButtonType.mainButton) {
@@ -107,7 +109,18 @@ class ButtonWidget extends StatelessWidget {
                     ),
               )
             : TextButton(
-                style: getButtonStyle(),
+                style: isBottomSheetAction
+                    ? getButtonStyle().copyWith(
+                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                          (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.pressed)) {
+                              return kGrayScaleColor200;
+                            }
+                            return kGrayScaleColorWhite;
+                          },
+                        ),
+                      )
+                    : getButtonStyle(),
                 onPressed: state == ButtonState.disable ? () {} : handleClick,
                 child: customContent ??
                     Row(

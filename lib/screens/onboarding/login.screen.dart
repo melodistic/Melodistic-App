@@ -75,6 +75,7 @@ class LoginScreen extends StatelessWidget {
                                         padding:
                                             const EdgeInsets.only(top: kSizeXS),
                                         child: ButtonWidget(
+                                          isBottomSheetAction: true,
                                           size: ButtonSize.small,
                                           button: ButtonType.textButton,
                                           customContent: Text(
