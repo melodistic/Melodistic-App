@@ -19,7 +19,6 @@ class BottomSheetActionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonWidget(
-      isBottomSheetAction: true,
       handleClick: handleClick,
       button: ButtonType.textButton,
       customContent: Row(

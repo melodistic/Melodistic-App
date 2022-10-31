@@ -14,8 +14,7 @@ class ButtonWidget extends StatelessWidget {
       this.prefixIcon,
       this.suffixIcon,
       this.handleClick,
-      this.customContent,
-      this.isBottomSheetAction = false})
+      this.customContent})
       : super(key: key);
   final ButtonType button;
   final String? text;
@@ -25,7 +24,6 @@ class ButtonWidget extends StatelessWidget {
   final IconData? suffixIcon;
   final ButtonSize? size;
   final Widget? customContent;
-  final bool isBottomSheetAction;
 
   ButtonStyle getButtonStyle() {
     if (button == ButtonType.mainButton) {
@@ -59,7 +57,8 @@ class ButtonWidget extends StatelessWidget {
               ? const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeS)
               : const EdgeInsets.fromLTRB(kSizeS, kSizeXS, kSizeS, kSizeXS));
     }
-    return const ButtonStyle();
+    return ButtonStyle(
+        overlayColor: MaterialStateProperty.all<Color?>(kGrayScaleColor200));
   }
 
   Color getContentColor() {
@@ -109,18 +108,7 @@ class ButtonWidget extends StatelessWidget {
                     ),
               )
             : TextButton(
-                style: isBottomSheetAction
-                    ? getButtonStyle().copyWith(
-                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                          (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.pressed)) {
-                              return kGrayScaleColor200;
-                            }
-                            return kGrayScaleColorWhite;
-                          },
-                        ),
-                      )
-                    : getButtonStyle(),
+                style: getButtonStyle(),
                 onPressed: state == ButtonState.disable ? () {} : handleClick,
                 child: customContent ??
                     Row(
