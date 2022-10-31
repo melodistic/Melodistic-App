@@ -5,17 +5,17 @@ import 'package:melodistic/config/style.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 
 class ButtonWidget extends StatelessWidget {
-  const ButtonWidget({
-    Key? key,
-    this.button = ButtonType.mainButton,
-    this.text,
-    this.size = ButtonSize.large,
-    this.state = ButtonState.normal,
-    this.prefixIcon,
-    this.suffixIcon,
-    this.handleClick,
-    this.customContent,
-  }) : super(key: key);
+  const ButtonWidget(
+      {Key? key,
+      this.button = ButtonType.mainButton,
+      this.text,
+      this.size = ButtonSize.large,
+      this.state = ButtonState.normal,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.handleClick,
+      this.customContent})
+      : super(key: key);
   final ButtonType button;
   final String? text;
   final ButtonState state;
@@ -57,7 +57,8 @@ class ButtonWidget extends StatelessWidget {
               ? const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeS)
               : const EdgeInsets.fromLTRB(kSizeS, kSizeXS, kSizeS, kSizeXS));
     }
-    return const ButtonStyle();
+    return ButtonStyle(
+        overlayColor: MaterialStateProperty.all<Color?>(kGrayScaleColor200));
   }
 
   Color getContentColor() {
