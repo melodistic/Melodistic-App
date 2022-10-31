@@ -6,8 +6,10 @@ import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/type/button.type.dart';
 
 class ErrorPopup extends StatelessWidget {
-  const ErrorPopup({Key? key, this.errorMessage}) : super(key: key);
+  const ErrorPopup({Key? key, this.errorMessage, this.errorDescription})
+      : super(key: key);
   final String? errorMessage;
+  final String? errorDescription;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -15,9 +17,14 @@ class ErrorPopup extends StatelessWidget {
         children: <Widget>[
           Image.asset('assets/images/warning.png'),
           kSizedBoxVerticalS,
-          Text(errorMessage ?? 'Doh! Something went wrong', style: kHeading2),
+          Text(
+            errorMessage ?? 'Doh! Something went wrong',
+            style: kHeading2,
+            textAlign: TextAlign.center,
+          ),
           kSizedBoxVerticalXXS,
-          const Text('Please, try this action again.', style: kBody2),
+          Text(errorDescription ?? 'Please, try this action again.',
+              style: kBody2),
           kSizedBoxVerticalM,
           ButtonWidget(
               button: ButtonType.mainButton,

@@ -210,6 +210,19 @@ class TrackCustomizeController extends GetxController {
     sectionList.insert(removedSection.index, removedSection.section);
   }
 
+  Future<bool> totalDuration(int latestDuration) async {
+    if (sectionList.isNotEmpty) {
+      int duration = sectionList
+              .map((Section section) => section.duration)
+              .reduce((int prev, int cur) => prev + cur) +
+          latestDuration;
+      if (duration > 60) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   Future<Track?> generateTrack() async {
     isProcessing.value = true;
     final bool hasSession = await UserSession.hasSession();
