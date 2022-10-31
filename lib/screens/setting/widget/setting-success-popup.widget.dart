@@ -34,7 +34,6 @@ class SettingSuccessPopup extends StatelessWidget {
                 text: 'Done',
                 handleClick: () {
                   Get.back<void>();
-                  Get.back<void>();
                 },
               )
             ],
