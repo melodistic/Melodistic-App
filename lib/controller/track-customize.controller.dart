@@ -159,6 +159,7 @@ class TrackCustomizeController extends GetxController {
     sectionMood.value = tab;
     scrollController.animateTo(tab.position,
         duration: const Duration(milliseconds: 250), curve: Curves.easeOut);
+    sectionIncludedSong.value = <String>[];
   }
 
   void setSectionDuration(int duration) {
