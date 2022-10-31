@@ -49,7 +49,7 @@ class CustomizeSectionScreen extends StatelessWidget {
                         button: ButtonType.softButton,
                         prefixIcon: MelodisticIcon.plus,
                         text: 'Add section',
-                        handleClick: () async {
+                        handleClick: () {
                           showMelodisticBottomSheet(
                               context, SectionBottomSheet());
                         })
