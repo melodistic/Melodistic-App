@@ -36,11 +36,7 @@ class TrackBox extends StatelessWidget {
                       width: double.infinity,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: track.trackImageUrl.isNotEmpty
-                                  ? NetworkImage(track.trackImageUrl)
-                                      as ImageProvider
-                                  : const AssetImage(
-                                      'assets/images/default.png'),
+                              image: NetworkImage(track.trackImageUrl),
                               fit: BoxFit.cover)),
                       child: Container(
                         decoration: BoxDecoration(
