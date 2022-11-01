@@ -6,6 +6,7 @@ import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
 import 'package:melodistic/screens/customize-track/type/CustomizeMode.enum.dart';
+import 'package:melodistic/screens/customize-track/type/CustomizeStatus.enum.dart';
 import 'package:melodistic/screens/customize-track/widgets/upload-song-popup.widget.dart';
 import 'package:melodistic/singleton/alert.dart';
 import 'package:melodistic/widgets/common/appbar/back.widget.dart';
@@ -203,15 +204,21 @@ class CustomizeSectionDetailScreen extends StatelessWidget {
                       button: ButtonType.mainButton,
                       text: getButtonText(
                           trackCustomizeController.customizeMode.value),
-                      handleClick: () async {
-                        bool notExceed =
-                            await trackCustomizeController.totalDuration(
+                      handleClick: () {
+                        CreateSectionStatus createSectionStatus =
+                            trackCustomizeController.verifyCreateSection(
                                 trackCustomizeController.sectionDuration.value);
-                        if (!notExceed) {
+                        if (createSectionStatus == CreateSectionStatus.exceed) {
                           Alert.showAlert(const ErrorPopup(
                               errorMessage: 'Fail to create track',
                               errorDescription:
                                   'Total duration of track must less than or equal 60 minutes.'));
+                        } else if (createSectionStatus ==
+                            CreateSectionStatus.minimum) {
+                          Alert.showAlert(const ErrorPopup(
+                              errorMessage: 'Fail to create track',
+                              errorDescription:
+                                  'Section duration must more be at least 1 minute'));
                         } else {
                           if (trackCustomizeController
                               .sectionFormKey.currentState!
