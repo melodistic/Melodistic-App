@@ -32,9 +32,11 @@ class MelodisticDrawer extends StatelessWidget {
                   radius: kSizeM + kSizeXS,
                 )),
             kSizedBoxVerticalS,
+            const Text('Hello,', style: kHeading2Medium),
+            kSizedBoxVerticalXXS,
             Obx(() => Text(
                   authController.userInfo.value!.email,
-                  style: kHeading2,
+                  style: kBody2.copyWith(color: kGrayScaleColor600),
                 ))
           ]),
     );
