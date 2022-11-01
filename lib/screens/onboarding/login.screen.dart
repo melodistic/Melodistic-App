@@ -38,7 +38,7 @@ class LoginScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Container(
-                    height: 450,
+                    height: 455,
                     width: double.infinity,
                     decoration: const BoxDecoration(
                       color: kGrayScaleColorWhite,
