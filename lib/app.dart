@@ -15,7 +15,6 @@ class _MelodisticAppState extends State<MelodisticApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Melodistic App',
-      debugShowCheckedModeBanner: false,
       initialRoute: RoutesName.home,
       routes: routes,
       translations: MelodisticMessages(),
