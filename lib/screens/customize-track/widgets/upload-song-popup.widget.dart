@@ -70,8 +70,8 @@ class UploadSongPopup extends StatelessWidget {
                             bpm: musicController.processedMusic[index].bpm,
                             value:
                                 musicController.processedMusic[index].processId,
-                            // ignore: invalid_use_of_protected_member
                             groupValue:
+                                // ignore: invalid_use_of_protected_member
                                 trackCustomizeController.selectedSong.value,
                             onChanged: (bool? check) {
                               if (check!) {
