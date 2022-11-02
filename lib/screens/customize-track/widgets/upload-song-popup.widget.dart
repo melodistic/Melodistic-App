@@ -41,37 +41,33 @@ class UploadSongPopup extends StatelessWidget {
         SizedBox(
           width: 260,
           height: 180,
-          child: Obx(() {
-            List<ProcessedMusic> filteredMusic = musicController.processedMusic
-                .where((ProcessedMusic music) => music.mood == mood)
-                .toList();
-            return ListView.separated(
-                itemCount: filteredMusic.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Obx(() {
-                    return ImportedSongWidget(
-                        name: filteredMusic[index].musicName,
-                        time: durationString(
-                            Duration(seconds: filteredMusic[index].duration)),
-                        mood: filteredMusic[index].mood,
-                        bpm: filteredMusic[index].bpm,
-                        value: filteredMusic[index].processId,
-                        // ignore: invalid_use_of_protected_member
-                        groupValue: trackCustomizeController.selectedSong.value,
-                        onChanged: (bool? check) {
-                          if (check!) {
-                            trackCustomizeController.selectedSong
-                                .add(filteredMusic[index].processId);
-                          } else {
-                            trackCustomizeController.selectedSong
-                                .remove(filteredMusic[index].processId);
-                          }
-                        });
-                  });
-                },
-                separatorBuilder: ((BuildContext context, int index) =>
-                    const MelodisticDivider()));
-          }),
+          child: Obx(() => ListView.separated(
+              itemCount: musicController.processedMusic.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Obx(() {
+                  return ImportedSongWidget(
+                      name: musicController.processedMusic[index].musicName,
+                      time: durationString(Duration(
+                          seconds:
+                              musicController.processedMusic[index].duration)),
+                      mood: musicController.processedMusic[index].mood,
+                      bpm: musicController.processedMusic[index].bpm,
+                      value: musicController.processedMusic[index].processId,
+                      // ignore: invalid_use_of_protected_member
+                      groupValue: trackCustomizeController.selectedSong.value,
+                      onChanged: (bool? check) {
+                        if (check!) {
+                          trackCustomizeController.selectedSong.add(
+                              musicController.processedMusic[index].processId);
+                        } else {
+                          trackCustomizeController.selectedSong.remove(
+                              musicController.processedMusic[index].processId);
+                        }
+                      });
+                });
+              },
+              separatorBuilder: ((BuildContext context, int index) =>
+                  const MelodisticDivider()))),
         ),
         kSizedBoxVerticalXS,
         ButtonWidget(
