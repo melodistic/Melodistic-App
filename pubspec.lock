@@ -205,7 +205,7 @@ packages:
     source: hosted
     version: "4.0.6"
   dotted_border:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: dotted_border
       url: "https://pub.dartlang.org"

@@ -16,6 +16,7 @@ class _MelodisticAppState extends State<MelodisticApp> {
     return GetMaterialApp(
       title: 'Melodistic App',
       initialRoute: RoutesName.home,
+      debugShowCheckedModeBanner: false,
       routes: routes,
       translations: MelodisticMessages(),
       locale: const Locale('en', 'US'),
