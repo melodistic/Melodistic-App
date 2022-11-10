@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
@@ -22,36 +24,37 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: ScreenWrapper(
-          extendBodyBehindAppBar: true,
-          child: Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  alignment: Alignment.topCenter,
-                  fit: BoxFit.contain,
-                  image: AssetImage('assets/images/login.png'),
-                ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  SingleChildScrollView(
-                    keyboardDismissBehavior:
-                        ScrollViewKeyboardDismissBehavior.onDrag,
-                    physics: const ClampingScrollPhysics(),
-                    child: Container(
-                        height: 400,
-                        width: double.infinity,
-                        decoration: const BoxDecoration(
-                          color: kGrayScaleColorWhite,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(kSizeS),
-                              topRight: Radius.circular(kSizeS)),
-                        ),
+    return ScreenWrapper(
+      extendBodyBehindAppBar: true,
+      child: Container(
+          height: double.infinity,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              alignment: Alignment.topCenter,
+              fit: BoxFit.fitWidth,
+              image: AssetImage('assets/images/login.png'),
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                  width: double.infinity,
+                  height: min(
+                      455,
+                      (MediaQuery.of(context).size.height -
+                              MediaQuery.of(context).viewInsets.bottom) *
+                          0.75),
+                  decoration: const BoxDecoration(
+                    color: kGrayScaleColorWhite,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(kSizeS),
+                        topRight: Radius.circular(kSizeS)),
+                  ),
+                  child: CustomScrollView(slivers: <Widget>[
+                    SliverFillRemaining(
+                        hasScrollBody: false,
                         child: Padding(
                             padding: const EdgeInsets.fromLTRB(
                                 kSizeM, kSizeXXS, kSizeM, kSizeXXS),
@@ -60,11 +63,11 @@ class LoginScreen extends StatelessWidget {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
-                                    Flexible(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: <Widget>[
+                                    Expanded(
+                                        child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            children: <Widget>[
                                           TextFieldWidget(
                                             controller: _emailController,
                                             hintTitle: 'Email',
@@ -90,13 +93,11 @@ class LoginScreen extends StatelessWidget {
                                               Get.toNamed<dynamic>(
                                                   RoutesName.forgetPassword);
                                             },
-                                          ),
-                                        ],
-                                      ),
-                                    ),
+                                          )
+                                        ])),
                                     Padding(
                                         padding: const EdgeInsets.only(
-                                            bottom: kSizeXXS),
+                                            bottom: kSizeS),
                                         child: ButtonWidget(
                                             size: ButtonSize.large,
                                             button: ButtonType.mainButton,
@@ -130,7 +131,7 @@ class LoginScreen extends StatelessWidget {
                                     kSizedBoxVerticalXS,
                                     SizedBox(
                                         width: double.infinity,
-                                        height: 30,
+                                        height: 48,
                                         child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
@@ -152,10 +153,10 @@ class LoginScreen extends StatelessWidget {
                                                                   kSecondaryColor)))
                                             ])),
                                   ],
-                                )))),
-                  ),
-                ],
-              ))),
+                                ))))
+                  ])),
+            ],
+          )),
     );
   }
 }
