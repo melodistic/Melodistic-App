@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
@@ -38,7 +40,7 @@ class TrackScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                    height: 450,
+                    height: max(450, MediaQuery.of(context).size.height * 0.5),
                     width: double.infinity,
                     decoration: BoxDecoration(
                         image: DecorationImage(
