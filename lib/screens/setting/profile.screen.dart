@@ -94,20 +94,23 @@ class SettingProfileScreen extends StatelessWidget {
                 )
               ],
             )),
-            ButtonWidget(
-              text: 'Save',
-              handleClick: () async {
-                try {
-                  bool success = await userController.updateProfileImage();
-                  if (success) {
-                    Alert.showAlert(const SettingSuccessPopup(
-                      title: 'Account Setting Updated',
-                      description: 'Your information has been changed',
-                    ));
-                    authController.fetchUserProfile();
-                  }
-                } catch (_) {}
-              },
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: ButtonWidget(
+                text: 'Save',
+                handleClick: () async {
+                  try {
+                    bool success = await userController.updateProfileImage();
+                    if (success) {
+                      Alert.showAlert(const SettingSuccessPopup(
+                        title: 'Account Setting Updated',
+                        description: 'Your information has been changed',
+                      ));
+                      authController.fetchUserProfile();
+                    }
+                  } catch (_) {}
+                },
+              ),
             ),
           ]),
         ));
