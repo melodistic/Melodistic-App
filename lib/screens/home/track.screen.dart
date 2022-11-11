@@ -40,7 +40,7 @@ class TrackScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                    height: max(450, MediaQuery.of(context).size.height * 0.5),
+                    height: min(450, MediaQuery.of(context).size.height * 0.5),
                     width: double.infinity,
                     decoration: BoxDecoration(
                         image: DecorationImage(
