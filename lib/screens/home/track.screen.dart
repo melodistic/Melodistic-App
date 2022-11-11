@@ -55,7 +55,7 @@ class TrackScreen extends StatelessWidget {
                             kGrayScaleColorBlack.withOpacity(.3),
                           ])),
                     )),
-                kSizedBoxVerticalM,
+                kSizedBoxVerticalS,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: kSizeS * 1.5),
                   child: Column(
@@ -70,7 +70,7 @@ class TrackScreen extends StatelessWidget {
                           playerController.currentTrack.value!.description,
                           style: kBody2.copyWith(color: kGrayScaleColor600),
                         ),
-                        kSizedBoxVerticalM,
+                        kSizedBoxVerticalS,
                         MusicPlayer()
                       ]),
                 )
