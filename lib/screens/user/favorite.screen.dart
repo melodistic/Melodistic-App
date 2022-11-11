@@ -7,6 +7,7 @@ import 'package:melodistic/config/style.dart';
 import 'package:melodistic/controller/track.controller.dart';
 import 'package:melodistic/screens/home/widgets/trackbox.widget.dart';
 import 'package:melodistic/widgets/common/appbar/main.widget.dart';
+import 'package:melodistic/widgets/common/placeholder.widget.dart';
 import 'package:melodistic/widgets/common/screen-wrapper.widget.dart';
 
 class FavoriteScreen extends StatelessWidget {
@@ -26,29 +27,35 @@ class FavoriteScreen extends StatelessWidget {
                 ? const SpinKitFadingCircle(
                     color: kGrayScaleColor300,
                   )
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                        Padding(
-                            padding: const EdgeInsets.only(bottom: kSizeS),
-                            child: Text(
-                              'Latest Program',
-                              style:
-                                  kBody3Medium.copyWith(color: kPrimaryColor),
-                            )),
-                        Expanded(
-                            child: ListView.separated(
-                                itemCount:
-                                    trackController.favoriteTracks.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return TrackBox(
-                                    track:
-                                        trackController.favoriteTracks[index],
-                                  );
-                                },
-                                separatorBuilder:
-                                    ((BuildContext context, int index) =>
-                                        kSizedBoxVerticalS)))
-                      ]))));
+                : (trackController.favoriteTracks.isNotEmpty
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                            Padding(
+                                padding: const EdgeInsets.only(bottom: kSizeS),
+                                child: Text(
+                                  'Latest Program',
+                                  style: kBody3Medium.copyWith(
+                                      color: kPrimaryColor),
+                                )),
+                            Expanded(
+                                child: ListView.separated(
+                                    itemCount:
+                                        trackController.favoriteTracks.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return TrackBox(
+                                        track: trackController
+                                            .favoriteTracks[index],
+                                      );
+                                    },
+                                    separatorBuilder:
+                                        ((BuildContext context, int index) =>
+                                            kSizedBoxVerticalS)))
+                          ])
+                    : const PlaceholderWidget(
+                        title: 'No favorite track found',
+                        description:
+                            'Click the heart icon on any track you like, and you will see it here the next time you visit')))));
   }
 }

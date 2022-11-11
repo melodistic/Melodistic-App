@@ -128,7 +128,7 @@ class UploadScreen extends StatelessWidget {
                         Text(
                             '${musicController.processedMusic.length} track${musicController.processedMusic.length > 1 ? 's' : ''}',
                             style: kBody3Medium),
-                        kSizedBoxVerticalXS,
+                        kSizedBoxVerticalM,
                         Expanded(
                             child: RefreshIndicator(
                           color: kPrimaryColor,
@@ -143,9 +143,13 @@ class UploadScreen extends StatelessWidget {
                                   processedMusic: processedMusic,
                                 );
                               },
-                              separatorBuilder:
-                                  ((BuildContext context, int index) =>
-                                      const MelodisticDivider())),
+                              separatorBuilder: ((BuildContext context,
+                                      int index) =>
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: kSizeXS),
+                                    child: MelodisticDivider(),
+                                  ))),
                         ))
                       ],
                     ),

@@ -62,6 +62,14 @@
 				<string>com.googleusercontent.apps.237236624261-kppfmf0g8l6i489ejl527tupmeo11ula</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>melodistic</string>
+			</array>
+		</dict>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Upload images for program picture</string>

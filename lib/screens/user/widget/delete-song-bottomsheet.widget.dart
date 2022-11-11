@@ -7,13 +7,9 @@ import 'package:melodistic/widgets/common/type/bottom-sheet.type.dart';
 
 class DeleteSongBottomSheet extends StatelessWidget {
   DeleteSongBottomSheet(
-      {Key? key,
-      required this.title,
-      required this.time,
-      required this.processId})
+      {Key? key, required this.title, required this.processId})
       : super(key: key);
   final Widget title;
-  final String time;
   final String processId;
   final ProcessedMusicController processedMusicController = Get.find();
 
@@ -21,7 +17,6 @@ class DeleteSongBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomSheetWidget(
         customTitle: title,
-        description: time,
         actionList: <BottomSheetAction>[
           BottomSheetAction(
               title: 'Delete music',

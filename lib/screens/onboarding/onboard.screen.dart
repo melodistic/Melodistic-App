@@ -40,7 +40,7 @@ class OnboardingScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: kBody2.copyWith(color: kGrayScaleColor600)),
                 Container(
-                  padding: const EdgeInsets.symmetric(vertical: kSizeM),
+                  padding: const EdgeInsets.only(top: kSizeM * 1.5),
                   child: ButtonWidget(
                       size: ButtonSize.large,
                       button: ButtonType.mainButton,

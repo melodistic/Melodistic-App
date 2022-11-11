@@ -11,8 +11,9 @@ import 'package:melodistic/widgets/common/button.widget.dart';
 import 'package:melodistic/widgets/common/divider.widget.dart';
 
 class UploadSongPopup extends StatelessWidget {
-  UploadSongPopup({Key? key}) : super(key: key);
+  UploadSongPopup({Key? key, required this.mood}) : super(key: key);
 
+  final String mood;
   final bool check = false;
   final ProcessedMusicController musicController = Get.find();
   final TrackCustomizeController trackCustomizeController = Get.find();
@@ -36,35 +37,58 @@ class UploadSongPopup extends StatelessWidget {
         const MelodisticDivider(),
         const Text('Musics uploaded', style: kBody3Medium),
         kSizedBoxVerticalS,
-        SizedBox(
-          width: 260,
-          height: 180,
-          child: Obx(() => ListView.separated(
-              itemCount: musicController.processedMusic.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Obx(() {
-                  return ImportedSongWidget(
-                      name: musicController.processedMusic[index].musicName,
-                      time: durationString(Duration(
-                          seconds:
-                              musicController.processedMusic[index].duration)),
-                      value: musicController.processedMusic[index].processId,
-                      // ignore: invalid_use_of_protected_member
-                      groupValue: trackCustomizeController.selectedSong.value,
-                      onChanged: (bool? check) {
-                        if (check!) {
-                          trackCustomizeController.selectedSong.add(
-                              musicController.processedMusic[index].processId);
-                        } else {
-                          trackCustomizeController.selectedSong.remove(
-                              musicController.processedMusic[index].processId);
-                        }
+        musicController.processedMusic.isEmpty
+            ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset('assets/images/song_empty.png'),
+                    kSizedBoxVerticalS,
+                    Text(
+                      "Your song hasn't been uploaded yet.",
+                      style: kBody3Medium.copyWith(color: kGrayScaleColor700),
+                    ),
+                    kSizedBoxVerticalS
+                  ],
+                ),
+              )
+            : SizedBox(
+                width: 260,
+                height: 180,
+                child: Obx(() => ListView.separated(
+                    itemCount: musicController.processedMusic.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Obx(() {
+                        return ImportedSongWidget(
+                            name:
+                                musicController.processedMusic[index].musicName,
+                            time: durationString(Duration(
+                                seconds: musicController
+                                    .processedMusic[index].duration)),
+                            mood: musicController.processedMusic[index].mood,
+                            bpm: musicController.processedMusic[index].bpm,
+                            value:
+                                musicController.processedMusic[index].processId,
+                            groupValue:
+                                // ignore: invalid_use_of_protected_member
+                                trackCustomizeController.selectedSong.value,
+                            onChanged: (bool? check) {
+                              if (check!) {
+                                trackCustomizeController.selectedSong.add(
+                                    musicController
+                                        .processedMusic[index].processId);
+                              } else {
+                                trackCustomizeController.selectedSong.remove(
+                                    musicController
+                                        .processedMusic[index].processId);
+                              }
+                            });
                       });
-                });
-              },
-              separatorBuilder: ((BuildContext context, int index) =>
-                  const MelodisticDivider()))),
-        ),
+                    },
+                    separatorBuilder: ((BuildContext context, int index) =>
+                        const MelodisticDivider()))),
+              ),
         kSizedBoxVerticalXS,
         ButtonWidget(
           text: 'Add',

@@ -9,6 +9,7 @@ import 'package:melodistic/controller/player.controller.dart';
 import 'package:melodistic/controller/track-customize.controller.dart';
 import 'package:melodistic/models/track.model.dart';
 import 'package:melodistic/routes.dart';
+import 'package:melodistic/screens/customize-track/type/CustomizeStatus.enum.dart';
 import 'package:melodistic/screens/customize-track/widgets/section-bottomsheet.widget.dart';
 import 'package:melodistic/screens/customize-track/widgets/section-timeline/section-timeline.widget.dart';
 import 'package:melodistic/utils/display.dart';
@@ -55,27 +56,39 @@ class CustomizeSectionScreen extends StatelessWidget {
                         })
                   ],
                 )),
-                kSizedBoxVerticalS,
-                Obx(() => ButtonWidget(
-                      button: ButtonType.mainButton,
-                      text: 'Start Exercise',
-                      customContent: trackCustomizeController.isProcessing.value
-                          ? const SpinKitFadingCircle(
-                              color: kGrayScaleColor300,
-                              size: 18,
-                            )
-                          : null,
-                      handleClick: () async {
-                        if (!trackCustomizeController.isProcessing.value) {
-                          Track? track =
-                              await trackCustomizeController.generateTrack();
-                          if (track != null) {
-                            PlayerController playerController = Get.find();
-                            await playerController.setupPlayer(track);
-                            Get.offAllNamed<void>(RoutesName.track);
+                Obx(() => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: kSizeS),
+                      child: ButtonWidget(
+                        state:
+                            trackCustomizeController.createTrackStatus.value ==
+                                    CreateTrackStatus.normal
+                                ? ButtonState.normal
+                                : ButtonState.disable,
+                        button: ButtonType.mainButton,
+                        text: 'Start Exercise',
+                        customContent:
+                            trackCustomizeController.isProcessing.value
+                                ? const SpinKitFadingCircle(
+                                    color: kGrayScaleColor300,
+                                    size: 18,
+                                  )
+                                : null,
+                        handleClick: () async {
+                          if (trackCustomizeController
+                                  .createTrackStatus.value ==
+                              CreateTrackStatus.normal) {
+                            if (!trackCustomizeController.isProcessing.value) {
+                              Track? track = await trackCustomizeController
+                                  .generateTrack();
+                              if (track != null) {
+                                PlayerController playerController = Get.find();
+                                await playerController.setupPlayer(track);
+                                Get.offAllNamed<void>(RoutesName.track);
+                              }
+                            }
                           }
-                        }
-                      },
+                        },
+                      ),
                     ))
               ],
             )));

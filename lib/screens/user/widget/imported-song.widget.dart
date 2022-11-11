@@ -9,6 +9,8 @@ class ImportedSongWidget extends StatelessWidget {
       {Key? key,
       required this.name,
       required this.time,
+      required this.mood,
+      required this.bpm,
       required this.value,
       required this.groupValue,
       required this.onChanged})
@@ -16,6 +18,8 @@ class ImportedSongWidget extends StatelessWidget {
   final String? name;
   final String? time;
   final String value;
+  final String? mood;
+  final String? bpm;
   final List<String> groupValue;
   final void Function(bool?) onChanged;
 
@@ -25,27 +29,29 @@ class ImportedSongWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: kSizeXXS),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           MelodisticCheckBox<String>(
               value: value, groupValue: groupValue, onChanged: onChanged),
           kSizedBoxHorizontalXS,
-          Image.asset('assets/images/song.png'),
-          kSizedBoxHorizontalS,
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               SizedBox(
-                width: 120,
+                width: 193,
                 child: Text(
                   name!,
                   style: kBody3Medium.copyWith(color: kPrimaryColor),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              kSizedBoxVerticalXS,
-              Text(time!, style: kBody4.copyWith(color: kGrayScaleColor600))
+              Row(children: <Widget>[
+                Text(mood!, style: kBody3.copyWith(color: kGrayScaleColor600)),
+                Text(' | ' + double.parse(bpm!).round().toString() + ' bpm',
+                    style: kBody3.copyWith(color: kGrayScaleColor600))
+              ]),
+              Text(time!, style: kBody3.copyWith(color: kGrayScaleColor600))
             ],
           ),
         ],

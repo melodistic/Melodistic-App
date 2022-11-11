@@ -12,6 +12,7 @@ import 'package:melodistic/routes.dart';
 import 'package:melodistic/screens/customize-track/type/CustomizeMode.enum.dart';
 import 'package:melodistic/screens/customize-track/type/RemovedSection.type.dart';
 import 'package:melodistic/screens/customize-track/type/Section.type.dart';
+import 'package:melodistic/screens/customize-track/type/CustomizeStatus.enum.dart';
 import 'package:melodistic/singleton/api_client.dart';
 import 'package:melodistic/singleton/user_session.dart';
 import 'package:melodistic/widgets/common/type/field.type.dart';
@@ -53,6 +54,7 @@ class TrackCustomizeController extends GetxController {
   late Rx<OptionItem> sectionMood;
   late Rx<int> sectionDuration;
   late RxList<String> sectionIncludedSong;
+  late Rx<CreateTrackStatus> createTrackStatus;
 
   Rxn<String> programName = Rxn<String>();
   Rxn<File> programPicture = Rxn<File>();
@@ -71,6 +73,7 @@ class TrackCustomizeController extends GetxController {
     sectionIncludedSong = RxList<String>.empty();
     sectionList = RxList<Section>.empty();
     editIndex = (-1).obs;
+    createTrackStatus = CreateTrackStatus.disable.obs;
   }
 
   bool validateProgramPicture() {
@@ -159,6 +162,7 @@ class TrackCustomizeController extends GetxController {
     sectionMood.value = tab;
     scrollController.animateTo(tab.position,
         duration: const Duration(milliseconds: 250), curve: Curves.easeOut);
+    sectionIncludedSong.value = <String>[];
   }
 
   void setSectionDuration(int duration) {
@@ -183,6 +187,7 @@ class TrackCustomizeController extends GetxController {
         mood: sectionMood.value.label,
         duration: sectionDuration.value,
         includedMusicId: selectedSong));
+    updateStatusDuration();
     Get.back<void>();
     Get.back<void>();
   }
@@ -195,6 +200,7 @@ class TrackCustomizeController extends GetxController {
         mood: sectionMood.value.label,
         duration: sectionDuration.value,
         includedMusicId: selectedSong);
+    updateStatusDuration();
     Get.back<void>();
     Get.back<void>();
   }
@@ -202,11 +208,37 @@ class TrackCustomizeController extends GetxController {
   RemovedSection removeSection(Section section) {
     int index = sectionList.indexOf(section);
     Section removedSection = sectionList.removeAt(index);
+    updateStatusDuration();
     return RemovedSection(section: removedSection, index: index);
   }
 
   void undoSection(RemovedSection removedSection) {
     sectionList.insert(removedSection.index, removedSection.section);
+    updateStatusDuration();
+  }
+
+  CreateSectionStatus verifyCreateSection(int latestDuration) {
+    if (latestDuration == 0) {
+      return CreateSectionStatus.minimum;
+    }
+    if (sectionList.isNotEmpty) {
+      int duration = sectionList
+              .map((Section section) => section.duration)
+              .reduce((int prev, int cur) => prev + cur) +
+          latestDuration;
+      if (duration > 60) {
+        return CreateSectionStatus.exceed;
+      }
+    }
+    return CreateSectionStatus.normal;
+  }
+
+  void updateStatusDuration() {
+    if (sectionList.isEmpty) {
+      createTrackStatus.value = CreateTrackStatus.disable;
+    } else {
+      createTrackStatus.value = CreateTrackStatus.normal;
+    }
   }
 
   Future<Track?> generateTrack() async {
