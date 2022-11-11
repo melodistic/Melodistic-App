@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:melodistic/config/color.dart';
@@ -38,7 +40,7 @@ class TrackScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                    height: 450,
+                    height: min(450, MediaQuery.of(context).size.height * 0.5),
                     width: double.infinity,
                     decoration: BoxDecoration(
                         image: DecorationImage(
@@ -55,7 +57,7 @@ class TrackScreen extends StatelessWidget {
                             kGrayScaleColorBlack.withOpacity(.3),
                           ])),
                     )),
-                kSizedBoxVerticalM,
+                kSizedBoxVerticalS,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: kSizeS * 1.5),
                   child: Column(
@@ -70,7 +72,7 @@ class TrackScreen extends StatelessWidget {
                           playerController.currentTrack.value!.description,
                           style: kBody2.copyWith(color: kGrayScaleColor600),
                         ),
-                        kSizedBoxVerticalM,
+                        kSizedBoxVerticalS,
                         MusicPlayer()
                       ]),
                 )
