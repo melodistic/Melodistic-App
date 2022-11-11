@@ -56,34 +56,39 @@ class CustomizeSectionScreen extends StatelessWidget {
                         })
                   ],
                 )),
-                kSizedBoxVerticalS,
-                Obx(() => ButtonWidget(
-                      state: trackCustomizeController.createTrackStatus.value ==
-                              CreateTrackStatus.normal
-                          ? ButtonState.normal
-                          : ButtonState.disable,
-                      button: ButtonType.mainButton,
-                      text: 'Start Exercise',
-                      customContent: trackCustomizeController.isProcessing.value
-                          ? const SpinKitFadingCircle(
-                              color: kGrayScaleColor300,
-                              size: 18,
-                            )
-                          : null,
-                      handleClick: () async {
-                        if (trackCustomizeController.createTrackStatus.value ==
-                            CreateTrackStatus.normal) {
-                          if (!trackCustomizeController.isProcessing.value) {
-                            Track? track =
-                                await trackCustomizeController.generateTrack();
-                            if (track != null) {
-                              PlayerController playerController = Get.find();
-                              await playerController.setupPlayer(track);
-                              Get.offAllNamed<void>(RoutesName.track);
+                Obx(() => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: kSizeS),
+                      child: ButtonWidget(
+                        state:
+                            trackCustomizeController.createTrackStatus.value ==
+                                    CreateTrackStatus.normal
+                                ? ButtonState.normal
+                                : ButtonState.disable,
+                        button: ButtonType.mainButton,
+                        text: 'Start Exercise',
+                        customContent:
+                            trackCustomizeController.isProcessing.value
+                                ? const SpinKitFadingCircle(
+                                    color: kGrayScaleColor300,
+                                    size: 18,
+                                  )
+                                : null,
+                        handleClick: () async {
+                          if (trackCustomizeController
+                                  .createTrackStatus.value ==
+                              CreateTrackStatus.normal) {
+                            if (!trackCustomizeController.isProcessing.value) {
+                              Track? track = await trackCustomizeController
+                                  .generateTrack();
+                              if (track != null) {
+                                PlayerController playerController = Get.find();
+                                await playerController.setupPlayer(track);
+                                Get.offAllNamed<void>(RoutesName.track);
+                              }
                             }
                           }
-                        }
-                      },
+                        },
+                      ),
                     ))
               ],
             )));
