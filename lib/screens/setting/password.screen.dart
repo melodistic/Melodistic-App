@@ -32,13 +32,16 @@ class SettingPasswordScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Image.asset('assets/images/forget_pwd.png'),
+                    Image.asset(
+                      'assets/images/forget_pwd.png',
+                      height: 180,
+                    ),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           const Text('Change Password', style: kBody2),
-                          kSizedBoxVerticalXS,
+                          kSizedBoxVerticalXXS,
                           TextFieldWidget(
                             controller: _passwordController,
                             hintTitle: 'Recent Password',
