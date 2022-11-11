@@ -65,23 +65,26 @@ class SettingPasswordScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    ButtonWidget(
-                      text: 'Save',
-                      handleClick: () async {
-                        if (authController.changePasswordFormKey.currentState!
-                            .validate()) {
-                          final bool success =
-                              await authController.changePassword(
-                                  _passwordController.text,
-                                  _newpasswordController.text);
-                          if (success) {
-                            Alert.showAlert(const SettingSuccessPopup(
-                              title: 'Password Updated',
-                              description: 'Your password has been change',
-                            ));
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: kSizeS),
+                      child: ButtonWidget(
+                        text: 'Save',
+                        handleClick: () async {
+                          if (authController.changePasswordFormKey.currentState!
+                              .validate()) {
+                            final bool success =
+                                await authController.changePassword(
+                                    _passwordController.text,
+                                    _newpasswordController.text);
+                            if (success) {
+                              Alert.showAlert(const SettingSuccessPopup(
+                                title: 'Password Updated',
+                                description: 'Your password has been change',
+                              ));
+                            }
                           }
-                        }
-                      },
+                        },
+                      ),
                     )
                   ],
                 ),
