@@ -26,7 +26,7 @@ class ForgetPasswordScreen extends StatelessWidget {
           hasScrollBody: false,
           child: Padding(
             padding:
-                const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeXXXS),
+                const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeXXS),
             child: Form(
                 key: forgetPasswordController.requestResetPasswordFormKey,
                 child: Column(
@@ -36,7 +36,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             Image.asset('assets/images/forget_pwd.png'),
-                            kSizedBoxVerticalL,
+                            kSizedBoxVerticalM,
                             const Padding(
                                 padding: EdgeInsets.only(right: kSizeM),
                                 child: Text(
@@ -52,23 +52,26 @@ class ForgetPasswordScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      ButtonWidget(
-                          button: ButtonType.mainButton,
-                          text: 'Send reset password link',
-                          handleClick: () async {
-                            String email = emailController.text;
-                            if (forgetPasswordController
-                                .requestResetPasswordFormKey.currentState!
-                                .validate()) {
-                              bool success = await forgetPasswordController
-                                  .configRequestResetPassword(email);
-                              if (success) {
-                                Alert.showAlert(ForgetPopup(), action: () {
-                                  Get.toNamed<void>(RoutesName.validateOtp);
-                                });
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: ButtonWidget(
+                            button: ButtonType.mainButton,
+                            text: 'Send reset password link',
+                            handleClick: () async {
+                              String email = emailController.text;
+                              if (forgetPasswordController
+                                  .requestResetPasswordFormKey.currentState!
+                                  .validate()) {
+                                bool success = await forgetPasswordController
+                                    .configRequestResetPassword(email);
+                                if (success) {
+                                  Alert.showAlert(ForgetPopup(), action: () {
+                                    Get.toNamed<void>(RoutesName.validateOtp);
+                                  });
+                                }
                               }
-                            }
-                          })
+                            }),
+                      )
                     ])),
           ),
         )
