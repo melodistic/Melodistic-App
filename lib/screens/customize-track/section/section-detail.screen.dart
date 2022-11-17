@@ -234,7 +234,10 @@ class CustomizeSectionDetailScreen extends StatelessWidget {
                               CreateSectionStatus createSectionStatus =
                                   trackCustomizeController.verifyCreateSection(
                                       trackCustomizeController
-                                          .sectionDuration.value);
+                                          .sectionDuration.value,
+                                      trackCustomizeController
+                                          .customizeMode.value,
+                                      trackCustomizeController.editIndex.value);
                               if (createSectionStatus ==
                                   CreateSectionStatus.exceed) {
                                 Alert.showAlert(const ErrorPopup(
