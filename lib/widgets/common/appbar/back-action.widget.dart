@@ -4,19 +4,23 @@ import 'package:melodistic/config/color.dart';
 import 'package:melodistic/config/constant.dart';
 import 'package:melodistic/config/icon.dart';
 import 'package:melodistic/config/style.dart';
+import 'package:melodistic/controller/player.controller.dart';
 import 'package:melodistic/routes.dart';
 
 class BackActionAppbar extends StatelessWidget with PreferredSizeWidget {
-  const BackActionAppbar(
+  BackActionAppbar(
       {Key? key,
       required this.title,
       required this.action,
-      this.color = kGrayScaleColorWhite})
+      this.color = kGrayScaleColorWhite,
+      this.isCustomBackAction = false})
       : super(key: key);
 
   final String title;
   final Widget action;
   final Color color;
+  final bool isCustomBackAction;
+  final PlayerController playerController = Get.find();
 
   @override
   Size get preferredSize => const Size.fromHeight(kSizeL);
@@ -30,11 +34,16 @@ class BackActionAppbar extends StatelessWidget with PreferredSizeWidget {
           child: SizedBox(
               child: GestureDetector(
             onTap: () {
+              if (isCustomBackAction) {
+                playerController.stop();
+                Get.back<void>();
+              }
               if (Get.routing.route == null || Get.routing.route!.isFirst) {
                 Get.toNamed<void>(RoutesName.home);
               } else {
                 Get.back<void>();
               }
+              ;
             },
             child: Icon(
               MelodisticIcon.chevron_left,

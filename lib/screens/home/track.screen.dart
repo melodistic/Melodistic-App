@@ -21,6 +21,7 @@ class TrackScreen extends StatelessWidget {
     final TrackController trackController = Get.find();
     return ScreenWrapper(
         customAppbar: BackActionAppbar(
+          isCustomBackAction: true,
           title: 'Song',
           action: GestureDetector(
               onTap: () async {
