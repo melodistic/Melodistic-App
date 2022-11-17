@@ -70,7 +70,7 @@ class MusicPlayer extends StatelessWidget {
                       MelodisticIcon.pause_outline,
                     ),
                     iconSize: kSizeM,
-                    onPressed: playerController.stop)))
+                    onPressed: playerController.pause)))
             : (Container(
                 width: kSizeL,
                 height: kSizeL,
