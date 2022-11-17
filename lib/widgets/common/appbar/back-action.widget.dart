@@ -12,14 +12,12 @@ class BackActionAppbar extends StatelessWidget with PreferredSizeWidget {
       {Key? key,
       required this.title,
       required this.action,
-      this.color = kGrayScaleColorWhite,
-      this.isCustomBackAction = false})
+      this.color = kGrayScaleColorWhite})
       : super(key: key);
 
   final String title;
   final Widget action;
   final Color color;
-  final bool isCustomBackAction;
   final PlayerController playerController = Get.find();
 
   @override
@@ -34,10 +32,7 @@ class BackActionAppbar extends StatelessWidget with PreferredSizeWidget {
           child: SizedBox(
               child: GestureDetector(
             onTap: () {
-              if (isCustomBackAction) {
-                playerController.stop();
-                Get.back<void>();
-              }
+              playerController.clearPlayer();
               if (Get.routing.route == null || Get.routing.route!.isFirst) {
                 Get.toNamed<void>(RoutesName.home);
               } else {
