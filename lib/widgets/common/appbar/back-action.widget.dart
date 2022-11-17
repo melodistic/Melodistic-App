@@ -43,7 +43,6 @@ class BackActionAppbar extends StatelessWidget with PreferredSizeWidget {
               } else {
                 Get.back<void>();
               }
-              ;
             },
             child: Icon(
               MelodisticIcon.chevron_left,
