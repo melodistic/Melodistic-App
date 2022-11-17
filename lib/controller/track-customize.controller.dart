@@ -33,8 +33,7 @@ class TrackCustomizeController extends GetxController {
   final List<OptionItem> exerciseTypeList = <OptionItem>[
     OptionItem(id: 1, label: 'Warm up', position: 0),
     OptionItem(id: 2, label: 'Exercise', position: 0),
-    OptionItem(id: 3, label: 'Cooldown', position: 0),
-    OptionItem(id: 4, label: 'Running', position: 25)
+    OptionItem(id: 3, label: 'Cooldown', position: 0)
   ];
   final List<OptionItem> moodList = <OptionItem>[
     OptionItem(id: 1, label: 'Chill', position: 0),
@@ -217,7 +216,26 @@ class TrackCustomizeController extends GetxController {
     updateStatusDuration();
   }
 
-  CreateSectionStatus verifyCreateSection(int latestDuration) {
+  CreateSectionStatus verifyCreateSection(
+      int latestDuration, CustomizeMode mode, int editedIndex) {
+    if (mode == CustomizeMode.edit) {
+      if (latestDuration == 0) {
+        return CreateSectionStatus.minimum;
+      }
+      if (sectionList.isNotEmpty) {
+        int duration = sectionList
+                .map((Section section) =>
+                    sectionList.indexOf(section) == editedIndex
+                        ? 0
+                        : section.duration)
+                .reduce((int prev, int cur) => prev + cur) +
+            latestDuration;
+        if (duration > 60) {
+          return CreateSectionStatus.exceed;
+        }
+      }
+      return CreateSectionStatus.normal;
+    }
     if (latestDuration == 0) {
       return CreateSectionStatus.minimum;
     }
