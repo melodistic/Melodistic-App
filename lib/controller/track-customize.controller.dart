@@ -216,7 +216,26 @@ class TrackCustomizeController extends GetxController {
     updateStatusDuration();
   }
 
-  CreateSectionStatus verifyCreateSection(int latestDuration) {
+  CreateSectionStatus verifyCreateSection(
+      int latestDuration, CustomizeMode mode, int editedIndex) {
+    if (mode == CustomizeMode.edit) {
+      if (latestDuration == 0) {
+        return CreateSectionStatus.minimum;
+      }
+      if (sectionList.isNotEmpty) {
+        int duration = sectionList
+                .map((Section section) =>
+                    sectionList.indexOf(section) == editedIndex
+                        ? 0
+                        : section.duration)
+                .reduce((int prev, int cur) => prev + cur) +
+            latestDuration;
+        if (duration > 60) {
+          return CreateSectionStatus.exceed;
+        }
+      }
+      return CreateSectionStatus.normal;
+    }
     if (latestDuration == 0) {
       return CreateSectionStatus.minimum;
     }
