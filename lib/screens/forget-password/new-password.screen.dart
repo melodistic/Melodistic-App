@@ -32,58 +32,79 @@ class NewPasswordScreen extends StatelessWidget {
           Get.back<void>();
         },
       ),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeXXXS),
-        child: Form(
-            key: forgetPasswordController.newPasswordFormKey,
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Image.asset('assets/images/forget_pwd.png'),
-                  kSizedBoxVerticalL,
-                  Expanded(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+      child: CustomScrollView(slivers: <Widget>[
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: Padding(
+            padding:
+                const EdgeInsets.fromLTRB(kSizeM, kSizeS, kSizeM, kSizeXXS),
+            child: Form(
+                key: forgetPasswordController.newPasswordFormKey,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      const Text(
-                        'Create Your New Password',
-                        style: kBody2,
+                      Expanded(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Image.asset(
+                                'assets/images/forget_pwd.png',
+                                height: 200,
+                              ),
+                            ],
+                          ),
+                          kSizedBoxVerticalM,
+                          const Text(
+                            'Create Your New Password',
+                            style: kBody2,
+                          ),
+                          TextFieldWidget(
+                              fieldType: FieldType.password,
+                              hintTitle: 'Password',
+                              controller: passwordController,
+                              validate:
+                                  forgetPasswordController.validatePassword),
+                          TextFieldWidget(
+                              fieldType: FieldType.password,
+                              hintTitle: 'Comfirm Password',
+                              controller: confirmPasswordController,
+                              validate: (String? value) {
+                                return forgetPasswordController
+                                    .validateConfirmPassword(
+                                        passwordController.text, value);
+                              }),
+                        ],
+                      )),
+                      kSizedBoxVerticalM,
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: ButtonWidget(
+                            button: ButtonType.mainButton,
+                            text: 'Continue',
+                            handleClick: () async {
+                              if (forgetPasswordController
+                                  .newPasswordFormKey.currentState!
+                                  .validate()) {
+                                final bool success =
+                                    await forgetPasswordController
+                                        .setNewPassword(
+                                            passwordController.text);
+                                if (success) {
+                                  Alert.showAlert(ForgetSuccessPopup(),
+                                      action: () {
+                                    Get.offAllNamed<dynamic>(RoutesName.home);
+                                  });
+                                }
+                              }
+                            }),
                       ),
-                      TextFieldWidget(
-                          fieldType: FieldType.password,
-                          hintTitle: 'Password',
-                          controller: passwordController,
-                          validate: forgetPasswordController.validatePassword),
-                      TextFieldWidget(
-                          fieldType: FieldType.password,
-                          hintTitle: 'Comfirm Password',
-                          controller: confirmPasswordController,
-                          validate: (String? value) {
-                            return forgetPasswordController
-                                .validateConfirmPassword(
-                                    passwordController.text, value);
-                          }),
-                    ],
-                  )),
-                  kSizedBoxVerticalL,
-                  ButtonWidget(
-                      button: ButtonType.mainButton,
-                      text: 'Continue',
-                      handleClick: () async {
-                        if (forgetPasswordController
-                            .newPasswordFormKey.currentState!
-                            .validate()) {
-                          final bool success = await forgetPasswordController
-                              .setNewPassword(passwordController.text);
-                          if (success) {
-                            Alert.showAlert(ForgetSuccessPopup(), action: () {
-                              Get.offAllNamed<dynamic>(RoutesName.home);
-                            });
-                          }
-                        }
-                      }),
-                ])),
-      ),
+                    ])),
+          ),
+        )
+      ]),
     );
   }
 }
