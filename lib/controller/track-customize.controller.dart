@@ -216,14 +216,6 @@ class TrackCustomizeController extends GetxController {
     updateStatusDuration();
   }
 
-  int sumOfDuration(Section section, int editedIndex) {
-    if (sectionList.indexOf(section) == editedIndex) {
-      return 0;
-    } else {
-      return section.duration;
-    }
-  }
-
   CreateSectionStatus verifyCreateSection(
       int latestDuration, CustomizeMode mode, int editedIndex) {
     if (mode == CustomizeMode.edit) {
@@ -232,7 +224,10 @@ class TrackCustomizeController extends GetxController {
       }
       if (sectionList.isNotEmpty) {
         int duration = sectionList
-                .map((Section section) => sumOfDuration(section, editedIndex))
+                .map((Section section) =>
+                    sectionList.indexOf(section) == editedIndex
+                        ? 0
+                        : section.duration)
                 .reduce((int prev, int cur) => prev + cur) +
             latestDuration;
         if (duration > 60) {
