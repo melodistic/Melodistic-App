@@ -33,8 +33,7 @@ class TrackCustomizeController extends GetxController {
   final List<OptionItem> exerciseTypeList = <OptionItem>[
     OptionItem(id: 1, label: 'Warm up', position: 0),
     OptionItem(id: 2, label: 'Exercise', position: 0),
-    OptionItem(id: 3, label: 'Cooldown', position: 0),
-    OptionItem(id: 4, label: 'Running', position: 25)
+    OptionItem(id: 3, label: 'Cooldown', position: 0)
   ];
   final List<OptionItem> moodList = <OptionItem>[
     OptionItem(id: 1, label: 'Chill', position: 0),
