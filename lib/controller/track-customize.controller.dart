@@ -281,7 +281,7 @@ class TrackCustomizeController extends GetxController {
       await uploadTrackImage(trackId);
       final TrackController trackController = Get.find();
       final Track track = await trackController.getTrackInformation(trackId);
-      isProcessing.value = true;
+      isProcessing.value = false;
       return track;
     } else {
       isProcessing.value = false;
