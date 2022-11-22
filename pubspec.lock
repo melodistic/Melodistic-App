@@ -393,7 +393,7 @@ packages:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.5+3"
+    version: "0.8.6"
   image_picker_android:
     dependency: transitive
     description:
@@ -409,12 +409,14 @@ packages:
     source: hosted
     version: "2.1.8"
   image_picker_ios:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
-      name: image_picker_ios
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.8.6"
+      path: "."
+      ref: main
+      resolved-ref: cc25406d0d6c45da710337cf52f4d125ad81edd5
+      url: "https://github.com/ggolfz/image_picker_ios"
+    source: git
+    version: "0.8.6+1"
   image_picker_platform_interface:
     dependency: transitive
     description:

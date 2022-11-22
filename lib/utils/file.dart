@@ -3,8 +3,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 
 Future<File?> getPhotoFromGallery() async {
-  XFile? pickedFile =
-      await ImagePicker().pickImage(source: ImageSource.gallery);
+  XFile? pickedFile = await ImagePicker()
+      .pickImage(source: ImageSource.gallery, requestFullMetadata: true);
   if (pickedFile != null) {
     File imageFile = File(pickedFile.path);
     return imageFile;
