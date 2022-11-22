@@ -17,7 +17,7 @@ dependencies:
   google_sign_in: ^5.3.3
   flutter_spinkit: ^5.1.0
   get: ^4.6.5
-  image_picker: ^0.8.5+3
+  image_picker: ^0.8.6
   syncfusion_flutter_sliders: ^20.2.49
   shared_preferences: ^2.0.15
   http_parser: ^4.0.1
@@ -33,6 +33,12 @@ dev_dependencies:
   network_image_mock: ^2.1.1
   any_link_preview: ^2.0.9
   flutter_launcher_icons: ^0.10.0
+  
+dependency_overrides:
+  image_picker_ios:
+    git:
+      url: https://github.com/ggolfz/image_picker_ios
+      ref: main
 
 flutter_icons:
   android: "launcher_icon"

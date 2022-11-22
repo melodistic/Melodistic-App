@@ -11,6 +11,10 @@ import 'package:melodistic/singleton/user_session.dart';
 class UserController extends GetxController {
   Rxn<File> profileImage = Rxn<File>();
 
+  void clearProfileImage() {
+    profileImage.value = null;
+  }
+
   void setProfileImage(File image) {
     profileImage.value = image;
   }

@@ -22,6 +22,15 @@ class CustomizeScreen extends StatelessWidget {
   CustomizeScreen({Key? key}) : super(key: key);
 
   final TrackCustomizeController trackCustomizeController = Get.find();
+
+  Future<void> handleSelectImage() async {
+    File? image = await getPhotoFromGallery();
+    if (image != null) {
+      trackCustomizeController.setProgramPicture(image);
+      trackCustomizeController.errorMessage.value = null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     TextEditingController _programController = TextEditingController();
@@ -71,47 +80,44 @@ class CustomizeScreen extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: <Widget>[
-                                          Obx(() => trackCustomizeController
-                                                      .programPicture.value ==
-                                                  null
-                                              ? Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: <Widget>[
-                                                    const Image(
-                                                        image: AssetImage(
-                                                            'assets/images/picture.png')),
-                                                    ButtonWidget(
-                                                        button: ButtonType
-                                                            .outlineButton,
-                                                        customContent: Text(
-                                                            'Browse files',
-                                                            style: kBody3Medium
-                                                                .copyWith(
-                                                                    color:
-                                                                        kPrimaryColor)),
-                                                        size: ButtonSize.small,
-                                                        handleClick: () async {
-                                                          File? image =
-                                                              await getPhotoFromGallery();
-                                                          if (image != null) {
-                                                            trackCustomizeController
-                                                                .setProgramPicture(
-                                                                    image);
-                                                            trackCustomizeController
-                                                                .errorMessage
-                                                                .value = null;
-                                                          }
-                                                        }),
-                                                  ],
-                                                )
-                                              : Expanded(
-                                                  child: Image.file(
-                                                    trackCustomizeController
-                                                        .programPicture.value!,
-                                                    fit: BoxFit.contain,
-                                                  ),
-                                                ))
+                                          Obx(
+                                            () => trackCustomizeController
+                                                        .programPicture.value ==
+                                                    null
+                                                ? Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: <Widget>[
+                                                      const Image(
+                                                          image: AssetImage(
+                                                              'assets/images/picture.png')),
+                                                      ButtonWidget(
+                                                          button: ButtonType
+                                                              .outlineButton,
+                                                          customContent: Text(
+                                                              'Browse files',
+                                                              style: kBody3Medium
+                                                                  .copyWith(
+                                                                      color:
+                                                                          kPrimaryColor)),
+                                                          size:
+                                                              ButtonSize.small,
+                                                          handleClick:
+                                                              handleSelectImage),
+                                                    ],
+                                                  )
+                                                : Expanded(
+                                                    child: GestureDetector(
+                                                    child: Image.file(
+                                                      trackCustomizeController
+                                                          .programPicture
+                                                          .value!,
+                                                      fit: BoxFit.contain,
+                                                    ),
+                                                    onTap: handleSelectImage,
+                                                  )),
+                                          )
                                         ])),
                               ),
                               Obx(() {

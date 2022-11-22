@@ -33,6 +33,7 @@ class SettingProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    userController.clearProfileImage();
     return ScreenWrapper(
         customAppbar: const BackAppbar(title: 'Profile Setting'),
         child: Padding(
