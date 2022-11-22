@@ -191,34 +191,34 @@ class CustomizeSectionDetailScreen extends StatelessWidget {
                             SizedBox(
                               width: double.infinity,
                               height: kSizeM,
-                              child: Expanded(
-                                child: Obx(() => SfSlider(
-                                      thumbIcon: Container(
-                                        width: 3,
-                                        height: 3,
-                                        margin: const EdgeInsets.all(100.0),
-                                        decoration: const BoxDecoration(
-                                            color: kPrimaryColor,
-                                            shape: BoxShape.circle),
-                                      ),
-                                      activeColor: kPrimaryColor,
-                                      inactiveColor: kGrayScaleColor200,
-                                      min: 0.0,
-                                      max: 60.0,
-                                      interval: 15,
-                                      showTicks: true,
-                                      showLabels: true,
-                                      enableTooltip: true,
-                                      value: trackCustomizeController
-                                          .sectionDuration.value,
-                                      onChanged: (dynamic newValue) {
-                                        int duration =
-                                            double.parse(newValue.toString())
-                                                .round();
-                                        trackCustomizeController
-                                            .setSectionDuration(duration);
-                                      },
-                                    )),
+                              child: Obx(
+                                () => SfSlider(
+                                  thumbIcon: Container(
+                                    width: 3,
+                                    height: 3,
+                                    margin: const EdgeInsets.all(100.0),
+                                    decoration: const BoxDecoration(
+                                        color: kPrimaryColor,
+                                        shape: BoxShape.circle),
+                                  ),
+                                  activeColor: kPrimaryColor,
+                                  inactiveColor: kGrayScaleColor200,
+                                  min: 0.0,
+                                  max: 60.0,
+                                  interval: 15,
+                                  showTicks: true,
+                                  showLabels: true,
+                                  enableTooltip: true,
+                                  value: trackCustomizeController
+                                      .sectionDuration.value,
+                                  onChanged: (dynamic newValue) {
+                                    int duration =
+                                        double.parse(newValue.toString())
+                                            .round();
+                                    trackCustomizeController
+                                        .setSectionDuration(duration);
+                                  },
+                                ),
                               ),
                             ),
                             kSizedBoxVerticalL,
