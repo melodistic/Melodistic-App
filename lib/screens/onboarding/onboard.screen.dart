@@ -23,7 +23,6 @@ class OnboardingScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const Text('Enjoy Exercise', style: kHeading1),
-                kSizedBoxHorizontalXXL,
                 Row(
                   children: <Widget>[
                     const Text('With', style: kHeading1),
@@ -31,10 +30,13 @@ class OnboardingScreen extends StatelessWidget {
                         style: kHeading1.copyWith(color: kSecondaryColor))
                   ],
                 ),
-                kSizedBoxHorizontalXXL,
+                kSizedBoxVerticalXS,
                 Container(
+                    width: double.infinity,
                     padding: const EdgeInsets.symmetric(vertical: kSizeS),
-                    child: Image.asset('assets/images/onbording.png')),
+                    child: Image.asset('assets/images/onbording.png',
+                        fit: BoxFit.cover)),
+                kSizedBoxVerticalS,
                 Text(
                     'This application will match your mood and favorite music for a exercise music track.',
                     textAlign: TextAlign.center,
