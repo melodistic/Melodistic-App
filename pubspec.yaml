@@ -1,5 +1,5 @@
 name: melodistic
-description: A new Flutter project.
+description: A mobile application for streaming exercise music tracks and generating new tracks based on mood. It also allows the user to include their own favorite music.
 
 publish_to: 'none'
 
@@ -25,12 +25,7 @@ dependencies:
   dotted_border: ^2.0.0+2
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
   flutter_lints: ^1.0.0
-  mockito: ^5.3.0
-  build_runner: ^2.2.0
-  network_image_mock: ^2.1.1
   any_link_preview: ^2.0.9
   flutter_launcher_icons: ^0.10.0
   
