@@ -27,7 +27,15 @@ class MusicPlayer extends StatelessWidget {
           child: Obx(() => Slider(
               value: convertDurationToDoubleValue(
                   playerController.currentProgress.value),
+              onChangeStart: (double value) {
+                playerController.currentProgress.value =
+                    Duration(milliseconds: value.toInt() * 1000);
+              },
               onChanged: (double value) {
+                playerController.currentProgress.value =
+                    Duration(milliseconds: value.toInt() * 1000);
+              },
+              onChangeEnd: (double value) {
                 playerController
                     .seek(Duration(milliseconds: value.toInt() * 1000));
               },
